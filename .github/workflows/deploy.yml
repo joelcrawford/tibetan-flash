@@ -1,0 +1,54 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.DROPLET_SSH_KEY }}
+
+      - name: Add server to known hosts
+        run: ssh-keyscan -H ${{ secrets.DROPLET_IP }} >> ~/.ssh/known_hosts
+
+      - name: Sync static build
+        run: |
+          rsync -az --delete dist/ ${{ secrets.DROPLET_USER }}@${{ secrets.DROPLET_IP }}:/var/www/tibetan-flash/
+
+      - name: Sync server and python
+        run: |
+          rsync -az --delete --exclude='node_modules' \
+            server/ ${{ secrets.DROPLET_USER }}@${{ secrets.DROPLET_IP }}:/opt/tibetan-flash/server/
+          rsync -az --delete --exclude='__pycache__' \
+            src/python/ ${{ secrets.DROPLET_USER }}@${{ secrets.DROPLET_IP }}:/opt/tibetan-flash/src/python/
+          rsync -az ecosystem.config.cjs ${{ secrets.DROPLET_USER }}@${{ secrets.DROPLET_IP }}:/opt/tibetan-flash/
+
+      - name: Install deps and restart PM2
+        run: |
+          ssh ${{ secrets.DROPLET_USER }}@${{ secrets.DROPLET_IP }} "
+            set -e &&
+            cd /opt/tibetan-flash &&
+            cd server && npm install --omit=dev && cd .. &&
+            .venv/bin/pip install -q -r src/python/requirements.txt &&
+            pm2 startOrRestart ecosystem.config.cjs --update-env &&
+            pm2 save
+          "
