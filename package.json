@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "start": "concurrently -n tts,vite -c blue,green \"node --env-file=server/.env --watch server/index.js\" \"npm --prefix apps/web run start\"",
     "dev": "concurrently -n tts,vite -c blue,green \"node --env-file=server/.env --watch server/index.js\" \"npm --prefix apps/web run dev\"",
     "dev:client": "npm --prefix apps/web run dev",
     "dev:server": "node --env-file=server/.env --watch server/index.js",
