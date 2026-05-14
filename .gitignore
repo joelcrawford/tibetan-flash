@@ -1,6 +1,7 @@
 # dependencies
 node_modules/
 server/node_modules/
+apps/web/node_modules/
 .venv/
 
 # model cache (large — downloaded on server at first run)
@@ -8,6 +9,7 @@ server/models/
 
 # build output
 dist/
+apps/web/dist/
 
 # env
 .env

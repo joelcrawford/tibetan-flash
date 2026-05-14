@@ -10,12 +10,13 @@ REMOTE_ROOT="${REMOTE_ROOT:-/opt/tibetan-flash}"
 REMOTE_WEB="${REMOTE_WEB:-/var/www/tibetan-flash}"
 
 # ── Build ─────────────────────────────────────────────────────
-echo "→ Building client..."
-npm run build
+echo "→ Building web app..."
+npm --prefix apps/web install
+npm --prefix apps/web run build
 
 # ── Sync static build ─────────────────────────────────────────
-echo "→ Syncing dist/ to $DEPLOY_HOST:$REMOTE_WEB"
-rsync -az --delete dist/ "$DEPLOY_USER@$DEPLOY_HOST:$REMOTE_WEB/"
+echo "→ Syncing apps/web/dist/ to $DEPLOY_HOST:$REMOTE_WEB"
+rsync -az --delete apps/web/dist/ "$DEPLOY_USER@$DEPLOY_HOST:$REMOTE_WEB/"
 
 # ── Sync server & python ───────────────────────────────────────
 echo "→ Syncing server/ and src/python/ to $DEPLOY_HOST:$REMOTE_ROOT"

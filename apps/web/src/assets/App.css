@@ -132,11 +132,15 @@
 }
 
 /* ── Card scene & flip ───────────────────────────────── */
+.fc-scene-wrap {
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
 .fc-scene {
   perspective: 1200px;
   width: 100%;
   height: 320px;
-  margin-bottom: 1.5rem;
   cursor: pointer;
 }
 

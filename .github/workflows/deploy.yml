@@ -15,12 +15,13 @@ jobs:
         with:
           node-version: "20"
           cache: "npm"
+          cache-dependency-path: apps/web/package-lock.json
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install web dependencies
+        run: npm --prefix apps/web ci
 
-      - name: Build
-        run: npm run build
+      - name: Build web app
+        run: npm --prefix apps/web run build
 
       - name: Set up SSH
         uses: webfactory/ssh-agent@v0.9.0
@@ -32,7 +33,7 @@ jobs:
 
       - name: Sync static build
         run: |
-          rsync -az --delete dist/ ${{ secrets.DROPLET_USER }}@${{ secrets.DROPLET_IP }}:/var/www/tibetan-flash/
+          rsync -az --delete apps/web/dist/ ${{ secrets.DROPLET_USER }}@${{ secrets.DROPLET_IP }}:/var/www/tibetan-flash/
 
       - name: Sync server and python
         run: |
