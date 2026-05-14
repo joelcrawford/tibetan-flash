@@ -14,10 +14,19 @@
     },
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "org.asianlegacylibrary.tibetanflash"
+      "bundleIdentifier": "org.asianlegacylibrary.tibetanflash",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "60c5af36-11db-4da2-8631-b16bde8ec60e"
+      }
+    },
+    "owner": "b2byj0j0"
   }
 }

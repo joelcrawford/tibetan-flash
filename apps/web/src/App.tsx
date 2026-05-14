@@ -144,6 +144,9 @@ export default function App() {
                   <span className="text-[11px] text-ink-faint tracking-[0.06em] absolute top-3.5 right-4">
                     {card.session}
                   </span>
+                  <div className="font-mono text-[13px] tracking-[0.08em] text-ink-mid mb-3 dark:text-ink-faint">
+                    {card.acip}
+                  </div>
                   <div className="font-title text-[20px] font-normal text-ink mb-3 leading-[1.4] italic text-center w-full dark:text-ink-lt">
                     {card.meaning}
                   </div>

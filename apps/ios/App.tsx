@@ -236,6 +236,7 @@ export default function App() {
                   contentContainerStyle={s.backContent}
                   showsVerticalScrollIndicator={false}
                 >
+                  <Text style={[s.acipBack, { color: dark ? C.faint : C.mid }]}>{card.acip}</Text>
                   <Text style={[s.meaning, { color: c.ink }]}>{card.meaning}</Text>
                   {card.notes ? (
                     <Text style={[s.notes, { color: C.muted }]}>{card.notes}</Text>
@@ -363,6 +364,7 @@ const s = StyleSheet.create({
   acipHint:      { position: "absolute", fontSize: 11, color: C.muted, fontStyle: "italic" },
   tapHint:       { position: "absolute", bottom: 14, fontSize: 12, fontStyle: "italic" },
   backContent:   { flexGrow: 1, alignItems: "center", justifyContent: "center", paddingVertical: 16 },
+  acipBack:      { fontFamily: "Courier New", fontSize: 13, letterSpacing: 1, marginBottom: 10, textAlign: "center" },
   meaning:       { fontFamily: "Georgia", fontSize: 20, fontStyle: "italic", textAlign: "center", marginBottom: 12, lineHeight: 28 },
   notes:         { fontSize: 13, fontStyle: "italic", textAlign: "center", lineHeight: 20, marginBottom: 12 },
   ctxLabel:      { fontSize: 11, letterSpacing: 1, textTransform: "uppercase", marginBottom: 4, alignSelf: "flex-start" },
