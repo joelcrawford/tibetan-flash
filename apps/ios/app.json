@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": false,
+    "newArchEnabled": true,
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
@@ -27,6 +27,9 @@
         "projectId": "60c5af36-11db-4da2-8631-b16bde8ec60e"
       }
     },
-    "owner": "b2byj0j0"
+    "owner": "b2byj0j0",
+    "plugins": [
+      "expo-audio"
+    ]
   }
 }

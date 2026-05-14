@@ -1,20 +1,18 @@
 import { useState, useCallback, useRef } from "react";
-import { Audio } from "expo-av";
+import { useAudioPlayer } from "expo-audio";
 
 const TTS_URL = process.env.EXPO_PUBLIC_TTS_URL ?? "https://tibetan.havehopeyo.com";
 
 export function useTTS() {
   const [speaking, setSpeaking] = useState(false);
   const cacheRef = useRef<Map<string, string>>(new Map());
-  const soundRef = useRef<Audio.Sound | null>(null);
+  const player = useAudioPlayer(null);
 
   const speak = useCallback(async (text: string) => {
     if (speaking) return;
     setSpeaking(true);
 
     try {
-      await Audio.setAudioModeAsync({ playsInSilentModeIOS: true });
-
       let uri = cacheRef.current.get(text);
       if (!uri) {
         const res = await fetch(`${TTS_URL}/speak`, {
@@ -28,35 +26,37 @@ export function useTTS() {
         cacheRef.current.set(text, uri);
       }
 
-      if (soundRef.current) {
-        await soundRef.current.unloadAsync();
-      }
+      // Play at normal speed
+      player.replace({ uri });
+      player.play();
 
-      const { sound } = await Audio.Sound.createAsync({ uri });
-      soundRef.current = sound;
-
-      // Play at normal speed then 0.75x
-      await sound.playAsync();
       await new Promise<void>((resolve) => {
-        sound.setOnPlaybackStatusUpdate((status) => {
-          if (status.isLoaded && status.didJustFinish) resolve();
-        });
+        const interval = setInterval(() => {
+          if (!player.playing) {
+            clearInterval(interval);
+            resolve();
+          }
+        }, 100);
       });
 
-      await sound.setRateAsync(0.75, true);
-      await sound.replayAsync();
+      // Replay at 0.75x
+      player.setPlaybackRate(0.75);
+      player.seekTo(0);
+      player.play();
+
       await new Promise<void>((resolve) => {
-        sound.setOnPlaybackStatusUpdate((status) => {
-          if (status.isLoaded && status.didJustFinish) {
+        const interval = setInterval(() => {
+          if (!player.playing) {
+            clearInterval(interval);
             setSpeaking(false);
             resolve();
           }
-        });
+        }, 100);
       });
     } catch {
       setSpeaking(false);
     }
-  }, [speaking]);
+  }, [speaking, player]);
 
   return { speak, speaking };
 }
