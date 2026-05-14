@@ -11,7 +11,7 @@ REMOTE_WEB="${REMOTE_WEB:-/var/www/tibetan-flash}"
 
 # ── Build ─────────────────────────────────────────────────────
 echo "→ Building web app..."
-npm --prefix apps/web install
+npm install
 npm --prefix apps/web run build
 
 # ── Sync static build ─────────────────────────────────────────
