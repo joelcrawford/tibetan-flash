@@ -10,7 +10,8 @@
     "dev:server": "node --env-file=server/.env --watch server/index.js",
     "build": "npm --prefix apps/web run build",
     "typecheck": "npm --prefix apps/web run typecheck",
-    "deploy": "./deploy.sh"
+    "deploy": "./deploy.sh",
+    "expo": "cd apps/ios && eas build --platform ios --profile production && eas submit --platform ios --latest"
   },
   "devDependencies": {
     "concurrently": "^9.2.1"
