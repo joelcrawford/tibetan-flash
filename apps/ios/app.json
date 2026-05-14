@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "name": "Tibetan Flash",
+    "slug": "tibetan-flash",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#f5f3ee"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "org.asianlegacylibrary.tibetanflash"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
