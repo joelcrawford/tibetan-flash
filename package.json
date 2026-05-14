@@ -2,7 +2,7 @@
   "name": "tibetan-flash",
   "private": true,
   "type": "module",
-  "workspaces": ["apps/web"],
+  "workspaces": ["apps/web", "apps/ios"],
   "scripts": {
     "start": "concurrently -n tts,vite -c blue,green \"node --env-file=server/.env --watch server/index.js\" \"npm --prefix apps/web run start\"",
     "dev": "concurrently -n tts,vite -c blue,green \"node --env-file=server/.env --watch server/index.js\" \"npm --prefix apps/web run dev\"",
