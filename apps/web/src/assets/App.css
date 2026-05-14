@@ -1,149 +1,35 @@
-/* ============================================================
-   Tibetan Flashcards — App.css
-   ============================================================ */
+@import "tailwindcss";
 
-/* Reset */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/* Use media query for dark mode (prefers-color-scheme) */
+@custom-variant dark (@media (prefers-color-scheme: dark));
+
+/* ── Design tokens ────────────────────────────────────────────────────────── */
+@theme {
+  /* Colors */
+  --color-parchment:    #f5f3ee;
+  --color-parchment-dk: #1c1c1a;
+  --color-ink:          #1a1a18;
+  --color-ink-muted:    #888780;
+  --color-ink-faint:    #b4b2a9;
+  --color-ink-mid:      #5f5e5a;
+  --color-ink-lt:       #e8e6e0;
+  --color-stone:        #d3d1c7;
+  --color-stone-lt:     #ece9e3;
+  --color-stone-card:   #f1efe8;
+  --color-card-bg:      #ffffff;
+  --color-sidebar-bg:   #faf8f4;
+  --color-surf-dk:      #2c2c2a;
+  --color-surf-dk-mid:  #3a3a38;
+  --color-surf-dk-bar:  #242422;
+  --color-bdr-dk:       #444441;
+
+  /* Font families */
+  --font-serif:   "Crimson Pro", Georgia, serif;
+  --font-title:   "IM Fell English", Georgia, serif;
+  --font-tibetan: "Noto Sans Tibetan", "Microsoft Himalaya", "Tibetan Machine Uni", serif;
 }
 
-/* App shell */
-.fc-app {
-  font-family: 'Crimson Pro', Georgia, serif;
-  background: #f5f3ee;
-  min-height: 100vh;
-  padding: 1.5rem 1rem;
-  color: #1a1a18;
-}
-
-/* ── Header ─────────────────────────────────────────── */
-.fc-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1.25rem;
-  max-width: 560px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.fc-title {
-  font-family: 'IM Fell English', Georgia, serif;
-  font-size: 20px;
-  font-weight: 400;
-  letter-spacing: 0.03em;
-  color: #1a1a18;
-}
-
-.fc-title span {
-  font-size: 13px;
-  font-family: 'Crimson Pro', serif;
-  font-style: italic;
-  color: #888780;
-  margin-left: 8px;
-}
-
-/* ── Sidebar toggle button ───────────────────────────── */
-.fc-sidebar-toggle {
-  font-size: 16px;
-  width: 32px;
-  height: 32px;
-  border: 0.5px solid #b4b2a9;
-  border-radius: 8px;
-  background: #ffffff;
-  color: #888780;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.15s;
-  flex-shrink: 0;
-}
-
-.fc-sidebar-toggle:hover {
-  background: #ece9e3;
-  color: #1a1a18;
-}
-
-/* ── Main content ────────────────────────────────────── */
-.fc-main {
-  max-width: 560px;
-  margin: 0 auto;
-}
-
-/* ── Buttons ─────────────────────────────────────────── */
-.fc-btn {
-  font-family: 'Crimson Pro', serif;
-  font-size: 13px;
-  padding: 5px 14px;
-  border: 0.5px solid #b4b2a9;
-  border-radius: 8px;
-  background: #ffffff;
-  color: #1a1a18;
-  cursor: pointer;
-  transition: background 0.15s;
-  letter-spacing: 0.02em;
-}
-
-.fc-btn:hover {
-  background: #ece9e3;
-}
-
-.fc-btn.active {
-  background: #ece9e3;
-  border-color: #888780;
-  font-weight: 500;
-}
-
-/* ── Progress bar ────────────────────────────────────── */
-.fc-progress-bar-wrap {
-  height: 3px;
-  background: #d3d1c7;
-  border-radius: 2px;
-  margin-bottom: 0.75rem;
-  overflow: hidden;
-}
-
-.fc-progress-bar {
-  height: 100%;
-  background: #888780;
-  border-radius: 2px;
-  transition: width 0.4s ease;
-}
-
-.fc-progress-label {
-  font-size: 13px;
-  color: #888780;
-  font-style: italic;
-  letter-spacing: 0.01em;
-}
-
-/* ── Empty state ─────────────────────────────────────── */
-.fc-empty {
-  text-align: center;
-  padding: 3rem;
-  color: #888780;
-  font-style: italic;
-  font-size: 15px;
-}
-
-/* ── Card scene & flip ───────────────────────────────── */
-.fc-scene-wrap {
-  overflow: hidden;
-  margin-bottom: 1.5rem;
-}
-
-.fc-scene {
-  perspective: 1200px;
-  width: 100%;
-  height: 320px;
-  cursor: pointer;
-}
-
+/* ── 3D flip card — preserve-3d / vendor backface not in Tailwind ─────────── */
 .fc-card-inner {
   position: relative;
   width: 100%;
@@ -151,340 +37,35 @@
   transform-style: preserve-3d;
   transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 .fc-card-inner.flipped {
   transform: rotateY(180deg);
 }
-
 .fc-face {
   position: absolute;
   inset: 0;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  border-radius: 12px;
-  border: 0.5px solid #d3d1c7;
-  background: #ffffff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  text-align: center;
 }
-
 .fc-face-back {
   transform: rotateY(180deg);
-  justify-content: flex-start;
-  padding-top: 1.5rem;
-  overflow-y: auto;
 }
 
-/* ── Card front content ──────────────────────────────── */
-.fc-tibetan {
-  font-family: 'Noto Sans Tibetan', 'Microsoft Himalaya', 'Tibetan Machine Uni', serif;
-  font-size: 52px;
-  line-height: 1.5;
-  color: #1a1a18;
-  margin-bottom: 0.75rem;
-  letter-spacing: 0.02em;
-}
-
-.fc-acip-wrap {
+/* ── ACIP hidden reveal — ::after pseudo-element ──────────────────────────── */
+.acip-hidden {
   position: relative;
-  margin-bottom: 0.25rem;
-  display: flex;
-  justify-content: center;
-}
-
-.fc-acip {
-  font-family: 'Courier New', monospace;
-  font-size: 13px;
-  letter-spacing: 0.08em;
-  padding: 4px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.2s;
-  user-select: none;
-  display: inline-block;
-  position: relative;
-}
-
-.fc-acip.hidden {
-  background: #d3d1c7;
-  color: transparent;
-  border: 0.5px solid #b4b2a9;
   min-width: 80px;
   min-height: 24px;
 }
-
-.fc-acip.hidden::after {
+.acip-hidden::after {
   content: 'show ACIP';
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
+  top: 50%;
+  transform: translate(-50%, -50%);
   font-size: 11px;
   color: #888780;
   font-style: italic;
   font-family: 'Crimson Pro', serif;
   letter-spacing: 0.03em;
   white-space: nowrap;
-  top: 50%;
-  margin-top: -7px;
-}
-
-.fc-acip.visible {
-  background: #f1efe8;
-  color: #5f5e5a;
-  border: 0.5px solid #d3d1c7;
-}
-
-.fc-session-badge {
-  font-size: 11px;
-  color: #b4b2a9;
-  letter-spacing: 0.06em;
-  position: absolute;
-  top: 14px;
-  right: 16px;
-}
-
-.fc-tap-hint {
-  font-size: 12px;
-  color: #b4b2a9;
-  font-style: italic;
-  position: absolute;
-  bottom: 14px;
-  letter-spacing: 0.03em;
-}
-
-/* ── Card back content ───────────────────────────────── */
-.fc-meaning {
-  font-family: 'IM Fell English', Georgia, serif;
-  font-size: 20px;
-  font-weight: 400;
-  color: #1a1a18;
-  margin-bottom: 0.75rem;
-  line-height: 1.4;
-  font-style: italic;
-  text-align: center;
-  width: 100%;
-}
-
-.fc-notes {
-  font-size: 13px;
-  color: #888780;
-  line-height: 1.6;
-  margin-bottom: 0.75rem;
-  font-style: italic;
-  text-align: center;
-  width: 100%;
-}
-
-.fc-ctx-label {
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  color: #b4b2a9;
-  text-transform: uppercase;
-  margin-bottom: 4px;
-  align-self: flex-start;
-  font-family: 'Crimson Pro', serif;
-}
-
-.fc-ctx {
-  font-size: 13px;
-  color: #5f5e5a;
-  line-height: 1.65;
-  border-left: 2px solid #d3d1c7;
-  padding-left: 10px;
-  font-style: italic;
-  align-self: flex-start;
-  width: 100%;
-  text-align: left;
-}
-
-/* ── Navigation ──────────────────────────────────────── */
-.fc-nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  margin-bottom: 1.5rem;
-}
-
-.fc-nav-btn {
-  font-family: 'Crimson Pro', serif;
-  font-size: 15px;
-  padding: 7px 24px;
-  border: 0.5px solid #b4b2a9;
-  border-radius: 8px;
-  background: #ffffff;
-  color: #1a1a18;
-  cursor: pointer;
-  transition: background 0.15s;
-  letter-spacing: 0.02em;
-}
-
-.fc-nav-btn:hover {
-  background: #ece9e3;
-}
-
-.fc-nav-btn:disabled {
-  opacity: 0.35;
-  cursor: default;
-}
-
-.fc-counter {
-  font-size: 14px;
-  color: #888780;
-  font-style: italic;
-  min-width: 60px;
-  text-align: center;
-}
-
-/* ── Known / Review buttons ──────────────────────────── */
-.fc-known-row {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-}
-
-.fc-known-btn {
-  font-family: 'Crimson Pro', serif;
-  font-size: 13px;
-  padding: 5px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  border: 0.5px solid #b4b2a9;
-  background: #ffffff;
-  color: #1a1a18;
-  transition: all 0.15s;
-  letter-spacing: 0.02em;
-}
-
-.fc-known-btn.yes:hover {
-  background: #eaf3de;
-  border-color: #639922;
-  color: #3b6d11;
-}
-
-.fc-known-btn.no:hover {
-  background: #fcebeb;
-  border-color: #e24b4a;
-  color: #a32d2d;
-}
-
-/* ── Speak button ────────────────────────────────────── */
-.fc-speak-btn {
-  font-family: 'Crimson Pro', serif;
-  font-size: 13px;
-  padding: 3px 10px;
-  border: 0.5px solid #b4b2a9;
-  border-radius: 6px;
-  background: #ffffff;
-  color: #888780;
-  cursor: pointer;
-  transition: all 0.15s;
-  margin-bottom: 0.5rem;
-}
-
-.fc-speak-btn:hover:not(:disabled) {
-  background: #ece9e3;
-  color: #1a1a18;
-}
-
-.fc-speak-btn:disabled {
-  opacity: 0.5;
-  cursor: default;
-}
-
-/* ── Sidebar ─────────────────────────────────────────── */
-.fc-sidebar {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 260px;
-  height: 100vh;
-  background: #faf8f4;
-  border-left: 0.5px solid #d3d1c7;
-  padding: 2rem 1.5rem;
-  overflow-y: auto;
-  z-index: 200;
-  transform: translateX(100%);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.fc-sidebar.open {
-  transform: translateX(0);
-}
-
-.fc-sidebar-section {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.fc-sidebar-label {
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #b4b2a9;
-  font-family: 'Crimson Pro', serif;
-}
-
-.fc-sidebar-btns {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.fc-sidebar-sessions {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.fc-sidebar-sessions .fc-btn {
-  text-align: left;
-}
-
-/* ── Overlay ─────────────────────────────────────────── */
-.fc-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.2);
-  z-index: 100;
-}
-
-/* ── Mobile ──────────────────────────────────────────── */
-@media (max-width: 640px) {
-  .fc-nav { display: none; }
-}
-
-/* ── Dark mode ───────────────────────────────────────── */
-@media (prefers-color-scheme: dark) {
-  .fc-app { background: #1c1c1a; color: #e8e6e0; }
-  .fc-title { color: #e8e6e0; }
-  .fc-sidebar-toggle { background: #2c2c2a; border-color: #444441; color: #888780; }
-  .fc-sidebar-toggle:hover { background: #3a3a38; color: #e8e6e0; }
-  .fc-btn { background: #2c2c2a; border-color: #444441; color: #e8e6e0; }
-  .fc-btn:hover { background: #3a3a38; }
-  .fc-btn.active { background: #3a3a38; border-color: #888780; }
-  .fc-progress-bar-wrap { background: #444441; }
-  .fc-progress-bar { background: #888780; }
-  .fc-face { background: #2c2c2a; border-color: #444441; }
-  .fc-tibetan { color: #e8e6e0; }
-  .fc-acip.hidden { background: #444441; border-color: #5f5e5a; }
-  .fc-acip.visible { background: #3a3a38; color: #b4b2a9; border-color: #444441; }
-  .fc-meaning { color: #e8e6e0; }
-  .fc-ctx { color: #b4b2a9; border-left-color: #444441; }
-  .fc-nav-btn { background: #2c2c2a; border-color: #444441; color: #e8e6e0; }
-  .fc-nav-btn:hover { background: #3a3a38; }
-  .fc-known-btn { background: #2c2c2a; border-color: #444441; color: #e8e6e0; }
-  .fc-speak-btn { background: #2c2c2a; border-color: #444441; color: #888780; }
-  .fc-speak-btn:hover:not(:disabled) { background: #3a3a38; color: #e8e6e0; }
-  .fc-sidebar { background: #242422; border-left-color: #444441; }
-  .fc-overlay { background: rgba(0, 0, 0, 0.4); }
 }
