@@ -9,19 +9,29 @@ const config = getDefaultConfig(projectRoot);
 // Watch the whole monorepo so Metro can resolve shared/
 config.watchFolders = [monorepoRoot];
 
-// Resolve packages from ios first, then root — order matters
+// Resolve packages from ios first, then root
 config.resolver.nodeModulesPaths = [
   path.resolve(projectRoot, "node_modules"),
   path.resolve(monorepoRoot, "node_modules"),
 ];
 
-// Force react + react-native to always resolve from the ios workspace.
-// Without this, the root node_modules copy (from apps/web, 18.2.x) gets
-// loaded alongside the Expo copy (18.3.x), causing "Invalid hook call".
-config.resolver.extraNodeModules = {
-  react:        path.resolve(projectRoot, "node_modules/react"),
-  "react-native": path.resolve(projectRoot, "node_modules/react-native"),
-  "react-dom":  path.resolve(projectRoot, "node_modules/react-native"),
+// Force react + react-native to always come from the ios workspace.
+// apps/web uses React 18.3.1 (hoisted to root) but Expo requires 19.1.0 —
+// two copies in the bundle causes "Invalid hook call".
+config.resolver.resolveRequest = (context, moduleName, platform) => {
+  if (
+    moduleName === "react" ||
+    moduleName === "react/jsx-runtime" ||
+    moduleName === "react/jsx-dev-runtime" ||
+    moduleName === "react-native"
+  ) {
+    return context.resolveRequest(
+      { ...context, originModulePath: path.resolve(projectRoot, "index.ts") },
+      moduleName,
+      platform
+    );
+  }
+  return context.resolveRequest(context, moduleName, platform);
 };
 
 module.exports = config;
