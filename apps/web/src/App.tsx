@@ -140,7 +140,7 @@ export default function App() {
                 </div>
 
                 {/* Back */}
-                <div className={`${faceCls} fc-face-back !justify-start !pt-6 overflow-y-auto`}>
+                <div className={`${faceCls} fc-face-back overflow-y-auto`}>
                   <span className="text-[11px] text-ink-faint tracking-[0.06em] absolute top-3.5 right-4">
                     {card.session}
                   </span>
