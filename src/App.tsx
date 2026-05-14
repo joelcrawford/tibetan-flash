@@ -78,6 +78,7 @@ export default function App() {
   const [shuffled, setShuffled] = useState<boolean>(false);
   const [sessionFilter, setSessionFilter] = useState<string>("All");
   const [showCtx, setShowCtx] = useState<boolean>(true);
+  const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
   const { speak, speaking } = useTTS();
 
   const sessions = useMemo<string[]>(() => {
@@ -128,6 +129,23 @@ export default function App() {
     setAcipVisible(false);
   }, []);
 
+  const touchStartX = useRef<number>(0);
+  const touchStartY = useRef<number>(0);
+
+  const handleTouchStart = useCallback((e: React.TouchEvent): void => {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+  }, []);
+
+  const handleTouchEnd = useCallback((e: React.TouchEvent): void => {
+    if (!card) return;
+    const deltaX = e.changedTouches[0].clientX - touchStartX.current;
+    const deltaY = e.changedTouches[0].clientY - touchStartY.current;
+    if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > Math.abs(deltaY)) {
+      deltaX < 0 ? go(1) : go(-1);
+    }
+  }, [card, go]);
+
   const handleAcipClick = useCallback(
     (e: React.MouseEvent<HTMLDivElement>): void => {
       e.stopPropagation();
@@ -167,7 +185,6 @@ export default function App() {
     return () => window.removeEventListener("keydown", onKey);
   }, [card, go, speak]);
 
-
   return (
     <div className="fc-app">
 
@@ -177,136 +194,165 @@ export default function App() {
           ༄༅། Tibetan Flashcards
           <span>{total} cards</span>
         </div>
-        <div className="fc-controls">
-          <button
-            className={`fc-btn ${shuffled ? "active" : ""}`}
-            onClick={() => setShuffled((s) => !s)}
-          >
-            ⇌ Shuffle
-          </button>
-          <button
-            className={`fc-btn ${showCtx ? "active" : ""}`}
-            onClick={() => setShowCtx((s) => !s)}
-          >
-            Context
-          </button>
-        </div>
+        <button
+          className="fc-sidebar-toggle"
+          onClick={() => setSidebarOpen((o) => !o)}
+          title={sidebarOpen ? "Close settings" : "Open settings"}
+        >
+          {sidebarOpen ? "✕" : "⚙"}
+        </button>
       </div>
 
-      {/* Session filters */}
-      <div className="fc-sessions">
-        {sessions.map((s) => (
-          <button
-            key={s}
-            className={`fc-btn ${sessionFilter === s ? "active" : ""}`}
-            onClick={() => setSessionFilter(s)}
-          >
-            {s}
-          </button>
-        ))}
-      </div>
+      {/* Main content */}
+      <div className="fc-main" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
 
-      {/* Progress */}
-      {total > 0 && (
-        <div className="fc-progress-bar-wrap">
-          <div className="fc-progress-bar" style={{ width: `${pct}%` }} />
-        </div>
-      )}
-      {total > 0 && (
-        <p className="fc-progress-label">
-          {knownCount} known · {total - knownCount} remaining
-        </p>
-      )}
+        {total === 0 && (
+          <div className="fc-empty">No cards match this filter.</div>
+        )}
 
-      {total === 0 && (
-        <div className="fc-empty">No cards match this filter.</div>
-      )}
+        {/* Card */}
+        {card && (
+          <div className="fc-scene" onClick={handleCardClick}>
+            <div className={`fc-card-inner ${flipped ? "flipped" : ""}`}>
 
-      {/* Card */}
-      {card && (
-        <div className="fc-scene" onClick={handleCardClick}>
-          <div className={`fc-card-inner ${flipped ? "flipped" : ""}`}>
-
-            {/* Front */}
-            <div className="fc-face fc-face-front">
-              <span className="fc-session-badge">{card.session}</span>
-              <div className="fc-tibetan">{card.tibetan}</div>
-              <button
-                className={`fc-speak-btn${speaking ? " fc-speak-btn--busy" : ""}`}
-                onClick={(e) => { e.stopPropagation(); speak(card.tibetan); }}
-                disabled={speaking}
-                title="Read aloud"
-              >
-                {speaking ? "…" : "♪"}
-              </button>
-              <div className="fc-acip-wrap">
-                <div
-                  className={`fc-acip ${acipVisible ? "visible" : "hidden"}`}
-                  onClick={handleAcipClick}
-                  title={acipVisible ? "hide ACIP" : "show ACIP"}
+              {/* Front */}
+              <div className="fc-face fc-face-front">
+                <span className="fc-session-badge">{card.session}</span>
+                <div className="fc-tibetan">{card.tibetan}</div>
+                <button
+                  className={`fc-speak-btn${speaking ? " fc-speak-btn--busy" : ""}`}
+                  onClick={(e) => { e.stopPropagation(); speak(card.tibetan); }}
+                  disabled={speaking}
+                  title="Read aloud"
                 >
-                  {card.acip}
+                  {speaking ? "…" : "♪"}
+                </button>
+                <div className="fc-acip-wrap">
+                  <div
+                    className={`fc-acip ${acipVisible ? "visible" : "hidden"}`}
+                    onClick={handleAcipClick}
+                    title={acipVisible ? "hide ACIP" : "show ACIP"}
+                  >
+                    {card.acip}
+                  </div>
                 </div>
+                <span className="fc-tap-hint">
+                  {acipVisible
+                    ? "tap card to flip"
+                    : "tap ACIP to reveal · tap card to flip"}
+                </span>
               </div>
-              <span className="fc-tap-hint">
-                {acipVisible
-                  ? "tap card to flip"
-                  : "tap ACIP to reveal · tap card to flip"}
-              </span>
-            </div>
 
-            {/* Back */}
-            <div className="fc-face fc-face-back">
-              <span className="fc-session-badge">{card.session}</span>
-              <div className="fc-meaning">{card.meaning}</div>
-              {card.notes && <div className="fc-notes">{card.notes}</div>}
-              {showCtx && card.context && (
-                <>
-                  <div className="fc-ctx-label">context</div>
-                  <div className="fc-ctx">{card.context}</div>
-                </>
-              )}
-            </div>
+              {/* Back */}
+              <div className="fc-face fc-face-back">
+                <span className="fc-session-badge">{card.session}</span>
+                <div className="fc-meaning">{card.meaning}</div>
+                {card.notes && <div className="fc-notes">{card.notes}</div>}
+                {showCtx && card.context && (
+                  <>
+                    <div className="fc-ctx-label">context</div>
+                    <div className="fc-ctx">{card.context}</div>
+                  </>
+                )}
+              </div>
 
+            </div>
+          </div>
+        )}
+
+        {/* Navigation */}
+        {card && (
+          <div className="fc-nav">
+            <button
+              className="fc-nav-btn"
+              onClick={() => go(-1)}
+              disabled={idx === 0}
+            >
+              ← prev
+            </button>
+            <span className="fc-counter">
+              {idx + 1} / {total}
+            </span>
+            <button
+              className="fc-nav-btn"
+              onClick={() => go(1)}
+              disabled={idx === total - 1}
+            >
+              next →
+            </button>
+          </div>
+        )}
+
+        {/* Known / Review */}
+        {card && flipped && (
+          <div className="fc-known-row">
+            <button className="fc-known-btn yes" onClick={() => markKnown(true)}>
+              ✓ Known
+            </button>
+            <button className="fc-known-btn no" onClick={() => markKnown(false)}>
+              ✗ Review again
+            </button>
+          </div>
+        )}
+
+      </div>
+
+      {/* Sidebar */}
+      <div className={`fc-sidebar${sidebarOpen ? " open" : ""}`}>
+
+        <div className="fc-sidebar-section">
+          <div className="fc-sidebar-label">Options</div>
+          <div className="fc-sidebar-btns">
+            <button
+              className={`fc-btn ${shuffled ? "active" : ""}`}
+              onClick={() => setShuffled((s) => !s)}
+            >
+              ⇌ Shuffle
+            </button>
+            <button
+              className={`fc-btn ${showCtx ? "active" : ""}`}
+              onClick={() => setShowCtx((s) => !s)}
+            >
+              Context
+            </button>
           </div>
         </div>
-      )}
 
-      {/* Navigation */}
-      {card && (
-        <div className="fc-nav">
-          <button
-            className="fc-nav-btn"
-            onClick={() => go(-1)}
-            disabled={idx === 0}
-          >
-            ← prev
-          </button>
-          <span className="fc-counter">
-            {idx + 1} / {total}
-          </span>
-          <button
-            className="fc-nav-btn"
-            onClick={() => go(1)}
-            disabled={idx === total - 1}
-          >
-            next →
-          </button>
+        <div className="fc-sidebar-section">
+          <div className="fc-sidebar-label">Session</div>
+          <div className="fc-sidebar-sessions">
+            {sessions.map((s) => (
+              <button
+                key={s}
+                className={`fc-btn ${sessionFilter === s ? "active" : ""}`}
+                onClick={() => { setSessionFilter(s); setSidebarOpen(false); }}
+              >
+                {s}
+              </button>
+            ))}
+          </div>
         </div>
-      )}
 
-      {/* Known / Review */}
-      {card && flipped && (
-        <div className="fc-known-row">
-          <button className="fc-known-btn yes" onClick={() => markKnown(true)}>
-            ✓ Known
-          </button>
-          <button className="fc-known-btn no" onClick={() => markKnown(false)}>
-            ✗ Review again
-          </button>
+        <div className="fc-sidebar-section">
+          <div className="fc-sidebar-label">Progress</div>
+          {total > 0 && (
+            <>
+              <div className="fc-progress-bar-wrap">
+                <div className="fc-progress-bar" style={{ width: `${pct}%` }} />
+              </div>
+              <p className="fc-progress-label">
+                {knownCount} known · {total - knownCount} remaining
+              </p>
+            </>
+          )}
         </div>
-      )}
 
+      </div>
+
+      {/* Overlay — click to close sidebar */}
+      {sidebarOpen && (
+        <div className="fc-overlay" onClick={() => setSidebarOpen(false)} />
+      )}
 
     </div>
   );

@@ -26,8 +26,9 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 1.25rem;
-  flex-wrap: wrap;
-  gap: 10px;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .fc-title {
@@ -46,11 +47,32 @@
   margin-left: 8px;
 }
 
-.fc-controls {
+/* ── Sidebar toggle button ───────────────────────────── */
+.fc-sidebar-toggle {
+  font-size: 16px;
+  width: 32px;
+  height: 32px;
+  border: 0.5px solid #b4b2a9;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #888780;
+  cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
+  justify-content: center;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+
+.fc-sidebar-toggle:hover {
+  background: #ece9e3;
+  color: #1a1a18;
+}
+
+/* ── Main content ────────────────────────────────────── */
+.fc-main {
+  max-width: 560px;
+  margin: 0 auto;
 }
 
 /* ── Buttons ─────────────────────────────────────────── */
@@ -77,51 +99,13 @@
   font-weight: 500;
 }
 
-/* ── Upload label ────────────────────────────────────── */
-.fc-upload-label {
-  font-family: 'Crimson Pro', serif;
-  font-size: 13px;
-  padding: 5px 14px;
-  border: 0.5px dashed #b4b2a9;
-  border-radius: 8px;
-  background: transparent;
-  color: #888780;
-  cursor: pointer;
-  transition: all 0.15s;
-  letter-spacing: 0.02em;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.fc-upload-label:hover {
-  color: #1a1a18;
-  border-color: #888780;
-}
-
-.fc-upload-label input {
-  display: none;
-}
-
-/* ── Session filter pills ────────────────────────────── */
-.fc-sessions {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-  max-width: 560px;
-  margin: 0 auto 1rem;
-}
-
 /* ── Progress bar ────────────────────────────────────── */
 .fc-progress-bar-wrap {
   height: 3px;
   background: #d3d1c7;
   border-radius: 2px;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.75rem;
   overflow: hidden;
-  max-width: 560px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .fc-progress-bar {
@@ -135,9 +119,7 @@
   font-size: 13px;
   color: #888780;
   font-style: italic;
-  margin-bottom: 1rem;
   letter-spacing: 0.01em;
-  text-align: center;
 }
 
 /* ── Empty state ─────────────────────────────────────── */
@@ -153,9 +135,8 @@
 .fc-scene {
   perspective: 1200px;
   width: 100%;
-  max-width: 560px;
-  margin: 0 auto 1.5rem;
   height: 320px;
+  margin-bottom: 1.5rem;
   cursor: pointer;
 }
 
@@ -322,8 +303,7 @@
   align-items: center;
   justify-content: center;
   gap: 16px;
-  max-width: 560px;
-  margin: 0 auto 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .fc-nav-btn {
@@ -361,8 +341,7 @@
   display: flex;
   gap: 8px;
   justify-content: center;
-  max-width: 560px;
-  margin: 0 auto 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .fc-known-btn {
@@ -390,31 +369,6 @@
   color: #a32d2d;
 }
 
-/* ── CSV upload area ─────────────────────────────────── */
-.fc-upload-area {
-  border: 1px dashed #b4b2a9;
-  border-radius: 12px;
-  padding: 2rem;
-  text-align: center;
-  margin: 1.5rem auto 0;
-  max-width: 560px;
-}
-
-.fc-upload-area p {
-  font-size: 13px;
-  color: #888780;
-  font-style: italic;
-  margin-bottom: 0.4rem;
-}
-
-.fc-upload-area code {
-  font-size: 12px;
-  background: #f1efe8;
-  padding: 2px 6px;
-  border-radius: 4px;
-  color: #5f5e5a;
-}
-
 /* ── Speak button ────────────────────────────────────── */
 .fc-speak-btn {
   font-family: 'Crimson Pro', serif;
@@ -439,15 +393,81 @@
   cursor: default;
 }
 
+/* ── Sidebar ─────────────────────────────────────────── */
+.fc-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 260px;
+  height: 100vh;
+  background: #faf8f4;
+  border-left: 0.5px solid #d3d1c7;
+  padding: 2rem 1.5rem;
+  overflow-y: auto;
+  z-index: 200;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.fc-sidebar.open {
+  transform: translateX(0);
+}
+
+.fc-sidebar-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.fc-sidebar-label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #b4b2a9;
+  font-family: 'Crimson Pro', serif;
+}
+
+.fc-sidebar-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.fc-sidebar-sessions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fc-sidebar-sessions .fc-btn {
+  text-align: left;
+}
+
+/* ── Overlay ─────────────────────────────────────────── */
+.fc-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 100;
+}
+
+/* ── Mobile ──────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .fc-nav { display: none; }
+}
+
 /* ── Dark mode ───────────────────────────────────────── */
 @media (prefers-color-scheme: dark) {
   .fc-app { background: #1c1c1a; color: #e8e6e0; }
   .fc-title { color: #e8e6e0; }
+  .fc-sidebar-toggle { background: #2c2c2a; border-color: #444441; color: #888780; }
+  .fc-sidebar-toggle:hover { background: #3a3a38; color: #e8e6e0; }
   .fc-btn { background: #2c2c2a; border-color: #444441; color: #e8e6e0; }
   .fc-btn:hover { background: #3a3a38; }
   .fc-btn.active { background: #3a3a38; border-color: #888780; }
-  .fc-upload-label { color: #888780; border-color: #444441; }
-  .fc-upload-label:hover { color: #e8e6e0; border-color: #888780; }
   .fc-progress-bar-wrap { background: #444441; }
   .fc-progress-bar { background: #888780; }
   .fc-face { background: #2c2c2a; border-color: #444441; }
@@ -461,7 +481,6 @@
   .fc-known-btn { background: #2c2c2a; border-color: #444441; color: #e8e6e0; }
   .fc-speak-btn { background: #2c2c2a; border-color: #444441; color: #888780; }
   .fc-speak-btn:hover:not(:disabled) { background: #3a3a38; color: #e8e6e0; }
-  .fc-upload-area { border-color: #444441; }
-  .fc-upload-area p { color: #888780; }
-  .fc-upload-area code { background: #3a3a38; color: #b4b2a9; }
+  .fc-sidebar { background: #242422; border-left-color: #444441; }
+  .fc-overlay { background: rgba(0, 0, 0, 0.4); }
 }
