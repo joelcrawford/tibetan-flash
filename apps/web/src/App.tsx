@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import FLASHCARDS from "../../../shared/data/flashcards.json";
+import FLASHCARDS from "../../../shared/data/glossary.json";
 import { Card } from "../../../shared/types/types";
 import { useDeck } from "../../../shared/hooks/useDeck";
 import { useTTS } from "./hooks/useTTS";
@@ -56,11 +56,11 @@ export default function App() {
     const onKey = (e: KeyboardEvent): void => {
       if (!card) return;
       switch (e.key) {
-        case "ArrowLeft":  e.preventDefault(); go(-1); break;
+        case "ArrowLeft": e.preventDefault(); go(-1); break;
         case "ArrowRight": e.preventDefault(); go(1); break;
-        case "ArrowUp":    e.preventDefault(); toggleAcip(); break;
-        case "ArrowDown":  e.preventDefault(); toggleFlip(); break;
-        case " ":          e.preventDefault(); speak(card.tibetan); break;
+        case "ArrowUp": e.preventDefault(); toggleAcip(); break;
+        case "ArrowDown": e.preventDefault(); toggleFlip(); break;
+        case " ": e.preventDefault(); speak(card.tibetan); break;
       }
     };
     window.addEventListener("keydown", onKey);
