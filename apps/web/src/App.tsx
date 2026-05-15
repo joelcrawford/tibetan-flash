@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import GLOSSARY from "../../../shared/data/glossary.json";
+import FLASHCARDS from "../../../shared/data/flashcards.json";
 import { Card } from "../../../shared/types/types";
 import { useDeck } from "../../../shared/hooks/useDeck";
 import { useTTS } from "./hooks/useTTS";
@@ -34,14 +34,18 @@ const faceCls = [
 export default function App() {
   const {
     card, idx, total, flipped, acipVisible, shuffled,
-    sessionFilter, showCtx, sessions, knownCount, pct,
+    sessionFilter, sessions, knownCount, pct,
     go, goImmediate, markKnown, handleCardClick, handleAcipClick,
     toggleAcip, toggleFlip,
-    setShuffled, setSessionFilter, setShowCtx,
-  } = useDeck(GLOSSARY as Card[]);
+    setShuffled, setSessionFilter,
+  } = useDeck(FLASHCARDS as Card[]);
 
   const { speak, speaking } = useTTS();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [contextOpen, setContextOpen] = useState(false);
+
+  // Reset context drawer whenever the card changes
+  useEffect(() => { setContextOpen(false); }, [idx]);
 
   const { offset, transitioning, didSwipe, ref: swipeRef } = useSwipeGesture(
     () => goImmediate(1),
@@ -62,6 +66,8 @@ export default function App() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [card, go, toggleAcip, toggleFlip, speak]);
+
+  const hasContext = card && (card.context || card.context_tibetan);
 
   return (
     <div className="font-serif bg-parchment min-h-screen py-6 px-4 text-ink dark:bg-parchment-dk dark:text-ink-lt">
@@ -90,9 +96,9 @@ export default function App() {
           </div>
         )}
 
-        {/* Card — wrapper clips the swipe slide animation */}
+        {/* Card */}
         {card && (
-          <div className="overflow-hidden mb-6" ref={swipeRef}>
+          <div className="overflow-hidden mb-4" ref={swipeRef}>
             <div
               className="w-full h-80 cursor-pointer"
               style={{
@@ -140,7 +146,7 @@ export default function App() {
                 </div>
 
                 {/* Back */}
-                <div className={`${faceCls} fc-face-back overflow-y-auto`}>
+                <div className={`${faceCls} fc-face-back`}>
                   <span className="text-[11px] text-ink-faint tracking-[0.06em] absolute top-3.5 right-4">
                     {card.session}
                   </span>
@@ -151,19 +157,9 @@ export default function App() {
                     {card.meaning}
                   </div>
                   {card.notes && (
-                    <div className="text-[13px] text-ink-muted leading-[1.6] mb-3 italic text-center w-full">
+                    <div className="text-[13px] text-ink-muted leading-[1.6] italic text-center w-full">
                       {card.notes}
                     </div>
-                  )}
-                  {showCtx && card.context && (
-                    <>
-                      <div className="text-[11px] tracking-[0.1em] text-ink-faint uppercase mb-1 self-start font-serif">
-                        context
-                      </div>
-                      <div className="text-[13px] text-ink-mid leading-[1.65] border-l-2 border-stone pl-2.5 italic self-start w-full text-left dark:text-ink-faint dark:border-bdr-dk">
-                        {card.context}
-                      </div>
-                    </>
                   )}
                 </div>
 
@@ -172,9 +168,36 @@ export default function App() {
           </div>
         )}
 
-        {/* Navigation — hidden on mobile (swipe replaces it) */}
+        {/* Context drawer — below card, above known/review */}
+        {card && flipped && hasContext && (
+          <div className="mb-3 max-w-[560px]">
+            <button
+              className="flex items-center gap-2 text-[11px] tracking-[0.08em] uppercase text-ink-faint font-serif py-2 w-full hover:text-ink-muted transition-colors duration-150 dark:hover:text-ink-muted"
+              onClick={() => setContextOpen((o) => !o)}
+            >
+              <span className="text-[9px]">{contextOpen ? "▾" : "▶"}</span>
+              context
+            </button>
+            <div className={`overflow-hidden transition-[max-height] duration-300 ease-in-out ${contextOpen ? "max-h-[600px]" : "max-h-0"}`}>
+              <div className="pb-3 space-y-3">
+                {card.context && (
+                  <p className="text-[13px] text-ink-mid leading-[1.7] border-l-2 border-stone pl-3 italic dark:text-ink-faint dark:border-bdr-dk">
+                    {card.context}
+                  </p>
+                )}
+                {card.context_tibetan && (
+                  <p className="font-mono text-[11px] text-ink-faint leading-[1.8] border-l-2 border-stone pl-3 tracking-[0.04em] dark:border-bdr-dk">
+                    {card.context_tibetan}
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Navigation — hidden on mobile */}
         {card && (
-          <div className="hidden sm:flex items-center justify-center gap-4 mb-6">
+          <div className="hidden sm:flex items-center justify-center gap-4 mb-4">
             <button className={navBtnCls} onClick={() => go(-1)} disabled={idx === 0}>
               ← prev
             </button>
@@ -225,12 +248,6 @@ export default function App() {
               onClick={() => setShuffled((s) => !s)}
             >
               ⇌ Shuffle
-            </button>
-            <button
-              className={`${btnCls}${showCtx ? ` ${btnActiveCls}` : ""}`}
-              onClick={() => setShowCtx((s) => !s)}
-            >
-              Context
             </button>
           </div>
         </div>

@@ -1,0 +1,834 @@
+[
+  {
+    "tibetan": "ལྔ།",
+    "acip": "LNGA",
+    "meaning": "five",
+    "notes": "number",
+    "context": "",
+    "session": "Single Words"
+  },
+  {
+    "tibetan": "རིགས།",
+    "acip": "RIGS",
+    "meaning": "type, kind, class, family, lineage; suitable, proper",
+    "notes": "RIGS PA = logic, reasoning",
+    "context": "",
+    "session": "Single Words"
+  },
+  {
+    "tibetan": "མཁས།",
+    "acip": "MKHAS",
+    "meaning": "learned, wise, skilled, expert",
+    "notes": "",
+    "context": "",
+    "session": "Single Words"
+  },
+  {
+    "tibetan": "ཚོགས།",
+    "acip": "TSOGS",
+    "meaning": "accumulation, collection, gathering, assembly; merit",
+    "notes": "TSOGS GNYIS = the two accumulations",
+    "context": "",
+    "session": "Single Words"
+  },
+  {
+    "tibetan": "དབུས།",
+    "acip": "DBUS",
+    "meaning": "middle, center, midst",
+    "notes": "",
+    "context": "",
+    "session": "Single Words"
+  },
+  {
+    "tibetan": "ཕྱིས།",
+    "acip": "PHYIS",
+    "meaning": "later, afterwards, subsequently",
+    "notes": "Temporal adverb; PHYI = outer, after",
+    "context": "",
+    "session": "Single Words"
+  },
+  {
+    "tibetan": "དངོས།",
+    "acip": "DNGOS",
+    "meaning": "thing, entity, real, actual; direct, primary",
+    "notes": "DNGOS PO = thing/entity; DNGOS SU = directly",
+    "context": "",
+    "session": "Single Words"
+  },
+  {
+    "tibetan": "སྐྱོན།",
+    "acip": "SKYON",
+    "meaning": "fault, defect, flaw, mistake, problem",
+    "notes": "SKYON MED = faultless; opposite of YON TAN",
+    "context": "",
+    "session": "Single Words"
+  },
+  {
+    "tibetan": "གཟུགས།",
+    "acip": "GZUGS",
+    "meaning": "form, matter, body",
+    "notes": "Sanskrit: rūpa. First of the five aggregates",
+    "context": "",
+    "session": "Single Words"
+  },
+  {
+    "tibetan": "གསུམ།",
+    "acip": "GSUM",
+    "meaning": "three",
+    "notes": "number",
+    "context": "",
+    "session": "Single Words"
+  },
+  {
+    "tibetan": "རེག",
+    "acip": "REG",
+    "meaning": "touch, contact, tangible",
+    "notes": "REG BYA = tangible object",
+    "context": "",
+    "session": "Single Words"
+  },
+  {
+    "tibetan": "འབྱུང་བ།",
+    "acip": "'BYUNG BA",
+    "meaning": "element; to arise, emerge, come forth; source",
+    "notes": "'BYUNG BA BZHI = the four elements",
+    "context": "Elemental sources of material existence. Even these apparently solid building blocks are MING TZAM when subjected to Madhyamaka analysis.",
+    "session": "Four Elements & Their Functions"
+  },
+  {
+    "tibetan": "ས།",
+    "acip": "SA",
+    "meaning": "earth (element)",
+    "notes": "Function: THOGS PA (obstruction)",
+    "context": "",
+    "session": "Four Elements & Their Functions"
+  },
+  {
+    "tibetan": "ཆུ།",
+    "acip": "CHU",
+    "meaning": "water (element)",
+    "notes": "Function: BSDUS PA (cohesion)",
+    "context": "",
+    "session": "Four Elements & Their Functions"
+  },
+  {
+    "tibetan": "མེ།",
+    "acip": "ME",
+    "meaning": "fire (element)",
+    "notes": "Function: SMIN PA (ripening)",
+    "context": "",
+    "session": "Four Elements & Their Functions"
+  },
+  {
+    "tibetan": "རླུང།",
+    "acip": "RLUNG",
+    "meaning": "wind (element)",
+    "notes": "Function: G.YO BA (movement)",
+    "context": "",
+    "session": "Four Elements & Their Functions"
+  },
+  {
+    "tibetan": "ཐོགས་པ།",
+    "acip": "THOGS PA",
+    "meaning": "obstruction, hindrance, impediment",
+    "notes": "Function of Earth; THOGS MED = unobstructed",
+    "context": "Basis of the THOGS BCAS/THOGS MED distinction between material and immaterial phenomena.",
+    "session": "Four Elements & Their Functions"
+  },
+  {
+    "tibetan": "བསྡུས་པ།",
+    "acip": "BSDUS PA",
+    "meaning": "collected, gathered, condensed; cohesion",
+    "notes": "Function of Water; also = summary, compendium",
+    "context": "",
+    "session": "Four Elements & Their Functions"
+  },
+  {
+    "tibetan": "སྨིན་པ།",
+    "acip": "SMIN PA",
+    "meaning": "to ripen, mature; ripening, maturation",
+    "notes": "Function of Fire; also: ripening of karma",
+    "context": "",
+    "session": "Four Elements & Their Functions"
+  },
+  {
+    "tibetan": "གཡོ་བ།",
+    "acip": "G.YO BA",
+    "meaning": "to move, shake, sway; movement, motion",
+    "notes": "Function of Wind; MI G.YO BA = unmoving",
+    "context": "",
+    "session": "Four Elements & Their Functions"
+  },
+  {
+    "tibetan": "བུད་ཤིང།",
+    "acip": "BUD SHING",
+    "meaning": "firewood, fuel",
+    "notes": "Used in dependent origination examples",
+    "context": "",
+    "session": "Four Elements & Their Functions"
+  },
+  {
+    "tibetan": "མཐོ་བ།",
+    "acip": "MTHO BA",
+    "meaning": "high, tall, lofty",
+    "notes": "adjective",
+    "context": "",
+    "session": "Compound Words & Phrases"
+  },
+  {
+    "tibetan": "ལྷུན་པོ།",
+    "acip": "LHUN PO",
+    "meaning": "mass, heap, mountain",
+    "notes": "RI RAB LHUN PO = Mount Meru",
+    "context": "",
+    "session": "Compound Words & Phrases"
+  },
+  {
+    "tibetan": "མང་སྟོང།",
+    "acip": "MANG STONG",
+    "meaning": "many thousands, multitudes",
+    "notes": "MANG = many + STONG = thousand",
+    "context": "",
+    "session": "Compound Words & Phrases"
+  },
+  {
+    "tibetan": "དབང་པོ།",
+    "acip": "DBANG PO",
+    "meaning": "lord, powerful one; sense faculty",
+    "notes": "",
+    "context": "",
+    "session": "Compound Words & Phrases"
+  },
+  {
+    "tibetan": "བཤེས་གཉེན།",
+    "acip": "BSHES GNYEN",
+    "meaning": "spiritual friend, spiritual teacher, mentor",
+    "notes": "A qualified teacher guiding on the Buddhist path",
+    "context": "",
+    "session": "Compound Words & Phrases"
+  },
+  {
+    "tibetan": "ཁྱུ་མཆོག",
+    "acip": "KHYU MCHOG",
+    "meaning": "Buddha",
+    "notes": "Poetic epithet: \"supreme bull/lord of the herd\"",
+    "context": "",
+    "session": "Compound Words & Phrases"
+  },
+  {
+    "tibetan": "སྨྲ་བ།",
+    "acip": "SMRA BA",
+    "meaning": "to speak, to say; speech; one who speaks",
+    "notes": "verb/noun",
+    "context": "",
+    "session": "Compound Words & Phrases"
+  },
+  {
+    "tibetan": "ཕྱག་འཚལ།",
+    "acip": "PHYAG 'TSAL",
+    "meaning": "to prostrate, to pay homage, to bow down",
+    "notes": "PHYAG 'TSAL LO = \"I prostrate!\"",
+    "context": "",
+    "session": "Compound Words & Phrases"
+  },
+  {
+    "tibetan": "གསེར་རི།",
+    "acip": "GSER RI",
+    "meaning": "golden mountain",
+    "notes": "GSER = gold + RI = mountain",
+    "context": "",
+    "session": "Compound Words & Phrases"
+  },
+  {
+    "tibetan": "བསྐོར་བ།",
+    "acip": "BSKOR BA",
+    "meaning": "to surround, encircle",
+    "notes": "verb",
+    "context": "",
+    "session": "Compound Words & Phrases"
+  },
+  {
+    "tibetan": "ཤེས་བྱེད།",
+    "acip": "SHES BYED",
+    "meaning": "means of knowing; that which makes known; indicator",
+    "notes": "Contrast SHES BYA = object of knowledge",
+    "context": "",
+    "session": "Compound Words & Phrases"
+  },
+  {
+    "tibetan": "མཚན་ཉིད།",
+    "acip": "MTSAN NYID",
+    "meaning": "definition, characteristic, defining feature",
+    "notes": "Key debate term; MTSAN GZHI = instance/example",
+    "context": "Central to the question of RANG GI MTSAN NYID KYIS — whether phenomena are established by their own defining characteristic. Key fault line between Madhyamaka sub-schools.",
+    "session": "Compound Words & Phrases"
+  },
+  {
+    "tibetan": "བྱ་བ།",
+    "acip": "BYA BA",
+    "meaning": "action, activity, function; that which is to be done",
+    "notes": "Also = verb (grammatical term)",
+    "context": "",
+    "session": "Compound Words & Phrases"
+  },
+  {
+    "tibetan": "སྦྱར་བར།",
+    "acip": "SBYAR BAR",
+    "meaning": "to apply, connect, join; in applying",
+    "notes": "Related to SBYOR BA = application, yoga",
+    "context": "",
+    "session": "Compound Words & Phrases"
+  },
+  {
+    "tibetan": "ལྡན་པ།",
+    "acip": "LDAN PA",
+    "meaning": "possessing, having, endowed with",
+    "notes": "YON TAN LDAN PA = endowed with qualities",
+    "context": "",
+    "session": "Compound Words & Phrases"
+  },
+  {
+    "tibetan": "དབྱིབས།",
+    "acip": "DBYIBS",
+    "meaning": "shape, form, figure, outline",
+    "notes": "One of two types of visible form (with KHA DOG = color). Pronounced approx. \"yib.\"",
+    "context": "",
+    "session": "Compound Words & Phrases"
+  },
+  {
+    "tibetan": "སྐྱེ་བ།",
+    "acip": "SKYE BA",
+    "meaning": "birth, arising, production; to be born",
+    "notes": "11th link of dependent origination; SKYE MED = unborn",
+    "context": "Paired with 'GAG PA as SKYE 'GAG — the mark of all conditioned phenomena. Its negation SKYE BA MED PA points to the unconditioned and to emptiness.",
+    "session": "Compound Words & Phrases"
+  },
+  {
+    "tibetan": "ཕན་ཚུན་ཕྲད་པ།",
+    "acip": "PHAN TSUN PHRAD PA",
+    "meaning": "mutual contact, meeting each other reciprocally",
+    "notes": "PHAN TSUN = mutual; PHRAD pronounced approx. \"tré\"",
+    "context": "",
+    "session": "Compound Words & Phrases"
+  },
+  {
+    "tibetan": "མ་རིག་པ།",
+    "acip": "MA RIG PA",
+    "meaning": "ignorance, unknowing, fundamental delusion",
+    "notes": "Sanskrit: avidyā. 1st link of dependent origination; root of suffering",
+    "context": "The fundamental misapprehension that assents to and grasps at the appearance of inherent existence (KUN BRTAGS) as if it were real in dependent phenomena (GZHAN DBANG). Phenomena appear to exist inherently — MA RIG PA does not create this appearance but mistakes it for reality, grasping at it as truly established. The DGAG BYA was never there — MA RIG PA takes the appearance for the real.",
+    "session": "Philosophical Terms"
+  },
+  {
+    "tibetan": "རྣམ་ཤེས།",
+    "acip": "RNAM SHES",
+    "meaning": "consciousness, awareness, cognition",
+    "notes": "Sanskrit: vijñāna. 3rd link; RNAM SHES TSOGS DRUG = six consciousnesses",
+    "context": "",
+    "session": "Philosophical Terms"
+  },
+  {
+    "tibetan": "མིང་དང་མིང་ཅན།",
+    "acip": "MING DANG MING CAN",
+    "meaning": "name and name-bearer; word and referent",
+    "notes": "MING = name + MING CAN = that which has a name",
+    "context": "Name and name-bearer are mutually dependent (RTEN 'BREL) — neither established independently. The referent searched for behind the label is MI RNYED PA.",
+    "session": "Philosophical Terms"
+  },
+  {
+    "tibetan": "རྫུན་པར་གྲུབ་པ།",
+    "acip": "RDZUN PAR GRUB PA",
+    "meaning": "falsely established; established as deceptive",
+    "notes": "Things appear inherent but are actually empty",
+    "context": "The gap between SNANG TSUL (how things appear) and GNAS TSUL (how things are) — root of GNYIS SNANG.",
+    "session": "Philosophical Terms"
+  },
+  {
+    "tibetan": "ཅུང་ཟད་ཀྱང།",
+    "acip": "CUNG ZAD KYANG",
+    "meaning": "even a little, even slightly; not at all",
+    "notes": "Used in negations: CUNG ZAD KYANG MED = not even a bit",
+    "context": "Relates to GANG LA NYES PA MA (\"not a drop\") — the proclamation of primordial purity.",
+    "session": "Philosophical Terms"
+  },
+  {
+    "tibetan": "སོ་སོ་རང་མེད།",
+    "acip": "SO SO RANG MED",
+    "meaning": "not existing separately/independently",
+    "notes": "Elements don't exist independently from each other",
+    "context": "",
+    "session": "Philosophical Terms"
+  },
+  {
+    "tibetan": "འདུས་པའི་ཚེ།",
+    "acip": "'DUS PA'I TSE",
+    "meaning": "when gathered/combined; at the time of coming together",
+    "notes": "'DUS = gathered",
+    "context": "",
+    "session": "Philosophical Terms"
+  },
+  {
+    "tibetan": "ཕྱི་དོན།",
+    "acip": "PHYI DON",
+    "meaning": "outer/external object; external meaning",
+    "notes": "Contrast NANG DON (inner meaning)",
+    "context": "",
+    "session": "Philosophical Terms"
+  },
+  {
+    "tibetan": "ཙམ།",
+    "acip": "TSAM",
+    "meaning": "merely, only, just",
+    "notes": "Limiting particle",
+    "context": "",
+    "session": "Particles & Grammar"
+  },
+  {
+    "tibetan": "ཅན།",
+    "acip": "CAN",
+    "meaning": "possessing, having",
+    "notes": "Suffix: \"one who has\"; similar to LDAN PA",
+    "context": "",
+    "session": "Particles & Grammar"
+  },
+  {
+    "tibetan": "ཀྱང།",
+    "acip": "KYANG",
+    "meaning": "even, also, but, however",
+    "notes": "Concessive particle",
+    "context": "",
+    "session": "Particles & Grammar"
+  },
+  {
+    "tibetan": "འཇིགས་མེད།",
+    "acip": "'JIGS MED",
+    "meaning": "fearless, without fear",
+    "notes": "'JIGS = fear + MED = without",
+    "context": "",
+    "session": "Particles & Grammar"
+  },
+  {
+    "tibetan": "མེད་པར།",
+    "acip": "MED PAR",
+    "meaning": "without; in the absence of",
+    "notes": "MED = not exist + PAR = in manner of",
+    "context": "",
+    "session": "Particles & Grammar"
+  },
+  {
+    "tibetan": "དེས་ན།",
+    "acip": "DES NA",
+    "meaning": "therefore; thus; in that case",
+    "notes": "DE + S (instrumental) + NA (conditional). Sanskrit: tasmāt.",
+    "context": "Logical connective at the hinge between premise and conclusion. Stronger and more assertive than DE LTAR YIN NA.",
+    "session": "Particles & Grammar"
+  },
+  {
+    "tibetan": "ཐོག་མར།",
+    "acip": "THOG MAR",
+    "meaning": "first; at the outset; first of all",
+    "notes": "THOG MA = the first + MAR (adverbial particle)",
+    "context": "Classic sequence: THOG MAR... DE NAS... MTHAR = first... then... finally.",
+    "session": "Particles & Grammar"
+  },
+  {
+    "tibetan": "དེ་ལྟར་ཡིན་ན།",
+    "acip": "DE LTAR YIN NA",
+    "meaning": "if that is so; if it is like that; that being the case",
+    "notes": "DE LTAR = like that/thus + YIN + NA = if/when",
+    "context": "More conditional/dialogical than DES NA — often at the hinge after an objection or concession.",
+    "session": "Particles & Grammar"
+  },
+  {
+    "tibetan": "བཞིན་དུ།",
+    "acip": "BZHIN DU",
+    "meaning": "in accordance with; just as; like; in the manner of",
+    "notes": "BZHIN = accordance + DU (adverbial). Related to JI BZHIN.",
+    "context": "Acting BZHIN DU — in accordance with GNAS TSUL (how things are) rather than SNANG TSUL (how they appear) — is a concise description of what practice is for.",
+    "session": "Particles & Grammar"
+  },
+  {
+    "tibetan": "གང་ལ།",
+    "acip": "GANG LA",
+    "meaning": "to what; in what; with regard to what; whatever",
+    "notes": "GANG = what/which + LA = locative/dative. Emphatic: GA LA.",
+    "context": "The GANG family (GANG ZHE NA, GANG ZHIG, GANG LA, GANG DU, GANG LTAR) does structural work throughout philosophical Tibetan — anchoring definitions, framing rhetorical questions.",
+    "session": "Particles & Grammar"
+  },
+  {
+    "tibetan": "འཇིགས་མེད་གདོང་ལྔ་དབང་པོ།",
+    "acip": "'JIGS MED GDONG LNGA DBANG PO",
+    "meaning": "Fearless Five-Faced Lord",
+    "notes": "Deity name/epithet (possibly a protector deity)",
+    "context": "",
+    "session": "Names, Epithets & Phrases"
+  },
+  {
+    "tibetan": "གསེར་རིས་བསྐོར་བ།",
+    "acip": "GSER RIS BSKOR BA",
+    "meaning": "surrounded by golden mountains",
+    "notes": "",
+    "context": "",
+    "session": "Names, Epithets & Phrases"
+  },
+  {
+    "tibetan": "བུད་ཤིང་མེད་པར་མེ།",
+    "acip": "BUD SHING MED PAR ME",
+    "meaning": "fire without firewood",
+    "notes": "",
+    "context": "",
+    "session": "Names, Epithets & Phrases"
+  },
+  {
+    "tibetan": "ངེས་འབྱུང་གི་བསམ་པ།",
+    "acip": "NGES 'BYUNG GI BSAM PA",
+    "meaning": "the mind/attitude of renunciation; the thought of definite emergence",
+    "notes": "NGES = definite; 'BYUNG = arise/emerge; BSAM PA = thought/intention",
+    "context": "First of the three principal aspects of the path. Not just knowing about renunciation but a mind fully seized and permeated by it — requiring ZIN PAR.",
+    "session": "Session 2 — Lam Rim & Teaching Terms"
+  },
+  {
+    "tibetan": "ཟིན་པར།",
+    "acip": "ZIN PAR",
+    "meaning": "having grasped; mind imbued with (an idea)",
+    "notes": "Past stem of 'DZIN PA + PAR. Archaic usage.",
+    "context": "Old term: a mind thoroughly taken up by an idea — not mere intellectual acquaintance but being permeated by it.",
+    "session": "Session 2 — Lam Rim & Teaching Terms"
+  },
+  {
+    "tibetan": "གཞན་གྱིས་བསྟོད་པ།",
+    "acip": "GZHAN GYIS BSTOD PA",
+    "meaning": "praise by others; being praised by others",
+    "notes": "GZHAN = other; GYIS = by; BSTOD PA = praise",
+    "context": "One of the eight worldly concerns. Paired with SMAD PA (blame). The practitioner works to regard both with equanimity.",
+    "session": "Session 2 — Lam Rim & Teaching Terms"
+  },
+  {
+    "tibetan": "ངན་སོང་དུ་སྐྱེས་ཀྱི་དོགས་ནས།",
+    "acip": "NGAN SONG DU SKYES KYI DOGS NAS",
+    "meaning": "out of fear of being reborn in the lower realms",
+    "notes": "NGAN SONG = lower realms; DOGS PA = fear/apprehension; NAS = from/on basis of",
+    "context": "Motivating dread of the initial-scope practitioner (SKYES BU CHUNG NGU) in the Lam Rim.",
+    "session": "Session 2 — Lam Rim & Teaching Terms"
+  },
+  {
+    "tibetan": "འཇིགས་སྐྱོབས་ཀྱི་ཚུལ་ཁྲིམས།",
+    "acip": "'JIGS SKYOBS KYI TSUL KHRIMS",
+    "meaning": "ethics motivated by fear and the wish for protection",
+    "notes": "'JIGS = fear; SKYOBS = protection; TSUL KHRIMS = ethics (Sanskrit: śīla)",
+    "context": "A preliminary grade of ethical motivation. Higher grades: ethics for liberation, or for the benefit of all beings.",
+    "session": "Session 2 — Lam Rim & Teaching Terms"
+  },
+  {
+    "tibetan": "ཐོར་བུ།",
+    "acip": "THOR BU",
+    "meaning": "miscellaneous; scattered; fragmentary",
+    "notes": "From THOR BA = to scatter, disperse",
+    "context": "Genre designation for unsystematic collections — things gathered rather than composed as a unified treatise.",
+    "session": "Session 2 — Lam Rim & Teaching Terms"
+  },
+  {
+    "tibetan": "གསུང་ཐོར་བུ།",
+    "acip": "GSUNG THOR BU",
+    "meaning": "miscellaneous/scattered sayings of a teacher",
+    "notes": "GSUNG = honorific speech; THOR BU = scattered/miscellaneous",
+    "context": "A recognized Tibetan literary genre: informal remarks of a lama compiled by disciples without systematic arrangement.",
+    "session": "Session 2 — Lam Rim & Teaching Terms"
+  },
+  {
+    "tibetan": "ཞལ་གདམས།",
+    "acip": "ZHAL GDAMS",
+    "meaning": "personal oral instruction; direct counsel from a teacher",
+    "notes": "ZHAL = honorific mouth/face; GDAMS = instruction, advice",
+    "context": "Emphasizes the personal, face-to-face quality of transmission. Carries the teacher's GDENG as well as information. Distinct from MAN NGAG and GSUNG THOR BU.",
+    "session": "Session 2 — Lam Rim & Teaching Terms"
+  },
+  {
+    "tibetan": "གང་ཞིག་ལེགས་གསུང་དམ་ཆོས་འདུལ་བ།",
+    "acip": "GANG ZHIG LEGS GSUNG DAM CHOS 'DUL BA",
+    "meaning": "one who excellently teaches the holy Dharma of Vinaya",
+    "notes": "GANG ZHIG = whoever; LEGS = excellently; DAM CHOS = holy Dharma; 'DUL BA = Vinaya",
+    "context": "'DUL BA literally means \"that which tames\" — the monastic code as vehicle of self-discipline and foundation of the path.",
+    "session": "Session 2 — Lam Rim & Teaching Terms"
+  },
+  {
+    "tibetan": "ཤེས་བྱ།",
+    "acip": "SHES BYA",
+    "meaning": "object of knowledge; knowable phenomenon",
+    "notes": "SHES = to know + BYA = gerundive nominalizer. Contrast: SHES BYED (means of knowing).",
+    "context": "In Buddhist epistemology (TSAD MA): any phenomenon apprehensible by valid cognition. Everything that exists is a SHES BYA.",
+    "session": "Session 3 — Analysis & Pedagogy Terms"
+  },
+  {
+    "tibetan": "གཞི་གྲུབ།",
+    "acip": "GZHI GRUB",
+    "meaning": "that which can be proven/established; a demonstrable basis",
+    "notes": "GZHI = basis + GRUB = proven/established",
+    "context": "The subject of debate must be GZHI GRUB — provable through valid cognition — before analysis begins. Negate too much = CHAD LTAR; too little = SGRO 'DOGS.",
+    "session": "Session 3 — Analysis & Pedagogy Terms"
+  },
+  {
+    "tibetan": "འཆད་པ་ལ།",
+    "acip": "'CHAD PA LA",
+    "meaning": "in explaining; in the context of teaching",
+    "notes": "'CHAD PA = to explain/expound + LA (locative/contextual)",
+    "context": "Part of the triad: 'CHAD PA (teaching) / THOS PA (hearing) / BSGOM PA (meditation).",
+    "session": "Session 3 — Analysis & Pedagogy Terms"
+  },
+  {
+    "tibetan": "དགག་བཞག",
+    "acip": "DGAG BZHAG",
+    "meaning": "refutation and establishment; what to negate and what to posit",
+    "notes": "DGAG PA = to negate; BZHAG PA = to posit/establish",
+    "context": "The paired operations of Madhyamaka analysis. Precision of the DGAG BYA is everything — avoiding both CHAD LTAR and SGRO 'DOGS.",
+    "session": "Session 3 — Analysis & Pedagogy Terms"
+  },
+  {
+    "tibetan": "དགག་བཞག་སྤོང་།",
+    "acip": "DGAG BZHAG SPONG",
+    "meaning": "refutation, establishment, and abandonment",
+    "notes": "Adds SPONG BA (to abandon/relinquish) to DGAG BZHAG",
+    "context": "Moves from philosophical analysis into lived transformation — connects to LTA SGOM SPYOD (view, meditation, conduct).",
+    "session": "Session 3 — Analysis & Pedagogy Terms"
+  },
+  {
+    "tibetan": "སྒྲ་ཇི་བཞིན་པ།",
+    "acip": "SGRA JI BZHIN PA",
+    "meaning": "the literal meaning; as it literally says",
+    "notes": "SGRA = sound/word; JI BZHIN = just as/exactly as",
+    "context": "If a statement is not SGRA JI BZHIN PA, the commentator asks GANG LA DGONGS. Contrasts with DRANG DON (provisional) and NGES DON (definitive).",
+    "session": "Session 4 — Madhyamaka, Yogācāra & Realization Terms"
+  },
+  {
+    "tibetan": "རྒྱུ་མཚན།",
+    "acip": "RGYU MTSAN",
+    "meaning": "reason, grounds, justification, rationale",
+    "notes": "RGYU = cause + MTSAN = mark/characteristic. Formula: RGYU MTSAN GANG ZHE NA = \"What is the reason?\"",
+    "context": "Broader than technical debate term GTAN TSIGS — covers any explanatory basis or justification.",
+    "session": "Session 4 — Madhyamaka, Yogācāra & Realization Terms"
+  },
+  {
+    "tibetan": "གཞན་དབང་།",
+    "acip": "GZHAN DBANG",
+    "meaning": "other-powered; dependent on another; the dependent nature",
+    "notes": "Sanskrit: paratantra. 2nd of the three Yogācāra natures.",
+    "context": "The dependent flow of experience arising through causes and conditions. Equation: GZHAN DBANG − KUN BRTAGS = YONGS GRUB.",
+    "session": "Session 4 — Madhyamaka, Yogācāra & Realization Terms"
+  },
+  {
+    "tibetan": "ཡོངས་གྲུབ།",
+    "acip": "YONGS GRUB",
+    "meaning": "the perfectly established nature; perfect reality",
+    "notes": "Sanskrit: pariniṣpanna. 3rd of the three Yogācāra natures.",
+    "context": "Emptiness itself — GZHAN DBANG seen without KUN BRTAGS. Not a separate realm but dependent nature as it actually is. The stable ultimate truth that remains when conceptual fabrication is cleared away.",
+    "session": "Session 4 — Madhyamaka, Yogācāra & Realization Terms"
+  },
+  {
+    "tibetan": "ཀུན་བརྟགས།",
+    "acip": "KUN BRTAGS",
+    "meaning": "the imagined/imputed nature; thoroughly fabricated by conceptual thought",
+    "notes": "Sanskrit: parikalpita. 1st of the three Yogācāra natures.",
+    "context": "False superimposition of inherent existence onto GZHAN DBANG. Like a snake mistaken for a rope — purely fabricated, MI RNYED PA. Equation: GZHAN DBANG − KUN BRTAGS = YONGS GRUB.",
+    "session": "Session 4 — Madhyamaka, Yogācāra & Realization Terms"
+  },
+  {
+    "tibetan": "སྐྱེ་འགག",
+    "acip": "SKYE 'GAG",
+    "meaning": "arising and ceasing; production and cessation",
+    "notes": "Contracted compound of SKYE BA + 'GAG PA",
+    "context": "The defining characteristic of all conditioned phenomena. Its negation MI SKYE MI 'GAG is the opening move of Nāgārjuna's Mūlamadhyamakakārikā.",
+    "session": "Session 4 — Madhyamaka, Yogācāra & Realization Terms"
+  },
+  {
+    "tibetan": "'གག་པ།",
+    "acip": "'GAG PA",
+    "meaning": "cessation, stopping, dissolution; to cease",
+    "notes": "Sanskrit: nirodha. Paired with SKYE BA as SKYE 'GAG.",
+    "context": "All conditioned phenomena have SKYE BA and 'GAG PA. The unconditioned ('DUS MA BYAS) is MI SKYE MI 'GAG — neither arising nor ceasing.",
+    "session": "Session 4 — Madhyamaka, Yogācāra & Realization Terms"
+  },
+  {
+    "tibetan": "སྐུར་འདེབས།",
+    "acip": "SKUR 'DEBS",
+    "meaning": "to denigrate, deprecate; under-attribution",
+    "notes": "Literally \"to throw a burden onto.\" SKUR = burden; 'DEBS = to throw.",
+    "context": "One of the two errors of wrong view — paired with SGRO 'DOGS (superimposition). SKUR 'DEBS = denying conventional existence = CHAD LTAR. The DGAG must be precise enough to avoid both.",
+    "session": "Session 4 — Madhyamaka, Yogācāra & Realization Terms"
+  },
+  {
+    "tibetan": "རང་གི་མཚན་ཉིད་ཀྱིས།",
+    "acip": "RANG GI MTSAN NYID KYIS",
+    "meaning": "by its own defining characteristic; through its own intrinsic nature",
+    "notes": "RANG = self/own; MTSAN NYID = characteristic; KYIS = instrumental.",
+    "context": "The precise object of Madhyamaka negation. Svātantrikas accept this conventionally; Prāsaṅgikas reject it even conventionally. Searching RANG GI MTSAN NYID KYIS → MI RNYED PA → STONG PA NYID.",
+    "session": "Session 4 — Madhyamaka, Yogācāra & Realization Terms"
+  },
+  {
+    "tibetan": "བསྟན་ཏོ།",
+    "acip": "BSTAN TO",
+    "meaning": "it has been shown; it is demonstrated; thus it is taught",
+    "notes": "BSTAN = past stem of \"to show/teach\" + TO (archaic assertive final particle).",
+    "context": "Archaic form of DO. Signals early canonical texts or passages deliberately invoking archaic register — often in scriptural citations.",
+    "session": "Session 4 — Madhyamaka, Yogācāra & Realization Terms"
+  },
+  {
+    "tibetan": "ཚུལ་ཁྲིམས།",
+    "acip": "TSUL KHRIMS",
+    "meaning": "ethics, morality, discipline, virtue",
+    "notes": "Sanskrit: śīla. TSUL = manner + KHRIMS = law/code.",
+    "context": "Foundation of the three higher trainings. If one's experienced world is shaped by karmic action, TSUL KHRIMS is the mechanism by which that reality is constructed.",
+    "session": "Session 4 — Madhyamaka, Yogācāra & Realization Terms"
+  },
+  {
+    "tibetan": "སྐྱེ་བ་མེད་པ།",
+    "acip": "SKYE BA MED PA",
+    "meaning": "non-arising; non-production; unborn",
+    "notes": "Sanskrit: anutpāda. Negation of SKYE BA.",
+    "context": "Phenomena have no true arising from their own side. SKYE BA MED PA'I CHOS KYI BZOD PA — patient acceptance of non-arising — marks a high bodhisattva attainment.",
+    "session": "Session 4 — Madhyamaka, Yogācāra & Realization Terms"
+  },
+  {
+    "tibetan": "གང་ལ་དགོངས།",
+    "acip": "GANG LA DGONGS",
+    "meaning": "with what intention; having what in mind; in reference to what",
+    "notes": "GANG = what + LA = locative + DGONGS = honorific \"to intend\"",
+    "context": "The hermeneutical question when a statement cannot be taken SGRA JI BZHIN PA. Full analysis: DGONGS GZHI (basis), DGONGS PA (intention), DGOS PA (purpose), DNGOS LA GNOD PA (contradiction of literal meaning).",
+    "session": "Session 4 — Madhyamaka, Yogācāra & Realization Terms"
+  },
+  {
+    "tibetan": "གཉིས་སྣང་།",
+    "acip": "GNYIS SNANG",
+    "meaning": "dualistic appearance; the appearance of two; duality",
+    "notes": "GNYIS = two + SNANG = appearance. Sanskrit: dvayābhāsa.",
+    "context": "The experiential split between SNANG TSUL and GNAS TSUL. The entire path is the progressive resolution of GNYIS SNANG — its dissolution marks direct realization of emptiness.",
+    "session": "Session 4 — Madhyamaka, Yogācāra & Realization Terms"
+  },
+  {
+    "tibetan": "ཆད་ལྟར།",
+    "acip": "CHAD LTAR",
+    "meaning": "like a cut; nihilistically; in the manner of annihilation",
+    "notes": "CHAD = cut/severed + LTAR = like/in manner of",
+    "context": "The extreme of nihilism — paired with RTAG LTAR (eternalism). Misapplying emptiness as \"nothing exists\" is CHAD LTAR. The Middle Way avoids both extremes.",
+    "session": "Session 4 — Madhyamaka, Yogācāra & Realization Terms"
+  },
+  {
+    "tibetan": "ཁྱེད།",
+    "acip": "KHYED",
+    "meaning": "you (honorific); your good self",
+    "notes": "Full form: KHYED RANG. Polite 2nd person pronoun. Ordinary: KHYOD.",
+    "context": "Standard form of address in debate — the Challenger addresses the Defender as KHYED RANG throughout the exchange.",
+    "session": "Session 4 — Madhyamaka, Yogācāra & Realization Terms"
+  },
+  {
+    "tibetan": "མི་རྙེད་པ།",
+    "acip": "MI RNYED PA",
+    "meaning": "not finding; unfindable; unable to find",
+    "notes": "MI = negative + RNYED PA = to find/obtain",
+    "context": "The crucial outcome of Madhyamaka analysis: searching for inherent existence and finding nothing. This unfindability IS the emptiness — not a failure but the discovery. The conventional phenomenon remains; its inherent existence was never there.",
+    "session": "Session 4 — Madhyamaka, Yogācāra & Realization Terms"
+  },
+  {
+    "tibetan": "རྟེན།",
+    "acip": "RTEN",
+    "meaning": "support, basis, foundation; that which supports",
+    "notes": "Paired with BRTEN (that which depends upon)",
+    "context": "Together RTEN/BRTEN articulate RTEN 'BREL (dependent origination, Sanskrit: pratītyasamutpāda). Every phenomenon is BRTEN — it has no RTEN within itself — its inherent ground is MI RNYED PA.",
+    "session": "Session 4 — Madhyamaka, Yogācāra & Realization Terms"
+  },
+  {
+    "tibetan": "བརྟེན།",
+    "acip": "BRTEN",
+    "meaning": "that which relies upon; the supported; to depend on",
+    "notes": "Paired with RTEN (support/basis)",
+    "context": "See RTEN. The structure of RTEN/BRTEN — external dependence without internal ground — is another way of arriving at emptiness.",
+    "session": "Session 4 — Madhyamaka, Yogācāra & Realization Terms"
+  },
+  {
+    "tibetan": "འདུས་མ་བྱས།",
+    "acip": "'DUS MA BYAS",
+    "meaning": "unconditioned; uncompounded; not made by causes and conditions",
+    "notes": "Sanskrit: asaṃskṛta. Opposite of 'DUS BYAS. Classic examples: NAM MKHA' (space), nirvāṇa.",
+    "context": "Even unconditioned phenomena are MING TZAM — NAM MKHA' YANG NI MING TZAM. No category of phenomenon escapes Prāsaṅgika analysis.",
+    "session": "Session 4 — Madhyamaka, Yogācāra & Realization Terms"
+  },
+  {
+    "tibetan": "མིང་ཙམ།",
+    "acip": "MING TZAM",
+    "meaning": "merely a name; only nominally; just a label",
+    "notes": "MING = name + TZAM = merely/only",
+    "context": "The Prāsaṅgika destination: phenomena exist only as nominal designations. Search behind the label → MI RNYED PA → STONG PA NYID. What remains is MING TZAM — avoiding CHAD LTAR while negating inherent existence.",
+    "session": "Session 4 — Madhyamaka, Yogācāra & Realization Terms"
+  },
+  {
+    "tibetan": "དགག་བྱ།",
+    "acip": "DGAG BYA",
+    "meaning": "object of negation; that which is to be refuted; the negandum",
+    "notes": "DGAG = negation + BYA = gerundive nominalizer. Sanskrit: pratiṣedhya.",
+    "context": "The pivotal challenge of the view. Too broad = CHAD LTAR; too narrow = SGRO 'DOGS. The DGAG BYA (inherent existence) was never there — not removed but recognized as always absent. Something that is not there.",
+    "session": "Session 4 — Madhyamaka, Yogācāra & Realization Terms"
+  },
+  {
+    "tibetan": "ཐོགས་བཅས།",
+    "acip": "THOGS BCAS",
+    "meaning": "obstructed; with obstruction; having impediment",
+    "notes": "THOGS = obstruction + BCAS = having/with. Opposite: THOGS MED.",
+    "context": "Material phenomena (THOGS BCAS) vs. immaterial (THOGS MED = mind, space, emptiness). Maps onto GZUGS / GZUGS MED.",
+    "session": "Session 4 — Madhyamaka, Yogācāra & Realization Terms"
+  },
+  {
+    "tibetan": "ནམ་མཁའ་ཡང་ནི་མིང་ཙམ།",
+    "acip": "NAM MKHA' YANG NI MING TZAM",
+    "meaning": "even space is merely a name; space too is nothing but a label",
+    "notes": "NAM MKHA' = space/sky; YANG NI = even/also (emphatic)",
+    "context": "Space — the strongest candidate for independent existence as an unconditioned phenomenon — is also MING TZAM. Closes every escape route for inherent existence.",
+    "session": "Session 4 — Madhyamaka, Yogācāra & Realization Terms"
+  },
+  {
+    "tibetan": "ལྟ་ག་ལ་ཡོད།",
+    "acip": "LTA GA LA YOD",
+    "meaning": "where could there be such a view? how could such a view exist?",
+    "notes": "LTA = view; GA LA = rhetorical \"where/how?\" (emphatic negative); YOD = exists",
+    "context": "Even the view of emptiness cannot be grasped as inherently existing. Nāgārjuna: clinging to emptiness itself is the subtlest SGRO 'DOGS.",
+    "session": "Session 4 — Madhyamaka, Yogācāra & Realization Terms"
+  },
+  {
+    "tibetan": "མིང་ཅན།",
+    "acip": "MING CAN",
+    "meaning": "name-bearer; that which has a name; the named/referent",
+    "notes": "MING = name + CAN = possessing/having",
+    "context": "MING and MING CAN are mutually dependent (RTEN 'BREL) — neither established independently. The referent behind the label is MI RNYED PA; yet conventionally both function — MING TZAM without CHAD LTAR.",
+    "session": "Session 4 — Madhyamaka, Yogācāra & Realization Terms"
+  },
+  {
+    "tibetan": "རིགས་པས་གནོད།",
+    "acip": "RIGS PAS GNOD",
+    "meaning": "harmed/invalidated by reasoning; contradicted by rational analysis",
+    "notes": "RIGS PA = reasoning/logic + GNOD = to harm/invalidate",
+    "context": "One of four criteria for identifying provisional (DRANG DON) meaning. In Madhyamaka: inherent existence is RIGS PAS GNOD — collapses under analysis → MI RNYED PA → MING TZAM.",
+    "session": "Session 4 — Madhyamaka, Yogācāra & Realization Terms"
+  },
+  {
+    "tibetan": "གང་ལ་ཉེས་པ་མ།",
+    "acip": "GANG LA NYES PA MA",
+    "meaning": "\"Not a drop\" (lit. \"wherein is there fault? — there is none\")",
+    "notes": "NYES PA = fault/transgression. MA = negative. Poetic/verse usage.",
+    "context": "Proclamation of primordial purity (KA DAG): from the ultimate perspective not even a drop of inherent fault exists. The DGAG BYA was never there. Requires GDENG BROD — not mere intellectual assertion.",
+    "session": "Session 4 — Madhyamaka, Yogācāra & Realization Terms"
+  },
+  {
+    "tibetan": "གདེང་།",
+    "acip": "GDENG",
+    "meaning": "confidence, certainty, assurance; trust in one's realization",
+    "notes": "From GDENG BA = to be confident, to have assurance",
+    "context": "The inner certainty arising from genuine realization — self-validating, unshakeable, antidote to THE TSOM (doubt). A teacher transmits GDENG as well as information.",
+    "session": "Session 4 — Madhyamaka, Yogācāra & Realization Terms"
+  },
+  {
+    "tibetan": "གདེང་བྲོད།",
+    "acip": "GDENG BROD",
+    "meaning": "to proclaim with confidence; to roar one's realization",
+    "notes": "GDENG = confidence + BROD = to proclaim/roar forth",
+    "context": "GDENG is the inner certainty; GDENG BROD is that certainty given full voice — the lion's roar (SENG GE'I NGA RO). GANG LA NYES PA MA proclaimed as GDENG BROD: realization thrown out without reservation.",
+    "session": "Session 4 — Madhyamaka, Yogācāra & Realization Terms"
+  }
+]

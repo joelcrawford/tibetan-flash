@@ -2,7 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import {
   Animated,
   GestureResponderEvent,
+  LayoutAnimation,
   PanResponder,
+  Platform,
   Pressable,
   SafeAreaView,
   ScrollView,
@@ -10,9 +12,14 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  UIManager,
   useColorScheme,
   View,
 } from "react-native";
+
+if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+}
 import { useDeck } from "../../shared/hooks/useDeck";
 import { Card } from "../../shared/types/types";
 import { useTTS } from "./src/hooks/useTTS";
@@ -56,14 +63,17 @@ export default function App() {
 
   const {
     card, idx, total, flipped, acipVisible, shuffled,
-    sessionFilter, showCtx, sessions, knownCount, pct,
+    sessionFilter, sessions, knownCount, pct,
     go, goImmediate, markKnown, handleCardClick,
     toggleAcip,
-    setShuffled, setSessionFilter, setShowCtx,
+    setShuffled, setSessionFilter,
   } = useDeck(GLOSSARY as Card[]);
 
   const { speak, speaking } = useTTS();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [contextOpen, setContextOpen] = useState(false);
+
+  useEffect(() => { setContextOpen(false); }, [idx]);
 
   // ── 3D flip animation ─────────────────────────────────────────────────────
   const flipAnim = useRef(new Animated.Value(0)).current;
@@ -232,31 +242,48 @@ export default function App() {
                 style={s.cardPressable}
                 onPress={() => { if (!didSwipe.current) handleCardClick(); }}
               >
-                <ScrollView
-                  contentContainerStyle={s.backContent}
-                  showsVerticalScrollIndicator={false}
-                >
+                <View style={s.backContent}>
                   <Text style={[s.acipBack, { color: dark ? C.faint : C.mid }]}>{card.acip}</Text>
                   <Text style={[s.meaning, { color: c.ink }]}>{card.meaning}</Text>
                   {card.notes ? (
                     <Text style={[s.notes, { color: C.muted }]}>{card.notes}</Text>
                   ) : null}
-                  {showCtx && card.context ? (
-                    <>
-                      <Text style={[s.ctxLabel, { color: C.faint }]}>context</Text>
-                      <View style={[s.ctxBar, { borderLeftColor: C.stone }]}>
-                        <Text style={[s.ctxText, { color: dark ? C.faint : C.mid }]}>
-                          {card.context}
-                        </Text>
-                      </View>
-                    </>
-                  ) : null}
-                </ScrollView>
+                </View>
               </Pressable>
             </Animated.View>
           </Animated.View>
         )}
       </View>
+
+      {/* Context drawer */}
+      {card && flipped && (card.context || card.context_tibetan) && (
+        <View style={s.ctxDrawer}>
+          <TouchableOpacity
+            style={s.ctxToggle}
+            onPress={() => {
+              LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+              setContextOpen((o) => !o);
+            }}
+          >
+            <Text style={[s.ctxToggleArrow, { color: C.faint }]}>{contextOpen ? "▾" : "▶"}</Text>
+            <Text style={[s.ctxToggleLabel, { color: C.faint }]}>context</Text>
+          </TouchableOpacity>
+          {contextOpen && (
+            <View style={s.ctxBody}>
+              {card.context ? (
+                <View style={[s.ctxBar, { borderLeftColor: C.stone }]}>
+                  <Text style={[s.ctxText, { color: dark ? C.faint : C.mid }]}>{card.context}</Text>
+                </View>
+              ) : null}
+              {card.context_tibetan ? (
+                <View style={[s.ctxBar, { borderLeftColor: C.stone, marginTop: 8 }]}>
+                  <Text style={[s.ctxTibetan, { color: C.faint }]}>{card.context_tibetan}</Text>
+                </View>
+              ) : null}
+            </View>
+          )}
+        </View>
+      )}
 
       {/* Known / Review */}
       {card && flipped && (
@@ -298,12 +325,6 @@ export default function App() {
                 onPress={() => setShuffled((v) => !v)}
               >
                 <Text style={[s.btnText, { color: c.ink }]}>⇌ Shuffle</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[s.btn, { backgroundColor: showCtx ? c.cardMid : c.card, borderColor: c.border }]}
-                onPress={() => setShowCtx((v) => !v)}
-              >
-                <Text style={[s.btnText, { color: c.ink }]}>Context</Text>
               </TouchableOpacity>
             </View>
 
@@ -363,13 +384,18 @@ const s = StyleSheet.create({
   acipText:      { fontFamily: "Courier New", fontSize: 13, letterSpacing: 1 },
   acipHint:      { position: "absolute", fontSize: 11, color: C.muted, fontStyle: "italic" },
   tapHint:       { position: "absolute", bottom: 14, fontSize: 12, fontStyle: "italic" },
-  backContent:   { flexGrow: 1, alignItems: "center", justifyContent: "center", paddingVertical: 16 },
+  backContent:   { flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 16 },
   acipBack:      { fontFamily: "Courier New", fontSize: 13, letterSpacing: 1, marginBottom: 10, textAlign: "center" },
   meaning:       { fontFamily: "Georgia", fontSize: 20, fontStyle: "italic", textAlign: "center", marginBottom: 12, lineHeight: 28 },
   notes:         { fontSize: 13, fontStyle: "italic", textAlign: "center", lineHeight: 20, marginBottom: 12 },
-  ctxLabel:      { fontSize: 11, letterSpacing: 1, textTransform: "uppercase", marginBottom: 4, alignSelf: "flex-start" },
+  ctxDrawer:     { paddingHorizontal: 16, marginBottom: 4 },
+  ctxToggle:     { flexDirection: "row", alignItems: "center", gap: 6, paddingVertical: 8 },
+  ctxToggleArrow: { fontSize: 9 },
+  ctxToggleLabel: { fontSize: 11, letterSpacing: 1, textTransform: "uppercase", fontFamily: "Georgia" },
+  ctxBody:       { paddingBottom: 8 },
   ctxBar:        { borderLeftWidth: 2, paddingLeft: 10, alignSelf: "stretch" },
   ctxText:       { fontSize: 13, fontStyle: "italic", lineHeight: 20 },
+  ctxTibetan:    { fontFamily: "Courier New", fontSize: 11, lineHeight: 18, letterSpacing: 0.6 },
   knownRow:      { flexDirection: "row", justifyContent: "center", gap: 8, paddingHorizontal: 16, paddingBottom: 8 },
   knownBtn:      { borderWidth: 0.5, borderRadius: 8, paddingHorizontal: 18, paddingVertical: 7 },
   knownBtnText:  { fontSize: 13 },

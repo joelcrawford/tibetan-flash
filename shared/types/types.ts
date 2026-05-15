@@ -6,6 +6,7 @@ export interface Card {
   meaning: string;
   notes: string;
   context: string;
+  context_tibetan: string;
   session: string;
 }
 
