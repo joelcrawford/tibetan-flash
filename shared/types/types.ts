@@ -11,3 +11,6 @@ export interface Card {
 }
 
 export type KnownMap = Record<string, boolean>;
+
+export type CardStatus = "review" | "familiar" | "known";
+export type StatusMap = Record<string, CardStatus>;

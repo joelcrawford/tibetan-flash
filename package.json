@@ -11,6 +11,8 @@
     "build": "npm --prefix apps/web run build",
     "typecheck": "npm --prefix apps/web run typecheck",
     "deploy": "./deploy.sh",
+    "ios": "npm --prefix apps/ios run start",
+    "ios:dev": "concurrently -n python,tts,expo -c magenta,blue,yellow \".venv/bin/python src/python/tts_server.py\" \"node --env-file=server/.env --watch server/index.js\" \"npm --prefix apps/ios run start\"",
     "expo": "cd apps/ios && eas build --platform ios --profile production && eas submit --platform ios --latest"
   },
   "devDependencies": {

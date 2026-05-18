@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect, useMemo } from "react";
-import { Card, KnownMap } from "../types/types";
+import { Card, KnownMap, CardStatus, StatusMap } from "../types/types";
 
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
@@ -15,7 +15,7 @@ export function useDeck(allCards: Card[]) {
   const [idx, setIdx] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [acipVisible, setAcipVisible] = useState(false);
-  const [known, setKnown] = useState<KnownMap>({});
+  const [statusMap, setStatusMap] = useState<StatusMap>({});
   const [shuffled, setShuffled] = useState(false);
   const [sessionFilter, setSessionFilter] = useState("All");
   const [showCtx, setShowCtx] = useState(true);
@@ -25,41 +25,53 @@ export function useDeck(allCards: Card[]) {
     return ["All", ...Array.from(s).sort()];
   }, [allCards]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     let filtered = sessionFilter === "All"
       ? allCards
       : allCards.filter((c) => c.session === sessionFilter);
+
+    const reviewCards = filtered.filter((c) => !statusMap[c.acip] || statusMap[c.acip] === "review");
+    const familiarCards = filtered.filter((c) => statusMap[c.acip] === "familiar").filter(() => Math.random() < 0.35);
+    filtered = [...reviewCards, ...familiarCards];
+
     if (shuffled) filtered = shuffle(filtered);
     setDeck(filtered);
     setIdx(0);
     setFlipped(false);
     setAcipVisible(false);
-  }, [sessionFilter, shuffled, allCards]);
+  }, [sessionFilter, shuffled, allCards]); // statusMap intentionally excluded — deck rebuilds on filter/shuffle change only
 
   const card = deck[idx] ?? null;
   const total = deck.length;
-  const knownCount = Object.values(known).filter(Boolean).length;
+  const knownCount = Object.values(statusMap).filter((s) => s === "known").length;
   const pct = total > 0 ? Math.round((idx / total) * 100) : 0;
 
-  // With flip-reset delay — for keyboard / button navigation
   const go = useCallback((dir: number): void => {
     setFlipped(false);
     setAcipVisible(false);
     setTimeout(() => setIdx((i) => Math.max(0, Math.min(total - 1, i + dir))), 180);
   }, [total]);
 
-  // Without delay — for swipe animation (timing managed by the gesture)
   const goImmediate = useCallback((dir: number): void => {
     setFlipped(false);
     setAcipVisible(false);
     setIdx((i) => Math.max(0, Math.min(total - 1, i + dir)));
   }, [total]);
 
-  const markKnown = useCallback((val: boolean): void => {
+  const markStatus = useCallback((status: CardStatus): void => {
     if (!card) return;
-    setKnown((k) => ({ ...k, [card.acip]: val }));
+    setStatusMap((m) => ({ ...m, [card.acip]: status }));
     if (idx < total - 1) go(1);
   }, [card, idx, total, go]);
+
+  const markKnown = useCallback((val: boolean): void => {
+    markStatus(val ? "known" : "review");
+  }, [markStatus]);
+
+  const getCardStatus = useCallback((acip: string): CardStatus => {
+    return statusMap[acip] ?? "review";
+  }, [statusMap]);
 
   const handleCardClick = useCallback((): void => {
     setFlipped((f) => !f);
@@ -75,10 +87,15 @@ export function useDeck(allCards: Card[]) {
   const toggleFlip = useCallback(() => { setFlipped((f) => !f); setAcipVisible(false); }, []);
 
   return {
-    card, idx, total, flipped, acipVisible, known, shuffled,
+    deck, card, idx, total, flipped, acipVisible, shuffled,
     sessionFilter, showCtx, sessions, knownCount, pct,
-    go, goImmediate, markKnown, handleCardClick, handleAcipClick,
+    statusMap,
+    go, goImmediate, markKnown, markStatus, getCardStatus,
+    handleCardClick, handleAcipClick,
     toggleAcip, toggleFlip,
     setShuffled, setSessionFilter, setShowCtx,
   };
 }
+
+// Re-export for consumers that import KnownMap from this module
+export type { KnownMap };
