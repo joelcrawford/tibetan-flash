@@ -125,7 +125,7 @@ export default function App() {
   const {
     deck, card, idx, total, flipped, acipVisible,
     sessionFilter, sessions, knownCount, pct,
-    go, goImmediate, markStatus, getCardStatus, handleCardClick,
+    go, goImmediate, rateCard, getCardStatus, handleCardClick,
     toggleAcip, setShuffled, setSessionFilter,
   } = useDeck(GLOSSARY as Card[]);
 
@@ -258,7 +258,7 @@ export default function App() {
   // ── Rating ────────────────────────────────────────────────────────────────
   const currentStatus = card ? getCardStatus(card.acip) : "review";
   const rating = RATING_CONFIG[currentStatus];
-  const handleRate = () => card && markStatus(RATING_NEXT[currentStatus]);
+  const handleRate = () => card && rateCard(RATING_NEXT[currentStatus]);
 
   // ── Render ────────────────────────────────────────────────────────────────
   return (
