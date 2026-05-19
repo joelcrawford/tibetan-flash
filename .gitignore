@@ -16,6 +16,9 @@ apps/web/dist/
 .env.local
 .env.*.local
 
+# ios credentials — never commit
+apps/ios/_auth/
+
 # python
 __pycache__/
 *.pyc
