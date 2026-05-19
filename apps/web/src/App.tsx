@@ -1,9 +1,20 @@
 import { useState, useEffect } from "react";
 import FLASHCARDS from "../../../shared/data/glossary.json";
-import { Card } from "../../../shared/types/types";
+import { Card, CardStatus } from "../../../shared/types/types";
 import { useDeck } from "../../../shared/hooks/useDeck";
 import { useTTS } from "./hooks/useTTS";
 import { useSwipeGesture } from "./hooks/useSwipeGesture";
+
+// ── Rating constants ─────────────────────────────────────────────────────────
+
+const RATING_NEXT: Record<CardStatus, CardStatus> = {
+  review: "familiar", familiar: "known", known: "review",
+};
+const RATING_CONFIG: Record<CardStatus, { label: string; hoverCls: string; activeCls: string }> = {
+  review:   { label: "↺ review",   hoverCls: "hover:bg-stone-lt",    activeCls: "" },
+  familiar: { label: "〜 familiar", hoverCls: "hover:bg-amber-50",    activeCls: "border-amber-400 text-amber-700" },
+  known:    { label: "✓ known",     hoverCls: "hover:bg-[#eaf3de]",   activeCls: "border-[#639922] text-[#3b6d11]" },
+};
 
 // ── Shared class strings ────────────────────────────────────────────────────
 
@@ -29,20 +40,48 @@ const faceCls = [
   "dark:bg-surf-dk dark:border-bdr-dk",
 ].join(" ");
 
+// ── HighlightedTibetan ───────────────────────────────────────────────────────
+
+function HighlightedTibetan({ text, term }: { text: string; term: string }) {
+  if (!term) return <>{text}</>;
+  const parts = text.split(term);
+  if (parts.length === 1) return <>{text}</>;
+  return (
+    <>
+      {parts.map((part, i) => (
+        <span key={i}>
+          {part}
+          {i < parts.length - 1 && (
+            <mark className="bg-yellow-200 text-gray-900 not-italic rounded-[2px]">{term}</mark>
+          )}
+        </span>
+      ))}
+    </>
+  );
+}
+
 // ── Component ────────────────────────────────────────────────────────────────
 
 export default function App() {
   const {
-    card, idx, total, flipped, acipVisible, shuffled,
+    card, idx, total, flipped, acipVisible,
     sessionFilter, sessions, knownCount, pct,
-    go, goImmediate, markKnown, handleCardClick, handleAcipClick,
+    go, goImmediate, rateCard, getCardStatus, handleCardClick,
     toggleAcip, toggleFlip,
     setShuffled, setSessionFilter,
   } = useDeck(FLASHCARDS as Card[]);
 
   const { speak, speaking } = useTTS();
+  const [dark, setDark] = useState(true);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", dark);
+  }, [dark]);
+
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [contextOpen, setContextOpen] = useState(false);
+
+  useEffect(() => { setShuffled(true); }, [setShuffled]);
 
   // Reset context drawer whenever the card changes
   useEffect(() => { setContextOpen(false); }, [idx]);
@@ -68,6 +107,8 @@ export default function App() {
   }, [card, go, toggleAcip, toggleFlip, speak]);
 
   const hasContext = card && (card.context || card.context_tibetan);
+  const currentStatus = card ? getCardStatus(card.acip) : "review";
+  const ratingCfg = RATING_CONFIG[currentStatus];
 
   return (
     <div className="font-serif bg-parchment min-h-screen py-6 px-4 text-ink dark:bg-parchment-dk dark:text-ink-lt">
@@ -115,8 +156,11 @@ export default function App() {
                   <span className="text-[11px] text-ink-faint tracking-[0.06em] absolute top-3.5 right-4">
                     {card.session}
                   </span>
-                  <div className="font-tibetan text-[52px] leading-[1.5] text-ink mb-3 tracking-[0.02em] dark:text-ink-lt">
+                  <div className="font-tibetan text-[52px] leading-[1.5] text-ink mb-1 tracking-[0.02em] dark:text-ink-lt">
                     {card.tibetan}
+                  </div>
+                  <div className={`font-mono text-[15px] tracking-[0.08em] mb-3 transition-opacity duration-200 ${acipVisible ? "text-ink-mid dark:text-ink-faint opacity-100" : "opacity-0"}`}>
+                    {card.acip}
                   </div>
                   <button
                     className="font-serif text-[13px] py-[3px] px-2.5 border-[0.5px] border-stone rounded-md bg-card-bg text-ink-muted cursor-pointer transition-all duration-150 mb-2 hover:[&:not(:disabled)]:bg-stone-lt hover:[&:not(:disabled)]:text-ink disabled:opacity-50 disabled:cursor-default dark:bg-surf-dk dark:border-bdr-dk dark:hover:[&:not(:disabled)]:bg-surf-dk-mid dark:hover:[&:not(:disabled)]:text-ink-lt"
@@ -126,27 +170,43 @@ export default function App() {
                   >
                     {speaking ? "…" : "♪"}
                   </button>
-                  <div className="relative mb-1 flex justify-center">
-                    <div
-                      className={[
-                        "font-mono text-[13px] tracking-[0.08em] px-3 py-1 rounded cursor-pointer transition-all duration-200 select-none inline-block",
-                        acipVisible
-                          ? "bg-stone-card text-ink-mid border-[0.5px] border-stone dark:bg-surf-dk-mid dark:text-ink-faint dark:border-bdr-dk"
-                          : "acip-hidden bg-stone text-transparent border-[0.5px] border-stone dark:bg-bdr-dk dark:border-[#5f5e5a]",
-                      ].join(" ")}
-                      onClick={handleAcipClick}
-                      title={acipVisible ? "hide ACIP" : "show ACIP"}
-                    >
-                      {card.acip}
-                    </div>
-                  </div>
-                  <span className="text-[12px] text-ink-faint italic absolute bottom-3.5 tracking-[0.03em]">
-                    {acipVisible ? "tap card to flip" : "tap ACIP to reveal · tap card to flip"}
-                  </span>
+                  <button
+                    className={[
+                      "absolute bottom-2.5 right-3 cursor-pointer select-none",
+                      "w-[30px] h-[30px] rounded-lg border-[0.5px] flex items-center justify-center",
+                      "transition-all duration-150",
+                      acipVisible
+                        ? "border-stone bg-card-bg text-ink dark:border-bdr-dk dark:bg-surf-dk dark:text-ink-lt"
+                        : "border-stone/50 bg-transparent text-ink-faint dark:border-bdr-dk/50 dark:text-ink-faint/60",
+                    ].join(" ")}
+                    onClick={(e) => { e.stopPropagation(); toggleAcip(); }}
+                    title={acipVisible ? "hide ACIP" : "show ACIP"}
+                  >
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10"/>
+                      <path d="M2 12h20"/>
+                      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                    </svg>
+                  </button>
                 </div>
 
                 {/* Back */}
                 <div className={`${faceCls} fc-face-back`}>
+                  <button
+                    className={[
+                      "absolute top-3 left-3 flex items-center gap-1.5",
+                      "font-serif text-[12px] tracking-[0.02em] cursor-pointer",
+                      "border-[0.5px] rounded-lg px-2.5 py-1.5",
+                      "transition-all duration-150",
+                      "bg-card-bg dark:bg-surf-dk",
+                      "border-stone text-ink-muted dark:border-bdr-dk dark:text-ink-faint",
+                      ratingCfg.hoverCls,
+                      ratingCfg.activeCls,
+                    ].join(" ")}
+                    onClick={(e) => { e.stopPropagation(); rateCard(RATING_NEXT[currentStatus]); }}
+                  >
+                    {ratingCfg.label}
+                  </button>
                   <span className="text-[11px] text-ink-faint tracking-[0.06em] absolute top-3.5 right-4">
                     {card.session}
                   </span>
@@ -161,6 +221,15 @@ export default function App() {
                       {card.notes}
                     </div>
                   )}
+                  {hasContext && (
+                    <button
+                      className="absolute bottom-3.5 left-4 flex items-center gap-1.5 text-[11px] tracking-[0.08em] uppercase text-ink-faint font-serif hover:text-ink-muted transition-colors duration-150 dark:hover:text-ink-muted"
+                      onClick={(e) => { e.stopPropagation(); setContextOpen((o) => !o); }}
+                    >
+                      <span className="text-[9px]">{contextOpen ? "▾" : "▶"}</span>
+                      context
+                    </button>
+                  )}
                 </div>
 
               </div>
@@ -168,29 +237,20 @@ export default function App() {
           </div>
         )}
 
-        {/* Context drawer — below card, above known/review */}
+        {/* Context drawer — below card, toggled from back face */}
         {card && flipped && hasContext && (
-          <div className="mb-3 max-w-[560px]">
-            <button
-              className="flex items-center gap-2 text-[11px] tracking-[0.08em] uppercase text-ink-faint font-serif py-2 w-full hover:text-ink-muted transition-colors duration-150 dark:hover:text-ink-muted"
-              onClick={() => setContextOpen((o) => !o)}
-            >
-              <span className="text-[9px]">{contextOpen ? "▾" : "▶"}</span>
-              context
-            </button>
-            <div className={`overflow-hidden transition-[max-height] duration-300 ease-in-out ${contextOpen ? "max-h-[600px]" : "max-h-0"}`}>
-              <div className="pb-3 space-y-3">
-                {card.context && (
-                  <p className="text-[13px] text-ink-mid leading-[1.7] border-l-2 border-stone pl-3 italic dark:text-ink-faint dark:border-bdr-dk">
-                    {card.context}
-                  </p>
-                )}
-                {card.context_tibetan && (
-                  <p className="font-mono text-[11px] text-ink-faint leading-[1.8] border-l-2 border-stone pl-3 tracking-[0.04em] dark:border-bdr-dk">
-                    {card.context_tibetan}
-                  </p>
-                )}
-              </div>
+          <div className={`overflow-hidden transition-[max-height] duration-300 ease-in-out mb-3 ${contextOpen ? "max-h-[600px]" : "max-h-0"}`}>
+            <div className="pt-2 pb-3 space-y-3">
+              {card.context && (
+                <p className="text-[13px] text-ink-mid leading-[1.7] border-l-2 border-stone pl-3 italic dark:text-ink-faint dark:border-bdr-dk">
+                  {card.context}
+                </p>
+              )}
+              {card.context_tibetan && (
+                <p className="font-mono text-[11px] text-ink-faint leading-[1.8] border-l-2 border-stone pl-3 tracking-[0.04em] dark:border-bdr-dk">
+                  <HighlightedTibetan text={card.context_tibetan} term={card.tibetan} />
+                </p>
+              )}
             </div>
           </div>
         )}
@@ -210,23 +270,6 @@ export default function App() {
           </div>
         )}
 
-        {/* Known / Review */}
-        {card && flipped && (
-          <div className="flex gap-2 justify-center mb-6">
-            <button
-              className="font-serif text-[13px] py-[5px] px-[18px] rounded-lg cursor-pointer border-[0.5px] border-stone bg-card-bg text-ink transition-all duration-150 tracking-[0.02em] hover:bg-[#eaf3de] hover:border-[#639922] hover:text-[#3b6d11] dark:bg-surf-dk dark:border-bdr-dk dark:text-ink-lt"
-              onClick={() => markKnown(true)}
-            >
-              ✓ Known
-            </button>
-            <button
-              className="font-serif text-[13px] py-[5px] px-[18px] rounded-lg cursor-pointer border-[0.5px] border-stone bg-card-bg text-ink transition-all duration-150 tracking-[0.02em] hover:bg-[#fcebeb] hover:border-[#e24b4a] hover:text-[#a32d2d] dark:bg-surf-dk dark:border-bdr-dk dark:text-ink-lt"
-              onClick={() => markKnown(false)}
-            >
-              ✗ Review again
-            </button>
-          </div>
-        )}
 
       </div>
 
@@ -241,15 +284,13 @@ export default function App() {
         ].join(" ")}
       >
         <div className="flex flex-col gap-3">
-          <div className="text-[11px] tracking-[0.1em] uppercase text-ink-faint font-serif">Options</div>
-          <div className="flex flex-wrap gap-1.5">
-            <button
-              className={`${btnCls}${shuffled ? ` ${btnActiveCls}` : ""}`}
-              onClick={() => setShuffled((s) => !s)}
-            >
-              ⇌ Shuffle
-            </button>
-          </div>
+          <div className="text-[11px] tracking-[0.1em] uppercase text-ink-faint font-serif">Appearance</div>
+          <button
+            className={`${btnCls} text-left`}
+            onClick={() => setDark((d) => !d)}
+          >
+            {dark ? "☀ Light mode" : "☾ Dark mode"}
+          </button>
         </div>
 
         <div className="flex flex-col gap-3">

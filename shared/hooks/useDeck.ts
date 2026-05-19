@@ -65,6 +65,14 @@ export function useDeck(allCards: Card[]) {
     if (idx < total - 1) go(1);
   }, [card, idx, total, go]);
 
+  // Rate without advancing — for UIs where the rating button lives on the card face
+  // and advancing is handled separately (swipe/nav). Calling go(1) inside markStatus
+  // triggers setFlipped(false) which plays the flip animation as a side-effect.
+  const rateCard = useCallback((status: CardStatus): void => {
+    if (!card) return;
+    setStatusMap((m) => ({ ...m, [card.acip]: status }));
+  }, [card]);
+
   const markKnown = useCallback((val: boolean): void => {
     markStatus(val ? "known" : "review");
   }, [markStatus]);
@@ -90,7 +98,7 @@ export function useDeck(allCards: Card[]) {
     deck, card, idx, total, flipped, acipVisible, shuffled,
     sessionFilter, showCtx, sessions, knownCount, pct,
     statusMap,
-    go, goImmediate, markKnown, markStatus, getCardStatus,
+    go, goImmediate, markKnown, markStatus, rateCard, getCardStatus,
     handleCardClick, handleAcipClick,
     toggleAcip, toggleFlip,
     setShuffled, setSessionFilter, setShowCtx,

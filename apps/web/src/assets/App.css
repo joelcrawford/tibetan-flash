@@ -1,7 +1,10 @@
 @import "tailwindcss";
 
-/* Use media query for dark mode (prefers-color-scheme) */
-@custom-variant dark (@media (prefers-color-scheme: dark));
+/* Dark mode via .dark class on <html> */
+@custom-variant dark (&:is(.dark *));
+
+html { background-color: var(--color-parchment); }
+html.dark { background-color: var(--color-parchment-dk); }
 
 /* ── Design tokens ────────────────────────────────────────────────────────── */
 @theme {
@@ -30,6 +33,9 @@
 }
 
 /* ── 3D flip card — preserve-3d / vendor backface not in Tailwind ─────────── */
+/* Mirror iOS pointerEvents logic: non-visible face must not steal clicks */
+.fc-card-inner.flipped .fc-face:not(.fc-face-back) { pointer-events: none; }
+.fc-card-inner:not(.flipped) .fc-face-back         { pointer-events: none; }
 .fc-card-inner {
   position: relative;
   width: 100%;
