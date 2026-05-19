@@ -175,12 +175,14 @@ PLIST
 
 step_submit() {
   set -e
-  export EXPO_APPLE_APP_STORE_CONNECT_API_KEY_KEY_ID="$APPLE_CONNECT_KEY_ID"
-  export EXPO_APPLE_APP_STORE_CONNECT_API_KEY_ISSUER_ID="$APPLE_CONNECT_ISSUER_ID"
-  export EXPO_APPLE_APP_STORE_CONNECT_API_KEY_PATH="$(pwd)/$API_KEY_PATH"
-  cd apps/ios
-  eas submit --platform ios --profile production --path "$IPA_FILE" --non-interactive
-  cd ../..
+  # Copy API key to the location altool expects
+  mkdir -p ~/.appstoreconnect/private_keys
+  cp "$(pwd)/$API_KEY_PATH" ~/.appstoreconnect/private_keys/AuthKey_${APPLE_CONNECT_KEY_ID}.p8
+  xcrun altool --upload-app \
+    --type ios \
+    --file "$IPA_FILE" \
+    --apiKey "$APPLE_CONNECT_KEY_ID" \
+    --apiIssuer "$APPLE_CONNECT_ISSUER_ID"
 }
 
 # ── Run ───────────────────────────────────────────────────────────────────────

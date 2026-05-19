@@ -2,7 +2,10 @@
   "name": "tibetan-flash",
   "private": true,
   "type": "module",
-  "workspaces": ["apps/web", "apps/ios"],
+  "workspaces": [
+    "apps/web",
+    "apps/ios"
+  ],
   "scripts": {
     "start": "concurrently -n tts,vite -c blue,green \"node --env-file=server/.env --watch server/index.js\" \"npm --prefix apps/web run start\"",
     "dev": "concurrently -n tts,vite -c blue,green \"node --env-file=server/.env --watch server/index.js\" \"npm --prefix apps/web run dev\"",
@@ -13,10 +16,12 @@
     "deploy": "./deploy.sh",
     "ios": "npm --prefix apps/ios run start",
     "ios:dev": "concurrently -n python,tts,expo -c magenta,blue,yellow \".venv/bin/python src/python/tts_server.py\" \"node --env-file=server/.env --watch server/index.js\" \"npm --prefix apps/ios run start\"",
+    "dev:servers": "concurrently -n python,tts -c magenta,blue \".venv/bin/python src/python/tts_server.py\" \"node --env-file=server/.env --watch server/index.js\"",
     "expo": "cd apps/ios && eas build --platform ios --profile production && eas submit --platform ios --latest",
     "ios:build": "./scripts/build-ios.sh"
   },
   "devDependencies": {
     "concurrently": "^9.2.1"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

@@ -1,5 +1,12 @@
 import { useState, useCallback, useRef } from "react";
-import { useAudioPlayer } from "expo-audio";
+
+// expo-audio is not available in Expo Go — fall back to a no-op player for layout testing
+let useAudioPlayer: (...args: any[]) => any;
+try {
+  useAudioPlayer = require("expo-audio").useAudioPlayer;
+} catch {
+  useAudioPlayer = () => ({ replace: () => {}, play: () => {}, setPlaybackRate: () => {}, seekTo: () => {}, playing: false });
+}
 
 const TTS_URL = process.env.EXPO_PUBLIC_TTS_URL ?? "https://tibetan.havehopeyo.com";
 

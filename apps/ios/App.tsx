@@ -1,11 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   Animated,
   Dimensions,
   GestureResponderEvent,
-  LayoutAnimation,
   PanResponder,
-  Platform,
   Pressable,
   SafeAreaView,
   ScrollView,
@@ -13,14 +11,9 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  UIManager,
   View,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-
-if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental) {
-  UIManager.setLayoutAnimationEnabledExperimental(true);
-}
 
 import { useDeck } from "../../shared/hooks/useDeck";
 import { Card, CardStatus } from "../../shared/types/types";
@@ -49,12 +42,15 @@ const C = {
   stoneCard:   "#f1efe8",
 };
 
-// ── Rating config ─────────────────────────────────────────────────────────────
+// ── Constants ─────────────────────────────────────────────────────────────────
 
 const CARD_BASE = 320;
 const SCREEN_H = Dimensions.get("window").height;
-const CARD_EXPANDED = Math.round(SCREEN_H * 0.72);
+const SHEET_HEIGHT = Math.round(SCREEN_H * 0.45);
+const PEEK_HEIGHT = 44;
 const W = Dimensions.get("window").width;
+
+// ── Rating config ─────────────────────────────────────────────────────────────
 
 const RATING_NEXT: Record<CardStatus, CardStatus> = {
   review: "familiar",
@@ -73,15 +69,15 @@ const RATING_CONFIG: Record<CardStatus, { icon: string; label: string; color: st
 function HighlightedTibetan({ text, term }: { text: string; term: string }) {
   const parts = text.split(term);
   if (parts.length === 1 || !term) {
-    return <Text style={s.ctxTibetan}>{text}</Text>;
+    return <Text style={s.sheetTibetan}>{text}</Text>;
   }
   return (
-    <Text style={s.ctxTibetan}>
+    <Text style={s.sheetTibetan}>
       {parts.map((part, i) => (
         <Text key={i}>
           {part}
           {i < parts.length - 1 && (
-            <Text style={s.ctxTibetanHighlight}>{term}</Text>
+            <Text style={s.sheetTibetanHighlight}>{term}</Text>
           )}
         </Text>
       ))}
@@ -125,14 +121,13 @@ export default function App() {
   const {
     deck, card, idx, total, flipped, acipVisible,
     sessionFilter, sessions, knownCount, pct,
-    go, goImmediate, rateCard, getCardStatus, handleCardClick,
+    goImmediate, rateCard, getCardStatus, handleCardClick,
     toggleAcip, setShuffled, setSessionFilter,
   } = useDeck(GLOSSARY as Card[]);
 
   const { speak, speaking } = useTTS();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [contextOpen, setContextOpen] = useState(false);
-  const [cardHeight, setCardHeight] = useState(CARD_BASE);
 
   // Refs so panResponder closure (created once) always sees current values
   const deckRef = useRef(deck);
@@ -142,19 +137,28 @@ export default function App() {
   useEffect(() => { idxRef.current = idx; }, [idx]);
   useEffect(() => { goImmediateRef.current = goImmediate; }, [goImmediate]);
 
-
   // Always shuffle
   useEffect(() => { setShuffled(true); }, [setShuffled]);
 
-  // Reset context + card height on card change
-  useEffect(() => { setContextOpen(false); setCardHeight(CARD_BASE); }, [idx]);
+  // ── Sheet animation ───────────────────────────────────────────────────────
+  const sheetAnim = useRef(new Animated.Value(0)).current;
 
-  const toggleContext = () => {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-    const opening = !contextOpen;
-    setContextOpen(opening);
-    setCardHeight(opening ? CARD_EXPANDED : CARD_BASE);
-  };
+  const openSheet = useCallback(() => {
+    setContextOpen(true);
+    Animated.timing(sheetAnim, { toValue: 1, duration: 300, useNativeDriver: true }).start();
+  }, [sheetAnim]);
+
+  const closeSheet = useCallback(() => {
+    Animated.timing(sheetAnim, { toValue: 0, duration: 220, useNativeDriver: true }).start(() =>
+      setContextOpen(false)
+    );
+  }, [sheetAnim]);
+
+  // Start at peek position (sheetAnim = 0 → translateY = SHEET_HEIGHT - PEEK_HEIGHT)
+  useEffect(() => { sheetAnim.setValue(0); }, []); // eslint-disable-line
+
+  // Auto-close sheet on card change
+  useEffect(() => { if (contextOpen) closeSheet(); }, [idx]); // eslint-disable-line
 
   // ── 3D flip animation ─────────────────────────────────────────────────────
   const flipAnim = useRef(new Animated.Value(0)).current;
@@ -260,6 +264,9 @@ export default function App() {
   const rating = RATING_CONFIG[currentStatus];
   const handleRate = () => card && rateCard(RATING_NEXT[currentStatus]);
 
+  // ── Context ───────────────────────────────────────────────────────────────
+  const hasContext = card && (card.context || card.context_tibetan);
+
   // ── Render ────────────────────────────────────────────────────────────────
   return (
     <SafeAreaView style={[s.root, { backgroundColor: c.bg }]}>
@@ -288,7 +295,7 @@ export default function App() {
         )}
 
         {card && (
-          <View style={{ height: cardHeight }}>
+          <View style={{ height: CARD_BASE }}>
 
           {/* Prev card — one screen-width left, peeks in as you swipe right */}
           {prevCard && (
@@ -296,7 +303,7 @@ export default function App() {
               pointerEvents="none"
               style={[
                 s.cardWrap,
-                { height: cardHeight, position: "absolute", top: 0, left: 0, right: 0 },
+                { position: "absolute", top: 0, left: 0, right: 0 },
                 { transform: [{ translateX: prevCardX }] },
               ]}
             >
@@ -310,7 +317,7 @@ export default function App() {
               pointerEvents="none"
               style={[
                 s.cardWrap,
-                { height: cardHeight, position: "absolute", top: 0, left: 0, right: 0 },
+                { position: "absolute", top: 0, left: 0, right: 0 },
                 { transform: [{ translateX: nextCardX }] },
               ]}
             >
@@ -319,7 +326,7 @@ export default function App() {
           )}
 
           <Animated.View
-            style={[s.cardWrap, { height: cardHeight }, { transform: [{ translateX: currCardX }] }]}
+            style={[s.cardWrap, { transform: [{ translateX: currCardX }] }]}
             {...panResponder.panHandlers}
           >
             {/* Front */}
@@ -391,33 +398,8 @@ export default function App() {
                   <Text style={[s.ratingLabel, { color: rating.color }]}>{rating.label}</Text>
                 </TouchableOpacity>
               </TouchableOpacity>
-
-              {/* Context — inside card, anchored at bottom, sibling of Pressable */}
-              {(card.context || card.context_tibetan) && (
-                <View style={[s.ctxSection, { borderTopColor: dark ? C.borderDark : C.stone }]}>
-                  <TouchableOpacity style={s.ctxToggle} onPress={toggleContext}>
-                    <Text style={[s.ctxToggleArrow, { color: C.faint }]}>{contextOpen ? "▾" : "▶"}</Text>
-                    <Text style={[s.ctxToggleLabel, { color: C.faint }]}>context</Text>
-                  </TouchableOpacity>
-                  {contextOpen && (
-                    <ScrollView style={s.ctxScroll} showsVerticalScrollIndicator={false} nestedScrollEnabled>
-                      <TouchableOpacity activeOpacity={1} onPress={toggleContext}>
-                        {card.context ? (
-                          <View style={[s.ctxBar, { borderLeftColor: dark ? C.borderDark : C.stone }]}>
-                            <Text style={[s.ctxText, { color: dark ? C.faint : C.mid }]}>{card.context}</Text>
-                          </View>
-                        ) : null}
-                        {card.context_tibetan ? (
-                          <View style={[s.ctxBar, { borderLeftColor: dark ? C.borderDark : C.stone, marginTop: card.context ? 8 : 0 }]}>
-                            <HighlightedTibetan text={card.context_tibetan} term={card.tibetan} />
-                          </View>
-                        ) : null}
-                      </TouchableOpacity>
-                    </ScrollView>
-                  )}
-                </View>
-              )}
             </Animated.View>
+
           </Animated.View>
           </View>
         )}
@@ -470,6 +452,53 @@ export default function App() {
           </ScrollView>
         </View>
       )}
+
+      {/* Sheet overlay — dims background when sheet is open */}
+      {contextOpen && (
+        <Pressable style={s.sheetOverlay} onPress={closeSheet} />
+      )}
+
+      {/* Context bottom sheet — always visible as a peek strip, expands on tap */}
+      <Animated.View
+        style={[
+          s.sheet,
+          { backgroundColor: c.card, borderColor: c.border },
+          { transform: [{ translateY: sheetAnim.interpolate({
+              inputRange: [0, 1],
+              outputRange: [SHEET_HEIGHT - PEEK_HEIGHT, 0],
+          }) }] },
+        ]}
+      >
+        <TouchableOpacity
+          style={s.sheetHeader}
+          onPress={hasContext ? (contextOpen ? closeSheet : openSheet) : undefined}
+          disabled={!hasContext}
+          activeOpacity={0.7}
+        >
+          <View style={s.sheetHandle} />
+          <View style={s.sheetHeaderRow}>
+            <Text style={[s.sheetHeaderArrow, { color: hasContext ? C.faint : C.stone }]}>
+              {contextOpen ? "▾" : "▶"}
+            </Text>
+            <Text style={[s.sheetHeaderLabel, { color: hasContext ? C.faint : C.stone }]}>
+              {hasContext ? "context" : "no context"}
+            </Text>
+          </View>
+        </TouchableOpacity>
+        <ScrollView style={s.sheetScroll} showsVerticalScrollIndicator={false}>
+          {card?.context_tibetan && (
+            <View style={[s.sheetBar, { borderLeftColor: dark ? C.borderDark : C.stone }]}>
+              <HighlightedTibetan text={card.context_tibetan} term={card?.acip ?? ""} />
+            </View>
+          )}
+          {card?.context && (
+            <View style={[s.sheetBar, { borderLeftColor: dark ? C.borderDark : C.stone,
+                                         marginTop: card?.context_tibetan ? 12 : 0 }]}>
+              <Text style={[s.sheetText, { color: dark ? C.faint : C.mid }]}>{card.context}</Text>
+            </View>
+          )}
+        </ScrollView>
+      </Animated.View>
     </SafeAreaView>
   );
 }
@@ -485,7 +514,7 @@ const s = StyleSheet.create({
   gearBtn:            { width: 32, height: 32, borderRadius: 8, borderWidth: 0.5, alignItems: "center", justifyContent: "center" },
   cardArea:           { flex: 1, paddingHorizontal: 16, justifyContent: "center" },
   empty:              { textAlign: "center", fontStyle: "italic", fontSize: 15 },
-  cardWrap:           { height: CARD_BASE },  // overridden inline with dynamic cardHeight
+  cardWrap:           { height: CARD_BASE },
   face:               { position: "absolute", top: 0, left: 0, right: 0, bottom: 0, borderRadius: 12, borderWidth: 0.5, padding: 20, alignItems: "center", justifyContent: "center", backfaceVisibility: "hidden", overflow: "hidden" },
   cardPressable:      { flex: 1, alignSelf: "stretch", alignItems: "center", justifyContent: "center" },
   sessionBadge:       { position: "absolute", top: 14, right: 16, fontSize: 11, letterSpacing: 0.6 },
@@ -503,16 +532,19 @@ const s = StyleSheet.create({
   ratingCornerBtn:    { position: "absolute", top: 0, left: 0, flexDirection: "row", alignItems: "center", gap: 5, borderWidth: 0.5, borderRadius: 8, paddingHorizontal: 10, paddingVertical: 6 },
   ratingIcon:         { fontSize: 14 },
   ratingLabel:        { fontSize: 12 },
-  // Context section — inside card, anchored at bottom
-  ctxSection:         { borderTopWidth: StyleSheet.hairlineWidth, paddingTop: 4, paddingBottom: 4 },
-  ctxToggle:          { flexDirection: "row", alignItems: "center", gap: 6, paddingVertical: 8 },
-  ctxToggleArrow:     { fontSize: 9 },
-  ctxToggleLabel:     { fontSize: 11, letterSpacing: 1, textTransform: "uppercase", fontFamily: "Georgia" },
-  ctxScroll:          { maxHeight: 200 },
-  ctxBar:             { borderLeftWidth: 2, paddingLeft: 10 },
-  ctxText:            { fontSize: 12, fontStyle: "italic", lineHeight: 18 },
-  ctxTibetan:         { fontFamily: "Courier New", fontSize: 11, lineHeight: 18, letterSpacing: 0.6, color: C.faint },
-  ctxTibetanHighlight:{ backgroundColor: "#f5e97a", color: "#1a1a18" },
+  // Bottom sheet
+  sheetOverlay:       { ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(0,0,0,0.35)", zIndex: 150 },
+  sheet:              { position: "absolute", bottom: 0, left: 0, right: 0, height: SHEET_HEIGHT, borderTopLeftRadius: 20, borderTopRightRadius: 20, borderTopWidth: 0.5, borderLeftWidth: 0.5, borderRightWidth: 0.5, paddingHorizontal: 20, paddingBottom: 32, zIndex: 160 },
+  sheetHeader:        { height: PEEK_HEIGHT, justifyContent: "center", alignItems: "center" },
+  sheetHandle:        { width: 36, height: 4, borderRadius: 2, backgroundColor: C.stone, alignSelf: "center", marginBottom: 6 },
+  sheetHeaderRow:     { flexDirection: "row", alignItems: "center", gap: 6 },
+  sheetHeaderArrow:   { fontSize: 9 },
+  sheetHeaderLabel:   { fontSize: 11, letterSpacing: 1, textTransform: "uppercase", fontFamily: "Georgia" },
+  sheetScroll:        { flex: 1 },
+  sheetBar:           { borderLeftWidth: 2, paddingLeft: 12, marginBottom: 4 },
+  sheetText:          { fontSize: 13, fontStyle: "italic", lineHeight: 20 },
+  sheetTibetan:       { fontFamily: "Courier New", fontSize: 11, lineHeight: 18, letterSpacing: 0.6, color: C.faint },
+  sheetTibetanHighlight: { backgroundColor: "#f5e97a", color: "#1a1a18" },
   // Sidebar
   overlay:            { ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(0,0,0,0.2)", zIndex: 100 },
   sidebar:            { position: "absolute", top: 0, right: 0, bottom: 0, width: 260, borderLeftWidth: 0.5, padding: 24, paddingTop: 56, zIndex: 200 },
