@@ -47,7 +47,7 @@ const C = {
 const CARD_BASE = 320;
 const SCREEN_H = Dimensions.get("window").height;
 const SHEET_HEIGHT = Math.round(SCREEN_H * 0.45);
-const PEEK_HEIGHT = 44;
+const PEEK_HEIGHT = 72;
 const W = Dimensions.get("window").width;
 
 // ── Rating config ─────────────────────────────────────────────────────────────
@@ -475,28 +475,24 @@ export default function App() {
           disabled={!hasContext}
           activeOpacity={0.7}
         >
-          <View style={s.sheetHandle} />
-          <View style={s.sheetHeaderRow}>
-            <Text style={[s.sheetHeaderArrow, { color: hasContext ? C.faint : C.stone }]}>
-              {contextOpen ? "▾" : "▶"}
-            </Text>
-            <Text style={[s.sheetHeaderLabel, { color: hasContext ? C.faint : C.stone }]}>
-              {hasContext ? "context" : "no context"}
-            </Text>
-          </View>
+          <Text style={[s.sheetHeaderLabel, { color: hasContext ? C.faint : C.stone }]}>
+            {hasContext ? "context" : "no context"}
+          </Text>
         </TouchableOpacity>
         <ScrollView style={s.sheetScroll} showsVerticalScrollIndicator={false}>
-          {card?.context_tibetan && (
-            <View style={[s.sheetBar, { borderLeftColor: dark ? C.borderDark : C.stone }]}>
-              <HighlightedTibetan text={card.context_tibetan} term={card?.acip ?? ""} />
-            </View>
-          )}
-          {card?.context && (
-            <View style={[s.sheetBar, { borderLeftColor: dark ? C.borderDark : C.stone,
-                                         marginTop: card?.context_tibetan ? 12 : 0 }]}>
-              <Text style={[s.sheetText, { color: dark ? C.faint : C.mid }]}>{card.context}</Text>
-            </View>
-          )}
+          <TouchableOpacity activeOpacity={1} onPress={contextOpen ? closeSheet : undefined}>
+            {card?.context_tibetan && (
+              <View style={[s.sheetBar, { borderLeftColor: dark ? C.borderDark : C.stone }]}>
+                <HighlightedTibetan text={card.context_tibetan} term={card?.acip ?? ""} />
+              </View>
+            )}
+            {card?.context && (
+              <View style={[s.sheetBar, { borderLeftColor: dark ? C.borderDark : C.stone,
+                                           marginTop: card?.context_tibetan ? 12 : 0 }]}>
+                <Text style={[s.sheetText, { color: dark ? C.faint : C.mid }]}>{card.context}</Text>
+              </View>
+            )}
+          </TouchableOpacity>
         </ScrollView>
       </Animated.View>
     </SafeAreaView>
@@ -536,9 +532,6 @@ const s = StyleSheet.create({
   sheetOverlay:       { ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(0,0,0,0.35)", zIndex: 150 },
   sheet:              { position: "absolute", bottom: 0, left: 0, right: 0, height: SHEET_HEIGHT, borderTopLeftRadius: 20, borderTopRightRadius: 20, borderTopWidth: 0.5, borderLeftWidth: 0.5, borderRightWidth: 0.5, paddingHorizontal: 20, paddingBottom: 32, zIndex: 160 },
   sheetHeader:        { height: PEEK_HEIGHT, justifyContent: "center", alignItems: "center" },
-  sheetHandle:        { width: 36, height: 4, borderRadius: 2, backgroundColor: C.stone, alignSelf: "center", marginBottom: 6 },
-  sheetHeaderRow:     { flexDirection: "row", alignItems: "center", gap: 6 },
-  sheetHeaderArrow:   { fontSize: 9 },
   sheetHeaderLabel:   { fontSize: 11, letterSpacing: 1, textTransform: "uppercase", fontFamily: "Georgia" },
   sheetScroll:        { flex: 1 },
   sheetBar:           { borderLeftWidth: 2, paddingLeft: 12, marginBottom: 4 },

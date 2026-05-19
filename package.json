@@ -18,7 +18,8 @@
     "ios:dev": "concurrently -n python,tts,expo -c magenta,blue,yellow \".venv/bin/python src/python/tts_server.py\" \"node --env-file=server/.env --watch server/index.js\" \"npm --prefix apps/ios run start\"",
     "dev:servers": "concurrently -n python,tts -c magenta,blue \".venv/bin/python src/python/tts_server.py\" \"node --env-file=server/.env --watch server/index.js\"",
     "expo": "cd apps/ios && eas build --platform ios --profile production && eas submit --platform ios --latest",
-    "ios:build": "./scripts/build-ios.sh"
+    "ios:build": "./scripts/build-ios.sh",
+    "ship": "git push && ./scripts/build-ios.sh"
   },
   "devDependencies": {
     "concurrently": "^9.2.1"

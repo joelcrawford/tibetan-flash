@@ -49,13 +49,11 @@ export function useDeck(allCards: Card[]) {
 
   const go = useCallback((dir: number): void => {
     setFlipped(false);
-    setAcipVisible(false);
     setTimeout(() => setIdx((i) => Math.max(0, Math.min(total - 1, i + dir))), 180);
   }, [total]);
 
   const goImmediate = useCallback((dir: number): void => {
     setFlipped(false);
-    setAcipVisible(false);
     setIdx((i) => Math.max(0, Math.min(total - 1, i + dir)));
   }, [total]);
 
@@ -83,7 +81,6 @@ export function useDeck(allCards: Card[]) {
 
   const handleCardClick = useCallback((): void => {
     setFlipped((f) => !f);
-    setAcipVisible(false);
   }, []);
 
   const handleAcipClick = useCallback((e: React.MouseEvent<HTMLDivElement>): void => {
@@ -92,7 +89,7 @@ export function useDeck(allCards: Card[]) {
   }, []);
 
   const toggleAcip = useCallback(() => setAcipVisible((v) => !v), []);
-  const toggleFlip = useCallback(() => { setFlipped((f) => !f); setAcipVisible(false); }, []);
+  const toggleFlip = useCallback(() => { setFlipped((f) => !f); }, []);
 
   return {
     deck, card, idx, total, flipped, acipVisible, shuffled,
