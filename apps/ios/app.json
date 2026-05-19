@@ -14,7 +14,7 @@
     },
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "org.asianlegacylibrary.tibetanflash",
+      "bundleIdentifier": "com.havehopeyo.tibetanflashcards",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       }
