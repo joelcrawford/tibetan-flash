@@ -17,7 +17,7 @@ export function useDeck(allCards: Card[]) {
   const [acipVisible, setAcipVisible] = useState(false);
   const [statusMap, setStatusMap] = useState<StatusMap>({});
   const [shuffled, setShuffled] = useState(false);
-  const [sessionFilter, setSessionFilter] = useState("All");
+  const [sessionFilters, setSessionFilters] = useState<string[]>(["01 Ben's Text Foundation"]);
   const [showCtx, setShowCtx] = useState(true);
 
   const sessions = useMemo<string[]>(() => {
@@ -27,9 +27,9 @@ export function useDeck(allCards: Card[]) {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    let filtered = sessionFilter === "All"
+    let filtered = sessionFilters.length === 0
       ? allCards
-      : allCards.filter((c) => c.session === sessionFilter);
+      : allCards.filter((c) => sessionFilters.includes(c.session));
 
     const reviewCards = filtered.filter((c) => !statusMap[c.acip] || statusMap[c.acip] === "review");
     const familiarCards = filtered.filter((c) => statusMap[c.acip] === "familiar").filter(() => Math.random() < 0.35);
@@ -40,7 +40,7 @@ export function useDeck(allCards: Card[]) {
     setIdx(0);
     setFlipped(false);
     setAcipVisible(false);
-  }, [sessionFilter, shuffled, allCards]); // statusMap intentionally excluded — deck rebuilds on filter/shuffle change only
+  }, [sessionFilters, shuffled, allCards]); // statusMap intentionally excluded — deck rebuilds on filter/shuffle change only
 
   const card = deck[idx] ?? null;
   const total = deck.length;
@@ -49,12 +49,12 @@ export function useDeck(allCards: Card[]) {
 
   const go = useCallback((dir: number): void => {
     setFlipped(false);
-    setTimeout(() => setIdx((i) => Math.max(0, Math.min(total - 1, i + dir))), 180);
+    setTimeout(() => setIdx((i) => (i + dir + total) % total), 180);
   }, [total]);
 
   const goImmediate = useCallback((dir: number): void => {
     setFlipped(false);
-    setIdx((i) => Math.max(0, Math.min(total - 1, i + dir)));
+    setIdx((i) => (i + dir + total) % total);
   }, [total]);
 
   const markStatus = useCallback((status: CardStatus): void => {
@@ -93,12 +93,12 @@ export function useDeck(allCards: Card[]) {
 
   return {
     deck, card, idx, total, flipped, acipVisible, shuffled,
-    sessionFilter, showCtx, sessions, knownCount, pct,
+    sessionFilters, showCtx, sessions, knownCount, pct,
     statusMap,
     go, goImmediate, markKnown, markStatus, rateCard, getCardStatus,
     handleCardClick, handleAcipClick,
     toggleAcip, toggleFlip,
-    setShuffled, setSessionFilter, setShowCtx,
+    setShuffled, setSessionFilters, setShowCtx,
   };
 }
 

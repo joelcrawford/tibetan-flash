@@ -830,5 +830,53 @@
     "notes": "GDENG = confidence + BROD = to proclaim/roar forth",
     "context": "GDENG is the inner certainty; GDENG BROD is that certainty given full voice — the lion's roar (SENG GE'I NGA RO). GANG LA NYES PA MA proclaimed as GDENG BROD: realization thrown out without reservation.",
     "session": "Session 4 — Madhyamaka, Yogācāra & Realization Terms"
+  },
+  {
+    "tibetan": "གཞི་གྲུབ།",
+    "acip": "GZHI GRUB",
+    "meaning": "provable thing, existing thing",
+    "notes": "GZHI = basis + GRUB = proven/established. Emphasis on epistemic provability.",
+    "context": "Synonymous with CHOS, SHES BYA, YOD PA, and YUL — all coextensive. GZHI GRUB foregrounds epistemic status: it can be established through valid cognition and brought forward as a legitimate subject of inquiry. The subject of debate must be GZHI GRUB before analysis begins.",
+    "session": "01 Ben's Text Foundation"
+  },
+  {
+    "tibetan": "ཆོས།",
+    "acip": "CHOS",
+    "meaning": "thing, existing thing, a teaching, reality, the truth, duty",
+    "notes": "Sanskrit: dharma. From root dhṛ = to hold, to sustain. CHOS = whatever holds its own nature (RANG GI NGO BO 'DZIN PA).",
+    "context": "One of the most semantically rich words in Tibetan — simultaneously phenomenon (anything that exists), Dharma (the Buddha's teaching), and right conduct. Synonymous with SHES BYA, GZHI GRUB, YOD PA, YUL. CHOS foregrounds ontological status: it holds its own nature. The teachings (CHOS) are teachings about phenomena (CHOS) — the ambiguity is a feature, not a bug.",
+    "session": "01 Ben's Text Foundation"
+  },
+  {
+    "tibetan": "ཤེས་བྱ།",
+    "acip": "SHES BYA",
+    "meaning": "knowable thing, existing thing",
+    "notes": "SHES = to know + BYA = gerundive nominalizer. Sanskrit: jñeya.",
+    "context": "Synonymous with CHOS, GZHI GRUB, YOD PA, YUL. SHES BYA foregrounds cognitive accessibility: it falls within the scope of a knowing mind. In Dharmakīrti's epistemology, defined by causal efficacy — if something can perform a function it can be known, and vice versa. There is no gap between existence and knowability.",
+    "session": "01 Ben's Text Foundation"
+  },
+  {
+    "tibetan": "ཡུལ།",
+    "acip": "YUL",
+    "meaning": "object, place, existing thing",
+    "notes": "Sanskrit: deṣa (place/region) and viṣaya (object/domain). Covers both spatial and cognitive senses.",
+    "context": "Synonymous with CHOS, SHES BYA, GZHI GRUB, YOD PA. YUL foregrounds the relational aspect: not just that something exists and can be known, but that it stands as the object of a particular cognitive act. YUL CAN = subject (literally \"that which has an object\"). The YUL/YUL CAN structure is itself an expression of GNYIS SNANG (dualistic appearance).",
+    "session": "01 Ben's Text Foundation"
+  },
+  {
+    "tibetan": "ཡོད་པ།",
+    "acip": "YOD PA",
+    "meaning": "existing thing",
+    "notes": "YOD = to exist, there is + PA (nominalizer). Opposite: MED PA (non-existent, absence).",
+    "context": "The most basic member of the synonymy cluster — the bare existential affirmation. If something is YOD PA it is automatically CHOS, SHES BYA, GZHI GRUB, and YUL. In Madhyamaka the crucial question is not whether something is YOD PA but *how* — inherently (RANG GI MTSAN NYID KYIS) or merely nominally (MING TZAM). YOD PA by itself is neutral; the qualifier is everything.",
+    "session": "01 Ben's Text Foundation"
+  },
+  {
+    "tibetan": "གཞན་ལུགས་དགག་པ།",
+    "acip": "GZHAN LUGS DGAG PA",
+    "meaning": "disproving other people's positions",
+    "notes": "GZHAN = other + LUGS = system/position/tradition + DGAG PA = to refute/negate. LUGS carries the sense of a whole philosophical system, not just a single claim.",
+    "context": "One of the two classic movements of Buddhist philosophical writing — paired with RANG LUGS SGRUB PA (establishing one's own position). Central to the Prāsaṅgika method: Nāgārjuna and Candrakīrti operate almost exclusively through DGAG PA, driving opponents toward unwanted consequences (THAL 'GYUR) rather than asserting positive theses. Whether Prāsaṅgikas have a RANG LUGS at all is itself one of the great debates in the tradition.",
+    "session": "01 Ben's Text Foundation"
   }
 ]

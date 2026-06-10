@@ -30,7 +30,7 @@ const btnActiveCls = "bg-stone-lt border-ink-muted font-medium dark:bg-surf-dk-m
 const navBtnCls = [
   "font-serif text-[15px] py-[7px] px-6 border-[0.5px] border-stone rounded-lg",
   "bg-card-bg text-ink cursor-pointer transition-colors duration-150 tracking-[0.02em]",
-  "hover:bg-stone-lt disabled:opacity-[0.35] disabled:cursor-default",
+  "hover:bg-stone-lt",
   "dark:bg-surf-dk dark:border-bdr-dk dark:text-ink-lt dark:hover:bg-surf-dk-mid",
 ].join(" ");
 
@@ -65,10 +65,10 @@ function HighlightedTibetan({ text, term }: { text: string; term: string }) {
 export default function App() {
   const {
     card, idx, total, flipped, acipVisible,
-    sessionFilter, sessions, knownCount, pct,
+    sessionFilters, sessions, knownCount, pct,
     go, goImmediate, rateCard, getCardStatus, handleCardClick,
     toggleAcip, toggleFlip,
-    setShuffled, setSessionFilter,
+    setShuffled, setSessionFilters,
   } = useDeck(FLASHCARDS as Card[]);
 
   const { speak, speaking } = useTTS();
@@ -258,13 +258,13 @@ export default function App() {
         {/* Navigation — hidden on mobile */}
         {card && (
           <div className="hidden sm:flex items-center justify-center gap-4 mb-4">
-            <button className={navBtnCls} onClick={() => go(-1)} disabled={idx === 0}>
+            <button className={navBtnCls} onClick={() => go(-1)}>
               ← prev
             </button>
             <span className="text-[14px] text-ink-muted italic min-w-[60px] text-center">
               {idx + 1} / {total}
             </span>
-            <button className={navBtnCls} onClick={() => go(1)} disabled={idx === total - 1}>
+            <button className={navBtnCls} onClick={() => go(1)}>
               next →
             </button>
           </div>
@@ -296,15 +296,27 @@ export default function App() {
         <div className="flex flex-col gap-3">
           <div className="text-[11px] tracking-[0.1em] uppercase text-ink-faint font-serif">Session</div>
           <div className="flex flex-col gap-1.5">
-            {sessions.map((s) => (
-              <button
-                key={s}
-                className={`${btnCls} text-left${sessionFilter === s ? ` ${btnActiveCls}` : ""}`}
-                onClick={() => { setSessionFilter(s); setSidebarOpen(false); }}
-              >
-                {s}
-              </button>
-            ))}
+            {sessions.map((s) => {
+              const isAll = s === "All";
+              const active = isAll ? sessionFilters.length === 0 : sessionFilters.includes(s);
+              return (
+                <button
+                  key={s}
+                  className={`${btnCls} text-left${active ? ` ${btnActiveCls}` : ""}`}
+                  onClick={() => {
+                    if (isAll) {
+                      setSessionFilters([]);
+                    } else {
+                      setSessionFilters((prev) =>
+                        prev.includes(s) ? prev.filter((x) => x !== s) : [...prev, s]
+                      );
+                    }
+                  }}
+                >
+                  {s}
+                </button>
+              );
+            })}
           </div>
         </div>
 

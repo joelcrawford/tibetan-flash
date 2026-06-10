@@ -1,9 +1,8 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Animated,
   Dimensions,
-  GestureResponderEvent,
-  PanResponder,
+  FlatList,
   Pressable,
   SafeAreaView,
   ScrollView,
@@ -21,25 +20,46 @@ import { useTTS } from "./src/hooks/useTTS";
 import GLOSSARY from "../../shared/data/glossary.json";
 
 // ── Colours ──────────────────────────────────────────────────────────────────
+// Theme A — Monastery (dark): warm charcoal + saffron gold
+// Theme F — Paper (light):   aged parchment + russet terracotta
 
 const C = {
-  bg:          "#f5f3ee",
-  bgDark:      "#1c1c1a",
-  ink:         "#1a1a18",
-  inkDark:     "#e8e6e0",
-  muted:       "#888780",
-  faint:       "#b4b2a9",
-  mid:         "#5f5e5a",
-  stone:       "#d3d1c7",
-  stoneLt:     "#ece9e3",
-  card:        "#ffffff",
-  cardDark:    "#2c2c2a",
-  cardMid:     "#3a3a38",
-  border:      "#d3d1c7",
-  borderDark:  "#444441",
-  sidebarBg:   "#faf8f4",
-  sidebarDark: "#242422",
-  stoneCard:   "#f1efe8",
+  // Paper (light) backgrounds
+  bg:         "#faf6ef",
+  card:       "#fff9f0",
+  raised:     "#f0e8d8",
+  sheetBg:    "#f8f2e8",
+  // Paper borders
+  border:     "#e0ceb8",
+  // Paper text
+  ink:        "#3a2a18",
+  inkMid:     "#5a4a38",
+  muted:      "#8a7868",
+  faint:      "#b0a888",
+  // Paper accent — russet
+  accent:     "#993c1d",
+
+  // Monastery (dark) backgrounds
+  bgDark:     "#1a1714",
+  cardDark:   "#242018",
+  raisedDark: "#2a2520",
+  sheetDark:  "#1e1a16",
+  // Monastery borders
+  borderDark: "#3a3530",
+  // Monastery text
+  inkDark:    "#e8e0d0",
+  inkMidDark: "#c0b0a0",
+  mutedDark:  "#a09080",
+  faintDark:  "#806858",
+  // Monastery accent — saffron
+  accentDark: "#c47c1a",
+
+  // Semantic status (theme-split)
+  knownDark:     "#4a8c2a",
+  knownLight:    "#3b6d11",
+  familiarDark:  "#c49a00",
+  familiarLight: "#8a6000",
+  review:        "#888780",  // same in both themes
 };
 
 // ── Constants ─────────────────────────────────────────────────────────────────
@@ -50,29 +70,21 @@ const SHEET_HEIGHT = Math.round(SCREEN_H * 0.45);
 const PEEK_HEIGHT = 72;
 const W = Dimensions.get("window").width;
 
-// ── Rating config ─────────────────────────────────────────────────────────────
-
 const RATING_NEXT: Record<CardStatus, CardStatus> = {
   review: "familiar",
   familiar: "known",
   known: "review",
 };
 
-const RATING_CONFIG: Record<CardStatus, { icon: string; label: string; color: string }> = {
-  review:   { icon: "↺", label: "review",   color: C.muted },
-  familiar: { icon: "〜", label: "familiar", color: "#c49a00" },
-  known:    { icon: "✓",  label: "known",    color: "#4a8c2a" },
-};
-
 // ── Highlighted Tibetan ───────────────────────────────────────────────────────
 
-function HighlightedTibetan({ text, term }: { text: string; term: string }) {
+function HighlightedTibetan({ text, term, color }: { text: string; term: string; color: string }) {
   const parts = text.split(term);
   if (parts.length === 1 || !term) {
-    return <Text style={s.sheetTibetan}>{text}</Text>;
+    return <Text style={[s.sheetTibetan, { color }]}>{text}</Text>;
   }
   return (
-    <Text style={s.sheetTibetan}>
+    <Text style={[s.sheetTibetan, { color }]}>
       {parts.map((part, i) => (
         <Text key={i}>
           {part}
@@ -85,59 +97,42 @@ function HighlightedTibetan({ text, term }: { text: string; term: string }) {
   );
 }
 
-// ── Card preview (adjacent cards during swipe) ────────────────────────────────
-// Must mirror the front face layout exactly so Tibetan text sits at the same vertical position.
-// The current card front face has: flex-1 Pressable (Tibetan + invisible ACIP) + speakBtn below.
-// Without these ghost elements the Tibetan would center at a different Y and jump on transition.
-
-function CardPreview({ card, c, dark }: { card: Card; c: { card: string; border: string; ink: string }; dark: boolean }) {
-  return (
-    <View style={[s.face, { backgroundColor: c.card, borderColor: c.border }]}>
-      <Text style={[s.sessionBadge, { color: C.faint }]}>{card.session}</Text>
-      <View style={s.cardPressable}>
-        <Text style={[s.tibetan, { color: c.ink }]}>{card.tibetan}</Text>
-        {/* Ghost ACIP — always reserves space, matching the current front face */}
-        <Text style={[s.acipInline, { opacity: 0 }]}>{card.acip}</Text>
-      </View>
-      {/* Ghost speak button — keeps Pressable at same height as current front face */}
-      <View style={s.speakBtn} />
-    </View>
-  );
-}
-
 // ── App ───────────────────────────────────────────────────────────────────────
 
 export default function App() {
   const [dark, setDark] = useState(true);
+
   const c = {
-    bg:      dark ? C.bgDark      : C.bg,
-    ink:     dark ? C.inkDark     : C.ink,
-    card:    dark ? C.cardDark    : C.card,
-    border:  dark ? C.borderDark  : C.border,
-    sidebar: dark ? C.sidebarDark : C.sidebarBg,
-    cardMid: dark ? C.cardMid     : C.stoneLt,
+    bg:     dark ? C.bgDark     : C.bg,
+    card:   dark ? C.cardDark   : C.card,
+    raised: dark ? C.raisedDark : C.raised,
+    sheet:  dark ? C.sheetDark  : C.sheetBg,
+    border: dark ? C.borderDark : C.border,
+    ink:    dark ? C.inkDark    : C.ink,
+    inkMid: dark ? C.inkMidDark : C.inkMid,
+    muted:  dark ? C.mutedDark  : C.muted,
+    faint:  dark ? C.faintDark  : C.faint,
+    accent: dark ? C.accentDark : C.accent,
+  };
+
+  // Rating config is theme-dependent for known/familiar colors
+  const RATING_CONFIG: Record<CardStatus, { icon: string; label: string; color: string }> = {
+    review:   { icon: "↺", label: "review",   color: C.review },
+    familiar: { icon: "〜", label: "familiar", color: dark ? C.familiarDark : C.familiarLight },
+    known:    { icon: "✓",  label: "known",    color: dark ? C.knownDark    : C.knownLight },
   };
 
   const {
     deck, card, idx, total, flipped, acipVisible,
-    sessionFilter, sessions, knownCount, pct,
+    sessionFilters, sessions, knownCount, pct,
     goImmediate, rateCard, getCardStatus, handleCardClick,
-    toggleAcip, setShuffled, setSessionFilter,
+    toggleAcip, setShuffled, setSessionFilters,
   } = useDeck(GLOSSARY as Card[]);
 
   const { speak, speaking } = useTTS();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [contextOpen, setContextOpen] = useState(false);
 
-  // Refs so panResponder closure (created once) always sees current values
-  const deckRef = useRef(deck);
-  const idxRef = useRef(idx);
-  const goImmediateRef = useRef(goImmediate);
-  useEffect(() => { deckRef.current = deck; }, [deck]);
-  useEffect(() => { idxRef.current = idx; }, [idx]);
-  useEffect(() => { goImmediateRef.current = goImmediate; }, [goImmediate]);
-
-  // Always shuffle
   useEffect(() => { setShuffled(true); }, [setShuffled]);
 
   // ── Sheet animation ───────────────────────────────────────────────────────
@@ -154,15 +149,12 @@ export default function App() {
     );
   }, [sheetAnim]);
 
-  // Start at peek position (sheetAnim = 0 → translateY = SHEET_HEIGHT - PEEK_HEIGHT)
   useEffect(() => { sheetAnim.setValue(0); }, []); // eslint-disable-line
 
-  // Auto-close sheet on card change
   useEffect(() => { if (contextOpen) closeSheet(); }, [idx]); // eslint-disable-line
 
   // ── 3D flip animation ─────────────────────────────────────────────────────
   const flipAnim = useRef(new Animated.Value(0)).current;
-  const isFlipped = useRef(false);
 
   useEffect(() => {
     Animated.spring(flipAnim, {
@@ -171,7 +163,6 @@ export default function App() {
       tension: 60,
       friction: 8,
     }).start();
-    isFlipped.current = flipped;
   }, [flipped, flipAnim]);
 
   const frontRotate = flipAnim.interpolate({
@@ -183,86 +174,125 @@ export default function App() {
     outputRange: ["180deg", "360deg"],
   });
 
-  // ── Swipe gesture ─────────────────────────────────────────────────────────
-  // positionPixels: absolute scroll position in px (card N rests at N*W)
-  // anchor: tracks idx*W — updated synchronously before re-render on card change
-  // Card translateX = anchor - positionPixels (± W for adjacent cards)
-  // After swipe to newIdx*W: anchor=newIdx*W, positionPixels=newIdx*W → currCardX=0, no reset needed
-  const positionPixels = useRef(new Animated.Value(0)).current;
-  const anchor = useRef(new Animated.Value(0)).current;
-  const anchorMinusPos = useRef(Animated.subtract(anchor, positionPixels)).current;
-  const prevCardX = useRef(Animated.subtract(anchorMinusPos, new Animated.Value(W))).current;
-  const currCardX = anchorMinusPos;
-  const nextCardX = useRef(Animated.add(anchorMinusPos, new Animated.Value(W))).current;
+  // ── FlatList carousel ─────────────────────────────────────────────────────
+  const flatListRef = useRef<FlatList<Card>>(null);
 
-  // Reset position only when deck rebuilds (session/shuffle change) — not on every swipe.
-  // For swipes, anchor is set synchronously in the animation callback before goImmediate fires.
+  const wrappedData = deck.length > 0
+    ? [deck[deck.length - 1], ...deck, deck[0]]
+    : [];
+
   useEffect(() => {
-    anchor.setValue(0);
-    positionPixels.setValue(0);
+    flatListRef.current?.scrollToOffset({ offset: (idx + 1) * W, animated: false });
   }, [deck]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const startX = useRef(0);
-  const swiping = useRef(false);
-  const didSwipe = useRef(false);
+  const onMomentumScrollEnd = useCallback((e: { nativeEvent: { contentOffset: { x: number } } }) => {
+    const rawIdx = Math.round(e.nativeEvent.contentOffset.x / W);
+    const len = deck.length;
 
-  const THRESHOLD = 80;
+    flipAnim.setValue(0);
 
-  const panResponder = useRef(
-    PanResponder.create({
-      onStartShouldSetPanResponder: () => true,
-      onMoveShouldSetPanResponder: (_, g) =>
-        Math.abs(g.dx) > Math.abs(g.dy) && Math.abs(g.dx) > 8,
-      onPanResponderGrant: (e: GestureResponderEvent) => {
-        startX.current = e.nativeEvent.pageX;
-        swiping.current = false;
-        didSwipe.current = false;
-      },
-      onPanResponderMove: (_, g) => {
-        if (Math.abs(g.dx) > 8) {
-          swiping.current = true;
-          // positionPixels = idx*W minus drag offset (drag left → positionPixels increases → cards shift left)
-          positionPixels.setValue(idxRef.current * W - g.dx * 0.85);
-        }
-      },
-      onPanResponderRelease: (_, g) => {
-        if (!swiping.current || Math.abs(g.dx) < THRESHOLD) {
-          Animated.spring(positionPixels, { toValue: idxRef.current * W, useNativeDriver: true }).start();
-          return;
-        }
-        const dir = g.dx < 0 ? 1 : -1;
-        const newIdx = Math.max(0, Math.min(deckRef.current.length - 1, idxRef.current + dir));
+    if (rawIdx === 0) {
+      flatListRef.current?.scrollToOffset({ offset: len * W, animated: false });
+      goImmediate(-1);
+    } else if (rawIdx === len + 1) {
+      flatListRef.current?.scrollToOffset({ offset: W, animated: false });
+      goImmediate(1);
+    } else {
+      const newRealIdx = rawIdx - 1;
+      const delta = newRealIdx - idx;
+      if (delta !== 0) goImmediate(delta);
+    }
+  }, [deck.length, idx, goImmediate, flipAnim]);
 
-        if (newIdx === idxRef.current) {
-          Animated.spring(positionPixels, { toValue: idxRef.current * W, useNativeDriver: true }).start();
-          return;
-        }
+  const extraData = useMemo(
+    () => ({ idx, flipped, acipVisible, dark, speaking }),
+    [idx, flipped, acipVisible, dark, speaking]
+  );
 
-        didSwipe.current = true;
-        Animated.timing(positionPixels, {
-          toValue: newIdx * W,
-          duration: 220,
-          useNativeDriver: true,
-        }).start(() => {
-          // anchor must be set BEFORE goImmediateRef so re-render sees correct positions immediately
-          anchor.setValue(newIdx * W);
-          // reset flip so a flipped card doesn't spring back visibly on the incoming card
-          flipAnim.setValue(0);
-          goImmediateRef.current(dir);
-          didSwipe.current = false;
-        });
-      },
-    })
-  ).current;
+  const renderItem = ({ item, index: wrappedIdx }: { item: Card; index: number }) => {
+    const isCurrent = wrappedIdx === idx + 1;
+    const itemStatus = getCardStatus(item.acip);
+    const itemRating = RATING_CONFIG[itemStatus];
 
-  // ── Adjacent cards ────────────────────────────────────────────────────────
-  const prevCard = deck[idx - 1] ?? null;
-  const nextCard = deck[idx + 1] ?? null;
+    return (
+      <View style={{ width: W, paddingHorizontal: 24, height: CARD_BASE }}>
+      <View style={{ flex: 1 }}>
 
-  // ── Rating ────────────────────────────────────────────────────────────────
-  const currentStatus = card ? getCardStatus(card.acip) : "review";
-  const rating = RATING_CONFIG[currentStatus];
-  const handleRate = () => card && rateCard(RATING_NEXT[currentStatus]);
+        {/* Front */}
+        <Animated.View
+          style={[
+            s.face,
+            { backgroundColor: c.card, borderColor: c.border },
+            { transform: [{ perspective: 1200 }, { rotateY: frontRotate }] },
+          ]}
+          pointerEvents={isCurrent && !flipped ? "auto" : "none"}
+        >
+          <Text style={[s.sessionBadge, { color: c.faint }]}>{item.session}</Text>
+          <Pressable
+            style={s.cardPressable}
+            onPress={() => isCurrent && handleCardClick()}
+          >
+            <Text style={[s.tibetan, { color: c.ink }]}>{item.tibetan}</Text>
+            <Text style={[s.acipInline, { color: c.faint, opacity: acipVisible ? 1 : 0 }]}>
+              {item.acip}
+            </Text>
+          </Pressable>
+          <TouchableOpacity
+            style={[s.speakBtn, { backgroundColor: c.raised, borderColor: c.border }]}
+            onPress={() => speak(item.tibetan)}
+            disabled={!isCurrent || speaking}
+          >
+            <Text style={[s.speakBtnText, { color: c.muted, opacity: speaking ? 0.5 : 1 }]}>
+              {speaking ? "…" : "♪"}
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[s.acipIconBtn, { backgroundColor: c.raised, borderColor: c.border }]}
+            onPress={toggleAcip}
+            disabled={!isCurrent}
+          >
+            <Ionicons name="language" size={17} color={acipVisible ? c.ink : c.muted} />
+          </TouchableOpacity>
+        </Animated.View>
+
+        {/* Back */}
+        <Animated.View
+          style={[
+            s.face,
+            { backgroundColor: c.card, borderColor: c.border },
+            { transform: [{ perspective: 1200 }, { rotateY: backRotate }] },
+            { justifyContent: "flex-start", alignItems: "stretch" },
+          ]}
+          pointerEvents={isCurrent && flipped ? "auto" : "none"}
+        >
+          <Text style={[s.sessionBadge, { color: c.faint }]}>{item.session}</Text>
+          <TouchableOpacity
+            activeOpacity={1}
+            style={s.cardPressable}
+            onPress={() => isCurrent && handleCardClick()}
+          >
+            <View style={s.backCenter}>
+              <Text style={[s.acipBack, { color: c.faint }]}>{item.acip}</Text>
+              <Text style={[s.meaning, { color: c.ink }]}>{item.meaning}</Text>
+              {item.notes ? (
+                <Text style={[s.notes, { color: c.inkMid }]}>{item.notes}</Text>
+              ) : null}
+            </View>
+            <TouchableOpacity
+              style={[s.ratingCornerBtn, { backgroundColor: c.raised, borderColor: c.border }]}
+              onPress={() => rateCard(RATING_NEXT[itemStatus])}
+              disabled={!isCurrent}
+            >
+              <Text style={s.ratingIcon}>{itemRating.icon}</Text>
+              <Text style={[s.ratingLabel, { color: itemRating.color }]}>{itemRating.label}</Text>
+            </TouchableOpacity>
+          </TouchableOpacity>
+        </Animated.View>
+
+      </View>
+      </View>
+    );
+  };
 
   // ── Context ───────────────────────────────────────────────────────────────
   const hasContext = card && (card.context || card.context_tibetan);
@@ -277,13 +307,13 @@ export default function App() {
         <Text style={[s.title, { color: c.ink }]}>༄༅། Tibetan Flash</Text>
         <View style={s.headerRight}>
           {card && (
-            <Text style={[s.headerCounter, { color: C.muted }]}>{idx + 1} / {total}</Text>
+            <Text style={[s.headerCounter, { color: c.muted }]}>{idx + 1} / {total}</Text>
           )}
           <TouchableOpacity
-            style={[s.gearBtn, { backgroundColor: c.card, borderColor: c.border }]}
+            style={[s.gearBtn, { backgroundColor: c.raised, borderColor: c.border }]}
             onPress={() => setSidebarOpen((o) => !o)}
           >
-            <Text style={{ color: C.muted, fontSize: 16 }}>{sidebarOpen ? "✕" : "⚙"}</Text>
+            <Text style={{ color: c.muted, fontSize: 16 }}>{sidebarOpen ? "✕" : "⚙"}</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -291,116 +321,25 @@ export default function App() {
       {/* Card area */}
       <View style={s.cardArea}>
         {total === 0 && (
-          <Text style={[s.empty, { color: C.muted }]}>No cards match this filter.</Text>
+          <Text style={[s.empty, { color: c.muted }]}>No cards match this filter.</Text>
         )}
-
-        {card && (
+        {total > 0 && (
           <View style={{ height: CARD_BASE }}>
-
-          {/* Prev card — one screen-width left, peeks in as you swipe right */}
-          {prevCard && (
-            <Animated.View
-              pointerEvents="none"
-              style={[
-                s.cardWrap,
-                { position: "absolute", top: 0, left: 0, right: 0 },
-                { transform: [{ translateX: prevCardX }] },
-              ]}
-            >
-              <CardPreview card={prevCard} c={c} dark={dark} />
-            </Animated.View>
-          )}
-
-          {/* Next card — one screen-width right, peeks in as you swipe left */}
-          {nextCard && (
-            <Animated.View
-              pointerEvents="none"
-              style={[
-                s.cardWrap,
-                { position: "absolute", top: 0, left: 0, right: 0 },
-                { transform: [{ translateX: nextCardX }] },
-              ]}
-            >
-              <CardPreview card={nextCard} c={c} dark={dark} />
-            </Animated.View>
-          )}
-
-          <Animated.View
-            style={[s.cardWrap, { transform: [{ translateX: currCardX }] }]}
-            {...panResponder.panHandlers}
-          >
-            {/* Front */}
-            <Animated.View
-              style={[
-                s.face,
-                { backgroundColor: c.card, borderColor: c.border },
-                { transform: [{ perspective: 1200 }, { rotateY: frontRotate }] },
-              ]}
-              pointerEvents={flipped ? "none" : "auto"}
-            >
-              <Text style={[s.sessionBadge, { color: C.faint }]}>{card.session}</Text>
-              <Pressable
-                style={s.cardPressable}
-                onPress={() => { if (!didSwipe.current) handleCardClick(); }}
-              >
-                <Text style={[s.tibetan, { color: c.ink }]}>{card.tibetan}</Text>
-                <Text style={[s.acipInline, { color: dark ? C.faint : C.mid, opacity: acipVisible ? 1 : 0 }]}>
-                  {card.acip}
-                </Text>
-              </Pressable>
-              <TouchableOpacity
-                style={[s.speakBtn, { backgroundColor: c.card, borderColor: c.border }]}
-                onPress={() => speak(card.tibetan)}
-                disabled={speaking}
-              >
-                <Text style={[s.speakBtnText, { color: C.muted, opacity: speaking ? 0.5 : 1 }]}>
-                  {speaking ? "…" : "♪"}
-                </Text>
-              </TouchableOpacity>
-              {/* ACIP toggle — bottom-right corner */}
-              <TouchableOpacity
-                style={[s.acipIconBtn, { backgroundColor: c.card, borderColor: c.border }]}
-                onPress={toggleAcip}
-              >
-                <Ionicons name="language" size={17} color={acipVisible ? c.ink : C.muted} />
-              </TouchableOpacity>
-            </Animated.View>
-
-            {/* Back */}
-            <Animated.View
-              style={[
-                s.face,
-                { backgroundColor: c.card, borderColor: c.border },
-                { transform: [{ perspective: 1200 }, { rotateY: backRotate }] },
-                { justifyContent: "flex-start", alignItems: "stretch" },
-              ]}
-              pointerEvents={flipped ? "auto" : "none"}
-            >
-              <Text style={[s.sessionBadge, { color: C.faint }]}>{card.session}</Text>
-              {/* TouchableOpacity (not Pressable) so nested rating TouchableOpacity captures first */}
-              <TouchableOpacity
-                activeOpacity={1}
-                style={s.cardPressable}
-                onPress={() => { if (!didSwipe.current) handleCardClick(); }}
-              >
-                <View style={s.backCenter}>
-                  <Text style={[s.acipBack, { color: dark ? C.faint : C.mid }]}>{card.acip}</Text>
-                  <Text style={[s.meaning, { color: c.ink }]}>{card.meaning}</Text>
-                  {card.notes ? (
-                    <Text style={[s.notes, { color: C.muted }]}>{card.notes}</Text>
-                  ) : null}
-                </View>
-                <TouchableOpacity
-                  style={[s.ratingCornerBtn, { backgroundColor: c.card, borderColor: c.border }]}
-                  onPress={handleRate}
-                >
-                  <Text style={s.ratingIcon}>{rating.icon}</Text>
-                  <Text style={[s.ratingLabel, { color: rating.color }]}>{rating.label}</Text>
-                </TouchableOpacity>
-              </TouchableOpacity>
-            </Animated.View>
-
-          </Animated.View>
+            <FlatList
+              ref={flatListRef}
+              data={wrappedData}
+              keyExtractor={(item, index) => `${index}-${item.acip}`}
+              renderItem={renderItem}
+              extraData={extraData}
+              horizontal
+              pagingEnabled
+              showsHorizontalScrollIndicator={false}
+              scrollEventThrottle={16}
+              onMomentumScrollEnd={onMomentumScrollEnd}
+              getItemLayout={(_, index) => ({ length: W, offset: index * W, index })}
+              initialScrollIndex={1}
+              style={{ flex: 1 }}
+            />
           </View>
         )}
       </View>
@@ -412,25 +351,37 @@ export default function App() {
 
       {/* Sidebar */}
       {sidebarOpen && (
-        <View style={[s.sidebar, { backgroundColor: c.sidebar, borderLeftColor: c.border }]}>
+        <View style={[s.sidebar, { backgroundColor: c.sheet, borderLeftColor: c.border }]}>
           <ScrollView showsVerticalScrollIndicator={false}>
 
-            <Text style={[s.sidebarLabel, { color: C.faint }]}>Session</Text>
-            {sessions.map((sess) => (
-              <TouchableOpacity
-                key={sess}
-                style={[
-                  s.btn,
-                  s.sessionBtn,
-                  { backgroundColor: sessionFilter === sess ? c.cardMid : c.card, borderColor: c.border },
-                ]}
-                onPress={() => { setSessionFilter(sess); setSidebarOpen(false); }}
-              >
-                <Text style={[s.btnText, { color: c.ink }]}>{sess}</Text>
-              </TouchableOpacity>
-            ))}
+            <Text style={[s.sidebarLabel, { color: c.faint }]}>Session</Text>
+            {sessions.map((sess) => {
+              const isAll = sess === "All";
+              const active = isAll ? sessionFilters.length === 0 : sessionFilters.includes(sess);
+              return (
+                <TouchableOpacity
+                  key={sess}
+                  style={[
+                    s.btn,
+                    s.sessionBtn,
+                    { backgroundColor: active ? c.raised : c.card, borderColor: c.border },
+                  ]}
+                  onPress={() => {
+                    if (isAll) {
+                      setSessionFilters([]);
+                    } else {
+                      setSessionFilters((prev) =>
+                        prev.includes(sess) ? prev.filter((x) => x !== sess) : [...prev, sess]
+                      );
+                    }
+                  }}
+                >
+                  <Text style={[s.btnText, { color: c.ink }]}>{sess}</Text>
+                </TouchableOpacity>
+              );
+            })}
 
-            <Text style={[s.sidebarLabel, { color: C.faint, marginTop: 24 }]}>Appearance</Text>
+            <Text style={[s.sidebarLabel, { color: c.faint, marginTop: 24 }]}>Appearance</Text>
             <TouchableOpacity
               style={[s.btn, s.sessionBtn, { backgroundColor: c.card, borderColor: c.border }]}
               onPress={() => setDark(d => !d)}
@@ -438,13 +389,13 @@ export default function App() {
               <Text style={[s.btnText, { color: c.ink }]}>{dark ? "Light mode" : "Dark mode"}</Text>
             </TouchableOpacity>
 
-            <Text style={[s.sidebarLabel, { color: C.faint, marginTop: 24 }]}>Progress</Text>
+            <Text style={[s.sidebarLabel, { color: c.faint, marginTop: 24 }]}>Progress</Text>
             {total > 0 && (
               <>
-                <View style={[s.progressWrap, { backgroundColor: dark ? C.borderDark : C.stone }]}>
-                  <View style={[s.progressBar, { width: `${pct}%` as `${number}%` }]} />
+                <View style={[s.progressWrap, { backgroundColor: c.border }]}>
+                  <View style={[s.progressBar, { width: `${pct}%` as `${number}%`, backgroundColor: c.accent }]} />
                 </View>
-                <Text style={[s.progressLabel, { color: C.muted }]}>
+                <Text style={[s.progressLabel, { color: c.muted }]}>
                   {knownCount} known · {total - knownCount} remaining
                 </Text>
               </>
@@ -453,16 +404,16 @@ export default function App() {
         </View>
       )}
 
-      {/* Sheet overlay — dims background when sheet is open */}
+      {/* Sheet overlay */}
       {contextOpen && (
         <Pressable style={s.sheetOverlay} onPress={closeSheet} />
       )}
 
-      {/* Context bottom sheet — always visible as a peek strip, expands on tap */}
+      {/* Context bottom sheet */}
       <Animated.View
         style={[
           s.sheet,
-          { backgroundColor: c.card, borderColor: c.border },
+          { backgroundColor: c.sheet, borderColor: c.border },
           { transform: [{ translateY: sheetAnim.interpolate({
               inputRange: [0, 1],
               outputRange: [SHEET_HEIGHT - PEEK_HEIGHT, 0],
@@ -475,21 +426,21 @@ export default function App() {
           disabled={!hasContext}
           activeOpacity={0.7}
         >
-          <Text style={[s.sheetHeaderLabel, { color: hasContext ? C.faint : C.stone }]}>
+          <Text style={[s.sheetHeaderLabel, { color: hasContext ? c.faint : c.border }]}>
             {hasContext ? "context" : "no context"}
           </Text>
         </TouchableOpacity>
         <ScrollView style={s.sheetScroll} showsVerticalScrollIndicator={false}>
           <TouchableOpacity activeOpacity={1} onPress={contextOpen ? closeSheet : undefined}>
             {card?.context_tibetan && (
-              <View style={[s.sheetBar, { borderLeftColor: dark ? C.borderDark : C.stone }]}>
-                <HighlightedTibetan text={card.context_tibetan} term={card?.acip ?? ""} />
+              <View style={[s.sheetBar, { borderLeftColor: c.border }]}>
+                <HighlightedTibetan text={card.context_tibetan} term={card?.acip ?? ""} color={c.faint} />
               </View>
             )}
             {card?.context && (
-              <View style={[s.sheetBar, { borderLeftColor: dark ? C.borderDark : C.stone,
+              <View style={[s.sheetBar, { borderLeftColor: c.border,
                                            marginTop: card?.context_tibetan ? 12 : 0 }]}>
-                <Text style={[s.sheetText, { color: dark ? C.faint : C.mid }]}>{card.context}</Text>
+                <Text style={[s.sheetText, { color: c.inkMid }]}>{card.context}</Text>
               </View>
             )}
           </TouchableOpacity>
@@ -508,9 +459,8 @@ const s = StyleSheet.create({
   headerRight:        { flexDirection: "row", alignItems: "center", gap: 10 },
   headerCounter:      { fontSize: 13, fontStyle: "italic" },
   gearBtn:            { width: 32, height: 32, borderRadius: 8, borderWidth: 0.5, alignItems: "center", justifyContent: "center" },
-  cardArea:           { flex: 1, paddingHorizontal: 16, justifyContent: "center" },
-  empty:              { textAlign: "center", fontStyle: "italic", fontSize: 15 },
-  cardWrap:           { height: CARD_BASE },
+  cardArea:           { flex: 1, justifyContent: "center", paddingBottom: PEEK_HEIGHT },
+  empty:              { textAlign: "center", fontStyle: "italic", fontSize: 15, paddingHorizontal: 16 },
   face:               { position: "absolute", top: 0, left: 0, right: 0, bottom: 0, borderRadius: 12, borderWidth: 0.5, padding: 20, alignItems: "center", justifyContent: "center", backfaceVisibility: "hidden", overflow: "hidden" },
   cardPressable:      { flex: 1, alignSelf: "stretch", alignItems: "center", justifyContent: "center" },
   sessionBadge:       { position: "absolute", top: 14, right: 16, fontSize: 11, letterSpacing: 0.6 },
@@ -522,9 +472,9 @@ const s = StyleSheet.create({
   // Back face
   backCenter:         { flex: 1, alignItems: "center", justifyContent: "center", paddingVertical: 8 },
   acipBack:           { fontFamily: "Courier New", fontSize: 13, letterSpacing: 1, marginBottom: 10, textAlign: "center" },
-  meaning:            { fontFamily: "Georgia", fontSize: 20, fontStyle: "italic", textAlign: "center", marginBottom: 8, lineHeight: 28 },
-  notes:              { fontSize: 13, fontStyle: "italic", textAlign: "center", lineHeight: 20 },
-  // Rating corner button — inside Pressable so it captures touch without triggering flip
+  meaning:            { fontSize: 20, fontStyle: "italic", textAlign: "center", marginBottom: 8, lineHeight: 28 },
+  notes:              { fontSize: 14, fontStyle: "italic", textAlign: "center", lineHeight: 22 },
+  // Rating corner button
   ratingCornerBtn:    { position: "absolute", top: 0, left: 0, flexDirection: "row", alignItems: "center", gap: 5, borderWidth: 0.5, borderRadius: 8, paddingHorizontal: 10, paddingVertical: 6 },
   ratingIcon:         { fontSize: 14 },
   ratingLabel:        { fontSize: 12 },
@@ -536,7 +486,7 @@ const s = StyleSheet.create({
   sheetScroll:        { flex: 1 },
   sheetBar:           { borderLeftWidth: 2, paddingLeft: 12, marginBottom: 4 },
   sheetText:          { fontSize: 13, fontStyle: "italic", lineHeight: 20 },
-  sheetTibetan:       { fontFamily: "Courier New", fontSize: 11, lineHeight: 18, letterSpacing: 0.6, color: C.faint },
+  sheetTibetan:       { fontFamily: "Courier New", fontSize: 11, lineHeight: 18, letterSpacing: 0.6 },
   sheetTibetanHighlight: { backgroundColor: "#f5e97a", color: "#1a1a18" },
   // Sidebar
   overlay:            { ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(0,0,0,0.2)", zIndex: 100 },
@@ -545,7 +495,7 @@ const s = StyleSheet.create({
   btn:                { borderWidth: 0.5, borderRadius: 8, paddingHorizontal: 14, paddingVertical: 5 },
   sessionBtn:         { alignSelf: "stretch", marginBottom: 6 },
   btnText:            { fontSize: 13 },
-  progressWrap:       { height: 3, borderRadius: 2, overflow: "hidden", marginBottom: 8 },
-  progressBar:        { height: "100%", backgroundColor: C.muted, borderRadius: 2 },
+  progressWrap:       { height: 2, borderRadius: 1, overflow: "hidden", marginBottom: 8 },
+  progressBar:        { height: "100%", borderRadius: 1 },
   progressLabel:      { fontSize: 13, fontStyle: "italic" },
 });
