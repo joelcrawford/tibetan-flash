@@ -878,5 +878,69 @@
     "notes": "GZHAN = other + LUGS = system/position/tradition + DGAG PA = to refute/negate. LUGS carries the sense of a whole philosophical system, not just a single claim.",
     "context": "One of the two classic movements of Buddhist philosophical writing — paired with RANG LUGS SGRUB PA (establishing one's own position). Central to the Prāsaṅgika method: Nāgārjuna and Candrakīrti operate almost exclusively through DGAG PA, driving opponents toward unwanted consequences (THAL 'GYUR) rather than asserting positive theses. Whether Prāsaṅgikas have a RANG LUGS at all is itself one of the great debates in the tradition.",
     "session": "01 Ben's Text Foundation"
+  },
+  {
+    "tibetan": "（particle not used）",
+    "acip": "(no particle)",
+    "meaning": "Nominative — subject of the sentence",
+    "notes": "No particle. The noun doing the action. First noun in the sentence with no particle is usually the subject. Sometimes GYIS/KYIS marks the agent of a transitive verb instead.",
+    "context": "Quick question: 'Who or what is doing the action?' Position rule: nominative comes first, before the verb.",
+    "session": "02 Case Particles"
+  },
+  {
+    "tibetan": "（particle not used）",
+    "acip": "(no particle)",
+    "meaning": "Accusative — direct object of the sentence",
+    "notes": "No particle. The noun being acted upon. Comes after the subject, before the verb.",
+    "context": "Quick question: 'Who or what is being acted upon?' Position rule: if two nouns appear with no particles, the first is nominative (subject), the second is accusative (object).",
+    "session": "02 Case Particles"
+  },
+  {
+    "tibetan": "གྱིས། གིས། ཀྱིས།",
+    "acip": "GYIS / GIS / KYIS",
+    "meaning": "Instrumental — by, with, using",
+    "notes": "Marks the agent or tool performing the action. Variant form depends on the final sound of the preceding syllable. Always has a final -S — that -S is what separates it from the genitive.",
+    "context": "Quick question: 'By whom? With what?' Memory: GYIS sounds like 'geese' — done BY the geese. The -S = 'does'. KYIS = instrumental; KYI (no -S) = genitive. Never ambiguous.",
+    "session": "02 Case Particles"
+  },
+  {
+    "tibetan": "ལ།",
+    "acip": "LA",
+    "meaning": "Dative — to, for",
+    "notes": "Marks the recipient or beneficiary of an action. Same particle as locative — context determines which reading applies.",
+    "context": "Quick question: 'To whom? For whom?' Dative = motion or transfer TO something. Memory: LA = 'la-ter' — going somewhere. If something is moving or being given, read as dative. If something is staying, read as locative.",
+    "session": "02 Case Particles"
+  },
+  {
+    "tibetan": "ལས། ནས།",
+    "acip": "LAS / NAS",
+    "meaning": "Ablative — from, out of",
+    "notes": "Marks origin or source. Completely unambiguous — LAS and NAS are always ablative, with no overlap with any other case.",
+    "context": "Quick question: 'From where? Out of what?' Memory: LAS = 'last place you were'. A reliable anchor when parsing — whenever you see LAS or NAS, the meaning is always 'from'.",
+    "session": "02 Case Particles"
+  },
+  {
+    "tibetan": "ཀྱི། གྱི། འི།",
+    "acip": "KYI / GYI / 'I",
+    "meaning": "Genitive — 's, of",
+    "notes": "Marks possession or connection between two nouns. Variant form depends on the final sound of the preceding syllable. No final -S — that distinguishes it from the instrumental.",
+    "context": "Quick question: 'Whose? Of what?' Memory: KYI = 'key' — key to ownership. E.g. SANGS RGYAS KYI THUGS = 'Buddha's mind'. Watch the -S: KYI = genitive (owns); KYIS = instrumental (does).",
+    "session": "02 Case Particles"
+  },
+  {
+    "tibetan": "ལ། ན།",
+    "acip": "LA / NA",
+    "meaning": "Locative — in, at, on",
+    "notes": "Marks location. LA and NA are sometimes interchangeable. Same LA particle as dative — context distinguishes them.",
+    "context": "Quick question: 'Where? In what place?' Locative = static position AT or IN a place. Memory: if something is staying (not moving), read LA as locative. If something is moving or being given, read as dative.",
+    "session": "02 Case Particles"
+  },
+  {
+    "tibetan": "ཨ།",
+    "acip": "A",
+    "meaning": "Vocative — O!, Hey!",
+    "notes": "Used for direct address. The rarest of the eight cases in classical Tibetan texts.",
+    "context": "Quick question: 'Who are you calling out to?' E.g. 'O teacher!', 'Hey, Milarepa!' — calling out to someone directly by name or title.",
+    "session": "02 Case Particles"
   }
 ]
