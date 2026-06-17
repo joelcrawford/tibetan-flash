@@ -1,11 +1,83 @@
 [
   {
+    "tibetan": "གཅིག",
+    "acip": "GCIG",
+    "meaning": "one",
+    "notes": "Cardinal: GCIG. Ordinal: GCIG PA = first (though DANG PO is more common for \"firstly\"). GCIG PU = alone, only one. GCIG TU = into one, unified. GCIG CHAR = all at once.",
+    "context": "",
+    "session": "00 Numbers"
+  },
+  {
+    "tibetan": "གཉིས།",
+    "acip": "GNYIS",
+    "meaning": "two",
+    "notes": "Cardinal: GNYIS. Ordinal: GNYIS PA = second. GNYIS KA = both.",
+    "context": "",
+    "session": "00 Numbers"
+  },
+  {
+    "tibetan": "གསུམ།",
+    "acip": "GSUM",
+    "meaning": "three",
+    "notes": "Cardinal: GSUM. Ordinal: GSUM PA = third. BSLAB PA GSUM = three trainings; SDE SNOD GSUM = three baskets (Tripiṭaka).",
+    "context": "",
+    "session": "00 Numbers"
+  },
+  {
+    "tibetan": "བཞི།",
+    "acip": "BZHI",
+    "meaning": "four",
+    "notes": "Cardinal: BZHI. Ordinal: BZHI PA = fourth. 'BYUNG BA BZHI = four elements; BDEN PA BZHI = four noble truths.",
+    "context": "",
+    "session": "00 Numbers"
+  },
+  {
     "tibetan": "ལྔ།",
     "acip": "LNGA",
     "meaning": "five",
-    "notes": "number",
+    "notes": "Cardinal: LNGA. Ordinal: LNGA PA = fifth. PHUNG PO LNGA = five aggregates; PHAR PHYIN LNGA = five perfections.",
     "context": "",
-    "session": "Single Words"
+    "session": "00 Numbers"
+  },
+  {
+    "tibetan": "དྲུག",
+    "acip": "DRUG",
+    "meaning": "six",
+    "notes": "Cardinal: DRUG. Ordinal: DRUG PA = sixth. RNAM SHES DRUG = six consciousnesses; PHAR PHYIN DRUG = six perfections.",
+    "context": "",
+    "session": "00 Numbers"
+  },
+  {
+    "tibetan": "བདུན།",
+    "acip": "BDUN",
+    "meaning": "seven",
+    "notes": "Cardinal: BDUN. Ordinal: BDUN PA = seventh. RIGS PA BDUN = sevenfold reasoning.",
+    "context": "",
+    "session": "00 Numbers"
+  },
+  {
+    "tibetan": "བརྒྱད།",
+    "acip": "BRGYAD",
+    "meaning": "eight",
+    "notes": "Cardinal: BRGYAD. Ordinal: BRGYAD PA = eighth. 'JIG RTEN CHOS BRGYAD = eight worldly concerns.",
+    "context": "",
+    "session": "00 Numbers"
+  },
+  {
+    "tibetan": "དགུ།",
+    "acip": "DGU",
+    "meaning": "nine",
+    "notes": "Cardinal: DGU. Ordinal: DGU PA = ninth.",
+    "context": "",
+    "session": "00 Numbers"
+  },
+  {
+    "tibetan": "བཅུ།",
+    "acip": "BCU",
+    "meaning": "ten",
+    "notes": "Cardinal: BCU. Ordinal: BCU PA = tenth. BCU GCIG = eleven; BCU GNYIS = twelve.",
+    "context": "",
+    "session": "00 Numbers"
   },
   {
     "tibetan": "རིགས།",
@@ -68,14 +140,6 @@
     "acip": "GZUGS",
     "meaning": "form, matter, body",
     "notes": "Sanskrit: rūpa. First of the five aggregates",
-    "context": "",
-    "session": "Single Words"
-  },
-  {
-    "tibetan": "གསུམ།",
-    "acip": "GSUM",
-    "meaning": "three",
-    "notes": "number",
     "context": "",
     "session": "Single Words"
   },
