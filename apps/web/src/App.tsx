@@ -1,7 +1,15 @@
 import { useState, useEffect } from "react";
-import FLASHCARDS from "../../../shared/data/glossary.json";
-import { Card, CardStatus } from "../../../shared/types/types";
-import { useDeck } from "../../../shared/hooks/useDeck";
+import FLASHCARDS from "../../../shared/glossary/glossary.json";
+import { Card, CardStatus, StatusMap } from "../../../shared/types/types";
+import { useDeck, StorageAdapter } from "../../../shared/hooks/useDeck";
+
+const webStorage: StorageAdapter = {
+  load: () => {
+    try { return Promise.resolve(JSON.parse(localStorage.getItem("tibetan-flash-status") ?? "{}")); }
+    catch { return Promise.resolve({} as StatusMap); }
+  },
+  save: (map: StatusMap) => localStorage.setItem("tibetan-flash-status", JSON.stringify(map)),
+};
 import { useTTS } from "./hooks/useTTS";
 import { useSwipeGesture } from "./hooks/useSwipeGesture";
 
@@ -69,7 +77,7 @@ export default function App() {
     go, goImmediate, rateCard, getCardStatus, handleCardClick,
     toggleAcip, toggleFlip,
     setShuffled, setSessionFilters,
-  } = useDeck(FLASHCARDS as Card[]);
+  } = useDeck(FLASHCARDS as Card[], webStorage);
 
   const { speak, speaking } = useTTS();
   const [dark, setDark] = useState(true);

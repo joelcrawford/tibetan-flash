@@ -14,10 +14,19 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-import { useDeck } from "../../shared/hooks/useDeck";
-import { Card, CardStatus } from "../../shared/types/types";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useDeck, StorageAdapter } from "../../shared/hooks/useDeck";
+import { Card, CardStatus, StatusMap } from "../../shared/types/types";
 import { useTTS } from "./src/hooks/useTTS";
-import GLOSSARY from "../../shared/data/glossary.json";
+import GLOSSARY from "../../shared/glossary/glossary.json";
+
+const iosStorage: StorageAdapter = {
+  load: async () => {
+    try { const raw = await AsyncStorage.getItem("tibetan-flash-status"); return raw ? JSON.parse(raw) : {}; }
+    catch { return {} as StatusMap; }
+  },
+  save: (map: StatusMap) => { AsyncStorage.setItem("tibetan-flash-status", JSON.stringify(map)); },
+};
 
 // ── Colours ──────────────────────────────────────────────────────────────────
 // Theme A — Monastery (dark): warm charcoal + saffron gold
@@ -127,7 +136,7 @@ export default function App() {
     sessionFilters, sessions, knownCount, pct,
     goImmediate, rateCard, getCardStatus, handleCardClick,
     toggleAcip, setShuffled, setSessionFilters,
-  } = useDeck(GLOSSARY as Card[]);
+  } = useDeck(GLOSSARY as Card[], iosStorage);
 
   const { speak, speaking } = useTTS();
   const [sidebarOpen, setSidebarOpen] = useState(false);

@@ -1,6 +1,11 @@
 import { useState, useCallback, useEffect, useMemo } from "react";
 import { Card, KnownMap, CardStatus, StatusMap } from "../types/types";
 
+export interface StorageAdapter {
+  load: () => Promise<StatusMap>;
+  save: (map: StatusMap) => void;
+}
+
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
@@ -10,15 +15,31 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
-export function useDeck(allCards: Card[]) {
+export function useDeck(allCards: Card[], storage?: StorageAdapter) {
   const [deck, setDeck] = useState<Card[]>(allCards);
   const [idx, setIdx] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [acipVisible, setAcipVisible] = useState(false);
   const [statusMap, setStatusMap] = useState<StatusMap>({});
+  const [storageLoaded, setStorageLoaded] = useState(false);
   const [shuffled, setShuffled] = useState(false);
   const [sessionFilters, setSessionFilters] = useState<string[]>(["01 Ben's Text Foundation"]);
   const [showCtx, setShowCtx] = useState(true);
+
+  useEffect(() => {
+    if (!storage) { setStorageLoaded(true); return; }
+    storage.load().then((map) => {
+      setStatusMap(map);
+      setStorageLoaded(true);
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (!storage || !storageLoaded) return;
+    storage.save(statusMap);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [statusMap, storageLoaded]);
 
   const sessions = useMemo<string[]>(() => {
     const s = new Set(allCards.map((c) => c.session).filter(Boolean));
@@ -40,7 +61,7 @@ export function useDeck(allCards: Card[]) {
     setIdx(0);
     setFlipped(false);
     setAcipVisible(false);
-  }, [sessionFilters, shuffled, allCards]); // statusMap intentionally excluded — deck rebuilds on filter/shuffle change only
+  }, [sessionFilters, shuffled, allCards, storageLoaded]); // statusMap intentionally excluded — storageLoaded triggers rebuild after hydration
 
   const card = deck[idx] ?? null;
   const total = deck.length;
