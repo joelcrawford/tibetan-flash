@@ -283,9 +283,6 @@ export default function App() {
             <View style={s.backCenter}>
               <Text style={[s.acipBack, { color: c.faint }]}>{item.acip}</Text>
               <Text style={[s.meaning, { color: c.ink }]}>{item.meaning}</Text>
-              {item.notes ? (
-                <Text style={[s.notes, { color: c.inkMid }]}>{item.notes}</Text>
-              ) : null}
             </View>
             <TouchableOpacity
               style={[s.ratingCornerBtn, { backgroundColor: c.raised, borderColor: c.border }]}
@@ -304,7 +301,7 @@ export default function App() {
   };
 
   // ── Context ───────────────────────────────────────────────────────────────
-  const hasContext = card && (card.context || card.context_tibetan);
+  const hasContext = card && (card.notes || card.context || card.context_tibetan);
 
   // ── Render ────────────────────────────────────────────────────────────────
   return (
@@ -441,15 +438,21 @@ export default function App() {
         </TouchableOpacity>
         <ScrollView style={s.sheetScroll} showsVerticalScrollIndicator={false}>
           <TouchableOpacity activeOpacity={1} onPress={contextOpen ? closeSheet : undefined}>
-            {card?.context_tibetan && (
+            {card?.notes && (
               <View style={[s.sheetBar, { borderLeftColor: c.border }]}>
-                <HighlightedTibetan text={card.context_tibetan} term={card?.acip ?? ""} color={c.faint} />
+                <Text style={[s.sheetText, { color: c.inkMid }]}>{card.notes}</Text>
               </View>
             )}
             {card?.context && (
               <View style={[s.sheetBar, { borderLeftColor: c.border,
-                                           marginTop: card?.context_tibetan ? 12 : 0 }]}>
+                                           marginTop: card?.notes ? 16 : 0 }]}>
                 <Text style={[s.sheetText, { color: c.inkMid }]}>{card.context}</Text>
+              </View>
+            )}
+            {card?.context_tibetan && (
+              <View style={[s.sheetBar, { borderLeftColor: c.border,
+                                           marginTop: (card?.notes || card?.context) ? 12 : 0 }]}>
+                <HighlightedTibetan text={card.context_tibetan} term={card?.acip ?? ""} color={c.faint} />
               </View>
             )}
           </TouchableOpacity>

@@ -114,7 +114,7 @@ export default function App() {
     return () => window.removeEventListener("keydown", onKey);
   }, [card, go, toggleAcip, toggleFlip, speak]);
 
-  const hasContext = card && (card.context || card.context_tibetan);
+  const hasContext = card && (card.notes || card.context || card.context_tibetan);
   const currentStatus = card ? getCardStatus(card.acip) : "review";
   const ratingCfg = RATING_CONFIG[currentStatus];
 
@@ -224,11 +224,6 @@ export default function App() {
                   <div className="font-title text-[20px] font-normal text-ink mb-3 leading-[1.4] italic text-center w-full dark:text-ink-lt">
                     {card.meaning}
                   </div>
-                  {card.notes && (
-                    <div className="text-[13px] text-ink-muted leading-[1.6] italic text-center w-full">
-                      {card.notes}
-                    </div>
-                  )}
                   {hasContext && (
                     <button
                       className="absolute bottom-3.5 left-4 flex items-center gap-1.5 text-[11px] tracking-[0.08em] uppercase text-ink-faint font-serif hover:text-ink-muted transition-colors duration-150 dark:hover:text-ink-muted"
@@ -249,8 +244,13 @@ export default function App() {
         {card && flipped && hasContext && (
           <div className={`overflow-hidden transition-[max-height] duration-300 ease-in-out mb-3 ${contextOpen ? "max-h-[600px]" : "max-h-0"}`}>
             <div className="pt-2 pb-3 space-y-3">
-              {card.context && (
+              {card.notes && (
                 <p className="text-[13px] text-ink-mid leading-[1.7] border-l-2 border-stone pl-3 italic dark:text-ink-faint dark:border-bdr-dk">
+                  {card.notes}
+                </p>
+              )}
+              {card.context && (
+                <p className="text-[13px] text-ink-mid leading-[1.7] border-l-2 border-stone pl-3 italic dark:text-ink-faint dark:border-bdr-dk mt-4">
                   {card.context}
                 </p>
               )}
