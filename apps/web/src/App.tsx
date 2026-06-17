@@ -33,7 +33,7 @@ const btnCls = [
   "dark:bg-surf-dk dark:border-bdr-dk dark:text-ink-lt dark:hover:bg-surf-dk-mid",
 ].join(" ");
 
-const btnActiveCls = "bg-stone-lt border-ink-muted font-medium dark:bg-surf-dk-mid dark:border-ink-muted";
+const btnActiveCls = "bg-stone border-ink text-ink font-semibold dark:bg-surf-dk-mid dark:border-stone dark:text-ink-lt";
 
 const navBtnCls = [
   "font-serif text-[15px] py-[7px] px-6 border-[0.5px] border-stone rounded-lg",
@@ -321,7 +321,7 @@ export default function App() {
                     }
                   }}
                 >
-                  {s}
+                  {active ? <span className="mr-1.5 text-[10px]">●</span> : <span className="mr-1.5 text-[10px] opacity-0">●</span>}{s}
                 </button>
               );
             })}
