@@ -53,8 +53,9 @@ export function useDeck(allCards: Card[], storage?: StorageAdapter) {
       : allCards.filter((c) => sessionFilters.includes(c.session));
 
     const reviewCards = filtered.filter((c) => !statusMap[c.acip] || statusMap[c.acip] === "review");
-    const familiarCards = filtered.filter((c) => statusMap[c.acip] === "familiar").filter(() => Math.random() < 0.35);
-    filtered = [...reviewCards, ...familiarCards];
+    const familiarCards = filtered.filter((c) => statusMap[c.acip] === "familiar").filter(() => Math.random() < 0.5);
+    const knownCards = filtered.filter((c) => statusMap[c.acip] === "known").filter(() => Math.random() < 0.1);
+    filtered = [...reviewCards, ...familiarCards, ...knownCards];
 
     if (shuffled) filtered = shuffle(filtered);
     setDeck(filtered);
