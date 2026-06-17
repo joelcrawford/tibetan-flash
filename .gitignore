@@ -30,5 +30,5 @@ __pycache__/
 *.local
 
 # data
-/shared/data/pack
+/shared/data
 /shared/docs
