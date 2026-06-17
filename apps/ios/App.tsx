@@ -319,7 +319,7 @@ export default function App() {
             style={[s.gearBtn, { backgroundColor: c.raised, borderColor: c.border }]}
             onPress={() => setSidebarOpen((o) => !o)}
           >
-            <Text style={{ color: c.muted, fontSize: 16 }}>{sidebarOpen ? "✕" : "⚙"}</Text>
+            <Ionicons name={sidebarOpen ? "close-outline" : "settings-outline"} size={18} color={c.muted} />
           </TouchableOpacity>
         </View>
       </View>

@@ -10,6 +10,7 @@ const webStorage: StorageAdapter = {
   },
   save: (map: StatusMap) => localStorage.setItem("tibetan-flash-status", JSON.stringify(map)),
 };
+import { IoSettingsOutline, IoCloseOutline } from "react-icons/io5";
 import { useTTS } from "./hooks/useTTS";
 import { useSwipeGesture } from "./hooks/useSwipeGesture";
 
@@ -132,7 +133,7 @@ export default function App() {
           onClick={() => setSidebarOpen((o) => !o)}
           title={sidebarOpen ? "Close settings" : "Open settings"}
         >
-          {sidebarOpen ? "✕" : "⚙"}
+          {sidebarOpen ? <IoCloseOutline size={18} /> : <IoSettingsOutline size={18} />}
         </button>
       </div>
 
