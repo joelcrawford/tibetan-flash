@@ -38,6 +38,10 @@ function buildDeck(review: Card[], familiar: Card[], known: Card[], doShuffle: b
     if (ti < tertiary.length && result.length % 10 === 0) result.push(tertiary[ti++]);
   }
 
+  // Flush any familiar cards the loop ratio didn't reach — they should always appear
+  while (si < secondary.length) result.push(secondary[si++]);
+  // Known cards keep the strict 1:10 ratio — intentionally capped, not flushed
+
   return result;
 }
 
