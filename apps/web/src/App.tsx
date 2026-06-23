@@ -317,9 +317,6 @@ export default function App() {
             <button className={navBtnCls} onClick={() => go(-1)}>
               ← prev
             </button>
-            <span className="text-[14px] text-ink-muted italic min-w-[60px] text-center">
-              {idx + 1} / {total}
-            </span>
             <button className={navBtnCls} onClick={() => go(1)}>
               next →
             </button>

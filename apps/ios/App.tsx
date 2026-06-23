@@ -341,9 +341,6 @@ export default function App() {
       <View style={s.header}>
         <Text style={[s.title, { color: c.ink }]}>༄༅། Tibetan Flash</Text>
         <View style={s.headerRight}>
-          {card && (
-            <Text style={[s.headerCounter, { color: c.muted }]}>{idx + 1} / {total}</Text>
-          )}
           <TouchableOpacity
             style={[s.gearBtn, { backgroundColor: c.raised, borderColor: c.border }]}
             onPress={() => setSidebarOpen((o) => !o)}

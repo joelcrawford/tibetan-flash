@@ -17,6 +17,30 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
+// Deterministic interleave: each group is shuffled independently, then merged
+// at fixed intervals so familiar (1:3) and known (1:10) cards appear predictably.
+function buildDeck(review: Card[], familiar: Card[], known: Card[], doShuffle: boolean): Card[] {
+  const r = doShuffle ? shuffle(review) : [...review];
+  const f = doShuffle ? shuffle(familiar) : [...familiar];
+  const k = doShuffle ? shuffle(known) : [...known];
+
+  // Primary pool: review > familiar > known (fallback when previous pools empty)
+  const primary   = r.length > 0 ? r : f.length > 0 ? f : k;
+  const secondary = r.length > 0 ? f : [];                      // familiar: 1 per 3 review
+  const tertiary  = r.length > 0 || f.length > 0 ? k : [];     // known:    1 per 10 total
+
+  const result: Card[] = [];
+  let si = 0, ti = 0;
+
+  for (let i = 0; i < primary.length; i++) {
+    result.push(primary[i]);
+    if (si < secondary.length && (i + 1) % 3 === 0) result.push(secondary[si++]);
+    if (ti < tertiary.length && result.length % 10 === 0) result.push(tertiary[ti++]);
+  }
+
+  return result;
+}
+
 export function useDeck(allCards: Card[], storage?: StorageAdapter) {
   const [deck, setDeck] = useState<Card[]>(allCards);
   const [idx, setIdx] = useState(0);
@@ -25,6 +49,7 @@ export function useDeck(allCards: Card[], storage?: StorageAdapter) {
   const [statusMap, setStatusMap] = useState<StatusMap>({});
   const [storageLoaded, setStorageLoaded] = useState(false);
   const [shuffled, setShuffled] = useState(false);
+  const [passCount, setPassCount] = useState(0);
   const [sessionFilters, setSessionFilters] = useState<string[]>(["01 Ben's Text Foundation"]);
   const [showCtx, setShowCtx] = useState(true);
 
@@ -60,21 +85,19 @@ export function useDeck(allCards: Card[], storage?: StorageAdapter) {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    let filtered = sessionFilters.length === 0
+    const filtered = sessionFilters.length === 0
       ? allCards
       : allCards.filter((c) => sessionFilters.includes(c.session));
 
-    const reviewCards = filtered.filter((c) => !statusMap[c.acip] || statusMap[c.acip] === "review");
-    const familiarCards = filtered.filter((c) => statusMap[c.acip] === "familiar").filter(() => Math.random() < 0.5);
-    const knownCards = filtered.filter((c) => statusMap[c.acip] === "known").filter(() => Math.random() < 0.1);
-    filtered = [...reviewCards, ...familiarCards, ...knownCards];
+    const reviewCards  = filtered.filter((c) => !statusMap[c.acip] || statusMap[c.acip] === "review");
+    const familiarCards = filtered.filter((c) => statusMap[c.acip] === "familiar");
+    const knownCards   = filtered.filter((c) => statusMap[c.acip] === "known");
 
-    if (shuffled) filtered = shuffle(filtered);
-    setDeck(filtered);
+    setDeck(buildDeck(reviewCards, familiarCards, knownCards, shuffled));
     setIdx(0);
     setFlipped(false);
     setAcipVisible(false);
-  }, [sessionFilters, shuffled, allCards, storageLoaded]); // statusMap intentionally excluded — storageLoaded triggers rebuild after hydration
+  }, [sessionFilters, shuffled, allCards, storageLoaded, passCount]); // statusMap excluded — passCount triggers rebuild on exhaust
 
   const card = deck[idx] ?? null;
   const total = deck.length;
@@ -90,12 +113,22 @@ export function useDeck(allCards: Card[], storage?: StorageAdapter) {
 
   const go = useCallback((dir: number): void => {
     setFlipped(false);
-    setTimeout(() => setIdx((i) => (i + dir + total) % total), 180);
+    setTimeout(() => {
+      setIdx((i) => {
+        const next = i + dir;
+        if (next >= total) setPassCount((p) => p + 1);
+        return (next + total) % total;
+      });
+    }, 180);
   }, [total]);
 
   const goImmediate = useCallback((dir: number): void => {
     setFlipped(false);
-    setIdx((i) => (i + dir + total) % total);
+    setIdx((i) => {
+      const next = i + dir;
+      if (next >= total) setPassCount((p) => p + 1);
+      return (next + total) % total;
+    });
   }, [total]);
 
   const markStatus = useCallback((status: CardStatus): void => {
