@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Animated,
   Dimensions,
+  Easing,
   FlatList,
   Pressable,
   SafeAreaView,
@@ -191,6 +192,18 @@ export default function App() {
 
   useEffect(() => { if (contextOpen) closeSheet(); }, [idx]); // eslint-disable-line
 
+  // ── Sidebar slide animation ───────────────────────────────────────────────
+  const slideAnim = useRef(new Animated.Value(300)).current;
+
+  useEffect(() => {
+    Animated.timing(slideAnim, {
+      toValue: sidebarOpen ? 0 : 300,  // matches sidebar width
+      duration: 300,
+      easing: Easing.out(Easing.cubic),
+      useNativeDriver: true,
+    }).start();
+  }, [sidebarOpen]); // eslint-disable-line
+
   // ── 3D flip animation ─────────────────────────────────────────────────────
   const flipAnim = useRef(new Animated.Value(0)).current;
 
@@ -339,13 +352,13 @@ export default function App() {
 
       {/* Header */}
       <View style={s.header}>
-        <Text style={[s.title, { color: c.ink }]}>༄༅། Tibetan Flash</Text>
+        <Text style={[s.logo, { color: c.ink }]}>༄༅།</Text>
         <View style={s.headerRight}>
           <TouchableOpacity
-            style={[s.gearBtn, { backgroundColor: c.raised, borderColor: c.border }]}
+            style={s.gearBtn}
             onPress={() => setSidebarOpen((o) => !o)}
           >
-            <Ionicons name={sidebarOpen ? "close-outline" : "settings-outline"} size={18} color={c.muted} />
+            <Ionicons name={sidebarOpen ? "close-outline" : "settings-outline"} size={22} color={c.muted} />
           </TouchableOpacity>
         </View>
       </View>
@@ -377,14 +390,21 @@ export default function App() {
       </View>
 
       {/* Sidebar overlay */}
-      {sidebarOpen && (
-        <Pressable style={s.overlay} onPress={() => setSidebarOpen(false)} />
-      )}
+      <Animated.View
+        style={[s.overlay, { opacity: slideAnim.interpolate({ inputRange: [0, 300], outputRange: [1, 0] }) }]}
+        pointerEvents={sidebarOpen ? "auto" : "none"}
+      >
+        <Pressable style={StyleSheet.absoluteFillObject} onPress={() => setSidebarOpen(false)} />
+      </Animated.View>
 
       {/* Sidebar */}
-      {sidebarOpen && (
-        <View style={[s.sidebar, { backgroundColor: c.sheet, borderLeftColor: c.border }]}>
+      <Animated.View
+        style={[s.sidebar, { backgroundColor: c.sheet, borderLeftColor: c.border }, { transform: [{ translateX: slideAnim }] }]}
+        pointerEvents={sidebarOpen ? "auto" : "none"}
+      >
           <ScrollView showsVerticalScrollIndicator={false}>
+
+            <Text style={[s.sidebarTitle, { color: c.ink }]}>Tibetan Flash</Text>
 
             <Text style={[s.sidebarLabel, { color: c.faint }]}>Sessions</Text>
             {Object.entries(SESSION_GROUPS).map(([groupName, groupSessions]) => {
@@ -448,13 +468,15 @@ export default function App() {
               </>
             )}
           </ScrollView>
-        </View>
-      )}
+      </Animated.View>
 
       {/* Sheet overlay */}
-      {contextOpen && (
-        <Pressable style={s.sheetOverlay} onPress={closeSheet} />
-      )}
+      <Animated.View
+        style={[s.sheetOverlay, { opacity: sheetAnim }]}
+        pointerEvents={contextOpen ? "auto" : "none"}
+      >
+        <Pressable style={StyleSheet.absoluteFillObject} onPress={closeSheet} />
+      </Animated.View>
 
       {/* Context bottom sheet */}
       <Animated.View
@@ -474,7 +496,7 @@ export default function App() {
           activeOpacity={0.7}
         >
           <Text style={[s.sheetHeaderLabel, { color: hasContext ? c.faint : c.border }]}>
-            {hasContext ? "context" : "no context"}
+            {hasContext ? "notes" : "no notes"}
           </Text>
         </TouchableOpacity>
         <ScrollView style={s.sheetScroll} showsVerticalScrollIndicator={false}>
@@ -507,11 +529,11 @@ export default function App() {
 
 const s = StyleSheet.create({
   root:               { flex: 1 },
-  header:             { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 20, paddingTop: 12, paddingBottom: 8 },
+  header:             { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingHorizontal: 20, paddingTop: 12, paddingBottom: 4 },
+  logo:               { fontSize: 36, lineHeight: 44 },
   title:              { fontFamily: "Georgia", fontSize: 18, letterSpacing: 0.3 },
   headerRight:        { flexDirection: "row", alignItems: "center", gap: 10 },
-  headerCounter:      { fontSize: 13, fontStyle: "italic" },
-  gearBtn:            { width: 32, height: 32, borderRadius: 8, borderWidth: 0.5, alignItems: "center", justifyContent: "center" },
+  gearBtn:            { width: 36, height: 36, alignItems: "center", justifyContent: "center" },
   cardArea:           { flex: 1, justifyContent: "center", paddingBottom: PEEK_HEIGHT },
   empty:              { textAlign: "center", fontStyle: "italic", fontSize: 15, paddingHorizontal: 16 },
   face:               { position: "absolute", top: 0, left: 0, right: 0, bottom: 0, borderRadius: 12, borderWidth: 0.5, padding: 20, alignItems: "center", justifyContent: "center", backfaceVisibility: "hidden", overflow: "hidden" },
@@ -535,23 +557,24 @@ const s = StyleSheet.create({
   sheetOverlay:       { ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(0,0,0,0.35)", zIndex: 150 },
   sheet:              { position: "absolute", bottom: 0, left: 0, right: 0, height: SHEET_HEIGHT, borderTopLeftRadius: 20, borderTopRightRadius: 20, borderTopWidth: 0.5, borderLeftWidth: 0.5, borderRightWidth: 0.5, paddingHorizontal: 20, paddingBottom: 32, zIndex: 160 },
   sheetHeader:        { height: PEEK_HEIGHT, justifyContent: "center", alignItems: "center" },
-  sheetHeaderLabel:   { fontSize: 11, letterSpacing: 1, textTransform: "uppercase", fontFamily: "Georgia" },
+  sheetHeaderLabel:   { fontSize: 15, fontStyle: "italic", fontFamily: "Georgia" },
   sheetScroll:        { flex: 1 },
   sheetBar:           { borderLeftWidth: 2, paddingLeft: 12, marginBottom: 4 },
-  sheetText:          { fontSize: 13, fontStyle: "italic", lineHeight: 20 },
-  sheetTibetan:       { fontFamily: "Courier New", fontSize: 11, lineHeight: 18, letterSpacing: 0.6 },
+  sheetText:          { fontSize: 15, fontStyle: "italic", lineHeight: 22 },
+  sheetTibetan:       { fontFamily: "Courier New", fontSize: 13, lineHeight: 20, letterSpacing: 0.6 },
   sheetTibetanHighlight: { backgroundColor: "#f5e97a", color: "#1a1a18" },
   // Sidebar
   overlay:            { ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(0,0,0,0.2)", zIndex: 100 },
-  sidebar:            { position: "absolute", top: 0, right: 0, bottom: 0, width: 260, borderLeftWidth: 0.5, padding: 24, paddingTop: 56, zIndex: 200 },
-  sidebarLabel:       { fontSize: 11, letterSpacing: 1, textTransform: "uppercase", marginBottom: 8 },
+  sidebar:            { position: "absolute", top: 0, right: 0, bottom: 0, width: 300, borderLeftWidth: 0.5, padding: 24, paddingTop: 56, zIndex: 200 },
+  sidebarTitle:       { fontFamily: "Georgia", fontSize: 20, letterSpacing: 0.3, marginBottom: 20 },
+  sidebarLabel:       { fontSize: 12, letterSpacing: 1, textTransform: "uppercase", marginBottom: 8 },
   btn:                { borderWidth: 0.5, borderRadius: 8, paddingHorizontal: 14, paddingVertical: 5 },
   sessionBtn:         { alignSelf: "stretch", marginBottom: 6 },
-  btnText:            { fontSize: 13 },
+  btnText:            { fontSize: 15 },
   progressWrap:       { height: 4, borderRadius: 2, overflow: "hidden", marginBottom: 8, flexDirection: "row" },
   progressLabel:      { fontSize: 13, fontStyle: "italic" },
   groupRow:           { flexDirection: "row", alignItems: "center", gap: 10, paddingVertical: 6 },
-  groupLabel:         { fontSize: 13, fontFamily: "Georgia", fontWeight: "500", flex: 1 },
+  groupLabel:         { fontSize: 15, fontFamily: "Georgia", fontWeight: "500", flex: 1 },
   subSessionRow:      { flexDirection: "row", alignItems: "center", gap: 8, paddingVertical: 4, paddingLeft: 28 },
-  subSessionText:     { fontSize: 12, lineHeight: 16, flex: 1 },
+  subSessionText:     { fontSize: 13, lineHeight: 18, flex: 1 },
 });

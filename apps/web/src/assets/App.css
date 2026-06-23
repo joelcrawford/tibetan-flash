@@ -27,9 +27,10 @@ html.dark { background-color: var(--color-parchment-dk); }
   --color-bdr-dk:       #444441;
 
   /* Font families */
-  --font-serif:   "Crimson Pro", Georgia, serif;
-  --font-title:   "IM Fell English", Georgia, serif;
-  --font-tibetan: "Noto Sans Tibetan", "Microsoft Himalaya", "Tibetan Machine Uni", serif;
+  --font-serif:    "Crimson Pro", Georgia, serif;
+  --font-title:    "IM Fell English", Georgia, serif;
+  --font-tibetan:  "Noto Sans Tibetan", "Microsoft Himalaya", "Tibetan Machine Uni", serif;
+  --font-cursive:  "Give You Glory", cursive;
 }
 
 /* ── 3D flip card — preserve-3d / vendor backface not in Tailwind ─────────── */

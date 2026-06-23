@@ -34,7 +34,7 @@ const RATING_CONFIG: Record<CardStatus, { label: string; hoverCls: string; activ
 // ── Shared class strings ────────────────────────────────────────────────────
 
 const btnCls = [
-  "font-serif text-[13px] py-[5px] px-3.5 border-[0.5px] border-stone rounded-lg",
+  "font-serif text-[15px] py-[5px] px-3.5 border-[0.5px] border-stone rounded-lg",
   "bg-card-bg text-ink cursor-pointer transition-colors duration-150 tracking-[0.02em]",
   "hover:bg-stone-lt",
   "dark:bg-surf-dk dark:border-bdr-dk dark:text-ink-lt dark:hover:bg-surf-dk-mid",
@@ -43,7 +43,7 @@ const btnCls = [
 const btnActiveCls = "bg-stone border-ink text-ink font-semibold dark:bg-surf-dk-mid dark:border-stone dark:text-ink-lt";
 
 const navBtnCls = [
-  "font-serif text-[15px] py-[7px] px-6 border-[0.5px] border-stone rounded-lg",
+  "font-serif text-[17px] py-[7px] px-6 border-[0.5px] border-stone rounded-lg",
   "bg-card-bg text-ink cursor-pointer transition-colors duration-150 tracking-[0.02em]",
   "hover:bg-stone-lt",
   "dark:bg-surf-dk dark:border-bdr-dk dark:text-ink-lt dark:hover:bg-surf-dk-mid",
@@ -171,16 +171,13 @@ export default function App() {
 
       {/* Header */}
       <div className="flex items-center justify-between mb-5 max-w-[560px] mx-auto">
-        <div className="font-title text-[20px] font-normal tracking-[0.03em] text-ink dark:text-ink-lt">
-          ༄༅། Tibetan Flashcards
-          <span className="text-[13px] font-serif italic text-ink-muted ml-2">{total} cards</span>
-        </div>
+        <span className="font-tibetan text-[40px] leading-none text-ink dark:text-ink-lt select-none">༄༅།</span>
         <button
-          className="text-base w-8 h-8 border-[0.5px] border-stone rounded-lg bg-card-bg text-ink-muted cursor-pointer flex items-center justify-center transition-all duration-150 shrink-0 hover:bg-stone-lt hover:text-ink dark:bg-surf-dk dark:border-bdr-dk dark:hover:bg-surf-dk-mid dark:hover:text-ink-lt"
+          className="text-ink-muted cursor-pointer flex items-center justify-center transition-colors duration-150 shrink-0 p-2 hover:text-ink dark:hover:text-ink-lt"
           onClick={() => setSidebarOpen((o) => !o)}
           title={sidebarOpen ? "Close settings" : "Open settings"}
         >
-          {sidebarOpen ? <IoCloseOutline size={18} /> : <IoSettingsOutline size={18} />}
+          {sidebarOpen ? <IoCloseOutline size={22} /> : <IoSettingsOutline size={22} />}
         </button>
       </div>
 
@@ -274,11 +271,11 @@ export default function App() {
                   </div>
                   {hasContext && (
                     <button
-                      className="absolute bottom-3.5 left-4 flex items-center gap-1.5 text-[11px] tracking-[0.08em] uppercase text-ink-faint font-serif hover:text-ink-muted transition-colors duration-150 dark:hover:text-ink-muted"
+                      className="absolute bottom-3.5 left-4 flex items-center gap-1.5 font-cursive text-[17px] text-ink-faint hover:text-ink-muted transition-colors duration-150 dark:hover:text-ink-muted"
                       onClick={(e) => { e.stopPropagation(); setContextOpen((o) => !o); }}
                     >
-                      <span className="text-[9px]">{contextOpen ? "▾" : "▶"}</span>
-                      context
+                      <span className="font-serif text-[9px]">{contextOpen ? "▾" : "▶"}</span>
+                      notes
                     </button>
                   )}
                 </div>
@@ -293,17 +290,17 @@ export default function App() {
           <div className={`overflow-hidden transition-[max-height] duration-300 ease-in-out mb-3 ${contextOpen ? "max-h-[600px]" : "max-h-0"}`}>
             <div className="pt-2 pb-3 space-y-3">
               {card.notes && (
-                <p className="text-[13px] text-ink-mid leading-[1.7] border-l-2 border-stone pl-3 italic dark:text-ink-faint dark:border-bdr-dk">
+                <p className="text-[15px] text-ink-mid leading-[1.7] border-l-2 border-stone pl-3 italic dark:text-ink-faint dark:border-bdr-dk">
                   {card.notes}
                 </p>
               )}
               {card.context && (
-                <p className="text-[13px] text-ink-mid leading-[1.7] border-l-2 border-stone pl-3 italic dark:text-ink-faint dark:border-bdr-dk mt-4">
+                <p className="text-[15px] text-ink-mid leading-[1.7] border-l-2 border-stone pl-3 italic dark:text-ink-faint dark:border-bdr-dk mt-4">
                   {card.context}
                 </p>
               )}
               {card.context_tibetan && (
-                <p className="font-mono text-[11px] text-ink-faint leading-[1.8] border-l-2 border-stone pl-3 tracking-[0.04em] dark:border-bdr-dk">
+                <p className="font-mono text-[13px] text-ink-faint leading-[1.8] border-l-2 border-stone pl-3 tracking-[0.04em] dark:border-bdr-dk">
                   <HighlightedTibetan text={card.context_tibetan} term={card.tibetan} />
                 </p>
               )}
@@ -329,15 +326,19 @@ export default function App() {
       {/* Sidebar */}
       <div
         className={[
-          "fixed top-0 right-0 w-[260px] h-screen bg-sidebar-bg border-l border-[0.5px] border-stone",
+          "fixed top-0 right-0 w-75 h-screen bg-sidebar-bg border-l border-[0.5px] border-stone",
           "py-8 px-6 overflow-y-auto z-[200] transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]",
           "flex flex-col gap-8",
           "dark:bg-surf-dk-bar dark:border-bdr-dk",
           sidebarOpen ? "translate-x-0" : "translate-x-full",
         ].join(" ")}
       >
+        <div className="font-title text-[22px] font-normal tracking-[0.03em] text-ink dark:text-ink-lt">
+          Tibetan Flash
+        </div>
+
         <div className="flex flex-col gap-3">
-          <div className="text-[11px] tracking-[0.1em] uppercase text-ink-faint font-serif">Appearance</div>
+          <div className="text-[12px] tracking-[0.1em] uppercase text-ink-faint font-serif">Appearance</div>
           <button
             className={`${btnCls} text-left`}
             onClick={() => setDark((d) => !d)}
@@ -347,7 +348,7 @@ export default function App() {
         </div>
 
         <div className="flex flex-col gap-3">
-          <div className="text-[11px] tracking-[0.1em] uppercase text-ink-faint font-serif">Sessions</div>
+          <div className="text-[12px] tracking-[0.1em] uppercase text-ink-faint font-serif">Sessions</div>
           <div className="flex flex-col gap-2">
             {Object.entries(SESSION_GROUPS).map(([groupName, groupSessions]) => {
               const state = groupState(groupSessions);
@@ -361,7 +362,7 @@ export default function App() {
                       onChange={() => toggleGroupSessions(groupSessions)}
                     />
                     <button
-                      className="flex-1 flex items-center justify-between text-[13px] font-serif font-medium text-ink dark:text-ink-lt cursor-pointer"
+                      className="flex-1 flex items-center justify-between text-[15px] font-serif font-medium text-ink dark:text-ink-lt cursor-pointer"
                       onClick={() => toggleGroupExpand(groupName)}
                     >
                       {groupName}
@@ -382,7 +383,7 @@ export default function App() {
                             }
                             className="w-3 h-3 shrink-0 accent-ink cursor-pointer"
                           />
-                          <span className="text-[12px] text-ink-muted font-serif leading-[1.4] dark:text-ink-faint">{sess}</span>
+                          <span className="text-[13px] text-ink-muted font-serif leading-[1.4] dark:text-ink-faint">{sess}</span>
                         </label>
                       ))}
                     </div>
@@ -394,7 +395,7 @@ export default function App() {
         </div>
 
         <div className="flex flex-col gap-3">
-          <div className="text-[11px] tracking-[0.1em] uppercase text-ink-faint font-serif">Progress</div>
+          <div className="text-[12px] tracking-[0.1em] uppercase text-ink-faint font-serif">Progress</div>
           {totalFiltered > 0 && (
             <>
               <div className="flex h-1.25 rounded-sm overflow-hidden gap-px">
@@ -415,12 +416,14 @@ export default function App() {
       </div>
 
       {/* Overlay — closes sidebar */}
-      {sidebarOpen && (
-        <div
-          className="fixed inset-0 bg-black/20 z-[100] dark:bg-black/40"
-          onClick={() => setSidebarOpen(false)}
-        />
-      )}
+      <div
+        className={[
+          "fixed inset-0 bg-black/20 z-100 dark:bg-black/40",
+          "transition-opacity duration-300",
+          sidebarOpen ? "opacity-100" : "opacity-0 pointer-events-none",
+        ].join(" ")}
+        onClick={() => setSidebarOpen(false)}
+      />
 
     </div>
   );
