@@ -40,7 +40,6 @@ const btnCls = [
   "dark:bg-surf-dk dark:border-bdr-dk dark:text-ink-lt dark:hover:bg-surf-dk-mid",
 ].join(" ");
 
-const btnActiveCls = "bg-stone border-ink text-ink font-semibold dark:bg-surf-dk-mid dark:border-stone dark:text-ink-lt";
 
 const navBtnCls = [
   "font-serif text-[17px] py-[7px] px-6 border-[0.5px] border-stone rounded-lg",
@@ -96,7 +95,7 @@ function GroupCheckbox({ checked, indeterminate, onChange }: { checked: boolean;
 export default function App() {
   const {
     card, idx, total, flipped, acipVisible,
-    sessionFilters, sessions, knownCount, familiarCount, reviewCount, totalFiltered, pct,
+    sessionFilters, knownCount, familiarCount, reviewCount, totalFiltered,
     go, goImmediate, rateCard, getCardStatus, handleCardClick,
     toggleAcip, toggleFlip,
     setShuffled, setSessionFilters,
