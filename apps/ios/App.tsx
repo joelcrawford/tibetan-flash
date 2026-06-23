@@ -15,6 +15,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { SESSION_GROUPS } from "../../shared/config/sessionGroups";
 import { useDeck, StorageAdapter } from "../../shared/hooks/useDeck";
 import { Card, CardStatus, StatusMap } from "../../shared/types/types";
 import { useTTS } from "./src/hooks/useTTS";
@@ -26,6 +27,11 @@ const iosStorage: StorageAdapter = {
     catch { return {} as StatusMap; }
   },
   save: (map: StatusMap) => { AsyncStorage.setItem("tibetan-flash-status", JSON.stringify(map)); },
+  loadFilters: async () => {
+    try { const raw = await AsyncStorage.getItem("tibetan-flash-filters"); return raw ? JSON.parse(raw) : []; }
+    catch { return []; }
+  },
+  saveFilters: (filters: string[]) => { AsyncStorage.setItem("tibetan-flash-filters", JSON.stringify(filters)); },
 };
 
 // ── Colours ──────────────────────────────────────────────────────────────────
@@ -133,7 +139,7 @@ export default function App() {
 
   const {
     deck, card, idx, total, flipped, acipVisible,
-    sessionFilters, sessions, knownCount, pct,
+    sessionFilters, sessions, knownCount, familiarCount, reviewCount, totalFiltered, pct,
     goImmediate, rateCard, getCardStatus, handleCardClick,
     toggleAcip, setShuffled, setSessionFilters,
   } = useDeck(GLOSSARY as Card[], iosStorage);
@@ -141,6 +147,29 @@ export default function App() {
   const { speak, speaking } = useTTS();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [contextOpen, setContextOpen] = useState(false);
+  const [expandedGroups, setExpandedGroups] = useState<string[]>([]);
+
+  const groupState = (groupSessions: string[]): "all" | "some" | "none" => {
+    const active = groupSessions.filter((s) => sessionFilters.includes(s)).length;
+    if (active === groupSessions.length) return "all";
+    if (active === 0) return "none";
+    return "some";
+  };
+
+  const toggleGroupSessions = (groupSessions: string[]) => {
+    const state = groupState(groupSessions);
+    setSessionFilters((prev) =>
+      state === "none"
+        ? [...new Set([...prev, ...groupSessions])]
+        : prev.filter((s) => !groupSessions.includes(s))
+    );
+  };
+
+  const toggleGroupExpand = (name: string) => {
+    setExpandedGroups((prev) =>
+      prev.includes(name) ? prev.filter((g) => g !== name) : [...prev, name]
+    );
+  };
 
   useEffect(() => { setShuffled(true); }, [setShuffled]);
 
@@ -360,30 +389,39 @@ export default function App() {
         <View style={[s.sidebar, { backgroundColor: c.sheet, borderLeftColor: c.border }]}>
           <ScrollView showsVerticalScrollIndicator={false}>
 
-            <Text style={[s.sidebarLabel, { color: c.faint }]}>Session</Text>
-            {sessions.map((sess) => {
-              const isAll = sess === "All";
-              const active = isAll ? sessionFilters.length === 0 : sessionFilters.includes(sess);
+            <Text style={[s.sidebarLabel, { color: c.faint }]}>Sessions</Text>
+            {Object.entries(SESSION_GROUPS).map(([groupName, groupSessions]) => {
+              const state = groupState(groupSessions);
+              const expanded = expandedGroups.includes(groupName);
+              const checkIcon = state === "all" ? "checkbox" : state === "some" ? "remove-circle" : "square-outline";
+              const checkColor = state === "none" ? c.border : c.accent;
               return (
-                <TouchableOpacity
-                  key={sess}
-                  style={[
-                    s.btn,
-                    s.sessionBtn,
-                    { backgroundColor: active ? c.raised : c.card, borderColor: c.border },
-                  ]}
-                  onPress={() => {
-                    if (isAll) {
-                      setSessionFilters([]);
-                    } else {
-                      setSessionFilters((prev) =>
-                        prev.includes(sess) ? prev.filter((x) => x !== sess) : [...prev, sess]
-                      );
-                    }
-                  }}
-                >
-                  <Text style={[s.btnText, { color: c.ink }]}>{sess}</Text>
-                </TouchableOpacity>
+                <View key={groupName} style={{ marginBottom: 4 }}>
+                  <View style={[s.groupRow, { borderColor: c.border }]}>
+                    <TouchableOpacity onPress={() => toggleGroupSessions(groupSessions)} hitSlop={8}>
+                      <Ionicons name={checkIcon as any} size={18} color={checkColor} />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ flex: 1, flexDirection: "row", alignItems: "center", justifyContent: "space-between" }} onPress={() => toggleGroupExpand(groupName)}>
+                      <Text style={[s.groupLabel, { color: c.ink }]}>{groupName}</Text>
+                      <Ionicons name={expanded ? "chevron-down" : "chevron-forward"} size={12} color={c.faint} />
+                    </TouchableOpacity>
+                  </View>
+                  {expanded && groupSessions.map((sess) => {
+                    const active = sessionFilters.includes(sess);
+                    return (
+                      <TouchableOpacity
+                        key={sess}
+                        style={[s.subSessionRow]}
+                        onPress={() => setSessionFilters((prev) =>
+                          prev.includes(sess) ? prev.filter((x) => x !== sess) : [...prev, sess]
+                        )}
+                      >
+                        <Ionicons name={active ? "checkbox-outline" : "square-outline"} size={15} color={active ? c.accent : c.border} />
+                        <Text style={[s.subSessionText, { color: c.inkMid }]}>{sess}</Text>
+                      </TouchableOpacity>
+                    );
+                  })}
+                </View>
               );
             })}
 
@@ -396,13 +434,19 @@ export default function App() {
             </TouchableOpacity>
 
             <Text style={[s.sidebarLabel, { color: c.faint, marginTop: 24 }]}>Progress</Text>
-            {total > 0 && (
+            {totalFiltered > 0 && (
               <>
-                <View style={[s.progressWrap, { backgroundColor: c.border }]}>
-                  <View style={[s.progressBar, { width: `${pct}%` as `${number}%`, backgroundColor: c.accent }]} />
+                <View style={s.progressWrap}>
+                  <View style={{ flex: knownCount,    backgroundColor: "#639922" }} />
+                  <View style={{ flex: familiarCount, backgroundColor: "#d97706" }} />
+                  <View style={{ flex: reviewCount,   backgroundColor: c.border }} />
                 </View>
                 <Text style={[s.progressLabel, { color: c.muted }]}>
-                  {knownCount} known · {total - knownCount} remaining
+                  <Text style={{ color: "#4a7a19" }}>{knownCount} known</Text>
+                  {" · "}
+                  <Text style={{ color: "#b45309" }}>{familiarCount} familiar</Text>
+                  {" · "}
+                  {reviewCount} review
                 </Text>
               </>
             )}
@@ -507,7 +551,10 @@ const s = StyleSheet.create({
   btn:                { borderWidth: 0.5, borderRadius: 8, paddingHorizontal: 14, paddingVertical: 5 },
   sessionBtn:         { alignSelf: "stretch", marginBottom: 6 },
   btnText:            { fontSize: 13 },
-  progressWrap:       { height: 2, borderRadius: 1, overflow: "hidden", marginBottom: 8 },
-  progressBar:        { height: "100%", borderRadius: 1 },
+  progressWrap:       { height: 4, borderRadius: 2, overflow: "hidden", marginBottom: 8, flexDirection: "row" },
   progressLabel:      { fontSize: 13, fontStyle: "italic" },
+  groupRow:           { flexDirection: "row", alignItems: "center", gap: 10, paddingVertical: 6 },
+  groupLabel:         { fontSize: 13, fontFamily: "Georgia", fontWeight: "500", flex: 1 },
+  subSessionRow:      { flexDirection: "row", alignItems: "center", gap: 8, paddingVertical: 4, paddingLeft: 28 },
+  subSessionText:     { fontSize: 12, lineHeight: 16, flex: 1 },
 });

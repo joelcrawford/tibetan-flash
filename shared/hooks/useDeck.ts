@@ -4,6 +4,8 @@ import { Card, KnownMap, CardStatus, StatusMap } from "../types/types";
 export interface StorageAdapter {
   load: () => Promise<StatusMap>;
   save: (map: StatusMap) => void;
+  loadFilters?: () => Promise<string[]>;
+  saveFilters?: (filters: string[]) => void;
 }
 
 function shuffle<T>(arr: T[]): T[] {
@@ -28,8 +30,12 @@ export function useDeck(allCards: Card[], storage?: StorageAdapter) {
 
   useEffect(() => {
     if (!storage) { setStorageLoaded(true); return; }
-    storage.load().then((map) => {
+    Promise.all([
+      storage.load(),
+      storage.loadFilters ? storage.loadFilters() : Promise.resolve(null),
+    ]).then(([map, filters]) => {
       setStatusMap(map);
+      if (filters && filters.length > 0) setSessionFilters(filters);
       setStorageLoaded(true);
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -40,6 +46,12 @@ export function useDeck(allCards: Card[], storage?: StorageAdapter) {
     storage.save(statusMap);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [statusMap, storageLoaded]);
+
+  useEffect(() => {
+    if (!storage?.saveFilters || !storageLoaded) return;
+    storage.saveFilters(sessionFilters);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sessionFilters, storageLoaded]);
 
   const sessions = useMemo<string[]>(() => {
     const s = new Set(allCards.map((c) => c.session).filter(Boolean));
@@ -66,8 +78,15 @@ export function useDeck(allCards: Card[], storage?: StorageAdapter) {
 
   const card = deck[idx] ?? null;
   const total = deck.length;
-  const knownCount = Object.values(statusMap).filter((s) => s === "known").length;
   const pct = total > 0 ? Math.round((idx / total) * 100) : 0;
+
+  const filteredAll = sessionFilters.length === 0
+    ? allCards
+    : allCards.filter((c) => sessionFilters.includes(c.session));
+  const totalFiltered = filteredAll.length;
+  const knownCount    = filteredAll.filter((c) => statusMap[c.acip] === "known").length;
+  const familiarCount = filteredAll.filter((c) => statusMap[c.acip] === "familiar").length;
+  const reviewCount   = totalFiltered - knownCount - familiarCount;
 
   const go = useCallback((dir: number): void => {
     setFlipped(false);
@@ -115,7 +134,7 @@ export function useDeck(allCards: Card[], storage?: StorageAdapter) {
 
   return {
     deck, card, idx, total, flipped, acipVisible, shuffled,
-    sessionFilters, showCtx, sessions, knownCount, pct,
+    sessionFilters, showCtx, sessions, knownCount, familiarCount, reviewCount, totalFiltered, pct,
     statusMap,
     go, goImmediate, markKnown, markStatus, rateCard, getCardStatus,
     handleCardClick, handleAcipClick,

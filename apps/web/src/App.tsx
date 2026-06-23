@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { SESSION_GROUPS } from "../../../shared/config/sessionGroups";
 import FLASHCARDS from "../../../shared/glossary/glossary.json";
 import { Card, CardStatus, StatusMap } from "../../../shared/types/types";
 import { useDeck, StorageAdapter } from "../../../shared/hooks/useDeck";
@@ -9,6 +10,11 @@ const webStorage: StorageAdapter = {
     catch { return Promise.resolve({} as StatusMap); }
   },
   save: (map: StatusMap) => localStorage.setItem("tibetan-flash-status", JSON.stringify(map)),
+  loadFilters: () => {
+    try { return Promise.resolve(JSON.parse(localStorage.getItem("tibetan-flash-filters") ?? "[]")); }
+    catch { return Promise.resolve([]); }
+  },
+  saveFilters: (filters: string[]) => localStorage.setItem("tibetan-flash-filters", JSON.stringify(filters)),
 };
 import { IoSettingsOutline, IoCloseOutline } from "react-icons/io5";
 import { useTTS } from "./hooks/useTTS";
@@ -69,12 +75,28 @@ function HighlightedTibetan({ text, term }: { text: string; term: string }) {
   );
 }
 
+// ── GroupCheckbox — handles indeterminate state via ref ──────────────────────
+
+function GroupCheckbox({ checked, indeterminate, onChange }: { checked: boolean; indeterminate: boolean; onChange: () => void }) {
+  const ref = useRef<HTMLInputElement>(null);
+  useEffect(() => { if (ref.current) ref.current.indeterminate = indeterminate; }, [indeterminate]);
+  return (
+    <input
+      ref={ref}
+      type="checkbox"
+      checked={checked}
+      onChange={onChange}
+      className="w-3.5 h-3.5 shrink-0 accent-ink cursor-pointer"
+    />
+  );
+}
+
 // ── Component ────────────────────────────────────────────────────────────────
 
 export default function App() {
   const {
     card, idx, total, flipped, acipVisible,
-    sessionFilters, sessions, knownCount, pct,
+    sessionFilters, sessions, knownCount, familiarCount, reviewCount, totalFiltered, pct,
     go, goImmediate, rateCard, getCardStatus, handleCardClick,
     toggleAcip, toggleFlip,
     setShuffled, setSessionFilters,
@@ -89,6 +111,31 @@ export default function App() {
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [contextOpen, setContextOpen] = useState(false);
+  const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
+
+  const groupState = (groupSessions: string[]): "all" | "some" | "none" => {
+    const active = groupSessions.filter((s) => sessionFilters.includes(s)).length;
+    if (active === groupSessions.length) return "all";
+    if (active === 0) return "none";
+    return "some";
+  };
+
+  const toggleGroupSessions = (groupSessions: string[]) => {
+    const state = groupState(groupSessions);
+    setSessionFilters((prev) =>
+      state === "none"
+        ? [...new Set([...prev, ...groupSessions])]
+        : prev.filter((s) => !groupSessions.includes(s))
+    );
+  };
+
+  const toggleGroupExpand = (name: string) => {
+    setExpandedGroups((prev) => {
+      const next = new Set(prev);
+      next.has(name) ? next.delete(name) : next.add(name);
+      return next;
+    });
+  };
 
   useEffect(() => { setShuffled(true); }, [setShuffled]);
 
@@ -303,27 +350,47 @@ export default function App() {
         </div>
 
         <div className="flex flex-col gap-3">
-          <div className="text-[11px] tracking-[0.1em] uppercase text-ink-faint font-serif">Session</div>
-          <div className="flex flex-col gap-1.5">
-            {sessions.map((s) => {
-              const isAll = s === "All";
-              const active = isAll ? sessionFilters.length === 0 : sessionFilters.includes(s);
+          <div className="text-[11px] tracking-[0.1em] uppercase text-ink-faint font-serif">Sessions</div>
+          <div className="flex flex-col gap-2">
+            {Object.entries(SESSION_GROUPS).map(([groupName, groupSessions]) => {
+              const state = groupState(groupSessions);
+              const expanded = expandedGroups.has(groupName);
               return (
-                <button
-                  key={s}
-                  className={`${btnCls} text-left${active ? ` ${btnActiveCls}` : ""}`}
-                  onClick={() => {
-                    if (isAll) {
-                      setSessionFilters([]);
-                    } else {
-                      setSessionFilters((prev) =>
-                        prev.includes(s) ? prev.filter((x) => x !== s) : [...prev, s]
-                      );
-                    }
-                  }}
-                >
-                  {active ? <span className="mr-1.5 text-[10px]">●</span> : <span className="mr-1.5 text-[10px] opacity-0">●</span>}{s}
-                </button>
+                <div key={groupName}>
+                  <div className="flex items-center gap-2.5 py-1">
+                    <GroupCheckbox
+                      checked={state === "all"}
+                      indeterminate={state === "some"}
+                      onChange={() => toggleGroupSessions(groupSessions)}
+                    />
+                    <button
+                      className="flex-1 flex items-center justify-between text-[13px] font-serif font-medium text-ink dark:text-ink-lt cursor-pointer"
+                      onClick={() => toggleGroupExpand(groupName)}
+                    >
+                      {groupName}
+                      <span className="text-[9px] text-ink-faint ml-2">{expanded ? "▾" : "▶"}</span>
+                    </button>
+                  </div>
+                  {expanded && (
+                    <div className="ml-6 mt-1 flex flex-col gap-1">
+                      {groupSessions.map((sess) => (
+                        <label key={sess} className="flex items-center gap-2 cursor-pointer py-0.5">
+                          <input
+                            type="checkbox"
+                            checked={sessionFilters.includes(sess)}
+                            onChange={() =>
+                              setSessionFilters((prev) =>
+                                prev.includes(sess) ? prev.filter((x) => x !== sess) : [...prev, sess]
+                              )
+                            }
+                            className="w-3 h-3 shrink-0 accent-ink cursor-pointer"
+                          />
+                          <span className="text-[12px] text-ink-muted font-serif leading-[1.4] dark:text-ink-faint">{sess}</span>
+                        </label>
+                      ))}
+                    </div>
+                  )}
+                </div>
               );
             })}
           </div>
@@ -331,16 +398,19 @@ export default function App() {
 
         <div className="flex flex-col gap-3">
           <div className="text-[11px] tracking-[0.1em] uppercase text-ink-faint font-serif">Progress</div>
-          {total > 0 && (
+          {totalFiltered > 0 && (
             <>
-              <div className="h-[3px] bg-stone rounded-sm overflow-hidden dark:bg-bdr-dk">
-                <div
-                  className="h-full bg-ink-muted rounded-sm transition-[width] duration-[400ms] ease-out"
-                  style={{ width: `${pct}%` }}
-                />
+              <div className="flex h-1.25 rounded-sm overflow-hidden gap-px">
+                <div className="bg-[#639922] transition-[width] duration-400 ease-out" style={{ width: `${(knownCount / totalFiltered) * 100}%` }} />
+                <div className="bg-amber-400 transition-[width] duration-400 ease-out" style={{ width: `${(familiarCount / totalFiltered) * 100}%` }} />
+                <div className="bg-stone dark:bg-bdr-dk transition-[width] duration-400 ease-out" style={{ width: `${(reviewCount / totalFiltered) * 100}%` }} />
               </div>
-              <p className="text-[13px] text-ink-muted italic tracking-[0.01em]">
-                {knownCount} known · {total - knownCount} remaining
+              <p className="text-[12px] text-ink-muted italic tracking-[0.01em] leading-[1.6]">
+                <span className="text-[#3b6d11] dark:text-[#7ab830]">{knownCount} known</span>
+                {" · "}
+                <span className="text-amber-600">{familiarCount} familiar</span>
+                {" · "}
+                {reviewCount} review
               </p>
             </>
           )}
