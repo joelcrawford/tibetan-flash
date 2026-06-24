@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useMemo } from "react";
+import { useState, useCallback, useEffect, useMemo, useRef } from "react";
 import { Card, KnownMap, CardStatus, StatusMap } from "../types/types";
 
 export interface StorageAdapter {
@@ -54,6 +54,8 @@ export function useDeck(allCards: Card[], storage?: StorageAdapter) {
   const [storageLoaded, setStorageLoaded] = useState(false);
   const [shuffled, setShuffled] = useState(false);
   const [passCount, setPassCount] = useState(0);
+  const pinnedAcipRef = useRef<string | null>(null);
+  const prevPassCount = useRef(0);
   const [sessionFilters, setSessionFilters] = useState<string[]>(["01 Ben's Text Foundation"]);
   const [showCtx, setShowCtx] = useState(true);
 
@@ -97,7 +99,22 @@ export function useDeck(allCards: Card[], storage?: StorageAdapter) {
     const familiarCards = filtered.filter((c) => statusMap[c.acip] === "familiar");
     const knownCards   = filtered.filter((c) => statusMap[c.acip] === "known");
 
-    setDeck(buildDeck(reviewCards, familiarCards, knownCards, shuffled));
+    let newDeck = buildDeck(reviewCards, familiarCards, knownCards, shuffled);
+
+    // On pass wrap: pin the previous first card at position 0 to hide the reshuffle seam
+    const isWrap = passCount > prevPassCount.current;
+    prevPassCount.current = passCount;
+
+    if (isWrap && pinnedAcipRef.current) {
+      const pinnedStatus = statusMap[pinnedAcipRef.current] ?? "review";
+      if (pinnedStatus === "review") {
+        const i = newDeck.findIndex((c) => c.acip === pinnedAcipRef.current);
+        if (i > 0) newDeck = [newDeck[i], ...newDeck.filter((_, j) => j !== i)];
+      }
+    }
+
+    pinnedAcipRef.current = newDeck[0]?.acip ?? null;
+    setDeck(newDeck);
     setIdx(0);
     setFlipped(false);
     setAcipVisible(false);
@@ -169,6 +186,17 @@ export function useDeck(allCards: Card[], storage?: StorageAdapter) {
   const toggleAcip = useCallback(() => setAcipVisible((v) => !v), []);
   const toggleFlip = useCallback(() => { setFlipped((f) => !f); }, []);
 
+  const resetSession = useCallback((sessionName: string): void => {
+    const acips = new Set(
+      allCards.filter((c) => c.session === sessionName).map((c) => c.acip)
+    );
+    setStatusMap((m) => {
+      const next = { ...m };
+      acips.forEach((acip) => delete next[acip]);
+      return next;
+    });
+  }, [allCards]);
+
   return {
     deck, card, idx, total, flipped, acipVisible, shuffled,
     sessionFilters, showCtx, sessions, knownCount, familiarCount, reviewCount, totalFiltered, pct,
@@ -176,6 +204,7 @@ export function useDeck(allCards: Card[], storage?: StorageAdapter) {
     go, goImmediate, markKnown, markStatus, rateCard, getCardStatus,
     handleCardClick, handleAcipClick,
     toggleAcip, toggleFlip,
+    resetSession,
     setShuffled, setSessionFilters, setShowCtx,
   };
 }

@@ -142,13 +142,20 @@ export default function App() {
     deck, card, idx, total, flipped, acipVisible,
     sessionFilters, sessions, knownCount, familiarCount, reviewCount, totalFiltered, pct,
     goImmediate, rateCard, getCardStatus, handleCardClick,
-    toggleAcip, setShuffled, setSessionFilters,
+    toggleAcip, resetSession, setShuffled, setSessionFilters,
   } = useDeck(GLOSSARY as Card[], iosStorage);
 
   const { speak, speaking } = useTTS();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [contextOpen, setContextOpen] = useState(false);
   const [expandedGroups, setExpandedGroups] = useState<string[]>([]);
+  const [pendingReset, setPendingReset] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!pendingReset) return;
+    const t = setTimeout(() => setPendingReset(null), 3000);
+    return () => clearTimeout(t);
+  }, [pendingReset]);
 
   const groupState = (groupSessions: string[]): "all" | "some" | "none" => {
     const active = groupSessions.filter((s) => sessionFilters.includes(s)).length;
@@ -426,16 +433,23 @@ export default function App() {
                   {expanded && groupSessions.map((sess) => {
                     const active = sessionFilters.includes(sess);
                     return (
-                      <TouchableOpacity
-                        key={sess}
-                        style={[s.subSessionRow]}
-                        onPress={() => setSessionFilters((prev) =>
+                      <View key={sess} style={s.subSessionRow}>
+                        <TouchableOpacity onPress={() => setSessionFilters((prev) =>
                           prev.includes(sess) ? prev.filter((x) => x !== sess) : [...prev, sess]
-                        )}
-                      >
-                        <Ionicons name={active ? "checkbox-outline" : "square-outline"} size={15} color={active ? c.accent : c.border} />
-                        <Text style={[s.subSessionText, { color: c.inkMid }]}>{sess}</Text>
-                      </TouchableOpacity>
+                        )} style={{ flexDirection: "row", alignItems: "center", gap: 8, flex: 1 }}>
+                          <Ionicons name={active ? "checkbox-outline" : "square-outline"} size={15} color={active ? c.accent : c.border} />
+                          <Text style={[s.subSessionText, { color: c.inkMid }]}>{sess}</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          hitSlop={10}
+                          onPress={() => {
+                            if (pendingReset === sess) { resetSession(sess); setPendingReset(null); }
+                            else setPendingReset(sess);
+                          }}
+                        >
+                          <Ionicons name="refresh-outline" size={13} color={pendingReset === sess ? "#f87171" : c.border} />
+                        </TouchableOpacity>
+                      </View>
                     );
                   })}
                 </View>

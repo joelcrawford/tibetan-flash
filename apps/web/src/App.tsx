@@ -98,6 +98,7 @@ export default function App() {
     sessionFilters, knownCount, familiarCount, reviewCount, totalFiltered,
     go, goImmediate, rateCard, getCardStatus, handleCardClick,
     toggleAcip, toggleFlip,
+    resetSession,
     setShuffled, setSessionFilters,
   } = useDeck(FLASHCARDS as Card[], webStorage);
 
@@ -111,6 +112,13 @@ export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [contextOpen, setContextOpen] = useState(false);
   const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
+  const [pendingReset, setPendingReset] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!pendingReset) return;
+    const t = setTimeout(() => setPendingReset(null), 3000);
+    return () => clearTimeout(t);
+  }, [pendingReset]);
 
   const groupState = (groupSessions: string[]): "all" | "some" | "none" => {
     const active = groupSessions.filter((s) => sessionFilters.includes(s)).length;
@@ -382,7 +390,17 @@ export default function App() {
                             }
                             className="w-3 h-3 shrink-0 accent-ink cursor-pointer"
                           />
-                          <span className="text-[13px] text-ink-muted font-serif leading-[1.4] dark:text-ink-faint">{sess}</span>
+                          <span className="text-[13px] text-ink-muted font-serif leading-[1.4] dark:text-ink-faint flex-1">{sess}</span>
+                          <button
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              if (pendingReset === sess) { resetSession(sess); setPendingReset(null); }
+                              else setPendingReset(sess);
+                            }}
+                            className={`text-[12px] transition-colors duration-150 px-1 ${pendingReset === sess ? "text-red-400" : "text-ink-faint/30 hover:text-ink-faint"}`}
+                            title={pendingReset === sess ? "Tap again to confirm reset" : "Reset session progress"}
+                          >↺</button>
                         </label>
                       ))}
                     </div>
