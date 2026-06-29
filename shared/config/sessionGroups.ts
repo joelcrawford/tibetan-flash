@@ -1,8 +1,9 @@
 export const SESSION_GROUPS: Record<string, string[]> = {
   "Class Sessions": [
-    "00 Numbers",
+    "00 Alphabet",
     "01 Ben's Text Foundation",
     "02 Case Particles",
+    "03 Numbers",
   ],
   "Extended Unverified": [
     "Compound Words & Phrases",

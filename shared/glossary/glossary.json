@@ -1,11 +1,595 @@
 [
   {
+    "tibetan": "ཨི་",
+    "acip": "I",
+    "meaning": "Vowel mark: 'ee' (kiku)",
+    "notes": "Appears above the consonant. Example: KI (ཀི་) = 'kee'. The only vowel that goes below is U.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ཨུ་",
+    "acip": "U",
+    "meaning": "Vowel mark: 'oo' (shabkyu)",
+    "notes": "The only vowel mark that appears below the consonant. Example: KU (ཀུ་) = 'koo'.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ཨེ་",
+    "acip": "E",
+    "meaning": "Vowel mark: 'ey' (drengbu)",
+    "notes": "Appears above the consonant. Example: KE (ཀེ་) = 'key'.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ཨོ་",
+    "acip": "O",
+    "meaning": "Vowel mark: 'o' (naro)",
+    "notes": "Appears above the consonant. Example: KO (ཀོ་) = 'ko'.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ཀ་",
+    "acip": "KA",
+    "meaning": "Row 1 Guttural, Col 1 Unaspirated, Low Tone",
+    "notes": "Pronounced 'ka'. No puff of air. In Lhasa dialect, KA (Col 1) and GA (Col 3) are pronounced identically — both are plain 'ka.'",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ཁ་",
+    "acip": "KHA",
+    "meaning": "Row 1 Guttural, Col 2 Aspirated, High Tone",
+    "notes": "Pronounced 'ka'. With a puff of air — like the 'k' in 'kick.' Aspiration and tone are the only distinctions between KA (Col 1, Low Tone) and KHA (Col 2, High Tone).",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ག་",
+    "acip": "GA",
+    "meaning": "Row 1 Guttural, Col 3 Voiced, Low Tone",
+    "notes": "Pronounced 'ka' (NOT 'ga'). In Lhasa dialect, all Col 3 Voiced letters merge with their Col 1 Unaspirated counterparts: GA=ka, JA=cha, DA=ta, BA=pa, DZA=tsa. The course marks 'ga' with a red X.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ང་",
+    "acip": "NGA",
+    "meaning": "Row 1 Guttural, Col 4 Nasal, Low Tone",
+    "notes": "Pronounced 'nga'. The guttural nasal — like the '-ng' at the end of 'ring.' Don't use the front of your tongue; the sound comes from the back of the throat.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ཅ་",
+    "acip": "CA",
+    "meaning": "Row 2 Palatal, Col 1 Unaspirated, Low Tone",
+    "notes": "Pronounced 'cha'. Unaspirated palatal affricate. In Lhasa dialect, CA (Col 1) and JA (Col 3) are pronounced identically.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ཆ་",
+    "acip": "CHA",
+    "meaning": "Row 2 Palatal, Col 2 Aspirated, High Tone",
+    "notes": "Pronounced 'cha'. Aspirated — with a puff of air.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ཇ་",
+    "acip": "JA",
+    "meaning": "Row 2 Palatal, Col 3 Voiced, Low Tone",
+    "notes": "Pronounced 'cha' (NOT 'ja'). In Lhasa dialect, Voiced (Col 3) letters merge with their Unaspirated (Col 1) counterparts. The course marks 'ja' with a red X.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ཉ་",
+    "acip": "NYA",
+    "meaning": "Row 2 Palatal, Col 4 Nasal, Low Tone",
+    "notes": "Pronounced 'nya'. Palatal nasal.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ཏ་",
+    "acip": "TA",
+    "meaning": "Row 3 Dental, Col 1 Unaspirated, Low Tone",
+    "notes": "Pronounced 'ta'. Unaspirated dental stop. In Lhasa dialect, TA (Col 1) and DA (Col 3) are pronounced identically.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ཐ་",
+    "acip": "THA",
+    "meaning": "Row 3 Dental, Col 2 Aspirated, High Tone",
+    "notes": "Pronounced 'ta'. Aspirated — with a puff of air.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ད་",
+    "acip": "DA",
+    "meaning": "Row 3 Dental, Col 3 Voiced, Low Tone",
+    "notes": "Pronounced 'ta' (NOT 'da'). In Lhasa dialect, Voiced (Col 3) letters merge with their Unaspirated (Col 1) counterparts. The course marks 'da' with a red X.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ན་",
+    "acip": "NA",
+    "meaning": "Row 3 Dental, Col 4 Nasal, Low Tone",
+    "notes": "Pronounced 'na'. Dental nasal.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "པ་",
+    "acip": "PA",
+    "meaning": "Row 4 Labial, Col 1 Unaspirated, Low Tone",
+    "notes": "Pronounced 'pa'. Unaspirated labial stop. In Lhasa dialect, PA (Col 1) and BA (Col 3) are pronounced identically.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ཕ་",
+    "acip": "PHA",
+    "meaning": "Row 4 Labial, Col 2 Aspirated, High Tone",
+    "notes": "Pronounced 'pa'. Aspirated — with a puff of air.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "བ་",
+    "acip": "BA",
+    "meaning": "Row 4 Labial, Col 3 Voiced, Low Tone",
+    "notes": "Pronounced 'pa' (NOT 'ba'). In Lhasa dialect, Voiced (Col 3) letters merge with their Unaspirated (Col 1) counterparts. The course marks 'ba' with a red X.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "མ་",
+    "acip": "MA",
+    "meaning": "Row 4 Labial, Col 4 Nasal, Low Tone",
+    "notes": "Pronounced 'ma'. Labial nasal.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ཙ་",
+    "acip": "TZA",
+    "meaning": "Row 5, Col 1 Unaspirated, Low Tone",
+    "notes": "Pronounced 'tsa'. Note: this course uses TZA for the unaspirated (Col 1) and TSA for the aspirated (Col 2) — the reverse of standard ACIP convention.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ཚ་",
+    "acip": "TSA",
+    "meaning": "Row 5, Col 2 Aspirated, High Tone",
+    "notes": "Pronounced 'tsa'. Aspirated — with a puff of air. Note: this course uses TSA for the aspirated (Col 2) and TZA for the unaspirated (Col 1) — the reverse of standard ACIP convention.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ཛ་",
+    "acip": "DZA",
+    "meaning": "Row 5, Col 3 Voiced, Low Tone",
+    "notes": "Pronounced 'tsa' (NOT 'dza'). Voiced (Col 3) merges with Unaspirated (Col 1) in Lhasa dialect — same pattern as GA=ka, JA=cha, DA=ta, BA=pa.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ཝ་",
+    "acip": "WA",
+    "meaning": "Row 5, Col 4 Irregular",
+    "notes": "Pronounced 'wa'. Placed at Row 5 Col 4 in the grid but does not follow the nasal pattern of the other Col 4 letters. Functions as a semivowel.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ཞ་",
+    "acip": "ZHA",
+    "meaning": "Row 6 Low Tone, Col 1",
+    "notes": "Pronounced 'sha', Low Tone. Easy to confuse with SHA (ཤ་, Row 7), which is also 'sha' but Mid Tone. All Row 6 letters (ZHA, ZA, 'A, YA) are Low Tone.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ཟ་",
+    "acip": "ZA",
+    "meaning": "Row 6 Low Tone, Col 2",
+    "notes": "Pronounced 'sa', Low Tone. Easy to confuse with SA (ས་, Row 7), which is also 'sa' but Mid Tone.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "འ་",
+    "acip": "'A",
+    "meaning": "Row 6 Low Tone, Col 3",
+    "notes": "Pronounced 'ah', Low Tone. Easy to confuse with AA (ཨ་, Row 8), which is also 'ah' but Mid Tone. Also functions as a prefix and superscript in many words.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ཡ་",
+    "acip": "YA",
+    "meaning": "Row 6 Low Tone, Col 4",
+    "notes": "Pronounced 'ya', Low Tone.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ར་",
+    "acip": "RA",
+    "meaning": "Row 7 Mid Tone, Col 1",
+    "notes": "Pronounced 'ra', Mid Tone. A rolled 'r' like Spanish — not the hard English 'r.' All Row 7 letters (RA, LA, SHA, SA) are Mid Tone.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ལ་",
+    "acip": "LA",
+    "meaning": "Row 7 Mid Tone, Col 2",
+    "notes": "Pronounced 'la', Mid Tone.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ཤ་",
+    "acip": "SHA",
+    "meaning": "Row 7 Mid Tone, Col 3",
+    "notes": "Pronounced 'sha', Mid Tone. Easy to confuse with ZHA (ཞ་, Row 6), which is also 'sha' but Low Tone.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ས་",
+    "acip": "SA",
+    "meaning": "Row 7 Mid Tone, Col 4",
+    "notes": "Pronounced 'sa', Mid Tone. Easy to confuse with ZA (ཟ་, Row 6), which is also 'sa' but Low Tone.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ཧ་",
+    "acip": "HA",
+    "meaning": "Row 8, Col 1",
+    "notes": "Pronounced 'ha'. Row 8 has only two letters: HA and AA.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ཨ་",
+    "acip": "AA",
+    "meaning": "Row 8, Col 2, Mid Tone",
+    "notes": "Pronounced 'ah'. The vowel carrier. Easy to confuse with 'A (འ་, Row 6), which is also 'ah' but Low Tone.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ར་འ་ས་",
+    "acip": "",
+    "prompt": "Head letter on a First Column Letter",
+    "meaning": "No change in pronunciation",
+    "notes": "Spelling changes the meaning of the word, but the sound stays the same.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ར་འ་ས་",
+    "acip": "",
+    "prompt": "Head letter on a Second Column Letter",
+    "meaning": "Doesn't happen",
+    "notes": "Head letters will not appear on a second column letter.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ར་འ་ས་",
+    "acip": "",
+    "prompt": "Head letter on a Third Column Letter",
+    "meaning": "Thicker Voiced English Sound",
+    "notes": "GA='ga', JA='ja', DA='da', BA='ba', DZA='dza'.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ར་འ་ས་",
+    "acip": "",
+    "prompt": "Head letter on a Fourth Column Letter",
+    "meaning": "Stronger and higher in tone",
+    "notes": "In Tibetan, tone changes the word itself — not just emphasis as in English.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ལྷ་",
+    "acip": "LHA",
+    "meaning": "'hla'",
+    "notes": "Strange exception — 'There is no Lhasa, only Hlasa.' Head letter HA on LA flips to make an 'hla' sound.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ལྡ་",
+    "acip": "LDA",
+    "meaning": "'nda'",
+    "notes": "Strange exception — head letter DA on LA makes 'nda', not 'la'.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ར་",
+    "acip": "",
+    "prompt": "Subjoined RA on a first column letter",
+    "meaning": "Retroflex, 'tra', Unaspirated",
+    "notes": "The RA curls the tongue — tongue bends backwards to make the retroflex sound.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ར་",
+    "acip": "",
+    "prompt": "Subjoined RA on a second column letter",
+    "meaning": "Retroflex, 'tra', Aspirated",
+    "notes": "Column II letters stay aspirated — with a puff of air.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ར་",
+    "acip": "",
+    "prompt": "Subjoined RA on a third column letter",
+    "meaning": "Retroflex, 'tra', Voiced",
+    "notes": "Column III letters stay voiced.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "མྲ་",
+    "acip": "MRA",
+    "meaning": "'ma'",
+    "notes": "Frustrating exception — subjoined RA on MA does not follow the retroflex rule.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "སྲ་",
+    "acip": "SRA",
+    "meaning": "'sa'",
+    "notes": "Frustrating exception — subjoined RA on SA does not follow the retroflex rule.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ལ་",
+    "acip": "",
+    "prompt": "Subjoined LA",
+    "meaning": "High Tone, 'la'",
+    "notes": "All combinations with subjoined LA make the same sound: high tone 'la'.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ཟླ་",
+    "acip": "ZLA",
+    "meaning": "'nda'",
+    "notes": "Strange exception — subjoined LA on ZA makes 'nda', not 'la'.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ཝ་",
+    "acip": "_VA",
+    "prompt": "Subjoined WA",
+    "meaning": "No Change to Pronunciation",
+    "notes": "When WA is subjoined it makes an odd little shape but does not change the pronunciation of the letter at all.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "འ་",
+    "acip": "",
+    "prompt": "Subjoined a-chung ('A)",
+    "meaning": "Makes a longer vowel sound. Relates to Sanskrit",
+    "notes": "Also called a'chung — 'little a'. Gets small and goes at the bottom. Only appears in Sanskrit words to indicate the long vowel sound.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ཡ་",
+    "acip": "",
+    "prompt": "Subjoined YA on a first row letter",
+    "meaning": "Adds a \"y\" sound, \"kya\"",
+    "notes": "All three guttural letters produce 'kya': ཀྱ་ (KYA), ཁྱ་ (KHYA), གྱ་ (GYA) — all pronounced 'kya'.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ཡ་",
+    "acip": "",
+    "prompt": "Subjoined YA on a fourth row letter",
+    "meaning": "Jumps up and sounds like a second row letter",
+    "notes": "Labial row shifts to palatal sounds: ཕྱ་ (PHYA) = 'cha', བྱ་ (BYA) = 'cha', མྱ་ (MYA) = 'nya'.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ར་",
+    "acip": "RA",
+    "meaning": "Suffix: '-r' sound",
+    "notes": "e.g., ལར་ = 'lar'.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "མ་",
+    "acip": "MA",
+    "meaning": "Suffix: '-m' sound",
+    "notes": "e.g., ལམ་ = 'lam', ལོམ་ = 'lom'.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "བ་",
+    "acip": "BA",
+    "meaning": "Suffix: '-p' sound",
+    "notes": "Sounds like 'p', not 'b'. e.g., ལབ་ = 'lap', ལེབ་ = 'lep'.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ང་",
+    "acip": "NGA",
+    "meaning": "Suffix: '-ng' sound",
+    "notes": "e.g., ལིང་ = 'ling', རིང་ = 'ring'.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ག་",
+    "acip": "GA",
+    "meaning": "Glottal Stop",
+    "notes": "A final 'k' in Tibetan is more like a stop in the back of the throat — like the 'k' in 'back', 'look', 'truck'. e.g., ལག་ = 'lak', རིག་ = 'rik', ལུག་ = 'luk'.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ད་",
+    "acip": "DA",
+    "meaning": "Vowel Changes and Glottal Stop",
+    "notes": "Two effects in Central Dialect: 1) Vowel umlaut — inherent 'ah'→'ä' (sounds like 'ey'); shabkyu 'u'→'ü'; naro 'o'→'ö'; kiku (i) and drengbu (e) don't change. 2) DA shortens the vowel with a glottal stop. e.g., མེ་ 'me' → མེད་ 'me[stop]'.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ས་",
+    "acip": "SA",
+    "meaning": "Vowel Changes and Lengthened",
+    "notes": "Two effects in Central Dialect: 1) Vowel umlaut — inherent 'ah'→'ä' (sounds like 'ey'); shabkyu 'u'→'ü'; naro 'o'→'ö'; kiku (i) and drengbu (e) don't change. 2) SA lengthens the vowel. e.g., ལ་ 'la' → ལས་ 'lay'; ཆོ་ 'cho' → ཆོས་ 'chö' (lengthened).",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ན་",
+    "acip": "NA",
+    "meaning": "Vowel Changes and 'N' sound pronounced",
+    "notes": "Two effects: 1) Vowel umlaut — inherent 'ah'→'ä'; shabkyu 'u'→'ü'; naro 'o'→'ö'. 2) NA is fully pronounced. e.g., ཏོ་ 'to' → ཏོན་ 'tun'.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ལ་",
+    "acip": "LA",
+    "meaning": "Vowel Changes and 'L' sound pronounced",
+    "notes": "Two effects: 1) Vowel umlaut — inherent 'ah'→'ä'; shabkyu 'u'→'ü'; naro 'o'→'ö'. 2) LA is fully pronounced. e.g., རོ་ 'ro' → རོལ་ 'rul'.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "འ་",
+    "acip": "'A",
+    "meaning": "Mostly silent; relates to prefixes",
+    "notes": "The འ་ suffix is not pronounced and mostly does nothing on its own. It only relates to words with prefixes — revisit when studying prefixes. e.g., དགའར་ = 'ga' (ད་ is silent prefix, འ་ is the suffix).",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ག་ད་བ་མ་འ་",
+    "acip": "",
+    "prompt": "Prefix letter before a First Column Letter",
+    "meaning": "No change in pronunciation.",
+    "notes": "Spelling changes the meaning of the word, but the sound stays the same. e.g., འཀར་, གཀར་, དཀར་ — all = 'kar'.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ག་ད་བ་མ་འ་",
+    "acip": "",
+    "prompt": "Prefix letter before a Second Column Letter",
+    "meaning": "No change in pronunciation.",
+    "notes": "Unlike head letters, prefixes CAN appear before Col II letters — head letters cannot. e.g., ཐུན་ and བཐུན་ — both = 'tun'.",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ག་ད་བ་མ་འ་",
+    "acip": "",
+    "prompt": "Prefix letter before a Third Column Letter",
+    "meaning": "Thicker Voiced English Sound",
+    "notes": "GA='ga', JA='ja', DA='da', BA='ba', DZA='dza'. e.g., གར་ = 'kar' (no prefix), མགར་ or དགར་ = 'gar' (with prefix).",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "ག་ད་བ་མ་འ་",
+    "acip": "",
+    "prompt": "Prefix letter before a Fourth Column Letter",
+    "meaning": "Stronger Higher Tone",
+    "notes": "The letter sounds the same but rises to high tone. e.g., ངུ་ = 'ngu' (low tone), མངུ་ = 'ngu' (high tone).",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "མ་",
+    "acip": "MA",
+    "meaning": "Causes a Prenasal",
+    "notes": "MA and འ་ as prefixes cause a brief nasal sound before the syllable. The nasal matches the row of the following consonant: Row 1→'ng', Row 2→'ny', Row 3→'n', Row 4→'m', Row 5→'n'. Only heard after an open vowel (no suffix on the preceding syllable). e.g., མེ་ (fire) + མདར་ (arrow) = 'menda' (gun/rifle).",
+    "context": "Prefix",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "འ་",
+    "acip": "'A",
+    "meaning": "Causes a Prenasal",
+    "notes": "འ་ and མ་ as prefixes cause a brief nasal sound before the syllable. The nasal matches the row of the following consonant: Row 1→'ng-ga', Row 2→'ny-jel', Row 3→'n-da', Row 4→'m-ba', Row 5→'n-dza'. Only heard after an open vowel (no suffix on the preceding syllable).",
+    "context": "Prefix",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "དབང་",
+    "acip": "DBANG",
+    "meaning": "'wang'",
+    "notes": "Exception: DA (ད་) prefix + BA (བ་) creates a 'w' sound — all DA+BA combinations are irregular. DA + BA + NGA = 'wang' (power/empowerment).",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "དབྱར་",
+    "acip": "DBYAR",
+    "meaning": "'yar'",
+    "notes": "Exception: DA (ད་) prefix + BA (བ་) = 'w' sound, plus subjoined YA + RA suffix. DA + BA + YA + RA = 'yar' (up/summer).",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "དབུ་",
+    "acip": "DBU",
+    "meaning": "'u'",
+    "notes": "Exception: DA (ད་) prefix + BA (བ་) = 'w' sound, plus shabkyu vowel. DA + BA + U vowel = 'u' (head).",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
+    "tibetan": "དབྲལ་",
+    "acip": "DBRAL",
+    "meaning": "'shrel'",
+    "notes": "Exception: DA (ད་) prefix + BA (བ་) = 'w' sound, plus subjoined RA + LA suffix. DA + BA + RA + LA = 'shrel' (joint/connection).",
+    "context": "",
+    "session": "00 Alphabet"
+  },
+  {
     "tibetan": "གཅིག",
     "acip": "GCIG",
     "meaning": "one",
     "notes": "Cardinal: GCIG. Ordinal: GCIG PA = first (though DANG PO is more common for \"firstly\"). GCIG PU = alone, only one. GCIG TU = into one, unified. GCIG CHAR = all at once.",
     "context": "",
-    "session": "00 Numbers"
+    "session": "03 Numbers"
   },
   {
     "tibetan": "གཉིས།",
@@ -13,7 +597,7 @@
     "meaning": "two",
     "notes": "Cardinal: GNYIS. Ordinal: GNYIS PA = second. GNYIS KA = both.",
     "context": "",
-    "session": "00 Numbers"
+    "session": "03 Numbers"
   },
   {
     "tibetan": "གསུམ།",
@@ -21,7 +605,7 @@
     "meaning": "three",
     "notes": "Cardinal: GSUM. Ordinal: GSUM PA = third. BSLAB PA GSUM = three trainings; SDE SNOD GSUM = three baskets (Tripiṭaka).",
     "context": "",
-    "session": "00 Numbers"
+    "session": "03 Numbers"
   },
   {
     "tibetan": "བཞི།",
@@ -29,7 +613,7 @@
     "meaning": "four",
     "notes": "Cardinal: BZHI. Ordinal: BZHI PA = fourth. 'BYUNG BA BZHI = four elements; BDEN PA BZHI = four noble truths.",
     "context": "",
-    "session": "00 Numbers"
+    "session": "03 Numbers"
   },
   {
     "tibetan": "ལྔ།",
@@ -37,7 +621,7 @@
     "meaning": "five",
     "notes": "Cardinal: LNGA. Ordinal: LNGA PA = fifth. PHUNG PO LNGA = five aggregates; PHAR PHYIN LNGA = five perfections.",
     "context": "",
-    "session": "00 Numbers"
+    "session": "03 Numbers"
   },
   {
     "tibetan": "དྲུག",
@@ -45,7 +629,7 @@
     "meaning": "six",
     "notes": "Cardinal: DRUG. Ordinal: DRUG PA = sixth. RNAM SHES DRUG = six consciousnesses; PHAR PHYIN DRUG = six perfections.",
     "context": "",
-    "session": "00 Numbers"
+    "session": "03 Numbers"
   },
   {
     "tibetan": "བདུན།",
@@ -53,7 +637,7 @@
     "meaning": "seven",
     "notes": "Cardinal: BDUN. Ordinal: BDUN PA = seventh. RIGS PA BDUN = sevenfold reasoning.",
     "context": "",
-    "session": "00 Numbers"
+    "session": "03 Numbers"
   },
   {
     "tibetan": "བརྒྱད།",
@@ -61,7 +645,7 @@
     "meaning": "eight",
     "notes": "Cardinal: BRGYAD. Ordinal: BRGYAD PA = eighth. 'JIG RTEN CHOS BRGYAD = eight worldly concerns.",
     "context": "",
-    "session": "00 Numbers"
+    "session": "03 Numbers"
   },
   {
     "tibetan": "དགུ།",
@@ -69,7 +653,7 @@
     "meaning": "nine",
     "notes": "Cardinal: DGU. Ordinal: DGU PA = ninth.",
     "context": "",
-    "session": "00 Numbers"
+    "session": "03 Numbers"
   },
   {
     "tibetan": "བཅུ།",
@@ -77,7 +661,7 @@
     "meaning": "ten",
     "notes": "Cardinal: BCU. Ordinal: BCU PA = tenth. BCU GCIG = eleven; BCU GNYIS = twelve.",
     "context": "",
-    "session": "00 Numbers"
+    "session": "03 Numbers"
   },
   {
     "tibetan": "རིགས།",
