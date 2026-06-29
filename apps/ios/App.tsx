@@ -290,10 +290,21 @@ export default function App() {
             style={s.cardPressable}
             onPress={() => isCurrent && handleCardClick()}
           >
-            <Text style={[s.tibetan, { color: c.ink }]}>{item.tibetan}</Text>
-            <Text style={[s.acipInline, { color: c.faint, opacity: acipVisible ? 1 : 0 }]}>
-              {item.acip}
-            </Text>
+            {item.prompt ? (
+              <>
+                <Text style={[s.promptText, { color: c.ink }]}>{item.prompt}</Text>
+                <Text style={[s.tibetanToggle, { color: c.ink, opacity: acipVisible ? 1 : 0 }]}>
+                  {item.tibetan}
+                </Text>
+              </>
+            ) : (
+              <>
+                <Text style={[s.tibetan, { color: c.ink }]}>{item.tibetan}</Text>
+                <Text style={[s.acipInline, { color: c.ink, opacity: acipVisible ? 1 : 0 }]}>
+                  {item.acip}
+                </Text>
+              </>
+            )}
           </Pressable>
           <TouchableOpacity
             style={[s.speakBtn, { backgroundColor: c.raised, borderColor: c.border }]}
@@ -330,7 +341,9 @@ export default function App() {
             onPress={() => isCurrent && handleCardClick()}
           >
             <View style={s.backCenter}>
-              <Text style={[s.acipBack, { color: c.faint }]}>{item.acip}</Text>
+              {item.acip ? (
+                <Text style={[s.acipBack, { color: c.ink }]}>{item.acip}</Text>
+              ) : null}
               <Text style={[s.meaning, { color: c.ink }]}>{item.meaning}</Text>
             </View>
             <TouchableOpacity
@@ -554,6 +567,8 @@ const s = StyleSheet.create({
   cardPressable:      { flex: 1, alignSelf: "stretch", alignItems: "center", justifyContent: "center" },
   sessionBadge:       { position: "absolute", top: 14, right: 16, fontSize: 11, letterSpacing: 0.6 },
   tibetan:            { fontSize: 52, lineHeight: 78, letterSpacing: 1, textAlign: "center" },
+  promptText:         { fontFamily: "Georgia", fontSize: 20, fontStyle: "italic", textAlign: "center", lineHeight: 28, marginBottom: 8 },
+  tibetanToggle:      { fontSize: 36, lineHeight: 54, letterSpacing: 1, textAlign: "center", marginTop: 4 },
   acipInline:         { fontFamily: "Courier New", fontSize: 16, letterSpacing: 1, marginTop: 6, textAlign: "center" },
   acipIconBtn:        { position: "absolute", bottom: 12, right: 12, width: 30, height: 30, borderRadius: 8, borderWidth: 0.5, alignItems: "center", justifyContent: "center" },
   speakBtn:           { borderWidth: 0.5, borderRadius: 6, paddingHorizontal: 10, paddingVertical: 3, marginTop: 8 },

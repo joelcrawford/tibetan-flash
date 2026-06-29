@@ -216,12 +216,25 @@ export default function App() {
                   <span className="text-[11px] text-ink-faint tracking-[0.06em] absolute top-3.5 right-4">
                     {card.session}
                   </span>
-                  <div className="font-tibetan text-[52px] leading-[1.5] text-ink mb-1 tracking-[0.02em] dark:text-ink-lt">
-                    {card.tibetan}
-                  </div>
-                  <div className={`font-mono text-[15px] tracking-[0.08em] mb-3 transition-opacity duration-200 ${acipVisible ? "text-ink-mid dark:text-ink-faint opacity-100" : "opacity-0"}`}>
-                    {card.acip}
-                  </div>
+                  {card.prompt ? (
+                    <>
+                      <div className="font-title text-[22px] font-normal leading-[1.4] text-ink mb-2 italic text-center w-full dark:text-ink-lt">
+                        {card.prompt}
+                      </div>
+                      <div className={`font-tibetan text-[36px] leading-[1.5] tracking-[0.02em] mb-3 transition-opacity duration-200 ${acipVisible ? "text-ink dark:text-ink-lt opacity-100" : "opacity-0"}`}>
+                        {card.tibetan}
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="font-tibetan text-[52px] leading-[1.5] text-ink mb-1 tracking-[0.02em] dark:text-ink-lt">
+                        {card.tibetan}
+                      </div>
+                      <div className={`font-mono text-[15px] tracking-[0.08em] mb-3 transition-opacity duration-200 ${acipVisible ? "text-ink dark:text-ink-lt opacity-100" : "opacity-0"}`}>
+                        {card.acip}
+                      </div>
+                    </>
+                  )}
                   <button
                     className="font-serif text-[13px] py-[3px] px-2.5 border-[0.5px] border-stone rounded-md bg-card-bg text-ink-muted cursor-pointer transition-all duration-150 mb-2 hover:[&:not(:disabled)]:bg-stone-lt hover:[&:not(:disabled)]:text-ink disabled:opacity-50 disabled:cursor-default dark:bg-surf-dk dark:border-bdr-dk dark:hover:[&:not(:disabled)]:bg-surf-dk-mid dark:hover:[&:not(:disabled)]:text-ink-lt"
                     onClick={(e) => { e.stopPropagation(); speak(card.tibetan); }}
@@ -240,7 +253,7 @@ export default function App() {
                         : "border-stone/50 bg-transparent text-ink-faint dark:border-bdr-dk/50 dark:text-ink-faint/60",
                     ].join(" ")}
                     onClick={(e) => { e.stopPropagation(); toggleAcip(); }}
-                    title={acipVisible ? "hide ACIP" : "show ACIP"}
+                    title={acipVisible ? (card.prompt ? "hide Tibetan" : "hide ACIP") : (card.prompt ? "show Tibetan" : "show ACIP")}
                   >
                     <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                       <circle cx="12" cy="12" r="10"/>
@@ -270,9 +283,11 @@ export default function App() {
                   <span className="text-[11px] text-ink-faint tracking-[0.06em] absolute top-3.5 right-4">
                     {card.session}
                   </span>
-                  <div className="font-mono text-[13px] tracking-[0.08em] text-ink-mid mb-3 dark:text-ink-faint">
-                    {card.acip}
-                  </div>
+                  {card.acip && (
+                    <div className="font-mono text-[13px] tracking-[0.08em] text-ink dark:text-ink-lt mb-3">
+                      {card.acip}
+                    </div>
+                  )}
                   <div className="font-title text-[20px] font-normal text-ink mb-3 leading-[1.4] italic text-center w-full dark:text-ink-lt">
                     {card.meaning}
                   </div>
