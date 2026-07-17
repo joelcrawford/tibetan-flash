@@ -218,9 +218,14 @@ export default function App() {
                   </span>
                   {card.prompt ? (
                     <>
-                      <div className="font-title text-[22px] font-normal leading-[1.4] text-ink mb-2 italic text-center w-full dark:text-ink-lt">
+                      <div className="font-title text-[22px] font-normal leading-[1.4] text-ink mb-1 italic text-center w-full dark:text-ink-lt">
                         {card.prompt}
                       </div>
+                      {card.subcategory && (
+                        <div className="font-serif text-[12px] italic tracking-[0.05em] text-ink-mid dark:text-ink-faint mb-1">
+                          {card.subcategory}
+                        </div>
+                      )}
                       <div className={`font-tibetan text-[36px] leading-[1.5] tracking-[0.02em] mb-3 transition-opacity duration-200 ${acipVisible ? "text-ink dark:text-ink-lt opacity-100" : "opacity-0"}`}>
                         {card.tibetan}
                       </div>
@@ -230,6 +235,11 @@ export default function App() {
                       <div className="font-tibetan text-[52px] leading-[1.5] text-ink mb-1 tracking-[0.02em] dark:text-ink-lt">
                         {card.tibetan}
                       </div>
+                      {card.subcategory && (
+                        <div className="font-serif text-[12px] italic tracking-[0.05em] text-ink-mid dark:text-ink-faint mb-1">
+                          {card.subcategory}
+                        </div>
+                      )}
                       <div className={`font-mono text-[15px] tracking-[0.08em] mb-3 transition-opacity duration-200 ${acipVisible ? "text-ink dark:text-ink-lt opacity-100" : "opacity-0"}`}>
                         {card.acip}
                       </div>

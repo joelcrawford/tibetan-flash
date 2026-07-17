@@ -9,6 +9,7 @@ export interface Card {
   context_tibetan: string;
   session: string;
   prompt?: string;
+  subcategory?: string;
 }
 
 export type KnownMap = Record<string, boolean>;

@@ -293,6 +293,9 @@ export default function App() {
             {item.prompt ? (
               <>
                 <Text style={[s.promptText, { color: c.ink }]}>{item.prompt}</Text>
+                {item.subcategory ? (
+                  <Text style={[s.contextLabel, { color: c.muted }]}>{item.subcategory}</Text>
+                ) : null}
                 <Text style={[s.tibetanToggle, { color: c.ink, opacity: acipVisible ? 1 : 0 }]}>
                   {item.tibetan}
                 </Text>
@@ -300,6 +303,9 @@ export default function App() {
             ) : (
               <>
                 <Text style={[s.tibetan, { color: c.ink }]}>{item.tibetan}</Text>
+                {item.subcategory ? (
+                  <Text style={[s.contextLabel, { color: c.muted }]}>{item.subcategory}</Text>
+                ) : null}
                 <Text style={[s.acipInline, { color: c.ink, opacity: acipVisible ? 1 : 0 }]}>
                   {item.acip}
                 </Text>
@@ -569,6 +575,7 @@ const s = StyleSheet.create({
   tibetan:            { fontSize: 52, lineHeight: 78, letterSpacing: 1, textAlign: "center" },
   promptText:         { fontFamily: "Georgia", fontSize: 20, fontStyle: "italic", textAlign: "center", lineHeight: 28, marginBottom: 8 },
   tibetanToggle:      { fontSize: 36, lineHeight: 54, letterSpacing: 1, textAlign: "center", marginTop: 4 },
+  contextLabel:       { fontFamily: "Georgia", fontSize: 12, fontStyle: "italic", textAlign: "center", marginTop: 2, marginBottom: 2 },
   acipInline:         { fontFamily: "Courier New", fontSize: 16, letterSpacing: 1, marginTop: 6, textAlign: "center" },
   acipIconBtn:        { position: "absolute", bottom: 12, right: 12, width: 30, height: 30, borderRadius: 8, borderWidth: 0.5, alignItems: "center", justifyContent: "center" },
   speakBtn:           { borderWidth: 0.5, borderRadius: 6, paddingHorizontal: 10, paddingVertical: 3, marginTop: 8 },
