@@ -340,9 +340,9 @@ export default function App() {
           </div>
         )}
 
-        {/* Navigation — hidden on mobile */}
+        {/* Navigation */}
         {card && (
-          <div className="hidden sm:flex items-center justify-center gap-4 mb-4">
+          <div className="flex items-center justify-center gap-4 mb-4">
             <button className={navBtnCls} onClick={() => go(-1)}>
               ← prev
             </button>
