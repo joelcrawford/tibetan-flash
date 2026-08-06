@@ -1671,6 +1671,54 @@
     "session": "04 Ben's Text"
   },
   {
+    "tibetan": "དེ།",
+    "acip": "DE",
+    "meaning": "That",
+    "notes": "The distal demonstrative — 'that,' pointing to something farther off or already mentioned. Contrasts with 'DI ('this'). Also serves as the third-person pronoun 'it / that one.'",
+    "context": "One of the workhorses of Tibetan prose and debate. Combined with particles it builds key connectives: DE PHYIR / DE'I PHYIR = 'therefore,' DE LTAR = 'thus / in that way,' DE DAG = 'those (plural),' DE NYID = 'that very thing / suchness.' Because Tibetan has no definite article, DE frequently does the work of 'the' — re-pointing to a subject already established as the CHOS CAN.",
+    "session": "05 Ben's Text"
+  },
+  {
+    "tibetan": "འདི།",
+    "acip": "'DI",
+    "meaning": "This",
+    "notes": "The proximal demonstrative — 'this,' pointing to something near or immediately at hand. The near/far pair with DE ('that'). Written with the a-chung ('A) prefix.",
+    "context": "Used to introduce or point directly at the matter under discussion — often the subject just raised for analysis. Builds parallel connectives to DE: 'DI LTAR = 'in this way / as follows' (frequently introducing an explanation), 'DIR = 'here / in this case.' Where DE re-points to something already in play, 'DI foregrounds what is present now.",
+    "session": "05 Ben's Text"
+  },
+  {
+    "tibetan": "ཐལ་འགྱུར།",
+    "acip": "THAL 'GYUR",
+    "meaning": "Implication, Consequence",
+    "notes": "Sanskrit: prasaṅga. THAL = to follow (as a consequence) + 'GYUR = to become / turn into. Together: a consequence that follows from an opponent's own position.",
+    "context": "The signature move of Madhyamaka dialectic and the namesake of the Prāsaṅgika school (THAL 'GYUR PA). Rather than asserting a positive thesis, Candrakīrti and Nāgārjuna drive the opponent to an unwanted consequence entailed by their own claims (e.g. 'then it would absurdly follow that...'). In live debate THAL marks the consequence hurled at the defender, who must answer 'DOD (accept), RTAGS MA GRUB (reason unestablished), or MA KHYAB (no pervasion). Closely tied to KHYAB and PHYIR from the earlier sessions.",
+    "session": "05 Ben's Text"
+  },
+  {
+    "tibetan": "སངས་རྒྱས།",
+    "acip": "SANGS RGYAS",
+    "meaning": "Enlightened, Enlightened being, Buddha",
+    "notes": "Sanskrit: buddha. A two-part translation: SANGS = awakened / purified (cleared away, as from sleep) + RGYAS = expanded / fully blossomed. Not a phonetic rendering but an interpretive one.",
+    "context": "The Tibetan coinage deliberately unpacks buddhahood into two movements the single Sanskrit word only implies: SANGS, the purification and clearing away of every obscuration and fault, and RGYAS, the full flowering and expansion of every excellent quality and realization. A buddha is thus one in whom all that must be removed has been removed and all that can be developed has been perfected — the twofold sense the translators built directly into the word.",
+    "session": "05 Ben's Text"
+  },
+  {
+    "tibetan": "འཕགས་པ།",
+    "acip": "'PHAGS PA",
+    "meaning": "Arya, realized being, a person who has seen emptiness directly",
+    "notes": "Sanskrit: ārya. Literally 'the exalted / superior one.' 'PHAGS = to be raised up, exalted + PA (nominalizer). Marks a being who has risen above the ordinary state.",
+    "context": "Technically, an 'PHAGS PA is one who has directly and non-conceptually perceived emptiness (STONG PA NYID) — reaching the path of seeing (MTHONG LAM) and beyond. This direct realization is what 'exalts' them above the SO SO SKYE BO (ordinary being), who at best understands emptiness only inferentially. The term spans all four Buddhist vehicles (arya-śrāvakas, pratyekabuddhas, bodhisattvas, and buddhas are all 'PHAGS PA) and appears in 'PHAGS PA'I BDEN PA BZHI, the Four Noble ('Arya') Truths — truths as seen by the realized.",
+    "session": "05 Ben's Text"
+  },
+  {
+    "tibetan": "འདོད།",
+    "acip": "'DOD",
+    "meaning": "Accept, Assert, Agree, Is, Say, Desire",
+    "notes": "Sanskrit: iṣṭa (accepted / desired). A high-frequency verb spanning two clusters of sense: (1) to accept / assert / hold as one's position, and (2) to want / desire. Context decides which.",
+    "context": "In debate, 'DOD is the defender's single most important word: the reply ''DOD' — 'I accept' — concedes the consequence (THAL 'GYUR) just thrown at them, as opposed to challenging the reason (RTAGS MA GRUB) or the pervasion (MA KHYAB). More broadly it marks any asserted position ('so-and-so 'DOD' = 'so-and-so holds that...'). Its other life is 'to desire': the same root gives 'DOD CHAGS (desire-attachment), one of the root afflictions. Reading it correctly means catching whether the passage is about a claim being held or an object being wanted.",
+    "session": "05 Ben's Text"
+  },
+  {
     "tibetan": "--",
     "acip": "--",
     "meaning": "Nominative (Case 1) or Vocative (Case 8)",
