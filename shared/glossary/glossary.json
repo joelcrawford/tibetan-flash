@@ -1719,6 +1719,38 @@
     "session": "05 Ben's Text"
   },
   {
+    "tibetan": "འདོད།",
+    "acip": "'DOD",
+    "meaning": "I agree",
+    "notes": "Sanskrit: iṣṭa. The defender's answer conceding the point. Also carries the broader senses 'accept, assert, hold, is, say, desire' (see the 05 Ben's Text entry). Here it is specifically the debate response of assent.",
+    "context": "One of the three core replies available to a defender facing a stated reason or consequence (THAL 'GYUR). Answering 'DOD accepts the claim as it stands — as opposed to the two rejections: RTAGS MA GRUB (the reason doesn't apply) and KHYAB PA MA BYUNG (the entailment fails). Choosing among these three is the fundamental rhythm of the debate courtyard.",
+    "session": "06 Debate Foundations"
+  },
+  {
+    "tibetan": "ཅིའི་ཕྱིར།",
+    "acip": "CI SPHYIR",
+    "meaning": "Why?, Why would you say that?",
+    "notes": "ACIP kept as written in class ('CI SPHYIR'); the standard spelling is CI'I PHYIR — CI = what + 'I (genitive) + PHYIR = because/for the sake of → 'for what reason?' The Tibetan shown (ཅིའི་ཕྱིར) is the standard form. A close variant is CI PHYIR.",
+    "context": "The challenger's demand for a reason. When a thesis is put forward, the questioner asks 'why?' — forcing the defender to supply the reason (RTAGS / GTAN TSHIGS) that will then itself be tested for whether it is established (GRUB) and whether it pervades (KHYAB). It is the pivot that turns a bare assertion into a full statement of reason.",
+    "session": "06 Debate Foundations"
+  },
+  {
+    "tibetan": "རྟགས་མ་གྲུབ།",
+    "acip": "RTAGS MA GRUB",
+    "meaning": "reason is not establish (never say this), 1 isn't 3 (mostly don't say this), Sound is not made (in the context of sound is a changing thing because it's made.)",
+    "notes": "RTAGS = reason/sign + MA (negation) + GRUB = established. The three clauses are escalating registers of the same answer: the blunt literal form (avoid), a softer 'it doesn't apply here' form, and the contextual form for the stock example 'sound is a changing thing because it's made.'",
+    "context": "One of the two ways to reject a stated reason. RTAGS MA GRUB denies that the reason actually applies to the subject (CHOS CAN) — the sign itself is not established in this case. Contrast with KHYAB PA MA BYUNG, which grants that the reason applies but denies that it entails the conclusion. In 'sound is a changing thing because it's made,' this rejection targets the reason's applicability (claiming sound isn't made), not the logical link.",
+    "session": "06 Debate Foundations"
+  },
+  {
+    "tibetan": "ཁྱབ་པ་མ་བྱུང་།",
+    "acip": "KHYAB PA MA BYUNG",
+    "meaning": "the necessity doesn't arise (never say this!), there is no necessary relationship (mostly don't say this), Just because something is made doesn't mean it has to be changing (in the context of sound is a changing thing because it's made.)",
+    "notes": "KHYAB PA = pervasion/entailment + MA (negation) + BYUNG = arose/occurred. The three clauses are escalating registers: the blunt literal form (avoid), a softer 'no necessary relationship' form, and the contextual form for the stock example. Equivalent to the common courtyard answer MA KHYAB.",
+    "context": "The second way to reject a stated reason — the counterpart to RTAGS MA GRUB. Here the defender grants that the reason applies but denies the pervasion (KHYAB): the reason does not necessarily entail the conclusion. In 'sound is a changing thing because it's made,' this reply grants that sound is made but denies that being made forces being changing. Together, 'DOD, RTAGS MA GRUB, and KHYAB PA MA BYUNG are the complete set of a defender's answers, each targeting a different part of the argument.",
+    "session": "06 Debate Foundations"
+  },
+  {
     "tibetan": "--",
     "acip": "--",
     "meaning": "Nominative (Case 1) or Vocative (Case 8)",
