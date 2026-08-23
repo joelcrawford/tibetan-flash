@@ -243,7 +243,7 @@ export default function App() {
               }}
               onClick={() => { if (!didSwipe.current) handleCardClick(); }}
             >
-              <div className={`fc-card-inner${flipped ? " flipped" : ""}`}>
+              <div key={card.id} className={`fc-card-inner${flipped ? " flipped" : ""}`}>
 
                 {/* Front */}
                 <div className={faceCls}>
