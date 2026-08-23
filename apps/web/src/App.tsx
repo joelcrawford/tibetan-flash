@@ -260,8 +260,12 @@ export default function App() {
                           {card.subcategory}
                         </div>
                       )}
-                      <div style={{ fontFamily: lang.fontStack }} className={`text-[36px] leading-[1.5] tracking-[0.02em] mb-3 transition-opacity duration-200 ${acipVisible ? "text-ink dark:text-ink-lt opacity-100" : "opacity-0"}`}>
-                        {card.script}
+                      <div className="mb-3 min-h-[54px] flex items-center justify-center">
+                        {acipVisible && (
+                          <span key={card.id} style={{ fontFamily: lang.fontStack }} className="text-[36px] leading-[1.5] tracking-[0.02em] text-ink dark:text-ink-lt">
+                            {card.script}
+                          </span>
+                        )}
                       </div>
                     </>
                   ) : (
@@ -274,8 +278,12 @@ export default function App() {
                           {card.subcategory}
                         </div>
                       )}
-                      <div className={`font-mono text-[15px] tracking-[0.08em] mb-3 transition-opacity duration-200 ${acipVisible ? "text-ink dark:text-ink-lt opacity-100" : "opacity-0"}`}>
-                        {card.translit}
+                      <div className="mb-3 min-h-[20px] flex items-center justify-center">
+                        {acipVisible && (
+                          <span key={card.id} className="font-mono text-[15px] tracking-[0.08em] text-ink dark:text-ink-lt">
+                            {card.translit}
+                          </span>
+                        )}
                       </div>
                     </>
                   )}
