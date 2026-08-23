@@ -1,6 +1,14 @@
 # Spec — Stable Card IDs (retire `acip` as the status key)
 
-**Status:** Proposed
+> **IMPLEMENTED** (2026-08-23). IDs are **language-namespaced** (`bo-ma-2`, `ja-mizu`)
+> so this migration also subsumes the interim `${language}:${translit}` status key
+> from the multi-language work — `useDeck` now keys status on `card.id`, and a
+> one-time `migrateStatusMap` remaps legacy keys (bare translit *or*
+> `lang:translit`) to ids on load. Generator: `scripts/assign-ids.mjs`. Note: this
+> shipped ahead of the Read/Explore surfaces, so the "Read mode" framing below is
+> historical context, not a remaining dependency.
+
+**Status:** Done
 **Author:** (drafted with Claude)
 **Date:** 2026-08-21
 **Scope:** `shared/types/types.ts`, `shared/glossary/glossary.json`, `shared/hooks/useDeck.ts`, web + iOS storage adapters, one-time data migration.

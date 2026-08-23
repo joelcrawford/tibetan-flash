@@ -95,3 +95,20 @@ test("Japanese Hepburn → Kunrei derivation flexes the scheme axis", () => {
   assert.equal(hepburnToKunrei("fu"), "hu");
   assert.equal(hepburnToKunrei("mizu"), "mizu"); // unchanged
 });
+
+// ── Card ids (unique, language-namespaced; collisions resolved) ──
+const boGloss = read("shared/languages/tibetan/glossary.json");
+test("every card has a unique, language-namespaced id", () => {
+  for (const gloss of [boGloss, jaGloss]) {
+    const ids = gloss.map((c) => c.id);
+    assert.equal(new Set(ids).size, ids.length, "duplicate ids");
+    for (const c of gloss) assert.ok(c.id.startsWith(`${c.language}-`), `${c.id} not namespaced`);
+  }
+});
+
+test("translit collisions get distinct ids (the whole point)", () => {
+  const ma = boGloss.filter((c) => c.translit === "MA").map((c) => c.id);
+  assert.deepEqual(ma, ["bo-ma", "bo-ma-2", "bo-ma-3"]); // Alphabet / Suffix / Prefix
+  const empty = new Set(boGloss.filter((c) => c.translit === "").map((c) => c.id));
+  assert.equal(empty.size, boGloss.filter((c) => c.translit === "").length); // all distinct
+});

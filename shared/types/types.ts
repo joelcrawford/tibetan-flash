@@ -50,6 +50,7 @@ export interface DictEntry {
 }
 
 export interface Card {
+  id: string;               // stable, unique, language-namespaced (e.g. "bo-ma-2"); status is keyed on this
   language: string;         // language code, e.g. "bo", "ja"
   script: string;           // native script (was `tibetan`)
   translit: string;         // canonical transliteration (was `acip`)

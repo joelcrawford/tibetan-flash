@@ -1,8 +1,31 @@
 import { useState, useCallback, useEffect, useMemo, useRef } from "react";
 import { Card, KnownMap, CardStatus, StatusMap } from "../types/types";
 
-// Status/dedup key — namespaced by language so silos never collide.
-const cardKey = (c: Card): string => `${c.language}:${c.translit}`;
+// Status/dedup key — the card's stable unique id (language-namespaced).
+const cardKey = (c: Card): string => c.id;
+
+// One-time migration of a persisted status map from legacy keys to card ids.
+// Legacy keys were either a bare translit ("SANGS RGYAS", shipped Tibetan-only)
+// or "lang:translit" (the interim namespaced stopgap). Both are remapped to the
+// matching cards' ids; collisions fan out (no regression), empty translit drops.
+// Idempotent: keys that are already valid ids pass straight through.
+function migrateStatusMap(raw: StatusMap, cards: Card[]): StatusMap {
+  const ids = new Set(cards.map((c) => c.id));
+  const byTranslit = new Map<string, string[]>();
+  const byLangTranslit = new Map<string, string[]>();
+  for (const c of cards) {
+    if (!c.translit) continue; // empty translit was meaningless as a key — drop
+    (byTranslit.get(c.translit) ?? byTranslit.set(c.translit, []).get(c.translit)!).push(c.id);
+    const lk = `${c.language}:${c.translit}`;
+    (byLangTranslit.get(lk) ?? byLangTranslit.set(lk, []).get(lk)!).push(c.id);
+  }
+  const out: StatusMap = {};
+  for (const [k, status] of Object.entries(raw)) {
+    if (ids.has(k)) { out[k] = status; continue; }
+    for (const id of byLangTranslit.get(k) ?? byTranslit.get(k) ?? []) out[id] = status;
+  }
+  return out;
+}
 
 export interface StorageAdapter {
   load: () => Promise<StatusMap>;
@@ -68,7 +91,7 @@ export function useDeck(allCards: Card[], storage?: StorageAdapter) {
       storage.load(),
       storage.loadFilters ? storage.loadFilters() : Promise.resolve(null),
     ]).then(([map, filters]) => {
-      setStatusMap(map);
+      setStatusMap(migrateStatusMap(map, allCards));
       if (filters && filters.length > 0) setSessionFilters(filters);
       setStorageLoaded(true);
     });
