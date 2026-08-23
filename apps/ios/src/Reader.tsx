@@ -9,6 +9,8 @@ type Colors = {
   muted: string; faint: string; accent: string; raised?: string;
 };
 
+const MIN_PX = 24, MAX_PX = 52;
+
 function FolioChip({ label, c }: { label: string; c: Colors }) {
   return (
     <View style={[fc.chip, { borderColor: c.accent }]}>
@@ -17,11 +19,12 @@ function FolioChip({ label, c }: { label: string; c: Colors }) {
   );
 }
 
-export function Reader({ text, lang, c, onClose }: { text: LangText; lang: Language; c: Colors; onClose: () => void }) {
-  const [scheme, setScheme] = useState<string>(lang.defaultScheme);
+export function Reader({ text, lang, scheme, c, onClose }: { text: LangText; lang: Language; scheme: string; c: Colors; onClose: () => void }) {
   const [sound, setSound] = useState(false);
   const [layout, setLayout] = useState<"under" | "line">("under");
   const [revealed, setRevealed] = useState<Set<number>>(new Set());
+  const [fontPx, setFontPx] = useState(33);
+  const romPx = Math.max(9, Math.round(fontPx * 0.36));
 
   const pages = pageLabelMap(text);
   const under = sound && layout === "under";
@@ -34,11 +37,6 @@ export function Reader({ text, lang, c, onClose }: { text: LangText; lang: Langu
       n.has(gi) ? n.delete(gi) : n.add(gi);
       return n;
     });
-  const cycleScheme = () => {
-    const i = lang.schemes.findIndex((x) => x.id === scheme);
-    setScheme(lang.schemes[(i + 1) % lang.schemes.length].id);
-  };
-  const schemeLabel = lang.schemes.find((x) => x.id === scheme)?.label ?? scheme;
 
   const BarBtn = ({ on, disabled, onPress, label }: { on: boolean; disabled?: boolean; onPress: () => void; label: string }) => (
     <TouchableOpacity
@@ -68,7 +66,7 @@ export function Reader({ text, lang, c, onClose }: { text: LangText; lang: Langu
         <View style={[rs.frameOuter, { borderColor: c.border }]}>
           <View style={[rs.frameInner, { borderColor: c.border, backgroundColor: c.card }]}>
             {displayLines(text).map((group, gi) => {
-              const isRev = revealed.has(gi);
+              const showRom = under || (tappable && revealed.has(gi)); // per-token romanization (aligned)
               const items: ReactNode[] = [];
               group.forEach((li) => {
                 const line = text.lines[li];
@@ -77,21 +75,19 @@ export function Reader({ text, lang, c, onClose }: { text: LangText; lang: Langu
                   if (lbl) items.push(<FolioChip key={`p${li}-${ti}`} label={lbl} c={c} />);
                   items.push(
                     <View key={`s${li}-${ti}`} style={rs.scol}>
-                      <Text style={[rs.tib, { color: c.ink }]}>{tk.script}</Text>
-                      {under ? <Text style={[rs.srom, { color: c.accent }]}>{roman(tk, lang, scheme)}</Text> : null}
+                      <Text style={{ fontSize: fontPx, lineHeight: fontPx * 1.55, color: c.ink }}>{tk.script}</Text>
+                      {showRom ? <Text style={{ fontSize: romPx, marginTop: -romPx * 0.4, fontFamily: "Menlo", color: c.accent }}>{roman(tk, lang, scheme)}</Text> : null}
                     </View>
                   );
                 });
                 const endLbl = pages.get(`${li}:${line.length}`);
                 if (endLbl) items.push(<FolioChip key={`pe${li}`} label={endLbl} c={c} />);
-                items.push(<Text key={`sh${li}`} style={[rs.tib, rs.shad, { color: c.accent }]}>{lang.clauseMark}</Text>);
+                items.push(<Text key={`sh${li}`} style={{ fontSize: fontPx, lineHeight: fontPx * 1.55, paddingHorizontal: 1, color: c.accent }}>{lang.clauseMark}</Text>);
               });
-              const groupRom = group.map((li) => text.lines[li].map((tk) => roman(tk, lang, scheme)).join(" ")).join(" ");
               const row = <View style={rs.clauseRow}>{items}</View>;
               return (
                 <View key={gi} style={rs.clauseBlock}>
                   {tappable ? <TouchableOpacity activeOpacity={0.7} onPress={() => toggle(gi)}>{row}</TouchableOpacity> : row}
-                  {tappable && isRev ? <Text style={[rs.clrom, { color: c.accent }]}>{groupRom}</Text> : null}
                 </View>
               );
             })}
@@ -104,11 +100,14 @@ export function Reader({ text, lang, c, onClose }: { text: LangText; lang: Langu
 
       {/* bottom bar */}
       <View style={[rs.bar, { backgroundColor: c.card, borderColor: c.border }]}>
-        {lang.schemes.length > 1 && (
-          <TouchableOpacity onPress={cycleScheme} style={[rs.scheme, { borderColor: c.border }]}>
-            <Text style={[rs.schemeText, { color: c.muted }]}>{schemeLabel} ▾</Text>
+        <View style={[rs.sizer, { borderColor: c.border }]}>
+          <TouchableOpacity disabled={fontPx <= MIN_PX} onPress={() => setFontPx((p) => Math.max(MIN_PX, p - 3))} style={rs.sizerBtn}>
+            <Text style={{ fontSize: 15, color: fontPx <= MIN_PX ? c.faint : c.muted }}>A−</Text>
           </TouchableOpacity>
-        )}
+          <TouchableOpacity disabled={fontPx >= MAX_PX} onPress={() => setFontPx((p) => Math.min(MAX_PX, p + 3))} style={[rs.sizerBtn, { borderLeftWidth: 0.5, borderLeftColor: c.border }]}>
+            <Text style={{ fontSize: 18, color: fontPx >= MAX_PX ? c.faint : c.muted }}>A＋</Text>
+          </TouchableOpacity>
+        </View>
         <BarBtn on={sound} onPress={() => setSound((v) => !v)} label="Aa Romanization" />
         <BarBtn on={layout === "under"} disabled={!sound} onPress={() => sound && setLayout("under")} label="Under" />
         <BarBtn on={layout === "line"} disabled={!sound} onPress={() => sound && setLayout("line")} label="By line" />
@@ -131,14 +130,10 @@ const rs = StyleSheet.create({
   clauseBlock: { marginBottom: 6 },
   clauseRow: { flexDirection: "row", flexWrap: "wrap", alignItems: "flex-end" },
   scol: { alignItems: "center" },
-  tib: { fontSize: 33, lineHeight: 54 },
-  srom: { fontSize: 12, marginTop: -4, fontFamily: "Menlo" },
-  shad: { paddingHorizontal: 1 },
-  clrom: { fontSize: 15, fontFamily: "Menlo", marginTop: 2, lineHeight: 22 },
   meta: { textAlign: "center", fontSize: 11, marginTop: 12, fontFamily: "Menlo" },
   bar: { position: "absolute", left: 14, right: 14, bottom: 28, flexDirection: "row", alignItems: "center", gap: 8, borderWidth: 0.5, borderRadius: 14, paddingHorizontal: 10, paddingVertical: 8 },
-  scheme: { borderWidth: 0.5, borderStyle: "dashed", borderRadius: 8, paddingHorizontal: 9, paddingVertical: 8 },
-  schemeText: { fontSize: 11, fontFamily: "Menlo", letterSpacing: 1 },
+  sizer: { flexDirection: "row", borderWidth: 0.5, borderRadius: 10, overflow: "hidden" },
+  sizerBtn: { paddingHorizontal: 10, paddingVertical: 8 },
   barBtn: { flex: 1, borderWidth: 0.5, borderRadius: 10, paddingVertical: 9, alignItems: "center" },
   barBtnText: { fontSize: 13, fontFamily: "Georgia" },
 });

@@ -101,6 +101,10 @@ export default function App() {
   const lang = LANGUAGE_BY_CODE[langCode] ?? LANGUAGE_BY_CODE[DEFAULT_LANGUAGE];
   useEffect(() => { try { localStorage.setItem(LANG_KEY, langCode); } catch { /* ignore */ } }, [langCode]);
 
+  // Global romanization scheme (per language). Reset to the language's default on switch.
+  const [scheme, setScheme] = useState<string>(lang.defaultScheme);
+  const activeScheme = lang.schemes.some((s) => s.id === scheme) ? scheme : lang.defaultScheme;
+
   const {
     card, idx, total, flipped, acipVisible,
     sessionFilters, knownCount, familiarCount, reviewCount, totalFiltered,
@@ -163,7 +167,8 @@ export default function App() {
     setSessionFilters([]);
     setExpandedGroups(new Set());
     setReadingText(null);
-  }, [langCode, setSessionFilters]);
+    setScheme(lang.defaultScheme);
+  }, [langCode, setSessionFilters]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Reset context drawer whenever the card changes
   useEffect(() => { setContextOpen(false); }, [idx]);
@@ -200,6 +205,7 @@ export default function App() {
         <Reader
           text={readingText}
           lang={LANGUAGE_BY_CODE[readingText.language] ?? lang}
+          scheme={activeScheme}
           onClose={() => setReadingText(null)}
         />
       )}
@@ -410,6 +416,20 @@ export default function App() {
               </button>
             ))}
           </div>
+          {lang.schemes.length > 1 && (
+            <div className="flex gap-2 flex-wrap items-center">
+              <span className="text-[12px] text-ink-faint font-serif mr-1">Romanization</span>
+              {lang.schemes.map((sc) => (
+                <button
+                  key={sc.id}
+                  onClick={() => setScheme(sc.id)}
+                  className={`font-mono text-[12px] py-[4px] px-3 border-[0.5px] border-stone rounded-lg cursor-pointer dark:border-bdr-dk ${sc.id === activeScheme ? "border-accent text-accent dark:border-accent-dk dark:text-accent-dk" : "text-ink-muted"}`}
+                >
+                  {sc.label}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="flex flex-col gap-3">

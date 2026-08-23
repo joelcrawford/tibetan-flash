@@ -121,6 +121,8 @@ export default function App() {
   useEffect(() => { AsyncStorage.getItem("tibetan-flash-language").then((v) => { if (v) setLangCode(v); }); }, []);
   useEffect(() => { AsyncStorage.setItem("tibetan-flash-language", langCode); }, [langCode]);
   const lang = LANGUAGE_BY_CODE[langCode] ?? LANGUAGE_BY_CODE[DEFAULT_LANGUAGE];
+  const [scheme, setScheme] = useState<string>(lang.defaultScheme);
+  const activeScheme = lang.schemes.some((x) => x.id === scheme) ? scheme : lang.defaultScheme;
 
   const c = {
     bg:     dark ? C.bgDark     : C.bg,
@@ -193,6 +195,7 @@ export default function App() {
     setSessionFilters([]);
     setExpandedGroups([]);
     setReadingText(null);
+    setScheme(lang.defaultScheme);
   }, [langCode]); // eslint-disable-line
 
   // ── Sheet animation ───────────────────────────────────────────────────────
@@ -391,7 +394,7 @@ export default function App() {
       <StatusBar barStyle={dark ? "light-content" : "dark-content"} />
 
       {/* Read surface (Texts) — overlays the deck when a text is open */}
-      {readingText && <Reader text={readingText} lang={LANGUAGE_BY_CODE[readingText.language] ?? lang} c={c} onClose={() => setReadingText(null)} />}
+      {readingText && <Reader text={readingText} lang={LANGUAGE_BY_CODE[readingText.language] ?? lang} scheme={activeScheme} c={c} onClose={() => setReadingText(null)} />}
 
       {/* Header */}
       <View style={s.header}>
@@ -464,6 +467,23 @@ export default function App() {
                 );
               })}
             </View>
+            {lang.schemes.length > 1 && (
+              <View style={{ flexDirection: "row", gap: 8, alignItems: "center", flexWrap: "wrap", marginBottom: 4 }}>
+                <Text style={{ fontSize: 12, color: c.faint }}>Romanization</Text>
+                {lang.schemes.map((sc) => {
+                  const on = sc.id === activeScheme;
+                  return (
+                    <TouchableOpacity
+                      key={sc.id}
+                      onPress={() => setScheme(sc.id)}
+                      style={[s.btn, s.sessionBtn, { paddingVertical: 5, backgroundColor: c.card, borderColor: on ? c.accent : c.border }]}
+                    >
+                      <Text style={{ fontSize: 12, fontFamily: "Menlo", color: on ? c.accent : c.muted }}>{sc.label}</Text>
+                    </TouchableOpacity>
+                  );
+                })}
+              </View>
+            )}
 
             <Text style={[s.sidebarLabel, { color: c.faint, marginTop: 24 }]}>Sessions</Text>
             {Object.entries(lang.sessionGroups).map(([groupName, groupSessions]) => {
