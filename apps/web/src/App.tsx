@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { SESSION_GROUPS } from "../../../shared/config/sessionGroups";
 import FLASHCARDS from "../../../shared/glossary/glossary.json";
-import { Card, CardStatus, StatusMap } from "../../../shared/types/types";
+import { Card, CardStatus, StatusMap, TibetanText } from "../../../shared/types/types";
+import { TEXTS } from "../../../shared/texts";
+import { Reader } from "./Reader";
 import { useDeck, StorageAdapter } from "../../../shared/hooks/useDeck";
 
 const webStorage: StorageAdapter = {
@@ -110,6 +112,7 @@ export default function App() {
   }, [dark]);
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [readingText, setReadingText] = useState<TibetanText | null>(null);
   const [contextOpen, setContextOpen] = useState(false);
   const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
   const [pendingReset, setPendingReset] = useState<string | null>(null);
@@ -175,6 +178,9 @@ export default function App() {
 
   return (
     <div className="font-serif bg-parchment min-h-screen py-6 px-4 text-ink dark:bg-parchment-dk dark:text-ink-lt">
+
+      {/* Read surface (Texts) — overlays the deck when a text is open */}
+      {readingText && <Reader text={readingText} onClose={() => setReadingText(null)} />}
 
       {/* Header */}
       <div className="flex items-center justify-between mb-5 max-w-[560px] mx-auto">
@@ -433,6 +439,22 @@ export default function App() {
                 </div>
               );
             })}
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-3">
+          <div className="text-[12px] tracking-[0.1em] uppercase text-ink-faint font-serif">Texts</div>
+          <div className="flex flex-col gap-1">
+            {TEXTS.map((t) => (
+              <button
+                key={t.id}
+                onClick={() => { setReadingText(t); setSidebarOpen(false); }}
+                className="flex items-center gap-2 text-left cursor-pointer py-1 text-ink dark:text-ink-lt hover:text-accent dark:hover:text-accent-dk"
+              >
+                <span className="font-tibetan text-[14px] text-accent dark:text-accent-dk">༄</span>
+                <span className="font-tibetan text-[16px] flex-1 leading-tight">{t.title}</span>
+              </button>
+            ))}
           </div>
         </div>
 

@@ -1,0 +1,665 @@
+<title>Texts — Read &amp; Explore</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,400&family=IM+Fell+English:ital@0;1&family=Noto+Serif+Tibetan:wght@400;500;600&display=swap">
+
+<style>
+  :root{
+    --page-bg:#e6ddd0; --page-ink:#5a4a38; --page-faint:#8a7868;
+    --page-card:#f4eee4; --page-border:#d8cbb8; --page-accent:#993c1d;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --page-bg:#0d0b09; --page-ink:#c0b0a0; --page-faint:#806858;
+      --page-card:#17130f; --page-border:#2a2520; --page-accent:#c47c1a;
+    }
+  }
+  :root[data-theme="dark"]{
+    --page-bg:#0d0b09; --page-ink:#c0b0a0; --page-faint:#806858;
+    --page-card:#17130f; --page-border:#2a2520; --page-accent:#c47c1a;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
+  html,body{margin:0}
+  body{background:var(--page-bg); color:var(--page-ink); font-family:'Crimson Pro',Georgia,serif;
+    min-height:100vh; display:flex; flex-direction:column; align-items:center; gap:22px; padding:34px 14px 54px}
+  @media (prefers-reduced-motion: reduce){*{animation:none!important; transition:none!important}}
+
+  .masthead{max-width:450px; text-align:center}
+  .masthead .eyebrow{font-family:'IM Fell English',Georgia,serif; font-style:italic; font-size:14px; color:var(--page-faint); margin:0 0 4px}
+  .masthead h1{font-family:'IM Fell English',Georgia,serif; font-weight:400; font-size:27px; margin:0; color:var(--page-ink); text-wrap:balance}
+  .masthead p{font-size:15px; line-height:1.5; color:var(--page-faint); margin:8px 2px 0}
+
+  .phone{
+    --bg:#faf6ef; --card:#fff9f0; --raised:#f0e8d8; --sheet:#f8f2e8;
+    --border:#e0ceb8; --ink:#3a2a18; --inkMid:#5a4a38; --muted:#8a7868; --faint:#b0a888; --accent:#993c1d;
+    --known:#3b6d11; --familiar:#8a6000; --review:#888780; --onAccent:#fff9f0;
+    --blue:#2f5e96;
+    width:393px; max-width:100%; height:812px; position:relative; background:var(--bg); color:var(--ink);
+    border-radius:44px; overflow:hidden; border:1px solid var(--border); box-shadow:0 30px 70px rgba(40,28,16,.30);
+  }
+  .phone.dark{
+    --bg:#1a1714; --card:#242018; --raised:#2a2520; --sheet:#1e1a16;
+    --border:#3a3530; --ink:#e8e0d0; --inkMid:#c0b0a0; --muted:#a09080; --faint:#806858; --accent:#c47c1a;
+    --known:#4a8c2a; --familiar:#c49a00; --review:#888780; --onAccent:#1a1714; --blue:#7aa8e0;
+    box-shadow:0 30px 70px rgba(0,0,0,.55);
+  }
+
+  .statusbar{height:44px; display:flex; align-items:flex-end; justify-content:space-between; padding:0 26px 5px; font-size:13px; font-weight:600; color:var(--ink)}
+  .statusbar .dots{letter-spacing:1px}
+  .apphead{display:flex; align-items:center; justify-content:space-between; padding:6px 20px 12px}
+  .logo{font-family:'Noto Serif Tibetan',serif; font-size:21px; color:var(--ink)}
+  .apphead .now{font-family:'IM Fell English',Georgia,serif; font-size:15px; color:var(--muted); display:flex; align-items:center; gap:6px}
+  .icon-btn{border:none; background:none; cursor:pointer; color:var(--muted); font-size:18px; line-height:1; padding:2px}
+
+  .canvas{padding:0 16px 96px; height:632px; overflow-y:auto; scrollbar-width:none}
+  .canvas::-webkit-scrollbar{display:none}
+  .canvas.shrunk{height:320px; padding-bottom:16px}
+  .textlabel{font-family:'IM Fell English',Georgia,serif; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--faint); margin:2px 2px 8px}
+  .frame-outer{border:1px solid var(--border); padding:3px; border-radius:3px}
+  .frame-inner{border:1px solid var(--border); border-radius:2px; padding:16px 12px; background:var(--card)}
+  .lineblock{margin-bottom:14px}
+  .lineblock:last-child{margin-bottom:0}
+  .line{display:flex; flex-wrap:wrap; align-items:flex-end; row-gap:8px}
+
+  .scol{display:inline-flex; flex-direction:column; align-items:center}
+  .scol .tib{font-family:'Noto Serif Tibetan',serif; font-size:25px; line-height:1.7; color:var(--ink)}
+  .scol .srom{font-family:'Courier New',monospace; font-size:9px; letter-spacing:.02em; color:var(--accent); margin-top:-1px; line-height:1.5}
+  .shad{font-family:'Noto Serif Tibetan',serif; font-size:25px; color:var(--accent); line-height:1.7; padding-left:2px; align-self:flex-end}
+
+  .word{display:inline-flex; align-items:flex-end; padding:1px 4px; margin:0 1px;
+    border-radius:6px; background:color-mix(in srgb, var(--blue) 20%, transparent); cursor:pointer}
+  .phrase{display:inline-flex; align-items:flex-end; padding:1px 3px; margin:0 1px;
+    border-radius:9px; background:color-mix(in srgb, var(--blue) 12%, transparent); cursor:pointer}
+  .word.active,.phrase.active{background:color-mix(in srgb, var(--blue) 34%, transparent); outline:1.5px solid var(--accent); outline-offset:1px}
+
+  .romstrip{margin-top:3px; min-height:18px; font-family:'Courier New',monospace; font-size:12px; letter-spacing:.06em;
+    color:var(--accent); cursor:pointer; border-radius:5px; padding:2px 4px}
+  .romstrip.hidden-rom{color:var(--faint); font-style:italic; font-family:'Crimson Pro',serif; letter-spacing:0}
+  .romstrip.hidden-rom:hover{background:color-mix(in srgb, var(--accent) 8%, transparent)}
+
+  .legend{display:flex; justify-content:center; gap:14px; margin-top:16px; flex-wrap:wrap}
+  .legend span{display:flex; align-items:center; gap:6px; font-size:12px; color:var(--muted)}
+  .legend .sw{width:22px; height:14px; border-radius:4px; display:inline-block}
+  .legend .sw.word{background:color-mix(in srgb, var(--blue) 26%, transparent)}
+  .legend .sw.phrase{position:relative; background:color-mix(in srgb, var(--blue) 12%, transparent)}
+  .legend .sw.phrase::after{content:""; position:absolute; inset:3px 4px; border-radius:2px; background:color-mix(in srgb, var(--blue) 24%, transparent)}
+  .hint{font-size:14px; color:var(--muted); line-height:1.55; margin:16px 12px 0; text-align:center; font-style:italic}
+
+  .readingbar{position:absolute; left:12px; right:12px; bottom:18px; z-index:15; background:var(--card);
+    border:1px solid var(--border); border-radius:16px; box-shadow:0 10px 26px rgba(20,12,6,.16);
+    display:flex; align-items:center; gap:8px; padding:9px 10px}
+  .phone.dark .readingbar{box-shadow:0 10px 26px rgba(0,0,0,.5)}
+  .rb-scheme{font-family:'Courier New',monospace; font-size:11px; letter-spacing:1px; color:var(--muted);
+    border:1px dashed var(--border); border-radius:8px; padding:8px 9px; cursor:pointer; white-space:nowrap}
+  .rb-btn{flex:1; display:flex; align-items:center; justify-content:center; gap:6px; border:1px solid var(--border);
+    background:transparent; color:var(--muted); border-radius:10px; padding:9px 6px; cursor:pointer;
+    font-family:'IM Fell English',Georgia,serif; font-size:13.5px; letter-spacing:.2px}
+  .rb-btn .ic{font-family:'Courier New',monospace; font-size:13px}
+  .rb-btn.on{background:var(--accent); color:var(--onAccent); border-color:var(--accent)}
+
+  .peek{position:absolute; left:12px; right:12px; bottom:78px; z-index:20; background:var(--card); border:1px solid var(--border);
+    border-radius:16px; box-shadow:0 12px 30px rgba(20,12,6,.20); padding:12px 14px; display:flex; align-items:center; gap:12px;
+    animation:rise 200ms cubic-bezier(.2,.8,.3,1)}
+  .phone.dark .peek{box-shadow:0 12px 30px rgba(0,0,0,.55)}
+  .peek .pk-tib{font-family:'Noto Serif Tibetan',serif; font-size:26px; line-height:1.3; color:var(--ink)}
+  .peek .pk-mid{flex:1; min-width:0}
+  .peek .pk-rom{font-family:'Courier New',monospace; font-size:12px; letter-spacing:1px; color:var(--accent)}
+  .peek .pk-gloss{font-size:15px; color:var(--ink); line-height:1.3; margin-top:1px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .peek .pk-meta{display:flex; align-items:center; gap:5px; margin-top:3px; font-size:10.5px; color:var(--muted)}
+  .dot{width:7px; height:7px; border-radius:50%; display:inline-block}
+  .pk-dissect{border:1px solid var(--accent); background:transparent; color:var(--accent); font-family:'IM Fell English',Georgia,serif;
+    font-size:13.5px; letter-spacing:.3px; padding:9px 13px; border-radius:11px; cursor:pointer; white-space:nowrap}
+
+  .sheet{position:absolute; left:0; right:0; bottom:0; height:508px; z-index:30; background:var(--sheet); border-top:1px solid var(--border);
+    border-radius:20px 20px 44px 44px; display:flex; flex-direction:column; animation:rise 240ms cubic-bezier(.2,.8,.3,1)}
+  @keyframes rise{from{transform:translateY(18px); opacity:0} to{transform:none; opacity:1}}
+  .grip{display:flex; justify-content:center; padding:9px 0 4px}
+  .grip span{width:36px; height:4px; border-radius:2px; background:var(--border)}
+  .sheet-top{display:flex; align-items:center; justify-content:space-between; padding:0 16px 8px}
+  .stepper{display:flex; align-items:center; border:1px solid var(--border); border-radius:20px; background:var(--raised)}
+  .stepper button{border:none; background:none; cursor:pointer; color:var(--accent); font-size:13px; padding:4px 9px}
+  .stepper .count{font-family:'Courier New',monospace; font-size:10px; color:var(--muted); min-width:46px; text-align:center}
+  .link-btn{border:none; background:none; cursor:pointer; font-size:13px; color:var(--muted)}
+  .link-btn.accent{color:var(--accent)}
+  .sheet-body{flex:1; overflow-y:auto; scrollbar-width:none; padding:0 16px 30px}
+  .sheet-body::-webkit-scrollbar{display:none}
+  .ex-tib{font-family:'Noto Serif Tibetan',serif; font-size:32px; line-height:1.7; color:var(--ink)}
+  .ex-rom{font-family:'Courier New',monospace; font-size:12.5px; letter-spacing:1px; color:var(--accent); margin-top:1px}
+  .ex-prov{display:flex; align-items:center; gap:7px; margin-top:12px; flex-wrap:wrap}
+  .chip{font-size:11.5px; border-radius:4px; padding:2px 8px}
+  .chip.deck{border:1px solid currentColor}
+  .chip.dictonly{color:var(--muted); border:1px dashed var(--border)}
+  .chip.sess{color:var(--faint)}
+  .chip.pos{font-family:'Courier New',monospace; font-size:9.5px; text-transform:uppercase; letter-spacing:.1em; color:var(--onAccent); background:var(--muted); border-radius:3px; padding:2px 6px}
+  .ex-meaning{font-size:18.5px; color:var(--ink); margin-top:11px; line-height:1.45}
+  .ex-notes{font-size:13.5px; color:var(--inkMid); margin-top:8px; line-height:1.6}
+  .ex-context{font-size:13px; color:var(--muted); margin-top:9px; line-height:1.6; font-style:italic; border-left:2px solid var(--border); padding-left:10px}
+  .panel{margin-top:14px; border:1px solid var(--border); border-radius:10px; overflow:hidden; background:var(--card)}
+  .panel-h{background:var(--raised); padding:5px 10px; font-family:'IM Fell English',Georgia,serif; font-size:10.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--muted)}
+  .stems{display:grid; grid-template-columns:repeat(4,1fr)}
+  .stems .cell{padding:8px 3px; text-align:center; border-left:1px solid var(--border)}
+  .stems .cell:first-child{border-left:none}
+  .stems .cell.here{background:color-mix(in srgb, var(--accent) 13%, transparent)}
+  .stems .st{font-family:'Noto Serif Tibetan',serif; font-size:18px; line-height:1.6; color:var(--ink)}
+  .stems .cell.here .st{color:var(--accent)}
+  .stems .lb{font-size:9px; color:var(--faint); text-transform:uppercase; letter-spacing:.06em}
+  .forms{display:flex; gap:5px; padding:10px 10px 6px; flex-wrap:wrap}
+  .forms span{font-family:'Noto Serif Tibetan',serif; font-size:18px; line-height:1.5; padding:1px 8px; border-radius:5px; border:1px solid var(--border); color:var(--faint)}
+  .forms span.act{background:var(--accent); color:var(--onAccent); border-color:var(--accent)}
+  .why{padding:0 10px 10px; font-size:12.5px; color:var(--inkMid)}
+  .actions{display:flex; gap:8px; margin-top:16px}
+  .actions button{flex:1; padding:12px 0; border-radius:10px; cursor:pointer; font-family:'IM Fell English',Georgia,serif; font-size:14px; letter-spacing:.3px}
+  .btn-primary{border:none; background:var(--accent); color:var(--onAccent)}
+  .btn-primary.have{background:transparent; border:1px solid var(--border); color:var(--muted)}
+  .btn-ghost{border:1px solid var(--accent); background:transparent; color:var(--accent)}
+  .btn-ghost:disabled{opacity:.4; cursor:default}
+  .anat-top{display:flex; align-items:center; justify-content:space-between}
+  .anat-eyebrow{font-family:'IM Fell English',Georgia,serif; font-size:10.5px; letter-spacing:.15em; text-transform:uppercase; color:var(--faint)}
+  .anat-glyph{font-family:'Noto Serif Tibetan',serif; font-size:42px; line-height:1.6; text-align:center; color:var(--ink)}
+  .anat-rom{font-family:'Courier New',monospace; font-size:12px; letter-spacing:1.4px; text-align:center; color:var(--accent)}
+  .slots{display:flex; justify-content:center; gap:3px; margin-top:16px}
+  .slot{flex:1; text-align:center}
+  .slot .box{width:100%; height:44px; display:flex; align-items:center; justify-content:center; border-radius:7px; border:1px solid var(--border); background:var(--card); cursor:default}
+  .slot .box.empty{border-style:dashed; background:transparent}
+  .slot .box.root{border:1.5px solid var(--accent); background:color-mix(in srgb, var(--accent) 12%, transparent)}
+  .slot .box.link{cursor:pointer}
+  .slot .g{font-family:'Noto Serif Tibetan',serif; font-size:21px; line-height:1.4; color:var(--ink)}
+  .slot .box.root .g{color:var(--accent)}
+  .slot .g.silent{color:var(--faint)}
+  .slot .g.empty{font-size:12px; color:var(--faint)}
+  .slot .en{font-size:7.5px; color:var(--muted); margin-top:3px; text-transform:uppercase; letter-spacing:.04em}
+  .slot .tag{font-size:7px}
+  .slot .tag.silent{color:var(--accent)}
+  .slot .tag.card{color:var(--faint)}
+  .anat-note{font-size:14px; color:var(--ink); margin-top:16px; line-height:1.55; border-left:2px solid var(--accent); padding-left:11px}
+  .anat-sub{font-size:12.5px; color:var(--muted); margin-top:12px; line-height:1.55}
+  .lettercard{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; margin-top:10px; text-align:center}
+  .lettercard .eyebrow{font-family:'IM Fell English',Georgia,serif; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--faint)}
+  .lettercard .glyph{font-family:'Noto Serif Tibetan',serif; font-size:46px; line-height:1.7; color:var(--ink); margin-top:4px}
+  .lettercard .acip{font-family:'Courier New',monospace; font-size:13px; letter-spacing:1px; color:var(--ink)}
+  .lettercard .mean{font-size:17px; color:var(--ink); margin-top:8px}
+  .lettercard .note{font-size:13.5px; color:var(--inkMid); margin-top:8px; line-height:1.55; text-align:left}
+
+  .scrim{position:absolute; inset:0; background:rgba(20,12,6,.34); z-index:40}
+  .settings{position:absolute; left:0; right:0; bottom:0; z-index:41; max-height:660px; overflow-y:auto; scrollbar-width:none;
+    background:var(--sheet); border-top:1px solid var(--border); border-radius:20px 20px 44px 44px; padding:8px 18px 34px; animation:rise 240ms cubic-bezier(.2,.8,.3,1)}
+  .settings::-webkit-scrollbar{display:none}
+  .set-h{font-family:'IM Fell English',Georgia,serif; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--faint); margin:18px 0 8px}
+  .seg{display:flex; background:var(--raised); border:1px solid var(--border); border-radius:9px; padding:2px}
+  .seg button{flex:1; border:none; cursor:pointer; padding:8px 0; border-radius:7px; background:transparent; font-family:'Courier New',monospace; font-size:12px; color:var(--muted)}
+  .seg button.on{background:var(--accent); color:var(--onAccent)}
+  .pick{display:flex; align-items:center; justify-content:space-between; padding:11px 4px; border-bottom:1px solid var(--border); cursor:pointer}
+  .pick .nm{font-size:15.5px; color:var(--ink); display:flex; align-items:center; gap:8px}
+  .pick .nm .mk{font-family:'Noto Serif Tibetan',serif; font-size:14px; color:var(--accent)}
+  .pick .ct{font-family:'Courier New',monospace; font-size:11px; color:var(--muted)}
+  .pick.sel .nm{color:var(--accent)}
+  .pick .radio{width:16px; height:16px; border-radius:50%; border:1.5px solid var(--border); position:relative}
+  .pick.sel .radio{border-color:var(--accent)}
+  .pick.sel .radio::after{content:""; position:absolute; inset:3px; border-radius:50%; background:var(--accent)}
+  .set-done{margin-top:20px; width:100%; padding:12px 0; border:none; border-radius:11px; background:var(--accent); color:var(--onAccent); font-family:'IM Fell English',Georgia,serif; font-size:15px; cursor:pointer}
+
+  .learn{padding:48px 24px; text-align:center; color:var(--muted)}
+  .learn .big{font-family:'Noto Serif Tibetan',serif; font-size:44px; color:var(--ink)}
+  .learn p{font-size:15px; line-height:1.6; margin-top:12px}
+
+  .toast{position:absolute; top:96px; left:0; right:0; display:flex; justify-content:center; z-index:50; pointer-events:none}
+  .toast div{background:var(--ink); color:var(--bg); border-radius:8px; padding:8px 15px; font-size:13px}
+
+  .ladder{display:flex; max-width:520px; width:100%; border:1px solid var(--page-border); border-radius:12px; overflow:hidden; background:var(--page-card)}
+  .rung{flex:1; padding:11px 8px 12px; text-align:center; border-left:1px solid var(--page-border); transition:background 160ms ease}
+  .rung:first-child{border-left:none}
+  .rung.on{background:color-mix(in srgb, var(--page-accent) 15%, transparent)}
+  .rung .lv{font-family:'Courier New',monospace; font-size:11px; letter-spacing:.1em; color:var(--page-faint)}
+  .rung.on .lv{color:var(--page-accent)}
+  .rung .nm{font-family:'IM Fell English',Georgia,serif; font-size:15px; margin-top:2px; color:var(--page-ink)}
+  .rung .ds{font-size:11.5px; color:var(--page-faint); margin-top:2px; line-height:1.3}
+  .footnote{max-width:520px; font-size:12.5px; color:var(--page-faint); text-align:center; line-height:1.55; margin:0}
+  .footnote code{font-family:'Courier New',monospace; color:var(--page-accent)}
+</style>
+
+<div class="masthead">
+  <p class="eyebrow">Tibetan Flash · new surface</p>
+  <h1>Texts — Read &amp; Explore</h1>
+  <p>Pick a text in Settings (⚙). Reading is sounding out script; the reading bar reveals romanization and washes word-boundaries in blue — where longer phrases sit under the smaller words inside them.</p>
+</div>
+
+<div class="phone light" id="phone">
+  <div class="statusbar"><span>9:41</span><span class="dots">▪▪▪ ᯤ ▮</span></div>
+  <div class="apphead">
+    <span class="logo">༄༅།</span>
+    <span class="now" id="nowLabel"></span>
+    <span style="display:flex; gap:4px">
+      <button class="icon-btn" id="theme" aria-label="Toggle theme">☀</button>
+      <button class="icon-btn" id="gear" aria-label="Settings">⚙</button>
+    </span>
+  </div>
+  <div id="surface"></div>
+  <div class="toast" id="toast" style="display:none"><div></div></div>
+</div>
+
+<div class="ladder" id="ladderEl">
+  <div class="rung" data-lv="0"><div class="lv">L0</div><div class="nm">Read</div><div class="ds">sound out script</div></div>
+  <div class="rung" data-lv="1"><div class="lv">L1</div><div class="nm">Peek</div><div class="ds">sound + gloss</div></div>
+  <div class="rung" data-lv="2"><div class="lv">L2</div><div class="nm">Explore</div><div class="ds">the full word</div></div>
+  <div class="rung" data-lv="3"><div class="lv">L3</div><div class="nm">Anatomy</div><div class="ds">seven slots</div></div>
+</div>
+<p class="footnote"><code>Sound</code> reveals romanization (Settings: under each syllable, or reveal by line) · <code>Words</code> washes the dictionary words in blue — a phrase's lighter wash sits under the darker word washes inside it. Tap either.</p>
+
+<script>
+(function(){
+  "use strict";
+  const S=(tib,acip,wylie)=>({tib,acip,wylie});
+  const LINES=[
+    [S("སངས་","SANGS","sangs"),S("རྒྱས་","RGYAS","rgyas"),S("ཆོས་","CHOS","chos"),S("དང་","DANG","dang"),S("ཚོགས་","TSHOGS","tshogs"),S("ཀྱི་","KYI","kyi"),S("མཆོག་","MCHOG","mchog"),S("རྣམས་","RNAMS","rnams"),S("ལ","LA","la")],
+    [S("བྱང་","BYANG","byang"),S("ཆུབ་","CHUB","chub"),S("བར་","BAR","bar"),S("དུ་","DU","du"),S("བདག་","BDAG","bdag"),S("ནི་","NI","ni"),S("སྐྱབས་","SKYABS","skyabs"),S("སུ་","SU","su"),S("མཆི","MCHI","mchi")],
+    [S("བདག་","BDAG","bdag"),S("གིས་","GIS","gis"),S("སྦྱིན་","SBYIN","sbyin"),S("སོགས་","SOGS","sogs"),S("བགྱིས་","BGYIS","bgyis"),S("པའི་","PA'I","pa'i"),S("བསོད་","BSOD","bsod"),S("ནམས་","NAMS","nams"),S("ཀྱིས","KYIS","kyis")],
+    [S("འགྲོ་","'GRO","'gro"),S("ལ་","LA","la"),S("ཕན་","PHAN","phan"),S("ཕྱིར་","PHYIR","phyir"),S("སངས་","SANGS","sangs"),S("རྒྱས་","RGYAS","rgyas"),S("འགྲུབ་","'GRUB","'grub"),S("པར་","PAR","par"),S("ཤོག","SHOG","shog")]
+  ];
+  const FLAT=[]; LINES.forEach((ln,li)=>ln.forEach(s=>FLAT.push(Object.assign({},s,{line:li,i:FLAT.length}))));
+
+  const WORDS=[[0,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],
+    [9,10],[11,11],[12,12],[13,13],[14,14],[15,15],[16,16],[17,17],
+    [18,18],[19,19],[20,20],[21,21],[22,22],[23,23],[24,25],[26,26],
+    [27,27],[28,28],[29,29],[30,30],[31,32],[33,33],[34,34],[35,35]];
+  const PHRASES=[[4,6],[9,12],[15,17]]; // brackets that nest over the words inside them
+
+  const D=(start,end,meaning,pos,notes,extra)=>Object.assign({start,end,meaning,pos,notes:notes||""},extra||{});
+  const DICT=[
+    D(0,1,"Enlightened being; Buddha","noun","",{gid:"g-sangs-rgyas"}),
+    D(0,8,"to the Buddha, the Dharma and the Supreme Assembly","phrase","The full object-of-refuge phrase, closed by ལ."),
+    D(2,2,"thing, existing thing, a teaching, reality","noun","",{gid:"g-chos"}),
+    D(3,3,"and; with","particle","Coordinating particle. Follows the item it joins."),
+    D(4,4,"assembly; the Sangha; accumulation","noun","In refuge: the community. In merit: accumulation."),
+    D(4,6,"the supreme assembly","phrase","ཚོགས་ + genitive ཀྱི་ + མཆོག་."),
+    D(5,5,"of; ’s","particle","Genitive.",{particle:{family:"Genitive",forms:["གི","གྱི","ཀྱི","ཡི","འི"],why:"ཚོགས་ ends in ས་ → takes ཀྱི་"}}),
+    D(6,6,"supreme; highest; best","noun/adj","Frequently nominalized: “the supreme one.”"),
+    D(7,7,"plural marker","particle","Marks the preceding noun phrase as plural."),
+    D(8,8,"to; at; for","particle","La-don. Here dative — marking the object of refuge.",{gid:"g-la-1"}),
+    D(9,10,"enlightenment; bodhi","noun","Calque of Sanskrit bodhi: བྱང་ “purified,” ཆུབ་ “perfected.”"),
+    D(9,12,"until enlightenment","phrase","བྱང་ཆུབ་ + བར་དུ་ “up to the point of.”"),
+    D(11,11,"interval; until","postposition","Pairs with terminative དུ་ to mean “until.”"),
+    D(12,12,"terminative particle","particle","Here forms བར་དུ་ “up to the point of.”"),
+    D(13,13,"I; self; me","pronoun","Plain register."),
+    D(14,14,"topic marker","particle","Sets off the subject for emphasis. Often untranslated."),
+    D(15,15,"refuge; protection","noun","Also a verb stem: “to protect.”"),
+    D(15,17,"go for refuge","verb phrase","Fixed idiom. སྐྱབས་ + terminative སུ་ + མཆི་."),
+    D(16,16,"to; into","particle","Terminative.",{particle:{family:"Terminative",forms:["སུ","རུ","དུ","ཏུ","ར"],why:"སྐྱབས་ ends in ས་ → takes སུ་"}}),
+    D(17,17,"go; proceed","verb","Elegant register of འགྲོ་.",{stems:{pres:"མཆི",past:"མཆིས",fut:"མཆི",imp:"—"}}),
+    D(18,18,"I; self; me","pronoun","Here the agent of the verb — hence the གིས་ that follows."),
+    D(19,19,"agentive marker","particle","Marks the doer of a transitive verb.",{particle:{family:"Agentive",forms:["གིས","གྱིས","ཀྱིས","ཡིས","ས"],why:"བདག་ ends in ག་ → takes གིས་"}}),
+    D(20,20,"giving; generosity; dāna","noun","First of the six perfections."),
+    D(21,21,"and so forth; et cetera","noun","Closes an abbreviated list."),
+    D(22,22,"did; performed","verb","Past stem. Elegant register of བྱེད་.",{stems:{pres:"བགྱིད",past:"བགྱིས",fut:"བགྱི",imp:"བགྱིས"},lemma:"བགྱིད་"}),
+    D(23,23,"of the …-ing","particle","Nominalizer པ་ contracted with genitive འི་."),
+    D(24,25,"merit; meritorious power","noun","Sanskrit puṇya. A fixed two-syllable compound."),
+    D(26,26,"by; through","particle","Agentive.",{particle:{family:"Agentive",forms:["གིས","གྱིས","ཀྱིས","ཡིས","ས"],why:"ནམས་ ends in ས་ → takes ཀྱིས་"}}),
+    D(27,27,"beings; migrators","noun","Short for འགྲོ་བ་ — “those who wander” through rebirth."),
+    D(28,28,"to; for","particle","La-don, dative of benefit."),
+    D(29,29,"benefit; help","noun","Often paired with བདེ་ “happiness.”"),
+    D(30,30,"for the sake of; because","postposition","Purposive when following a verb phrase."),
+    D(31,32,"the Buddha; buddhahood","noun","Here the goal, not the object of refuge.",{gid:"g-sangs-rgyas"}),
+    D(33,33,"accomplish; be achieved","verb","Present stem. Intransitive counterpart of སྒྲུབ་.",{stems:{pres:"འགྲུབ",past:"གྲུབ",fut:"འགྲུབ",imp:"—"},lemma:"འགྲུབ་"}),
+    D(34,34,"nominalizer + terminative","particle","པ་ + ར་. Marks purpose or result."),
+    D(35,35,"may it be so","particle","Optative. Closes an aspiration verse.")
+  ];
+  const GLOSSARY={
+    "g-sangs-rgyas":{session:"05 Ben's Text",context:"The Tibetan coinage unpacks buddhahood into two movements: SANGS, the clearing away of every obscuration, and RGYAS, the full flowering of every quality."},
+    "g-chos":{session:"03 Ben's Text",context:"Simultaneously phenomenon, Dharma (the teaching), and right conduct. CHOS foregrounds ontological status: it holds its own nature."},
+    "g-la-1":{session:"00 Alphabet"}
+  };
+  const STATUS={"g-sangs-rgyas":"known","g-chos":"familiar","g-la-1":"review"};
+
+  const A=(pre,sup,root,sub,vow,suf,post,note)=>({pre,sup,root,sub,vow,suf,post,note});
+  const ANATOMY={
+    SANGS:A(null,null,"ས",null,null,"ང","ས","No prefix or superscript — the root ས་ is bare, so the syllable keeps its high tone."),
+    RGYAS:A(null,"ར","ག","ྱ",null,"ས",null,"Superscript ར་ is silent but lowers the root to a low tone."),
+    BDAG:A("བ",null,"ད",null,null,"ག",null,"Prefix བ་ is silent. It marks the word, it isn’t said."),
+    BSOD:A("བ",null,"ས",null,"ོ","ད",null,"Prefix བ་ silent. The ོ sits above the root, not the prefix."),
+    "'GRUB":A("འ",null,"ག","ྲ","ུ","བ",null,"The འ prefix prenasalises and marks the intransitive stem."),
+    SKYABS:A(null,"ས","ཀ","ྱ",null,"བ","ས","Superscript ས་ over root ཀ་, with ྱ beneath — a three-tier stack."),
+    BGYIS:A("བ",null,"ག","ྱ","ི","ས",null,"Prefix བ་ is the past-tense marker here."),
+    KYIS:A(null,null,"ཀ","ྱ","ི","ས",null,"A particle, but built exactly like any other syllable."),
+    MCHOG:A("མ",null,"ཆ",null,"ོ","ག",null,"Prefix མ་ is silent before ཆ་."),
+    RNAMS:A(null,"ར","ན",null,null,"མ","ས","Superscript ར་ over ན་ — silent, tone-lowering."),
+    SBYIN:A("ས",null,"བ","ྱ","ི","ན",null,"Prefix ས་ silent; ྱ turns བ into a palatal."),
+    PHYIR:A(null,null,"ཕ","ྱ","ི","ར",null,"Subscript ྱ shifts ཕ toward a ch-like sound."),
+    BYANG:A(null,null,"བ","ྱ",null,"ང",null,"Bare root with subscript — no silent letters at all."),
+    CHUB:A(null,null,"ཆ",null,"ུ","བ",null,"The simplest shape: root, vowel, suffix."),
+    "'GRO":A("འ",null,"ག","ྲ","ོ",null,null,"No suffix — the vowel ends the syllable."),
+    TSHOGS:A(null,null,"ཚ",null,"ོ","ག","ས","Post-suffix ས་ forces ཀྱི་ rather than གི་ after it."),
+    KYI:A(null,null,"ཀ","ྱ","ི",null,null,"Open syllable — the vowel is the ending."),
+    SHOG:A(null,null,"ཤ",null,"ོ","ག",null,"Root, vowel, suffix. The ག closes with a glottal stop.")
+  };
+  const SLOTS=[["pre","prefix","Prefix"],["sup","superscript",null],["root","root","Alphabet"],["sub","subscript","Subjoined"],["vow","vowel",null],["suf","suffix","Suffix"],["post","post-suffix","Suffix"]];
+  const LETTERS={
+    Alphabet:{"ས":{acip:"SA",meaning:"Row 7 Mid Tone, Col 4",notes:"Pronounced 'sa', Mid Tone. Easy to confuse with ZA (ཟ་), which is 'sa' but Low Tone."},"ག":{acip:"GA",meaning:"Row 1 Guttural, Col 3 Voiced, Low Tone",notes:"Pronounced 'ka' (NOT 'ga')."},"ད":{acip:"DA",meaning:"Row 3 Dental, Col 3 Voiced, Low Tone",notes:"Pronounced 'ta' (NOT 'da')."},"ཀ":{acip:"KA",meaning:"Row 1 Guttural, Col 1 Unaspirated, Low Tone",notes:"Pronounced 'ka'. No puff of air."},"ཆ":{acip:"CHA",meaning:"Row 2 Palatal, Col 2 Aspirated, High Tone",notes:"Pronounced 'cha'. Aspirated."},"ན":{acip:"NA",meaning:"Row 3 Dental, Col 4 Nasal, Low Tone",notes:"Pronounced 'na'. Dental nasal."},"ཕ":{acip:"PHA",meaning:"Row 4 Labial, Col 2 Aspirated, High Tone",notes:"Pronounced 'pa'. Aspirated."},"ཤ":{acip:"SHA",meaning:"Row 7 Mid Tone, Col 3",notes:"Pronounced 'sha', Mid Tone."},"ར":{acip:"RA",meaning:"Row 7 Mid Tone, Col 1",notes:"Pronounced 'ra', Mid Tone. A rolled 'r'."},"མ":{acip:"MA",meaning:"Row 4 Labial, Col 4 Nasal, Low Tone",notes:"Pronounced 'ma'. Labial nasal."},"ཚ":{acip:"TSA",meaning:"Row 5, Col 2 Aspirated, High Tone",notes:"Pronounced 'tsa'. Aspirated."},"འ":{acip:"'A",meaning:"Row 6 Low Tone, Col 3",notes:"Pronounced 'ah', Low Tone. Also a prefix and superscript."}},
+    Suffix:{"ས":{acip:"SA",meaning:"Vowel Changes and Lengthened",notes:"Umlaut ('ah'→'ä', 'u'→'ü', 'o'→'ö') and SA lengthens the vowel."},"ག":{acip:"GA",meaning:"Glottal Stop",notes:"A final 'k' is a stop in the back of the throat."},"ང":{acip:"NGA",meaning:"Suffix: '-ng' sound",notes:"e.g., ལིང་ = 'ling'."},"ད":{acip:"DA",meaning:"Vowel Changes and Glottal Stop",notes:"Umlaut, plus DA shortens the vowel with a glottal stop."},"བ":{acip:"BA",meaning:"Suffix: '-p' sound",notes:"Sounds like 'p', not 'b'."},"མ":{acip:"MA",meaning:"Suffix: '-m' sound",notes:"e.g., ལམ་ = 'lam'."},"ན":{acip:"NA",meaning:"Vowel Changes and 'N' pronounced",notes:"Umlaut, plus NA fully pronounced."},"ར":{acip:"RA",meaning:"Suffix: '-r' sound",notes:"e.g., ལར་ = 'lar'."}},
+    Subjoined:{"ྱ":{acip:"",meaning:"Adds a “y” sound, “kya”",notes:"All three gutturals produce 'kya': ཀྱ་, ཁྱ་, གྱ་."},"ྲ":{acip:"",meaning:"Retroflex, 'tra', Voiced",notes:"The RA curls the tongue back to make the retroflex sound."}},
+    Prefix:{"བ":{acip:"BA",meaning:"Silent prefix / tense marker",notes:"As a prefix, བ་ is silent; it can mark the word or the past tense."},"འ":{acip:"'A",meaning:"Causes a Prenasal",notes:"འ་ as a prefix causes a brief nasal matching the row of the next consonant."},"མ":{acip:"MA",meaning:"Silent prefix",notes:"Prefix མ་ is silent before its root."},"ས":{acip:"SA",meaning:"Silent prefix",notes:"Prefix ས་ is silent; it exists to mark the word."}}
+  };
+
+  const SESSIONS=[
+    {group:"Texts", items:[{name:"Refuge Verse", type:"text", count:"4 lines"},{name:"Heart Sutra (excerpt)", type:"text", count:"soon", disabled:true}]},
+    {group:"Learn", items:[{name:"00 Alphabet", type:"learn", count:71},{name:"05 Ben's Text", type:"learn", count:6},{name:"06 Debate Foundations", type:"learn", count:4}]}
+  ];
+
+  const st={selection:{name:"Refuge Verse",type:"text"}, scheme:"ACIP", romanize:false, romLayout:"under",
+    boundaries:false, revealed:new Set(), settings:false, dark:false, sel:null, level:0, view:"word", letter:null};
+  const stripTsek=t=>t.replace(/་$/,"");
+  const rom=s=>st.scheme==="ACIP"?s.acip:s.wylie;
+
+  function candidates(i){
+    const hits=DICT.filter(e=>e.start<=i&&e.end>=i).slice();
+    hits.sort((a,b)=>(b.end-b.start)-(a.end-a.start));
+    if(!hits.some(e=>e.start===i&&e.end===i))
+      hits.push(D(i,i,"no independent entry","syllable","This syllable appears only inside a larger word."));
+    return hits;
+  }
+  const spanTib=e=>FLAT.slice(e.start,e.end+1).map(s=>s.tib).join("");
+  const spanRom=e=>FLAT.slice(e.start,e.end+1).map(s=>rom(s)).join(" ");
+  function entryFor(a,b){ return DICT.find(e=>e.start===a&&e.end===b)||candidates(a)[0]; }
+  function statusOf(a,b){ const e=entryFor(a,b); return e.gid?(STATUS[e.gid]||"review"):null; }
+  const statusColor=s=>s==="known"?"var(--known)":s==="familiar"?"var(--familiar)":"var(--review)";
+  const selMatches=(a,b)=>st.sel&&st.sel.entry.start===a&&st.sel.entry.end===b;
+
+  const surface=document.getElementById("surface");
+  const phone=document.getElementById("phone");
+  const nowLabel=document.getElementById("nowLabel");
+  const toastEl=document.getElementById("toast");
+  let toastTimer=null;
+  function toast(msg){toastEl.style.display="flex"; toastEl.firstElementChild.textContent=msg;
+    clearTimeout(toastTimer); toastTimer=setTimeout(()=>toastEl.style.display="none",2000);}
+
+  function setLadder(){
+    const reading=st.selection.type==="text";
+    document.querySelectorAll(".rung").forEach(r=>r.classList.toggle("on", reading && Number(r.dataset.lv)===st.level));
+  }
+
+  /* ── render ──────────────────────────────────────────────── */
+  function render(){
+    nowLabel.innerHTML = st.selection.type==="text"
+      ? `<span style="font-family:'Noto Serif Tibetan',serif;color:var(--accent)">༄</span> ${st.selection.name}`
+      : st.selection.name;
+    setLadder();
+    let html = st.selection.type==="learn" ? learnHTML() : readHTML();
+    if(st.settings) html += settingsHTML();
+    surface.innerHTML = html; wire();
+  }
+
+  function syl(s, underRom){
+    return `<span class="scol"><span class="tib">${s.tib}</span>${underRom?`<span class="srom">${rom(s)}</span>`:""}</span>`;
+  }
+  function wordSpan(a,b,underRom){
+    const syls=FLAT.slice(a,b+1).map(s=>syl(s,underRom)).join("");
+    return `<span class="word ${selMatches(a,b)?"active":""}" data-start="${a}" data-end="${b}">${syls}</span>`;
+  }
+  function lineUnits(li){
+    const words=WORDS.filter(w=>FLAT[w[0]].line===li);
+    const phrases=PHRASES.filter(p=>FLAT[p[0]].line===li);
+    const items=[]; let i=0;
+    while(i<words.length){
+      const w=words[i];
+      const ph=phrases.find(p=>p[0]<=w[0]&&p[1]>=w[1]);
+      if(ph){ const kids=words.filter(x=>x[0]>=ph[0]&&x[1]<=ph[1]); items.push({type:"phrase",span:ph,kids}); i+=kids.length; }
+      else { items.push({type:"word",span:w}); i++; }
+    }
+    return items;
+  }
+
+  function readHTML(){
+    const sheetOpen=st.level>=2;
+    const underRom = st.romanize && st.romLayout==="under";
+    let lines="";
+    LINES.forEach((line,li)=>{
+      let inner="";
+      if(st.boundaries){
+        lineUnits(li).forEach(it=>{
+          if(it.type==="phrase"){
+            const kids=it.kids.map(w=>wordSpan(w[0],w[1],underRom)).join("");
+            inner+=`<span class="phrase ${selMatches(it.span[0],it.span[1])?"active":""}" data-start="${it.span[0]}" data-end="${it.span[1]}" data-phrase="1">${kids}</span>`;
+          } else inner+=wordSpan(it.span[0],it.span[1],underRom);
+        });
+      } else {
+        inner=line.map(s=>syl(s,underRom)).join("");
+      }
+      let strip="";
+      if(st.romanize && st.romLayout==="line"){
+        const shown=st.revealed.has(li);
+        strip = shown
+          ? `<div class="romstrip" data-line="${li}">${line.map(s=>rom(s)).join(" ")}</div>`
+          : `<div class="romstrip hidden-rom" data-line="${li}">tap to reveal sound ›</div>`;
+      }
+      lines+=`<div class="lineblock"><div class="line">${inner}<span class="shad">།</span></div>${strip}</div>`;
+    });
+
+    let below="";
+    if(!st.sel){
+      if(st.boundaries){
+        below=`<div class="legend">
+          <span><span class="sw word"></span>word</span>
+          <span><span class="sw phrase"></span>phrase over words</span>
+        </div><p class="hint">Tap a word — or the surrounding wash for the whole phrase.<br>Hold to Explore.</p>`;
+      } else {
+        below=`<p class="hint">Sound out the script.<br>Turn on <strong>Sound</strong> to check yourself, or <strong>Words</strong> to see word-boundaries.</p>`;
+      }
+    }
+    return `
+      <div class="canvas ${sheetOpen?"shrunk":""}" id="canvas">
+        <div class="textlabel">Text — ${st.selection.name}</div>
+        <div class="frame-outer"><div class="frame-inner">${lines}</div></div>
+        ${below}
+      </div>
+      ${sheetOpen ? sheetHTML() : readingBarHTML()}
+      ${(st.sel && st.level===1) ? peekHTML() : ""}`;
+  }
+
+  function readingBarHTML(){
+    return `<div class="readingbar" id="readingbar">
+      <button class="rb-scheme" id="schemeBtn">${st.scheme} ▾</button>
+      <button class="rb-btn ${st.romanize?"on":""}" data-tog="rom"><span class="ic">Aa</span> Sound</button>
+      <button class="rb-btn ${st.boundaries?"on":""}" data-tog="words"><span class="ic">⌗</span> Words</button>
+    </div>`;
+  }
+
+  function peekHTML(){
+    const e=st.sel.entry, status=statusOf(e.start,e.end);
+    const meta = status ? `<span class="dot" style="background:${statusColor(status)}"></span> in your deck — ${status}` : `dictionary only`;
+    return `<div class="peek" id="peek">
+      <span class="pk-tib">${spanTib(e)}</span>
+      <div class="pk-mid"><div class="pk-rom">${spanRom(e)}</div><div class="pk-gloss">${e.meaning}</div><div class="pk-meta">${meta}</div></div>
+      <button class="pk-dissect" id="dissect">Dissect ›</button>
+    </div>`;
+  }
+
+  function sheetHTML(){
+    const cands=candidates(st.sel.i);
+    const e=st.sel.entry, gl=e.gid?GLOSSARY[e.gid]:null, focus=FLAT[st.sel.i];
+    let body;
+    if(st.view==="letter"&&st.letter){
+      const L=st.letter;
+      body=`<button class="link-btn accent" data-act="back-anat" style="padding:0">← Back to breakdown</button>
+        <div class="lettercard"><div class="eyebrow">00 Alphabet · ${L.sub}</div><div class="glyph">${L.glyph}</div>
+        <div class="acip">${L.acip||"(no acip)"}</div><div class="mean">${L.meaning}</div><div class="note">${L.notes}</div></div>`;
+    } else if(st.view==="anat"){
+      const an=ANATOMY[focus.acip]; let slots="";
+      SLOTS.forEach(([k,en,sub])=>{
+        const val=an[k], isRoot=k==="root", silent=val&&(k==="pre"||k==="sup");
+        const lc=val&&sub&&LETTERS[sub]&&LETTERS[sub][val];
+        const cls=isRoot?"root":(val?(lc?"link":""):"empty");
+        slots+=`<div class="slot"><div class="box ${cls}" ${lc?`data-letter="${sub}" data-glyph="${val}"`:""}>
+          <span class="g ${silent?"silent":""} ${val?"":"empty"}">${val||"·"}</span></div>
+          <div class="en">${en}</div>${silent?'<div class="tag silent">silent</div>':(lc?'<div class="tag card">card ›</div>':'')}</div>`;
+      });
+      body=`<div class="anat-top"><div class="anat-eyebrow">Syllable breakdown</div>
+        <button class="link-btn accent" data-act="back-word">← Back to word</button></div>
+        <div class="anat-glyph">${stripTsek(focus.tib)}</div><div class="anat-rom">${rom(focus)}</div>
+        <div class="slots">${slots}</div><div class="anat-note">${an.note}</div>
+        <div class="anat-sub">Slots with a <span style="color:var(--faint)">card ›</span> open the letter you studied in <em>00 Alphabet</em> — same card, reached from the text.</div>`;
+    } else {
+      const status=statusOf(e.start,e.end);
+      const prov = status ? `<span class="chip deck" style="color:${statusColor(status)}">● in your deck — ${status}</span>` : `<span class="chip dictonly">dictionary only</span>`;
+      const sess=gl?`<span class="chip sess">${gl.session}</span>`:"";
+      let extra="";
+      if(e.stems){
+        const cells=[["present","pres"],["past","past"],["future","fut"],["imperative","imp"]].map(([lb,kk])=>{
+          const here=e.stems[kk]===stripTsek(focus.tib);
+          return `<div class="cell ${here?"here":""}"><div class="st">${e.stems[kk]}</div><div class="lb">${lb}</div></div>`;
+        }).join("");
+        extra+=`<div class="panel"><div class="panel-h">Verb stems${e.lemma?` · lemma ${e.lemma}`:""}</div><div class="stems">${cells}</div></div>`;
+      }
+      if(e.particle){
+        const forms=e.particle.forms.map(f=>`<span class="${stripTsek(focus.tib)===f?"act":""}">${f}</span>`).join("");
+        extra+=`<div class="panel"><div class="panel-h">${e.particle.family} — one particle, ${e.particle.forms.length} shapes</div><div class="forms">${forms}</div><div class="why">${e.particle.why}</div></div>`;
+      }
+      const canBreak=!!ANATOMY[focus.acip];
+      body=`<div class="ex-tib">${spanTib(e)}</div><div class="ex-rom">${spanRom(e)}</div>
+        <div class="ex-prov">${prov}${sess}<span class="chip pos">${e.pos}</span></div>
+        <div class="ex-meaning">${e.meaning}</div><div class="ex-notes">${e.notes||""}</div>
+        ${gl&&gl.context?`<div class="ex-context">${gl.context}</div>`:""}${extra}
+        <div class="actions">
+          <button class="btn-primary ${status?"have":""}" data-act="makecard">${status?"Already a card":"Make a card"}</button>
+          <button class="btn-ghost" data-act="break" ${canBreak?"":"disabled"}>Break apart ${stripTsek(focus.tib)}</button>
+        </div>`;
+    }
+    return `<div class="sheet" id="sheet"><div class="grip"><span></span></div>
+      <div class="sheet-top"><div class="stepper">
+        <button data-act="wider">◂</button><span class="count">${(st.sel.step%cands.length)+1} of ${cands.length}</span><button data-act="narrower">▸</button></div>
+        <button class="link-btn" data-act="close">Close</button></div>
+      <div class="sheet-body">${body}</div></div>`;
+  }
+
+  function settingsHTML(){
+    let groups="";
+    SESSIONS.forEach(g=>{
+      let rows="";
+      g.items.forEach(it=>{
+        const seld = st.selection.name===it.name && !it.disabled;
+        rows+=`<div class="pick ${seld?"sel":""}" ${it.disabled?"":`data-pick="${it.name}" data-type="${it.type}"`} style="${it.disabled?"opacity:.45":""}">
+          <span class="nm">${it.type==="text"?'<span class="mk">༄</span>':""}${it.name}</span>
+          <span style="display:flex; align-items:center; gap:10px"><span class="ct">${it.count}</span><span class="radio"></span></span></div>`;
+      });
+      groups+=`<div class="set-h">${g.group}</div>${rows}`;
+    });
+    return `<div class="scrim" data-act="close-settings"></div>
+      <div class="settings"><div class="grip"><span></span></div>
+        <div class="set-h">Romanization scheme</div>
+        <div class="seg" id="schemeSeg">
+          <button data-scheme="ACIP" class="${st.scheme==="ACIP"?"on":""}">ACIP</button>
+          <button data-scheme="Wylie" class="${st.scheme==="Wylie"?"on":""}">Wylie</button>
+        </div>
+        <div class="set-h">Romanization layout</div>
+        <div class="seg" id="layoutSeg">
+          <button data-layout="under" class="${st.romLayout==="under"?"on":""}">Under each syllable</button>
+          <button data-layout="line" class="${st.romLayout==="line"?"on":""}">Reveal by line</button>
+        </div>
+        <div class="set-h">Studying</div>
+        ${groups}
+        <button class="set-done" data-act="close-settings">Done</button>
+      </div>`;
+  }
+
+  function learnHTML(){
+    return `<div class="learn"><div class="big">ཤེས་བྱ།</div>
+      <p><strong style="color:var(--ink)">${st.selection.name}</strong> — the existing flip-card deck.<br>
+      Words captured from a text file here under the text’s session,<br>and light up in Read next time you meet them.</p>
+      <p style="margin-top:18px; font-style:italic">— Learn deck shown as a placeholder in this mockup —</p></div>`;
+  }
+
+  /* ── interaction ─────────────────────────────────────────── */
+  function selectSpan(a,b,level){
+    const cands=candidates(a);
+    let idx=cands.findIndex(e=>e.start===a&&e.end===b);
+    if(idx<0){ cands.unshift(entryFor(a,b)); idx=0; }
+    st.sel={i:a, step:idx, entry:cands[idx]}; st.view="word"; st.letter=null; st.level=level; render();
+  }
+  function setStep(step){
+    const cands=candidates(st.sel.i);
+    const s=((step%cands.length)+cands.length)%cands.length;
+    st.sel.step=s; st.sel.entry=cands[s]; render();
+  }
+  function closeSel(){ st.sel=null; st.level=0; st.view="word"; st.letter=null; render(); }
+  function closeSelSilent(){ st.sel=null; st.level=0; st.view="word"; st.letter=null; }
+
+  function wire(){
+    if(st.settings){
+      surface.querySelectorAll("[data-act='close-settings']").forEach(b=>b.onclick=()=>{st.settings=false; render();});
+      surface.querySelectorAll("#schemeSeg button").forEach(b=>b.onclick=()=>{st.scheme=b.dataset.scheme; render();});
+      surface.querySelectorAll("#layoutSeg button").forEach(b=>b.onclick=()=>{st.romLayout=b.dataset.layout; render();});
+      surface.querySelectorAll("[data-pick]").forEach(b=>b.onclick=()=>{
+        st.selection={name:b.dataset.pick,type:b.dataset.type};
+        st.settings=false; st.sel=null; st.level=0; st.revealed=new Set(); render();
+      });
+      return;
+    }
+    if(st.selection.type==="learn") return;
+
+    const rb=surface.querySelector("#readingbar");
+    if(rb){
+      rb.querySelectorAll("[data-tog]").forEach(b=>b.onclick=()=>{
+        if(b.dataset.tog==="rom") st.romanize=!st.romanize;
+        else { st.boundaries=!st.boundaries; if(!st.boundaries) closeSelSilent(); }
+        render();
+      });
+      const sb=surface.querySelector("#schemeBtn");
+      if(sb) sb.onclick=()=>{st.settings=true; render();};
+    }
+
+    surface.querySelectorAll(".romstrip").forEach(el=>{
+      el.onclick=()=>{ const li=Number(el.dataset.line);
+        if(st.revealed.has(li)) st.revealed.delete(li); else st.revealed.add(li); render(); };
+    });
+
+    function attachSpan(el){
+      const a=Number(el.dataset.start), b=Number(el.dataset.end);
+      let timer=null, longFired=false;
+      el.addEventListener("pointerdown",()=>{ longFired=false; timer=setTimeout(()=>{ longFired=true; selectSpan(a,b,2); },420); });
+      const up=()=>clearTimeout(timer);
+      el.addEventListener("pointerup",up); el.addEventListener("pointerleave",up);
+      el.addEventListener("click",ev=>{ ev.stopPropagation(); if(longFired){longFired=false; return;} selectSpan(a,b,1); });
+    }
+    surface.querySelectorAll(".word").forEach(attachSpan);
+    surface.querySelectorAll(".phrase").forEach(attachSpan);
+
+    const canvas=surface.querySelector("#canvas");
+    if(canvas) canvas.addEventListener("click",ev=>{
+      if(ev.target.closest(".word")||ev.target.closest(".phrase")||ev.target.closest(".romstrip")) return;
+      if(st.sel&&st.level===1) closeSel();
+    });
+
+    const dissect=surface.querySelector("#dissect");
+    if(dissect) dissect.onclick=()=>{ st.level=2; render(); };
+
+    const sheet=surface.querySelector("#sheet");
+    if(sheet){
+      sheet.querySelectorAll("[data-act]").forEach(b=>b.onclick=()=>handleSheetAct(b.dataset.act));
+      sheet.querySelectorAll("[data-letter]").forEach(b=>b.onclick=()=>{
+        const sub=b.dataset.letter, glyph=b.dataset.glyph;
+        st.letter=Object.assign({},LETTERS[sub][glyph],{glyph,sub}); st.view="letter"; render();
+      });
+    }
+  }
+
+  function handleSheetAct(act){
+    switch(act){
+      case "close": closeSel(); break;
+      case "wider": setStep(st.sel.step-1); break;
+      case "narrower": setStep(st.sel.step+1); break;
+      case "break": st.view="anat"; render(); break;
+      case "back-word": st.view="word"; render(); break;
+      case "back-anat": st.view="anat"; st.letter=null; render(); break;
+      case "makecard":{
+        const e=st.sel.entry, status=statusOf(e.start,e.end);
+        toast(status?"Already a card — opening it in Learn":"Card made — line saved as context"); break;
+      }
+    }
+  }
+
+  document.getElementById("gear").onclick=()=>{ st.settings=!st.settings; render(); };
+  document.getElementById("theme").onclick=()=>{
+    st.dark=!st.dark; phone.classList.toggle("dark",st.dark); phone.classList.toggle("light",!st.dark);
+    document.getElementById("theme").textContent=st.dark?"☾":"☀";
+  };
+
+  render();
+})();
+</script>

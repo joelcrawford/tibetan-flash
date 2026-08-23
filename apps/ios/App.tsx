@@ -18,9 +18,11 @@ import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { SESSION_GROUPS } from "../../shared/config/sessionGroups";
 import { useDeck, StorageAdapter } from "../../shared/hooks/useDeck";
-import { Card, CardStatus, StatusMap } from "../../shared/types/types";
+import { Card, CardStatus, StatusMap, TibetanText } from "../../shared/types/types";
 import { useTTS } from "./src/hooks/useTTS";
 import GLOSSARY from "../../shared/glossary/glossary.json";
+import { TEXTS } from "../../shared/texts";
+import { Reader } from "./src/Reader";
 
 const iosStorage: StorageAdapter = {
   load: async () => {
@@ -147,6 +149,7 @@ export default function App() {
 
   const { speak, speaking } = useTTS();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [readingText, setReadingText] = useState<TibetanText | null>(null);
   const [contextOpen, setContextOpen] = useState(false);
   const [expandedGroups, setExpandedGroups] = useState<string[]>([]);
   const [pendingReset, setPendingReset] = useState<string | null>(null);
@@ -376,6 +379,9 @@ export default function App() {
     <SafeAreaView style={[s.root, { backgroundColor: c.bg }]}>
       <StatusBar barStyle={dark ? "light-content" : "dark-content"} />
 
+      {/* Read surface (Texts) — overlays the deck when a text is open */}
+      {readingText && <Reader text={readingText} c={c} onClose={() => setReadingText(null)} />}
+
       {/* Header */}
       <View style={s.header}>
         <Text style={[s.logo, { color: c.ink }]}>༄༅།</Text>
@@ -474,6 +480,18 @@ export default function App() {
                 </View>
               );
             })}
+
+            <Text style={[s.sidebarLabel, { color: c.faint, marginTop: 24 }]}>Texts</Text>
+            {TEXTS.map((t) => (
+              <TouchableOpacity
+                key={t.id}
+                style={{ flexDirection: "row", alignItems: "center", gap: 8, paddingVertical: 6 }}
+                onPress={() => { setReadingText(t); setSidebarOpen(false); }}
+              >
+                <Text style={{ fontSize: 14, color: c.accent }}>༄</Text>
+                <Text style={{ fontSize: 16, color: c.ink, flex: 1 }}>{t.title}</Text>
+              </TouchableOpacity>
+            ))}
 
             <Text style={[s.sidebarLabel, { color: c.faint, marginTop: 24 }]}>Appearance</Text>
             <TouchableOpacity

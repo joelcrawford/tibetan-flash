@@ -25,6 +25,11 @@ html.dark { background-color: var(--color-parchment-dk); }
   --color-surf-dk-mid:  #3a3a38;
   --color-surf-dk-bar:  #242422;
   --color-bdr-dk:       #444441;
+  /* Reader (Texts surface) — cinnabar accent + lapis word-wash */
+  --color-accent:       #993c1d;
+  --color-accent-dk:    #c47c1a;
+  --color-lapis:        #2f5e96;
+  --color-lapis-dk:     #7aa8e0;
 
   /* Font families */
   --font-serif:    "Crimson Pro", Georgia, serif;
