@@ -1,8 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import { SESSION_GROUPS } from "../../../shared/config/sessionGroups";
-import FLASHCARDS from "../../../shared/glossary/glossary.json";
-import { Card, CardStatus, StatusMap, TibetanText } from "../../../shared/types/types";
-import { TEXTS } from "../../../shared/texts";
+import { CardStatus, StatusMap, Text } from "../../../shared/types/types";
+import { LANGUAGES, LANGUAGE_BY_CODE, DEFAULT_LANGUAGE } from "../../../shared/languages";
 import { Reader } from "./Reader";
 import { useDeck, StorageAdapter } from "../../../shared/hooks/useDeck";
 
@@ -94,7 +92,15 @@ function GroupCheckbox({ checked, indeterminate, onChange }: { checked: boolean;
 
 // ── Component ────────────────────────────────────────────────────────────────
 
+const LANG_KEY = "tibetan-flash-language";
+
 export default function App() {
+  const [langCode, setLangCode] = useState<string>(() => {
+    try { return localStorage.getItem(LANG_KEY) || DEFAULT_LANGUAGE; } catch { return DEFAULT_LANGUAGE; }
+  });
+  const lang = LANGUAGE_BY_CODE[langCode] ?? LANGUAGE_BY_CODE[DEFAULT_LANGUAGE];
+  useEffect(() => { try { localStorage.setItem(LANG_KEY, langCode); } catch { /* ignore */ } }, [langCode]);
+
   const {
     card, idx, total, flipped, acipVisible,
     sessionFilters, knownCount, familiarCount, reviewCount, totalFiltered,
@@ -102,7 +108,7 @@ export default function App() {
     toggleAcip, toggleFlip,
     resetSession,
     setShuffled, setSessionFilters,
-  } = useDeck(FLASHCARDS as Card[], webStorage);
+  } = useDeck(lang.glossary, webStorage);
 
   const { speak, speaking } = useTTS();
   const [dark, setDark] = useState(true);
@@ -112,7 +118,7 @@ export default function App() {
   }, [dark]);
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [readingText, setReadingText] = useState<TibetanText | null>(null);
+  const [readingText, setReadingText] = useState<Text | null>(null);
   const [contextOpen, setContextOpen] = useState(false);
   const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
   const [pendingReset, setPendingReset] = useState<string | null>(null);
@@ -149,6 +155,16 @@ export default function App() {
 
   useEffect(() => { setShuffled(true); }, [setShuffled]);
 
+  // Session filters are language-specific — clear them when the language changes
+  // (skip the initial mount so persisted filters still load).
+  const firstLang = useRef(true);
+  useEffect(() => {
+    if (firstLang.current) { firstLang.current = false; return; }
+    setSessionFilters([]);
+    setExpandedGroups(new Set());
+    setReadingText(null);
+  }, [langCode, setSessionFilters]);
+
   // Reset context drawer whenever the card changes
   useEffect(() => { setContextOpen(false); }, [idx]);
 
@@ -165,22 +181,28 @@ export default function App() {
         case "ArrowRight": e.preventDefault(); go(1); break;
         case "ArrowUp": e.preventDefault(); toggleAcip(); break;
         case "ArrowDown": e.preventDefault(); toggleFlip(); break;
-        case " ": e.preventDefault(); speak(card.tibetan); break;
+        case " ": e.preventDefault(); speak(card.script); break;
       }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [card, go, toggleAcip, toggleFlip, speak]);
 
-  const hasContext = card && (card.notes || card.context || card.context_tibetan);
-  const currentStatus = card ? getCardStatus(card.acip) : "review";
+  const hasContext = card && (card.notes || card.context || card.context_script);
+  const currentStatus = card ? getCardStatus(card) : "review";
   const ratingCfg = RATING_CONFIG[currentStatus];
 
   return (
     <div className="font-serif bg-parchment min-h-screen py-6 px-4 text-ink dark:bg-parchment-dk dark:text-ink-lt">
 
       {/* Read surface (Texts) — overlays the deck when a text is open */}
-      {readingText && <Reader text={readingText} onClose={() => setReadingText(null)} />}
+      {readingText && (
+        <Reader
+          text={readingText}
+          lang={LANGUAGE_BY_CODE[readingText.language] ?? lang}
+          onClose={() => setReadingText(null)}
+        />
+      )}
 
       {/* Header */}
       <div className="flex items-center justify-between mb-5 max-w-[560px] mx-auto">
@@ -232,14 +254,14 @@ export default function App() {
                           {card.subcategory}
                         </div>
                       )}
-                      <div className={`font-tibetan text-[36px] leading-[1.5] tracking-[0.02em] mb-3 transition-opacity duration-200 ${acipVisible ? "text-ink dark:text-ink-lt opacity-100" : "opacity-0"}`}>
-                        {card.tibetan}
+                      <div style={{ fontFamily: lang.fontStack }} className={`text-[36px] leading-[1.5] tracking-[0.02em] mb-3 transition-opacity duration-200 ${acipVisible ? "text-ink dark:text-ink-lt opacity-100" : "opacity-0"}`}>
+                        {card.script}
                       </div>
                     </>
                   ) : (
                     <>
-                      <div className="font-tibetan text-[52px] leading-[1.5] text-ink mb-1 tracking-[0.02em] dark:text-ink-lt">
-                        {card.tibetan}
+                      <div style={{ fontFamily: lang.fontStack }} className="text-[52px] leading-[1.5] text-ink mb-1 tracking-[0.02em] dark:text-ink-lt">
+                        {card.script}
                       </div>
                       {card.subcategory && (
                         <div className="font-serif text-[12px] italic tracking-[0.05em] text-ink-mid dark:text-ink-faint mb-1">
@@ -247,13 +269,13 @@ export default function App() {
                         </div>
                       )}
                       <div className={`font-mono text-[15px] tracking-[0.08em] mb-3 transition-opacity duration-200 ${acipVisible ? "text-ink dark:text-ink-lt opacity-100" : "opacity-0"}`}>
-                        {card.acip}
+                        {card.translit}
                       </div>
                     </>
                   )}
                   <button
                     className="font-serif text-[13px] py-[3px] px-2.5 border-[0.5px] border-stone rounded-md bg-card-bg text-ink-muted cursor-pointer transition-all duration-150 mb-2 hover:[&:not(:disabled)]:bg-stone-lt hover:[&:not(:disabled)]:text-ink disabled:opacity-50 disabled:cursor-default dark:bg-surf-dk dark:border-bdr-dk dark:hover:[&:not(:disabled)]:bg-surf-dk-mid dark:hover:[&:not(:disabled)]:text-ink-lt"
-                    onClick={(e) => { e.stopPropagation(); speak(card.tibetan); }}
+                    onClick={(e) => { e.stopPropagation(); speak(card.script); }}
                     disabled={speaking}
                     title="Read aloud"
                   >
@@ -299,9 +321,9 @@ export default function App() {
                   <span className="text-[11px] text-ink-faint tracking-[0.06em] absolute top-3.5 right-4">
                     {card.session}
                   </span>
-                  {card.acip && (
+                  {card.translit && (
                     <div className="font-mono text-[13px] tracking-[0.08em] text-ink dark:text-ink-lt mb-3">
-                      {card.acip}
+                      {card.translit}
                     </div>
                   )}
                   <div className="font-title text-[20px] font-normal text-ink mb-3 leading-[1.4] italic text-center w-full dark:text-ink-lt">
@@ -337,9 +359,9 @@ export default function App() {
                   {card.context}
                 </p>
               )}
-              {card.context_tibetan && (
+              {card.context_script && (
                 <p className="font-mono text-[13px] text-ink-faint leading-[1.8] border-l-2 border-stone pl-3 tracking-[0.04em] dark:border-bdr-dk">
-                  <HighlightedTibetan text={card.context_tibetan} term={card.tibetan} />
+                  <HighlightedTibetan text={card.context_script} term={card.script} />
                 </p>
               )}
             </div>
@@ -372,7 +394,22 @@ export default function App() {
         ].join(" ")}
       >
         <div className="font-title text-[22px] font-normal tracking-[0.03em] text-ink dark:text-ink-lt">
-          Tibetan Flash
+          Flashcards
+        </div>
+
+        <div className="flex flex-col gap-3">
+          <div className="text-[12px] tracking-[0.1em] uppercase text-ink-faint font-serif">Language</div>
+          <div className="flex gap-2 flex-wrap">
+            {LANGUAGES.map((l) => (
+              <button
+                key={l.code}
+                onClick={() => setLangCode(l.code)}
+                className={`${btnCls} ${l.code === langCode ? "border-accent text-accent dark:border-accent-dk dark:text-accent-dk" : ""}`}
+              >
+                {l.name}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="flex flex-col gap-3">
@@ -388,7 +425,7 @@ export default function App() {
         <div className="flex flex-col gap-3">
           <div className="text-[12px] tracking-[0.1em] uppercase text-ink-faint font-serif">Sessions</div>
           <div className="flex flex-col gap-2">
-            {Object.entries(SESSION_GROUPS).map(([groupName, groupSessions]) => {
+            {Object.entries(lang.sessionGroups).map(([groupName, groupSessions]) => {
               const state = groupState(groupSessions);
               const expanded = expandedGroups.has(groupName);
               return (
@@ -445,7 +482,7 @@ export default function App() {
         <div className="flex flex-col gap-3">
           <div className="text-[12px] tracking-[0.1em] uppercase text-ink-faint font-serif">Texts</div>
           <div className="flex flex-col gap-1">
-            {TEXTS.map((t) => (
+            {lang.texts.map((t) => (
               <button
                 key={t.id}
                 onClick={() => { setReadingText(t); setSidebarOpen(false); }}

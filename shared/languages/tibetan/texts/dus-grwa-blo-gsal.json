@@ -1,0 +1,9885 @@
+{
+  "id": "dus-grwa-blo-gsal",
+  "language": "bo",
+  "title": "བསྡུས་གྲྭ་བློ་གསལ་མིག་འབྱེད",
+  "session": "Text — Dus grwa (Collected Topics)",
+  "lines": [
+    [
+      {
+        "script": "མཆོད་",
+        "translit": "MCHOD"
+      },
+      {
+        "script": "བརྗོད",
+        "translit": "BRJOD"
+      }
+    ],
+    [
+      {
+        "script": "མཁས་",
+        "translit": "MKHAS"
+      },
+      {
+        "script": "མང་",
+        "translit": "MANG"
+      },
+      {
+        "script": "སྟོང་",
+        "translit": "STONG"
+      },
+      {
+        "script": "ཚོགས་",
+        "translit": "TSOGS"
+      },
+      {
+        "script": "གསེར་",
+        "translit": "GSER"
+      },
+      {
+        "script": "རིས་",
+        "translit": "RIS"
+      },
+      {
+        "script": "བསྐོར་",
+        "translit": "BSKOR"
+      },
+      {
+        "script": "བའི་",
+        "translit": "B'I"
+      },
+      {
+        "script": "དབུས",
+        "translit": "DBUS"
+      }
+    ],
+    [
+      {
+        "script": "མངོན་",
+        "translit": "MNGON"
+      },
+      {
+        "script": "པར་",
+        "translit": "PAR"
+      },
+      {
+        "script": "མཐོ་",
+        "translit": "MTHO"
+      },
+      {
+        "script": "བའི་",
+        "translit": "B'I"
+      },
+      {
+        "script": "རིགས་",
+        "translit": "RIGS"
+      },
+      {
+        "script": "སྨྲས་",
+        "translit": "SMRAS"
+      },
+      {
+        "script": "ལྷུན་",
+        "translit": "LHUN"
+      },
+      {
+        "script": "པོའི་",
+        "translit": "PO'"
+      },
+      {
+        "script": "སྤོར",
+        "translit": "SPOR"
+      }
+    ],
+    [
+      {
+        "script": "འཇིགས་",
+        "translit": "'JIGS"
+      },
+      {
+        "script": "མེད་",
+        "translit": "MED"
+      },
+      {
+        "script": "གདོང་",
+        "translit": "GDONG"
+      },
+      {
+        "script": "ལྔ་",
+        "translit": "LNGA"
+      },
+      {
+        "script": "དབང་",
+        "translit": "DBANG"
+      },
+      {
+        "script": "པོའི་",
+        "translit": "PO'"
+      },
+      {
+        "script": "སྒྲ་",
+        "translit": "SGRA"
+      },
+      {
+        "script": "སྒྲོག་",
+        "translit": "SGROG"
+      },
+      {
+        "script": "མཁན",
+        "translit": "MKHAN"
+      }
+    ],
+    [
+      {
+        "script": "བཤེས་",
+        "translit": "BSHES"
+      },
+      {
+        "script": "གཉེན་",
+        "translit": "GNYEN"
+      },
+      {
+        "script": "སྨྲ་",
+        "translit": "SMRA"
+      },
+      {
+        "script": "བའི་",
+        "translit": "B'I"
+      },
+      {
+        "script": "ཁྱུ་",
+        "translit": "KHYU"
+      },
+      {
+        "script": "མཆོག་",
+        "translit": "MCHOG"
+      },
+      {
+        "script": "ལ་",
+        "translit": "LA"
+      },
+      {
+        "script": "ཕྱག་",
+        "translit": "PHYAG"
+      },
+      {
+        "script": "འཚལ",
+        "translit": "'TSAL"
+      }
+    ],
+    [
+      {
+        "script": "ཚད་",
+        "translit": "TSAD"
+      },
+      {
+        "script": "མའི་",
+        "translit": "M'I"
+      },
+      {
+        "script": "རིགས་",
+        "translit": "RIGS"
+      },
+      {
+        "script": "ལམ་",
+        "translit": "LAM"
+      },
+      {
+        "script": "མཚོར་",
+        "translit": "MTSOR"
+      },
+      {
+        "script": "འཇུག་",
+        "translit": "'JUG"
+      },
+      {
+        "script": "བློ་",
+        "translit": "BLO"
+      },
+      {
+        "script": "ཡི་",
+        "translit": "YI"
+      },
+      {
+        "script": "གྲུ་",
+        "translit": "GRU"
+      }
+    ],
+    [
+      {
+        "script": "མི་",
+        "translit": "MI"
+      },
+      {
+        "script": "ལྡན་",
+        "translit": "LDAN"
+      },
+      {
+        "script": "འོན་",
+        "translit": "'ON"
+      },
+      {
+        "script": "ཀྱང་",
+        "translit": "KYANG"
+      },
+      {
+        "script": "དྲིན་",
+        "translit": "DRIN"
+      },
+      {
+        "script": "ཅན་",
+        "translit": "CAN"
+      },
+      {
+        "script": "གསུང་",
+        "translit": "GSUNG"
+      },
+      {
+        "script": "གི་",
+        "translit": "GI"
+      },
+      {
+        "script": "གདོང",
+        "translit": "GDONG"
+      }
+    ],
+    [
+      {
+        "script": "བདག་",
+        "translit": "BDAG"
+      },
+      {
+        "script": "ཡིད་",
+        "translit": "YID"
+      },
+      {
+        "script": "མེ་",
+        "translit": "ME"
+      },
+      {
+        "script": "ལོང་",
+        "translit": "LONG"
+      },
+      {
+        "script": "ངོས་",
+        "translit": "NGOS"
+      },
+      {
+        "script": "སུ་",
+        "translit": "SU"
+      },
+      {
+        "script": "ཕྲན་",
+        "translit": "PHRAN"
+      },
+      {
+        "script": "ཙམ་",
+        "translit": "TZAM"
+      },
+      {
+        "script": "ཤར",
+        "translit": "SHAR"
+      }
+    ],
+    [
+      {
+        "script": "བདག་",
+        "translit": "BDAG"
+      },
+      {
+        "script": "མཉམ་",
+        "translit": "MNYAM"
+      },
+      {
+        "script": "བློ་",
+        "translit": "BLO"
+      },
+      {
+        "script": "གསར་",
+        "translit": "GSAR"
+      },
+      {
+        "script": "བྱིས་",
+        "translit": "BYIS"
+      },
+      {
+        "script": "བློ་",
+        "translit": "BLO"
+      },
+      {
+        "script": "བསྐོང་",
+        "translit": "BSKONG"
+      },
+      {
+        "script": "ཕྱིར་",
+        "translit": "PHYIR"
+      },
+      {
+        "script": "བྲིས",
+        "translit": "BRIS"
+      }
+    ],
+    [
+      {
+        "script": "དེ་",
+        "translit": "DE"
+      },
+      {
+        "script": "ཡང་",
+        "translit": "YANG"
+      },
+      {
+        "script": "ཚད་",
+        "translit": "TSAD"
+      },
+      {
+        "script": "མའི་",
+        "translit": "M'I"
+      },
+      {
+        "script": "གཞུང་",
+        "translit": "GZHUNG"
+      },
+      {
+        "script": "ལུགས་",
+        "translit": "LUGS"
+      },
+      {
+        "script": "རྒྱ་",
+        "translit": "RGYA"
+      },
+      {
+        "script": "མཚོ་",
+        "translit": "MTSO"
+      },
+      {
+        "script": "ཆེན་",
+        "translit": "CHEN"
+      },
+      {
+        "script": "པོར་",
+        "translit": "POR"
+      },
+      {
+        "script": "འཇུག་",
+        "translit": "'JUG"
+      },
+      {
+        "script": "པར་",
+        "translit": "PAR"
+      },
+      {
+        "script": "འདོད་",
+        "translit": "'DOD"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "སྐྱེ་",
+        "translit": "SKYE"
+      },
+      {
+        "script": "བོ་",
+        "translit": "BO"
+      },
+      {
+        "script": "རྣམས་",
+        "translit": "RNAMS"
+      },
+      {
+        "script": "ཀྱིས",
+        "translit": "KYIS"
+      }
+    ],
+    [
+      {
+        "script": "ཐོག་",
+        "translit": "THOG"
+      },
+      {
+        "script": "མར་",
+        "translit": "MAR"
+      },
+      {
+        "script": "རིགས་",
+        "translit": "RIGS"
+      },
+      {
+        "script": "ལམ་",
+        "translit": "LAM"
+      },
+      {
+        "script": "སྒོ་",
+        "translit": "SGO"
+      },
+      {
+        "script": "འབྱེད་",
+        "translit": "'BYED"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཐབས་",
+        "translit": "THABS"
+      },
+      {
+        "script": "ལ་",
+        "translit": "LA"
+      },
+      {
+        "script": "འཇུག་",
+        "translit": "'JUG"
+      },
+      {
+        "script": "དགོས་",
+        "translit": "DGOS"
+      },
+      {
+        "script": "ཤིང",
+        "translit": "SHING"
+      }
+    ],
+    [
+      {
+        "script": "དེ་",
+        "translit": "DE"
+      },
+      {
+        "script": "ལའང་",
+        "translit": "L'ANG"
+      },
+      {
+        "script": "རིགས་",
+        "translit": "RIGS"
+      },
+      {
+        "script": "ལམ་",
+        "translit": "LAM"
+      },
+      {
+        "script": "སྒོའི་",
+        "translit": "SGO'"
+      },
+      {
+        "script": "ལྡེ་",
+        "translit": "LDE"
+      },
+      {
+        "script": "མིག་",
+        "translit": "MIG"
+      },
+      {
+        "script": "ལྟ་",
+        "translit": "LTA"
+      },
+      {
+        "script": "བུ་",
+        "translit": "BU"
+      },
+      {
+        "script": "བསྡུས་",
+        "translit": "BSDUS"
+      },
+      {
+        "script": "གྲྭཱི་",
+        "translit": "GRWAI"
+      },
+      {
+        "script": "གཞུང་",
+        "translit": "GZHUNG"
+      },
+      {
+        "script": "ལ་",
+        "translit": "LA"
+      },
+      {
+        "script": "སྦྱངས་",
+        "translit": "SBYANGS"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "གལ་",
+        "translit": "GAL"
+      },
+      {
+        "script": "ཆེ་",
+        "translit": "CHE"
+      },
+      {
+        "script": "བར་",
+        "translit": "BAR"
+      },
+      {
+        "script": "སྣང་",
+        "translit": "SNANG"
+      },
+      {
+        "script": "སྟེ",
+        "translit": "STE"
+      }
+    ],
+    [
+      {
+        "script": "དེ་",
+        "translit": "DE"
+      },
+      {
+        "script": "ལ་",
+        "translit": "LA"
+      },
+      {
+        "script": "བརྟེན་",
+        "translit": "BRTEN"
+      },
+      {
+        "script": "ནས་",
+        "translit": "NAS"
+      },
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "མཐའ་",
+        "translit": "MTHA'"
+      },
+      {
+        "script": "གོ་",
+        "translit": "GO"
+      },
+      {
+        "script": "བ་",
+        "translit": "BA"
+      },
+      {
+        "script": "རགས་",
+        "translit": "RAGS"
+      },
+      {
+        "script": "ཙམ་",
+        "translit": "TZAM"
+      },
+      {
+        "script": "མ་",
+        "translit": "MA"
+      },
+      {
+        "script": "ཆགས་",
+        "translit": "CHAGS"
+      },
+      {
+        "script": "ན་",
+        "translit": "NA"
+      },
+      {
+        "script": "མཚན་",
+        "translit": "MTSAN"
+      },
+      {
+        "script": "ཉིད་",
+        "translit": "NYID"
+      },
+      {
+        "script": "གང་",
+        "translit": "GANG"
+      },
+      {
+        "script": "ལ་",
+        "translit": "LA"
+      },
+      {
+        "script": "སློབ་",
+        "translit": "SLOB"
+      },
+      {
+        "script": "གཉེར་",
+        "translit": "GNYER"
+      },
+      {
+        "script": "བྱེད་",
+        "translit": "BYED"
+      },
+      {
+        "script": "ཀྱང་",
+        "translit": "KYANG"
+      },
+      {
+        "script": "ལོང་",
+        "translit": "LONG"
+      },
+      {
+        "script": "བས་",
+        "translit": "BAS"
+      },
+      {
+        "script": "ལམ་",
+        "translit": "LAM"
+      },
+      {
+        "script": "དུ་",
+        "translit": "DU"
+      },
+      {
+        "script": "སོང་",
+        "translit": "SONG"
+      },
+      {
+        "script": "བ་",
+        "translit": "BA"
+      },
+      {
+        "script": "ལྟར་",
+        "translit": "LTAR"
+      },
+      {
+        "script": "འགྱུར་",
+        "translit": "'GYUR"
+      },
+      {
+        "script": "བའི་",
+        "translit": "B'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེས་",
+        "translit": "DES"
+      },
+      {
+        "script": "ན་",
+        "translit": "NA"
+      },
+      {
+        "script": "བསྡུས་",
+        "translit": "BSDUS"
+      },
+      {
+        "script": "གྲྭཱི་",
+        "translit": "GRWAI"
+      },
+      {
+        "script": "གཞུང་",
+        "translit": "GZHUNG"
+      },
+      {
+        "script": "ལ་",
+        "translit": "LA"
+      },
+      {
+        "script": "མི་",
+        "translit": "MI"
+      },
+      {
+        "script": "འདྲ་",
+        "translit": "'DRA"
+      },
+      {
+        "script": "བ་",
+        "translit": "BA"
+      },
+      {
+        "script": "མང་",
+        "translit": "MANG"
+      },
+      {
+        "script": "དུ་",
+        "translit": "DU"
+      },
+      {
+        "script": "སྣང་",
+        "translit": "SNANG"
+      },
+      {
+        "script": "ཡང",
+        "translit": "YANG"
+      }
+    ],
+    [
+      {
+        "script": "རྭ་",
+        "translit": "RWA"
+      },
+      {
+        "script": "སྟོད་",
+        "translit": "STOD"
+      },
+      {
+        "script": "བསྡུས་",
+        "translit": "BSDUS"
+      },
+      {
+        "script": "གྲྭ་",
+        "translit": "GRWA"
+      },
+      {
+        "script": "དེ་",
+        "translit": "DE"
+      },
+      {
+        "script": "ཤིན་",
+        "translit": "SHIN"
+      },
+      {
+        "script": "ཏུ་",
+        "translit": "TU"
+      },
+      {
+        "script": "རྒྱས་",
+        "translit": "RGYAS"
+      },
+      {
+        "script": "ཤིང་",
+        "translit": "SHING"
+      },
+      {
+        "script": "གོ་",
+        "translit": "GO"
+      },
+      {
+        "script": "སླ་",
+        "translit": "SLA"
+      },
+      {
+        "script": "བ་",
+        "translit": "BA"
+      },
+      {
+        "script": "དང",
+        "translit": "DANG"
+      }
+    ],
+    [
+      {
+        "script": "བསེ་",
+        "translit": "BSE"
+      },
+      {
+        "script": "བསྡུས་",
+        "translit": "BSDUS"
+      },
+      {
+        "script": "གྲྭཱང་",
+        "translit": "GRWANG"
+      },
+      {
+        "script": "གཞུང་",
+        "translit": "GZHUNG"
+      },
+      {
+        "script": "དོན་",
+        "translit": "DON"
+      },
+      {
+        "script": "རྒྱ་",
+        "translit": "RGYA"
+      },
+      {
+        "script": "ཆེ་",
+        "translit": "CHE"
+      },
+      {
+        "script": "ལ་",
+        "translit": "LA"
+      },
+      {
+        "script": "ལེ་",
+        "translit": "LE"
+      },
+      {
+        "script": "ཚན་",
+        "translit": "TSAN"
+      },
+      {
+        "script": "མང་",
+        "translit": "MANG"
+      },
+      {
+        "script": "བ",
+        "translit": "BA"
+      }
+    ],
+    [
+      {
+        "script": "ཡོངས་",
+        "translit": "YONGS"
+      },
+      {
+        "script": "འཛིན་",
+        "translit": "'DZIN"
+      },
+      {
+        "script": "བསྡུས་",
+        "translit": "BSDUS"
+      },
+      {
+        "script": "གྲྭ་",
+        "translit": "GRWA"
+      },
+      {
+        "script": "བློ་",
+        "translit": "BLO"
+      },
+      {
+        "script": "གསར་",
+        "translit": "GSAR"
+      },
+      {
+        "script": "ལ་",
+        "translit": "LA"
+      },
+      {
+        "script": "ཤིན་",
+        "translit": "SHIN"
+      },
+      {
+        "script": "ཏུ་",
+        "translit": "TU"
+      },
+      {
+        "script": "མཁོ་",
+        "translit": "MKHO"
+      },
+      {
+        "script": "བས",
+        "translit": "BAS"
+      }
+    ],
+    [
+      {
+        "script": "གསུམ་",
+        "translit": "GSUM"
+      },
+      {
+        "script": "པོ་",
+        "translit": "PO"
+      },
+      {
+        "script": "དེ་",
+        "translit": "DE"
+      },
+      {
+        "script": "ལ་",
+        "translit": "LA"
+      },
+      {
+        "script": "གཙོ་",
+        "translit": "GTZO"
+      },
+      {
+        "script": "བོར་",
+        "translit": "BOR"
+      },
+      {
+        "script": "བཟུང་",
+        "translit": "BZUNG"
+      },
+      {
+        "script": "སྟེ",
+        "translit": "STE"
+      }
+    ],
+    [
+      {
+        "script": "རང་",
+        "translit": "RANG"
+      },
+      {
+        "script": "བློའི་",
+        "translit": "BLO'"
+      },
+      {
+        "script": "ནུས་",
+        "translit": "NUS"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "གང་",
+        "translit": "GANG"
+      },
+      {
+        "script": "ཐོན་",
+        "translit": "THON"
+      },
+      {
+        "script": "གྱིས་",
+        "translit": "GYIS"
+      },
+      {
+        "script": "འཆད་",
+        "translit": "'CHAD"
+      },
+      {
+        "script": "པར་",
+        "translit": "PAR"
+      },
+      {
+        "script": "བྱའོ",
+        "translit": "BY'O"
+      }
+    ],
+    [
+      {
+        "script": "འགོ་",
+        "translit": "'GO"
+      },
+      {
+        "script": "མཇུག་",
+        "translit": "MJUG"
+      },
+      {
+        "script": "མི་",
+        "translit": "MI"
+      },
+      {
+        "script": "འདྲ་",
+        "translit": "'DRA"
+      },
+      {
+        "script": "བ་",
+        "translit": "BA"
+      },
+      {
+        "script": "འགའ་",
+        "translit": "'GA'"
+      },
+      {
+        "script": "དང",
+        "translit": "DANG"
+      }
+    ],
+    [
+      {
+        "script": "ལེ་",
+        "translit": "LE"
+      },
+      {
+        "script": "ཚན་",
+        "translit": "TSAN"
+      },
+      {
+        "script": "མང་",
+        "translit": "MANG"
+      },
+      {
+        "script": "ཉུང་",
+        "translit": "NYUNG"
+      },
+      {
+        "script": "ཅི་",
+        "translit": "CI"
+      },
+      {
+        "script": "རིགས་",
+        "translit": "RIGS"
+      },
+      {
+        "script": "སྣང་",
+        "translit": "SNANG"
+      },
+      {
+        "script": "བས་",
+        "translit": "BAS"
+      },
+      {
+        "script": "རང་",
+        "translit": "RANG"
+      },
+      {
+        "script": "བློར་",
+        "translit": "BLOR"
+      },
+      {
+        "script": "གང་",
+        "translit": "GANG"
+      },
+      {
+        "script": "བདེ་",
+        "translit": "BDE"
+      },
+      {
+        "script": "བྱས་",
+        "translit": "BYAS"
+      },
+      {
+        "script": "ནས་",
+        "translit": "NAS"
+      },
+      {
+        "script": "འབྲི་",
+        "translit": "'BRI"
+      },
+      {
+        "script": "རྒྱུ་",
+        "translit": "RGYU"
+      },
+      {
+        "script": "ལགས་",
+        "translit": "LAGS"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "གཟིགས་",
+        "translit": "GZIGS"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "པོ་",
+        "translit": "PO"
+      },
+      {
+        "script": "རྣམས་",
+        "translit": "RNAMS"
+      },
+      {
+        "script": "ཀྱིས་",
+        "translit": "KYIS"
+      },
+      {
+        "script": "གོང་",
+        "translit": "GONG"
+      },
+      {
+        "script": "འོག་",
+        "translit": "'OG"
+      },
+      {
+        "script": "གང་",
+        "translit": "GANG"
+      },
+      {
+        "script": "ལ་",
+        "translit": "LA"
+      },
+      {
+        "script": "གཟིགས་",
+        "translit": "GZIGS"
+      },
+      {
+        "script": "ཅི་",
+        "translit": "CI"
+      },
+      {
+        "script": "བདེར་",
+        "translit": "BDER"
+      },
+      {
+        "script": "བྱ་",
+        "translit": "BYA"
+      },
+      {
+        "script": "བ་",
+        "translit": "BA"
+      },
+      {
+        "script": "ཞུ",
+        "translit": "ZHU"
+      }
+    ],
+    [
+      {
+        "script": "གཞི་",
+        "translit": "GZHI"
+      },
+      {
+        "script": "གྲུབ",
+        "translit": "GRUB"
+      }
+    ],
+    [
+      {
+        "script": "དེས་",
+        "translit": "DES"
+      },
+      {
+        "script": "ན་",
+        "translit": "NA"
+      },
+      {
+        "script": "ཐོག་",
+        "translit": "THOG"
+      },
+      {
+        "script": "མར",
+        "translit": "MAR"
+      }
+    ],
+    [
+      {
+        "script": "ཤེས་",
+        "translit": "SHES"
+      },
+      {
+        "script": "བྱ་",
+        "translit": "BYA"
+      },
+      {
+        "script": "དང་",
+        "translit": "DANG"
+      },
+      {
+        "script": "གཞི་",
+        "translit": "GZHI"
+      },
+      {
+        "script": "གྲུབ་",
+        "translit": "GRUB"
+      },
+      {
+        "script": "འཆད་",
+        "translit": "'CHAD"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "ལ་",
+        "translit": "LA"
+      },
+      {
+        "script": "དགག་",
+        "translit": "DGAG"
+      },
+      {
+        "script": "བཞག་",
+        "translit": "BZHAG"
+      },
+      {
+        "script": "སྤོང་",
+        "translit": "SPONG"
+      },
+      {
+        "script": "གསུམ་",
+        "translit": "GSUM"
+      },
+      {
+        "script": "ལས",
+        "translit": "LAS"
+      }
+    ],
+    [
+      {
+        "script": "དང་",
+        "translit": "DANG"
+      },
+      {
+        "script": "པོར",
+        "translit": "POR"
+      }
+    ],
+    [
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "ཅིག་",
+        "translit": "CIG"
+      },
+      {
+        "script": "ན་",
+        "translit": "NA"
+      },
+      {
+        "script": "རེ",
+        "translit": "RE"
+      }
+    ],
+    [
+      {
+        "script": "གཞི་",
+        "translit": "GZHI"
+      },
+      {
+        "script": "གྲུབ་",
+        "translit": "GRUB"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "རྟག་",
+        "translit": "RTAG"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "ཟེར་",
+        "translit": "ZER"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "ཡེ་",
+        "translit": "YE"
+      },
+      {
+        "script": "ཤེས་",
+        "translit": "SHES"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "སྐུའི་",
+        "translit": "SKU'"
+      },
+      {
+        "script": "འཕྲིན་",
+        "translit": "'PHRIN"
+      },
+      {
+        "script": "ལས་",
+        "translit": "LAS"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅན",
+        "translit": "CAN"
+      }
+    ],
+    [
+      {
+        "script": "རྟག་",
+        "translit": "RTAG"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པར་",
+        "translit": "PAR"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "གཞི་",
+        "translit": "GZHI"
+      },
+      {
+        "script": "གྲུབ་",
+        "translit": "GRUB"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "ཡོད་",
+        "translit": "YOD"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "མ་",
+        "translit": "MA"
+      },
+      {
+        "script": "གྲུབ་",
+        "translit": "GRUB"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "ཡེ་",
+        "translit": "YE"
+      },
+      {
+        "script": "ཤེས་",
+        "translit": "SHES"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "སྐུའི་",
+        "translit": "SKU'"
+      },
+      {
+        "script": "འཕྲིན་",
+        "translit": "'PHRIN"
+      },
+      {
+        "script": "ལས་",
+        "translit": "LAS"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅན",
+        "translit": "CAN"
+      }
+    ],
+    [
+      {
+        "script": "ཡོད་",
+        "translit": "YOD"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པར་",
+        "translit": "PAR"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "སེམས་",
+        "translit": "SEMS"
+      },
+      {
+        "script": "ཅན་",
+        "translit": "CAN"
+      },
+      {
+        "script": "ཐམས་",
+        "translit": "THAMS"
+      },
+      {
+        "script": "ཅད་",
+        "translit": "CAD"
+      },
+      {
+        "script": "ལ་",
+        "translit": "LA"
+      },
+      {
+        "script": "རྒྱུན་",
+        "translit": "RGYUN"
+      },
+      {
+        "script": "ཆད་",
+        "translit": "CHAD"
+      },
+      {
+        "script": "མེད་",
+        "translit": "MED"
+      },
+      {
+        "script": "པར་",
+        "translit": "PAR"
+      },
+      {
+        "script": "འཇུག་",
+        "translit": "'JUG"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "མངོན་",
+        "translit": "MNGON"
+      },
+      {
+        "script": "རྟོགས་",
+        "translit": "RTOGS"
+      },
+      {
+        "script": "རྒྱན་",
+        "translit": "RGYAN"
+      },
+      {
+        "script": "ལས",
+        "translit": "LAS"
+      }
+    ],
+    [
+      {
+        "script": "ཐུབ་",
+        "translit": "THUB"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "སྤྲུལ་",
+        "translit": "SPRUL"
+      },
+      {
+        "script": "སྐུ་",
+        "translit": "SKU"
+      },
+      {
+        "script": "རྒྱུན་",
+        "translit": "RGYUN"
+      },
+      {
+        "script": "མི་",
+        "translit": "MI"
+      },
+      {
+        "script": "ཆད",
+        "translit": "CHAD"
+      }
+    ],
+    [
+      {
+        "script": "དེ་",
+        "translit": "DE"
+      },
+      {
+        "script": "བཞིན་",
+        "translit": "BZHIN"
+      },
+      {
+        "script": "འཁོར་",
+        "translit": "'KHOR"
+      },
+      {
+        "script": "བ་",
+        "translit": "BA"
+      },
+      {
+        "script": "ཇི་",
+        "translit": "JI"
+      },
+      {
+        "script": "སྲིད་",
+        "translit": "SRID"
+      },
+      {
+        "script": "འདི",
+        "translit": "'DI"
+      }
+    ],
+    [
+      {
+        "script": "ལས་",
+        "translit": "LAS"
+      },
+      {
+        "script": "ནི་",
+        "translit": "NI"
+      },
+      {
+        "script": "རྒྱུན་",
+        "translit": "RGYUN"
+      },
+      {
+        "script": "མི་",
+        "translit": "MI"
+      },
+      {
+        "script": "ཆད་",
+        "translit": "CHAD"
+      },
+      {
+        "script": "པར་",
+        "translit": "PAR"
+      },
+      {
+        "script": "འདོད",
+        "translit": "'DOD"
+      }
+    ],
+    [
+      {
+        "script": "ཅེས་",
+        "translit": "CES"
+      },
+      {
+        "script": "གསུངས་",
+        "translit": "GSUNGS"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "འདོད་",
+        "translit": "'DOD"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "ཡེ་",
+        "translit": "YE"
+      },
+      {
+        "script": "ཤེས་",
+        "translit": "SHES"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "སྐུའི་",
+        "translit": "SKU'"
+      },
+      {
+        "script": "འཕྲིན་",
+        "translit": "'PHRIN"
+      },
+      {
+        "script": "ལས་",
+        "translit": "LAS"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅན",
+        "translit": "CAN"
+      }
+    ],
+    [
+      {
+        "script": "རྟག་",
+        "translit": "RTAG"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "མ་",
+        "translit": "MA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པར་",
+        "translit": "PAR"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "དངོས་",
+        "translit": "DNGOS"
+      },
+      {
+        "script": "པོ་",
+        "translit": "PO"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "སྟེ",
+        "translit": "STE"
+      }
+    ],
+    [
+      {
+        "script": "རྟག་",
+        "translit": "RTAG"
+      },
+      {
+        "script": "དངོས་",
+        "translit": "DNGOS"
+      },
+      {
+        "script": "གཉིས་",
+        "translit": "GNYIS"
+      },
+      {
+        "script": "འགལ་",
+        "translit": "'GAL"
+      },
+      {
+        "script": "བ་",
+        "translit": "BA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "འགལ་",
+        "translit": "'GAL"
+      },
+      {
+        "script": "བ་",
+        "translit": "BA"
+      },
+      {
+        "script": "གཞི་",
+        "translit": "GZHI"
+      },
+      {
+        "script": "གྲུབ་",
+        "translit": "GRUB"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དངོས་",
+        "translit": "DNGOS"
+      },
+      {
+        "script": "པོ་",
+        "translit": "PO"
+      },
+      {
+        "script": "མ་",
+        "translit": "MA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "ཡེ་",
+        "translit": "YE"
+      },
+      {
+        "script": "ཤེས་",
+        "translit": "SHES"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "སྐུའི་",
+        "translit": "SKU'"
+      },
+      {
+        "script": "འཕྲིན་",
+        "translit": "'PHRIN"
+      },
+      {
+        "script": "ལས་",
+        "translit": "LAS"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅན",
+        "translit": "CAN"
+      }
+    ],
+    [
+      {
+        "script": "དངོས་",
+        "translit": "DNGOS"
+      },
+      {
+        "script": "པོ་",
+        "translit": "PO"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པར་",
+        "translit": "PAR"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "དོན་",
+        "translit": "DON"
+      },
+      {
+        "script": "བྱེད་",
+        "translit": "BYED"
+      },
+      {
+        "script": "ནུས་",
+        "translit": "NUS"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "སེམས་",
+        "translit": "SEMS"
+      },
+      {
+        "script": "ཅན་",
+        "translit": "CAN"
+      },
+      {
+        "script": "ཐམས་",
+        "translit": "THAMS"
+      },
+      {
+        "script": "ཅད་",
+        "translit": "CAD"
+      },
+      {
+        "script": "ཀྱི་",
+        "translit": "KYI"
+      },
+      {
+        "script": "དོན་",
+        "translit": "DON"
+      },
+      {
+        "script": "བྱེད་",
+        "translit": "BYED"
+      },
+      {
+        "script": "ནུས་",
+        "translit": "NUS"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "འཕྲིན་",
+        "translit": "'PHRIN"
+      },
+      {
+        "script": "ལས་",
+        "translit": "LAS"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "དེ་",
+        "translit": "DE"
+      },
+      {
+        "script": "ལྟར་",
+        "translit": "LTAR"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "ཡང་",
+        "translit": "YANG"
+      },
+      {
+        "script": "ཉི་",
+        "translit": "NYI"
+      },
+      {
+        "script": "མའི་",
+        "translit": "M'I"
+      },
+      {
+        "script": "འོད་",
+        "translit": "'OD"
+      },
+      {
+        "script": "ཟེར་",
+        "translit": "ZER"
+      },
+      {
+        "script": "དང་",
+        "translit": "DANG"
+      },
+      {
+        "script": "དཔེ་",
+        "translit": "DPE"
+      },
+      {
+        "script": "མཚུངས་",
+        "translit": "MTSUNGS"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར་",
+        "translit": "PHYIR"
+      },
+      {
+        "script": "ཏེ",
+        "translit": "TE"
+      }
+    ],
+    [
+      {
+        "script": "རྣམ་",
+        "translit": "RNAM"
+      },
+      {
+        "script": "འགྲེལ་",
+        "translit": "'GREL"
+      },
+      {
+        "script": "ལས",
+        "translit": "LAS"
+      }
+    ],
+    [
+      {
+        "script": "རྟོག་",
+        "translit": "RTOG"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "དྲ་",
+        "translit": "DRA"
+      },
+      {
+        "script": "བ་",
+        "translit": "BA"
+      },
+      {
+        "script": "རྣམ་",
+        "translit": "RNAM"
+      },
+      {
+        "script": "བསལ་",
+        "translit": "BSAL"
+      },
+      {
+        "script": "ཅིང",
+        "translit": "CING"
+      }
+    ],
+    [
+      {
+        "script": "ཟབ་",
+        "translit": "ZAB"
+      },
+      {
+        "script": "ཅིང་",
+        "translit": "CING"
+      },
+      {
+        "script": "རྒྱ་",
+        "translit": "RGYA"
+      },
+      {
+        "script": "ཆེ་",
+        "translit": "CHE"
+      },
+      {
+        "script": "སྐུ་",
+        "translit": "SKU"
+      },
+      {
+        "script": "མངའ་",
+        "translit": "MNGA'"
+      },
+      {
+        "script": "བ",
+        "translit": "BA"
+      }
+    ],
+    [
+      {
+        "script": "ཀུན་",
+        "translit": "KUN"
+      },
+      {
+        "script": "ཏུ་",
+        "translit": "TU"
+      },
+      {
+        "script": "བཟང་",
+        "translit": "BZANG"
+      },
+      {
+        "script": "པོའི་",
+        "translit": "PO'"
+      },
+      {
+        "script": "འོད་",
+        "translit": "'OD"
+      },
+      {
+        "script": "ཟེར་",
+        "translit": "ZER"
+      },
+      {
+        "script": "དག་",
+        "translit": "DAG"
+      }
+    ],
+    [
+      {
+        "script": "ཀུན་",
+        "translit": "KUN"
+      },
+      {
+        "script": "ནས་",
+        "translit": "NAS"
+      },
+      {
+        "script": "འཕྲོ་",
+        "translit": "'PHRO"
+      },
+      {
+        "script": "ལ་",
+        "translit": "LA"
+      },
+      {
+        "script": "ཕྱག་",
+        "translit": "PHYAG"
+      },
+      {
+        "script": "འཚལ་",
+        "translit": "'TSAL"
+      },
+      {
+        "script": "ལོ",
+        "translit": "LO"
+      }
+    ],
+    [
+      {
+        "script": "ཞེས་",
+        "translit": "ZHES"
+      },
+      {
+        "script": "གསུངས་",
+        "translit": "GSUNGS"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "ཅིག་",
+        "translit": "CIG"
+      },
+      {
+        "script": "ན་",
+        "translit": "NA"
+      },
+      {
+        "script": "རེ",
+        "translit": "RE"
+      }
+    ],
+    [
+      {
+        "script": "གཞི་",
+        "translit": "GZHI"
+      },
+      {
+        "script": "གྲུབ་",
+        "translit": "GRUB"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "དངོས་",
+        "translit": "DNGOS"
+      },
+      {
+        "script": "པོ་",
+        "translit": "PO"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "ཟེར་",
+        "translit": "ZER"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "ངོ་",
+        "translit": "NGO"
+      },
+      {
+        "script": "བོ་",
+        "translit": "BO"
+      },
+      {
+        "script": "ཉིད་",
+        "translit": "NYID"
+      },
+      {
+        "script": "སྐུ་",
+        "translit": "SKU"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅན",
+        "translit": "CAN"
+      }
+    ],
+    [
+      {
+        "script": "དངོས་",
+        "translit": "DNGOS"
+      },
+      {
+        "script": "པོ་",
+        "translit": "PO"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པར་",
+        "translit": "PAR"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "གཞི་",
+        "translit": "GZHI"
+      },
+      {
+        "script": "གྲུབ་",
+        "translit": "GRUB"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "སྒྲིབ་",
+        "translit": "SGRIB"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "སྤངས་",
+        "translit": "SPANGS"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "མྱང་",
+        "translit": "MYANG"
+      },
+      {
+        "script": "འདས་",
+        "translit": "'ADS"
+      },
+      {
+        "script": "གཞི་",
+        "translit": "GZHI"
+      },
+      {
+        "script": "གྲུབ་",
+        "translit": "GRUB"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "སྒྲིབ་",
+        "translit": "SGRIB"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "སྤངས་",
+        "translit": "SPANGS"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "གང་",
+        "translit": "GANG"
+      },
+      {
+        "script": "ཟག་",
+        "translit": "ZAG"
+      },
+      {
+        "script": "ཡོད་",
+        "translit": "YOD"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "སངས་",
+        "translit": "SANGS"
+      },
+      {
+        "script": "རྒྱས་",
+        "translit": "RGYAS"
+      },
+      {
+        "script": "འཕགས་",
+        "translit": "'PHAGS"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "ཡོད་",
+        "translit": "YOD"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "འདོད་",
+        "translit": "'DOD"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "ངོ་",
+        "translit": "NGO"
+      },
+      {
+        "script": "བོ་",
+        "translit": "BO"
+      },
+      {
+        "script": "ཉིད་",
+        "translit": "NYID"
+      },
+      {
+        "script": "སྐུ་",
+        "translit": "SKU"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅན",
+        "translit": "CAN"
+      }
+    ],
+    [
+      {
+        "script": "དངོས་",
+        "translit": "DNGOS"
+      },
+      {
+        "script": "པོ་",
+        "translit": "PO"
+      },
+      {
+        "script": "མ་",
+        "translit": "MA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པར་",
+        "translit": "PAR"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "རྟག་",
+        "translit": "RTAG"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "འགོག་",
+        "translit": "'GOG"
+      },
+      {
+        "script": "བདེན་",
+        "translit": "BDEN"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར་",
+        "translit": "PHYIR"
+      },
+      {
+        "script": "ཏེ",
+        "translit": "TE"
+      }
+    ],
+    [
+      {
+        "script": "མཛོད་",
+        "translit": "MDZOD"
+      },
+      {
+        "script": "ལས",
+        "translit": "LAS"
+      }
+    ],
+    [
+      {
+        "script": "འདུས་",
+        "translit": "'DUS"
+      },
+      {
+        "script": "མ་",
+        "translit": "MA"
+      },
+      {
+        "script": "བྱས་",
+        "translit": "BYAS"
+      },
+      {
+        "script": "རྣམས་",
+        "translit": "RNAMS"
+      },
+      {
+        "script": "གསུམ་",
+        "translit": "GSUM"
+      },
+      {
+        "script": "ཡང་",
+        "translit": "YANG"
+      },
+      {
+        "script": "སྟེ",
+        "translit": "STE"
+      }
+    ],
+    [
+      {
+        "script": "ནམ་",
+        "translit": "NAM"
+      },
+      {
+        "script": "མཁའ་",
+        "translit": "MKHA'"
+      },
+      {
+        "script": "དང་",
+        "translit": "DANG"
+      },
+      {
+        "script": "ནི་",
+        "translit": "NI"
+      },
+      {
+        "script": "འགོག་",
+        "translit": "'GOG"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "གཉིས",
+        "translit": "GNYIS"
+      }
+    ],
+    [
+      {
+        "script": "ཞེས་",
+        "translit": "ZHES"
+      },
+      {
+        "script": "དང",
+        "translit": "DANG"
+      }
+    ],
+    [
+      {
+        "script": "རྩ་",
+        "translit": "RTZA"
+      },
+      {
+        "script": "ཤེས་",
+        "translit": "SHES"
+      },
+      {
+        "script": "ལས",
+        "translit": "LAS"
+      }
+    ],
+    [
+      {
+        "script": "འགག་",
+        "translit": "'GAG"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "མེད་",
+        "translit": "MED"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "སྐྱེ་",
+        "translit": "SKYE"
+      },
+      {
+        "script": "མེད་",
+        "translit": "MED"
+      },
+      {
+        "script": "པ",
+        "translit": "PA"
+      }
+    ],
+    [
+      {
+        "script": "དེ་",
+        "translit": "DE"
+      },
+      {
+        "script": "ནི་",
+        "translit": "NI"
+      },
+      {
+        "script": "མྱ་",
+        "translit": "MYA"
+      },
+      {
+        "script": "ངན་",
+        "translit": "NGAN"
+      },
+      {
+        "script": "འདས་",
+        "translit": "'ADS"
+      },
+      {
+        "script": "པར་",
+        "translit": "PAR"
+      },
+      {
+        "script": "བརྗོད",
+        "translit": "BRJOD"
+      }
+    ],
+    [
+      {
+        "script": "ཅེས་",
+        "translit": "CES"
+      },
+      {
+        "script": "གསུངས་",
+        "translit": "GSUNGS"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "གཞན་",
+        "translit": "GZHAN"
+      },
+      {
+        "script": "ཡང",
+        "translit": "YANG"
+      }
+    ],
+    [
+      {
+        "script": "འདུས་",
+        "translit": "'DUS"
+      },
+      {
+        "script": "མ་",
+        "translit": "MA"
+      },
+      {
+        "script": "བྱས་",
+        "translit": "BYAS"
+      },
+      {
+        "script": "ཀྱི་",
+        "translit": "KYI"
+      },
+      {
+        "script": "ནམ་",
+        "translit": "NAM"
+      },
+      {
+        "script": "མཁའ་",
+        "translit": "MKHA'"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅན",
+        "translit": "CAN"
+      }
+    ],
+    [
+      {
+        "script": "དངོས་",
+        "translit": "DNGOS"
+      },
+      {
+        "script": "པོ་",
+        "translit": "PO"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པར་",
+        "translit": "PAR"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "གཞི་",
+        "translit": "GZHI"
+      },
+      {
+        "script": "གྲུབ་",
+        "translit": "GRUB"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "འདོད་",
+        "translit": "'DOD"
+      },
+      {
+        "script": "མི་",
+        "translit": "MI"
+      },
+      {
+        "script": "ནུས་",
+        "translit": "NUS"
+      },
+      {
+        "script": "ཏེ",
+        "translit": "TE"
+      }
+    ],
+    [
+      {
+        "script": "དངོས་",
+        "translit": "DNGOS"
+      },
+      {
+        "script": "མེད་",
+        "translit": "MED"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "འདུས་",
+        "translit": "'DUS"
+      },
+      {
+        "script": "མ་",
+        "translit": "MA"
+      },
+      {
+        "script": "བྱས་",
+        "translit": "BYAS"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར་",
+        "translit": "PHYIR"
+      },
+      {
+        "script": "ཏེ",
+        "translit": "TE"
+      }
+    ],
+    [
+      {
+        "script": "མཛོད་",
+        "translit": "MDZOD"
+      },
+      {
+        "script": "ལས",
+        "translit": "LAS"
+      }
+    ],
+    [
+      {
+        "script": "འདུས་",
+        "translit": "'DUS"
+      },
+      {
+        "script": "མ་",
+        "translit": "MA"
+      },
+      {
+        "script": "བྱས་",
+        "translit": "BYAS"
+      },
+      {
+        "script": "རྣམས་",
+        "translit": "RNAMS"
+      },
+      {
+        "script": "གསུམ་",
+        "translit": "GSUM"
+      },
+      {
+        "script": "ཡང་",
+        "translit": "YANG"
+      },
+      {
+        "script": "སྟེ",
+        "translit": "STE"
+      }
+    ],
+    [
+      {
+        "script": "ཞེས་",
+        "translit": "ZHES"
+      },
+      {
+        "script": "གསུངས་",
+        "translit": "GSUNGS"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "ཅིག་",
+        "translit": "CIG"
+      },
+      {
+        "script": "ན་",
+        "translit": "NA"
+      },
+      {
+        "script": "རེ",
+        "translit": "RE"
+      }
+    ],
+    [
+      {
+        "script": "གཞི་",
+        "translit": "GZHI"
+      },
+      {
+        "script": "གྲུབ་",
+        "translit": "GRUB"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "རང་",
+        "translit": "RANG"
+      },
+      {
+        "script": "མཚན་",
+        "translit": "MTSAN"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "ཟེར་",
+        "translit": "ZER"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "བུམ་",
+        "translit": "BUM"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "དོན་",
+        "translit": "DON"
+      },
+      {
+        "script": "སྤྱི་",
+        "translit": "SPYI"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅན",
+        "translit": "CAN"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "དེའི་",
+        "translit": "DE'"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "ཡོད་",
+        "translit": "YOD"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "བུམ་",
+        "translit": "BUM"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "ཡོད་",
+        "translit": "YOD"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "འདོད་",
+        "translit": "'DOD"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "དེ་",
+        "translit": "DE"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅན",
+        "translit": "CAN"
+      }
+    ],
+    [
+      {
+        "script": "རང་",
+        "translit": "RANG"
+      },
+      {
+        "script": "མཚན་",
+        "translit": "MTSAN"
+      },
+      {
+        "script": "མ་",
+        "translit": "MA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པར་",
+        "translit": "PAR"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "སྤྱི་",
+        "translit": "SPYI"
+      },
+      {
+        "script": "མཚན་",
+        "translit": "MTSAN"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "བུམ་",
+        "translit": "BUM"
+      },
+      {
+        "script": "འཛིན་",
+        "translit": "'DZIN"
+      },
+      {
+        "script": "རྟོག་",
+        "translit": "RTOG"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "སྣང་",
+        "translit": "SNANG"
+      },
+      {
+        "script": "ཡུལ་",
+        "translit": "YUL"
+      },
+      {
+        "script": "ཙམ་",
+        "translit": "TZAM"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "རྣམ་",
+        "translit": "RNAM"
+      },
+      {
+        "script": "འགྲེལ་",
+        "translit": "'GREL"
+      },
+      {
+        "script": "ལས",
+        "translit": "LAS"
+      }
+    ],
+    [
+      {
+        "script": "སྤྱི་",
+        "translit": "SPYI"
+      },
+      {
+        "script": "ཡི་",
+        "translit": "YI"
+      },
+      {
+        "script": "བློ་",
+        "translit": "BLO"
+      },
+      {
+        "script": "ཡང་",
+        "translit": "YANG"
+      },
+      {
+        "script": "བསླད་",
+        "translit": "BSLAD"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "ཡིན",
+        "translit": "YIN"
+      }
+    ],
+    [
+      {
+        "script": "ཞེས་",
+        "translit": "ZHES"
+      },
+      {
+        "script": "གསུངས་",
+        "translit": "GSUNGS"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "ཅིག་",
+        "translit": "CIG"
+      },
+      {
+        "script": "གཞི་",
+        "translit": "GZHI"
+      },
+      {
+        "script": "གྲུབ་",
+        "translit": "GRUB"
+      },
+      {
+        "script": "ན་",
+        "translit": "NA"
+      },
+      {
+        "script": "སྤྱི་",
+        "translit": "SPYI"
+      },
+      {
+        "script": "མཚན་",
+        "translit": "MTSAN"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "ཟེར་",
+        "translit": "ZER"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "ཀ་",
+        "translit": "KA"
+      },
+      {
+        "script": "བ་",
+        "translit": "BA"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅན",
+        "translit": "CAN"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "དེའི་",
+        "translit": "DE'"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "དངོས་",
+        "translit": "DNGOS"
+      },
+      {
+        "script": "པོ་",
+        "translit": "PO"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "དོན་",
+        "translit": "DON"
+      },
+      {
+        "script": "བྱེད་",
+        "translit": "BYED"
+      },
+      {
+        "script": "ནུས་",
+        "translit": "NUS"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "གདུང་",
+        "translit": "GDUNG"
+      },
+      {
+        "script": "བཏེགས་",
+        "translit": "BTEGS"
+      },
+      {
+        "script": "ཀྱི་",
+        "translit": "KYI"
+      },
+      {
+        "script": "དོན་",
+        "translit": "DON"
+      },
+      {
+        "script": "བྱེད་",
+        "translit": "BYED"
+      },
+      {
+        "script": "ནུས་",
+        "translit": "NUS"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "ཀ་",
+        "translit": "KA"
+      },
+      {
+        "script": "བ་",
+        "translit": "BA"
+      },
+      {
+        "script": "དང་",
+        "translit": "DANG"
+      },
+      {
+        "script": "གཅིག་",
+        "translit": "GCIG"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "ཀ་",
+        "translit": "KA"
+      },
+      {
+        "script": "བ་",
+        "translit": "BA"
+      },
+      {
+        "script": "དང་",
+        "translit": "DANG"
+      },
+      {
+        "script": "གཅིག་",
+        "translit": "GCIG"
+      },
+      {
+        "script": "ཡོད་",
+        "translit": "YOD"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "འདོད་",
+        "translit": "'DOD"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "ཀ་",
+        "translit": "KA"
+      },
+      {
+        "script": "བ་",
+        "translit": "BA"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅན",
+        "translit": "CAN"
+      }
+    ],
+    [
+      {
+        "script": "སྤྱི་",
+        "translit": "SPYI"
+      },
+      {
+        "script": "མཚན་",
+        "translit": "MTSAN"
+      },
+      {
+        "script": "མ་",
+        "translit": "MA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པར་",
+        "translit": "PAR"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "མངོན་",
+        "translit": "MNGON"
+      },
+      {
+        "script": "སུམ་",
+        "translit": "SUM"
+      },
+      {
+        "script": "གྱི་",
+        "translit": "GYI"
+      },
+      {
+        "script": "གཟུང་",
+        "translit": "GZUNG"
+      },
+      {
+        "script": "ཡུལ་",
+        "translit": "YUL"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "ཀ་",
+        "translit": "KA"
+      },
+      {
+        "script": "འཛིན་",
+        "translit": "'DZIN"
+      },
+      {
+        "script": "མིག་",
+        "translit": "MIG"
+      },
+      {
+        "script": "ཤེས་",
+        "translit": "SHES"
+      },
+      {
+        "script": "ཀྱི་",
+        "translit": "KYI"
+      },
+      {
+        "script": "གཟུང་",
+        "translit": "GZUNG"
+      },
+      {
+        "script": "ཡུལ་",
+        "translit": "YUL"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "ཀ་",
+        "translit": "KA"
+      },
+      {
+        "script": "འཛིན་",
+        "translit": "'DZIN"
+      },
+      {
+        "script": "མིག་",
+        "translit": "MIG"
+      },
+      {
+        "script": "ཤེས་",
+        "translit": "SHES"
+      },
+      {
+        "script": "ཀྱི་",
+        "translit": "KYI"
+      },
+      {
+        "script": "གཟུང་",
+        "translit": "GZUNG"
+      },
+      {
+        "script": "དོན་",
+        "translit": "DON"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "མིག་",
+        "translit": "MIG"
+      },
+      {
+        "script": "ཤེས་",
+        "translit": "SHES"
+      },
+      {
+        "script": "དེ་",
+        "translit": "DE"
+      },
+      {
+        "script": "གཟུང་",
+        "translit": "GZUNG"
+      },
+      {
+        "script": "དོན་",
+        "translit": "DON"
+      },
+      {
+        "script": "ཅན་",
+        "translit": "CAN"
+      },
+      {
+        "script": "གྱིས་",
+        "translit": "GYIS"
+      },
+      {
+        "script": "ཤེས་",
+        "translit": "SHES"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "ཅིག་",
+        "translit": "CIG"
+      },
+      {
+        "script": "གཞི་",
+        "translit": "GZHI"
+      },
+      {
+        "script": "གྲུབ་",
+        "translit": "GRUB"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "ཀུན་",
+        "translit": "KUN"
+      },
+      {
+        "script": "རྫོབ་",
+        "translit": "RDZOB"
+      },
+      {
+        "script": "བདེན་",
+        "translit": "BDEN"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "ཟེར་",
+        "translit": "ZER"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "གསེར་",
+        "translit": "GSER"
+      },
+      {
+        "script": "བུམ་",
+        "translit": "BUM"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅན",
+        "translit": "CAN"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "དེའི་",
+        "translit": "DE'"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "འདོད་",
+        "translit": "'DOD"
+      },
+      {
+        "script": "མི་",
+        "translit": "MI"
+      },
+      {
+        "script": "ནུས་",
+        "translit": "NUS"
+      },
+      {
+        "script": "ཏེ",
+        "translit": "TE"
+      }
+    ],
+    [
+      {
+        "script": "དོན་",
+        "translit": "DON"
+      },
+      {
+        "script": "དམ་",
+        "translit": "DAM"
+      },
+      {
+        "script": "བདེན་",
+        "translit": "BDEN"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "དངོས་",
+        "translit": "DNGOS"
+      },
+      {
+        "script": "པོ་",
+        "translit": "PO"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "སྟེ",
+        "translit": "STE"
+      }
+    ],
+    [
+      {
+        "script": "རང་",
+        "translit": "RANG"
+      },
+      {
+        "script": "མཚན",
+        "translit": "MTSAN"
+      }
+    ],
+    [
+      {
+        "script": "དངོས་",
+        "translit": "DNGOS"
+      },
+      {
+        "script": "པོ",
+        "translit": "PO"
+      }
+    ],
+    [
+      {
+        "script": "དོན་",
+        "translit": "DON"
+      },
+      {
+        "script": "དམ་",
+        "translit": "DAM"
+      },
+      {
+        "script": "བདེན་",
+        "translit": "BDEN"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "རྣམས་",
+        "translit": "RNAMS"
+      },
+      {
+        "script": "དོན་",
+        "translit": "DON"
+      },
+      {
+        "script": "གཅིག་",
+        "translit": "GCIG"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "ཅིག་",
+        "translit": "CIG"
+      },
+      {
+        "script": "གཞི་",
+        "translit": "GZHI"
+      },
+      {
+        "script": "གྲུབ་",
+        "translit": "GRUB"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "དོན་",
+        "translit": "DON"
+      },
+      {
+        "script": "དམ་",
+        "translit": "DAM"
+      },
+      {
+        "script": "བདེན་",
+        "translit": "BDEN"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "ཟེར་",
+        "translit": "ZER"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "ཤིང་",
+        "translit": "SHING"
+      },
+      {
+        "script": "འཛིན་",
+        "translit": "'DZIN"
+      },
+      {
+        "script": "རྟོག་",
+        "translit": "RTOG"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "སྣང་",
+        "translit": "SNANG"
+      },
+      {
+        "script": "ཡུལ་",
+        "translit": "YUL"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅན",
+        "translit": "CAN"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "དེའི་",
+        "translit": "DE'"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "དེ་",
+        "translit": "DE"
+      },
+      {
+        "script": "ཡོད་",
+        "translit": "YOD"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "ཤིང་",
+        "translit": "SHING"
+      },
+      {
+        "script": "གི་",
+        "translit": "GI"
+      },
+      {
+        "script": "དོན་",
+        "translit": "DON"
+      },
+      {
+        "script": "སྤྱི་",
+        "translit": "SPYI"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "འདོད་",
+        "translit": "'DOD"
+      },
+      {
+        "script": "མི་",
+        "translit": "MI"
+      },
+      {
+        "script": "ནུས་",
+        "translit": "NUS"
+      },
+      {
+        "script": "ཏེ",
+        "translit": "TE"
+      }
+    ],
+    [
+      {
+        "script": "སྤྱི་",
+        "translit": "SPYI"
+      },
+      {
+        "script": "མཚན་",
+        "translit": "MTSAN"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "རྣམ་",
+        "translit": "RNAM"
+      },
+      {
+        "script": "འགྲེལ་",
+        "translit": "'GREL"
+      },
+      {
+        "script": "ལས",
+        "translit": "LAS"
+      }
+    ],
+    [
+      {
+        "script": "དེ་",
+        "translit": "DE"
+      },
+      {
+        "script": "ཡིས་",
+        "translit": "YIS"
+      },
+      {
+        "script": "ཇི་",
+        "translit": "JI"
+      },
+      {
+        "script": "ལྟར་",
+        "translit": "LTAR"
+      },
+      {
+        "script": "ཀུན་",
+        "translit": "KUN"
+      },
+      {
+        "script": "བཏགས་",
+        "translit": "BTAGS"
+      },
+      {
+        "script": "པ",
+        "translit": "PA"
+      }
+    ],
+    [
+      {
+        "script": "དེ་",
+        "translit": "DE"
+      },
+      {
+        "script": "ནི་",
+        "translit": "NI"
+      },
+      {
+        "script": "དམ་",
+        "translit": "DAM"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "དོན་",
+        "translit": "DON"
+      },
+      {
+        "script": "དུ་",
+        "translit": "DU"
+      },
+      {
+        "script": "མེད",
+        "translit": "MED"
+      }
+    ],
+    [
+      {
+        "script": "ཅེས་",
+        "translit": "CES"
+      },
+      {
+        "script": "གསུངས་",
+        "translit": "GSUNGS"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "ཅིག་",
+        "translit": "CIG"
+      },
+      {
+        "script": "ཤེས་",
+        "translit": "SHES"
+      },
+      {
+        "script": "བྱ་",
+        "translit": "BYA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "སྲིད་",
+        "translit": "SRID"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཤེས་",
+        "translit": "SHES"
+      },
+      {
+        "script": "བྱ་",
+        "translit": "BYA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "ཟེར་",
+        "translit": "ZER"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "རྟག་",
+        "translit": "RTAG"
+      },
+      {
+        "script": "དངོས་",
+        "translit": "DNGOS"
+      },
+      {
+        "script": "གཉིས་",
+        "translit": "GNYIS"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅན",
+        "translit": "CAN"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "དེའི་",
+        "translit": "DE'"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "ཤེས་",
+        "translit": "SHES"
+      },
+      {
+        "script": "བྱའི་",
+        "translit": "BY'I"
+      },
+      {
+        "script": "དབྱེ་",
+        "translit": "DBYE"
+      },
+      {
+        "script": "བ་",
+        "translit": "BA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "འདོད་",
+        "translit": "'DOD"
+      },
+      {
+        "script": "མི་",
+        "translit": "MI"
+      },
+      {
+        "script": "ནུས་",
+        "translit": "NUS"
+      },
+      {
+        "script": "ཏེ",
+        "translit": "TE"
+      }
+    ],
+    [
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "མི་",
+        "translit": "MI"
+      },
+      {
+        "script": "སྲིད་",
+        "translit": "SRID"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཤེས་",
+        "translit": "SHES"
+      },
+      {
+        "script": "བྱ་",
+        "translit": "BYA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "འགལ་",
+        "translit": "'GAL"
+      },
+      {
+        "script": "བ་",
+        "translit": "BA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "འགལ་",
+        "translit": "'GAL"
+      },
+      {
+        "script": "བ་",
+        "translit": "BA"
+      },
+      {
+        "script": "གཅིག་",
+        "translit": "GCIG"
+      },
+      {
+        "script": "ཡོད་",
+        "translit": "YOD"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "ཅིག་",
+        "translit": "CIG"
+      },
+      {
+        "script": "ཡོད་",
+        "translit": "YOD"
+      },
+      {
+        "script": "ན་",
+        "translit": "NA"
+      },
+      {
+        "script": "དོན་",
+        "translit": "DON"
+      },
+      {
+        "script": "དམ་",
+        "translit": "DAM"
+      },
+      {
+        "script": "པར་",
+        "translit": "PAR"
+      },
+      {
+        "script": "ཡོད་",
+        "translit": "YOD"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "ཟེར་",
+        "translit": "ZER"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "སྤྱི་",
+        "translit": "SPYI"
+      },
+      {
+        "script": "མཚན་",
+        "translit": "MTSAN"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅན",
+        "translit": "CAN"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "དེའི་",
+        "translit": "DE'"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅན་",
+        "translit": "CAN"
+      },
+      {
+        "script": "དེ་",
+        "translit": "DE"
+      },
+      {
+        "script": "དང་",
+        "translit": "DANG"
+      },
+      {
+        "script": "གཅིག་",
+        "translit": "GCIG"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "འདོད་",
+        "translit": "'DOD"
+      },
+      {
+        "script": "མི་",
+        "translit": "MI"
+      },
+      {
+        "script": "ནུས་",
+        "translit": "NUS"
+      },
+      {
+        "script": "ཏེ",
+        "translit": "TE"
+      }
+    ],
+    [
+      {
+        "script": "རྟོག་",
+        "translit": "RTOG"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "བཏགས་",
+        "translit": "BTAGS"
+      },
+      {
+        "script": "ཙམ་",
+        "translit": "TZAM"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "གཉིས་",
+        "translit": "GNYIS"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "རང་",
+        "translit": "RANG"
+      },
+      {
+        "script": "ལུགས་",
+        "translit": "LUGS"
+      },
+      {
+        "script": "བཞག་",
+        "translit": "BZHAG"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "ལ",
+        "translit": "LA"
+      }
+    ],
+    [
+      {
+        "script": "ཚད་",
+        "translit": "TSAD"
+      },
+      {
+        "script": "མས་",
+        "translit": "MAS"
+      },
+      {
+        "script": "གྲུབ་",
+        "translit": "GRUB"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "གཞི་",
+        "translit": "GZHI"
+      },
+      {
+        "script": "གྲུབ་",
+        "translit": "GRUB"
+      },
+      {
+        "script": "ཀྱི་",
+        "translit": "KYI"
+      },
+      {
+        "script": "མཚན་",
+        "translit": "MTSAN"
+      },
+      {
+        "script": "ཉིད",
+        "translit": "NYID"
+      }
+    ],
+    [
+      {
+        "script": "གཞི་",
+        "translit": "GZHI"
+      },
+      {
+        "script": "གྲུབ",
+        "translit": "GRUB"
+      }
+    ],
+    [
+      {
+        "script": "ཡོད་",
+        "translit": "YOD"
+      },
+      {
+        "script": "པ",
+        "translit": "PA"
+      }
+    ],
+    [
+      {
+        "script": "ཤེས་",
+        "translit": "SHES"
+      },
+      {
+        "script": "བྱ་",
+        "translit": "BYA"
+      },
+      {
+        "script": "རྣམས་",
+        "translit": "RNAMS"
+      },
+      {
+        "script": "དོན་",
+        "translit": "DON"
+      },
+      {
+        "script": "གཅིག་",
+        "translit": "GCIG"
+      },
+      {
+        "script": "ཚད་",
+        "translit": "TSAD"
+      },
+      {
+        "script": "མས་",
+        "translit": "MAS"
+      },
+      {
+        "script": "དམིགས་",
+        "translit": "DMIGS"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "ཡོད་",
+        "translit": "YOD"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "མཚན་",
+        "translit": "MTSAN"
+      },
+      {
+        "script": "ཉིད",
+        "translit": "NYID"
+      }
+    ],
+    [
+      {
+        "script": "བློའི་",
+        "translit": "BLO'"
+      },
+      {
+        "script": "ཡུལ་",
+        "translit": "YUL"
+      },
+      {
+        "script": "དུ་",
+        "translit": "DU"
+      },
+      {
+        "script": "བྱ་",
+        "translit": "BYA"
+      },
+      {
+        "script": "རུང་",
+        "translit": "RUNG"
+      },
+      {
+        "script": "བ་",
+        "translit": "BA"
+      },
+      {
+        "script": "ཤེས་",
+        "translit": "SHES"
+      },
+      {
+        "script": "བྱའི་",
+        "translit": "BY'I"
+      },
+      {
+        "script": "མཚན་",
+        "translit": "MTSAN"
+      },
+      {
+        "script": "ཉིད",
+        "translit": "NYID"
+      }
+    ],
+    [
+      {
+        "script": "དེ་",
+        "translit": "DE"
+      },
+      {
+        "script": "ལ་",
+        "translit": "LA"
+      },
+      {
+        "script": "དབྱེ་",
+        "translit": "DBYE"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "ཀུན་",
+        "translit": "KUN"
+      },
+      {
+        "script": "རྫོབ་",
+        "translit": "RDZOB"
+      },
+      {
+        "script": "བདེན་",
+        "translit": "BDEN"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "དང",
+        "translit": "DANG"
+      }
+    ],
+    [
+      {
+        "script": "དོན་",
+        "translit": "DON"
+      },
+      {
+        "script": "དམ་",
+        "translit": "DAM"
+      },
+      {
+        "script": "བདེན་",
+        "translit": "BDEN"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "གཉིས",
+        "translit": "GNYIS"
+      }
+    ],
+    [
+      {
+        "script": "ཡང་",
+        "translit": "YANG"
+      },
+      {
+        "script": "དེ་",
+        "translit": "DE"
+      },
+      {
+        "script": "ལ་",
+        "translit": "LA"
+      },
+      {
+        "script": "དབྱེ་",
+        "translit": "DBYE"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "རང་",
+        "translit": "RANG"
+      },
+      {
+        "script": "མཚན་",
+        "translit": "MTSAN"
+      },
+      {
+        "script": "དང",
+        "translit": "DANG"
+      }
+    ],
+    [
+      {
+        "script": "སྤྱི་",
+        "translit": "SPYI"
+      },
+      {
+        "script": "མཚན་",
+        "translit": "MTSAN"
+      },
+      {
+        "script": "གཉིས",
+        "translit": "GNYIS"
+      }
+    ],
+    [
+      {
+        "script": "ཡང་",
+        "translit": "YANG"
+      },
+      {
+        "script": "དེ་",
+        "translit": "DE"
+      },
+      {
+        "script": "ལ་",
+        "translit": "LA"
+      },
+      {
+        "script": "དབྱེ་",
+        "translit": "DBYE"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "རྟག་",
+        "translit": "RTAG"
+      },
+      {
+        "script": "དངོས་",
+        "translit": "DNGOS"
+      },
+      {
+        "script": "གཉིས་",
+        "translit": "GNYIS"
+      },
+      {
+        "script": "ཡོད",
+        "translit": "YOD"
+      }
+    ],
+    [
+      {
+        "script": "དོན་",
+        "translit": "DON"
+      },
+      {
+        "script": "དམ་",
+        "translit": "DAM"
+      },
+      {
+        "script": "པར་",
+        "translit": "PAR"
+      },
+      {
+        "script": "དོན་",
+        "translit": "DON"
+      },
+      {
+        "script": "བྱེད་",
+        "translit": "BYED"
+      },
+      {
+        "script": "ནུས་",
+        "translit": "NUS"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཆོས",
+        "translit": "CHOS"
+      }
+    ],
+    [
+      {
+        "script": "དོན་",
+        "translit": "DON"
+      },
+      {
+        "script": "དམ་",
+        "translit": "DAM"
+      },
+      {
+        "script": "བདེན་",
+        "translit": "BDEN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "མཚན་",
+        "translit": "MTSAN"
+      },
+      {
+        "script": "ཉིད",
+        "translit": "NYID"
+      }
+    ],
+    [
+      {
+        "script": "དོན་",
+        "translit": "DON"
+      },
+      {
+        "script": "དམ་",
+        "translit": "DAM"
+      },
+      {
+        "script": "པར་",
+        "translit": "PAR"
+      },
+      {
+        "script": "དོན་",
+        "translit": "DON"
+      },
+      {
+        "script": "བྱེད་",
+        "translit": "BYED"
+      },
+      {
+        "script": "མི་",
+        "translit": "MI"
+      },
+      {
+        "script": "ནུས་",
+        "translit": "NUS"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཆོས",
+        "translit": "CHOS"
+      }
+    ],
+    [
+      {
+        "script": "ཀུན་",
+        "translit": "KUN"
+      },
+      {
+        "script": "རྫོབ་",
+        "translit": "RDZOB"
+      },
+      {
+        "script": "བདེན་",
+        "translit": "BDEN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "མཚན་",
+        "translit": "MTSAN"
+      },
+      {
+        "script": "ཉིད",
+        "translit": "NYID"
+      }
+    ],
+    [
+      {
+        "script": "རྟོག་",
+        "translit": "RTOG"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "བཏགས་",
+        "translit": "BTAGS"
+      },
+      {
+        "script": "ཙམ་",
+        "translit": "TZAM"
+      },
+      {
+        "script": "མ་",
+        "translit": "MA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པར་",
+        "translit": "PAR"
+      },
+      {
+        "script": "ཡུལ་",
+        "translit": "YUL"
+      },
+      {
+        "script": "རང་",
+        "translit": "RANG"
+      },
+      {
+        "script": "གི་",
+        "translit": "GI"
+      },
+      {
+        "script": "སྡོད་",
+        "translit": "SDOD"
+      },
+      {
+        "script": "ལུགས་",
+        "translit": "LUGS"
+      },
+      {
+        "script": "ཀྱི་",
+        "translit": "KYI"
+      },
+      {
+        "script": "ངོས་",
+        "translit": "NGOS"
+      },
+      {
+        "script": "ནས་",
+        "translit": "NAS"
+      },
+      {
+        "script": "གྲུབ་",
+        "translit": "GRUB"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "དེ",
+        "translit": "DE"
+      }
+    ],
+    [
+      {
+        "script": "རང་",
+        "translit": "RANG"
+      },
+      {
+        "script": "མཚན་",
+        "translit": "MTSAN"
+      },
+      {
+        "script": "གྱི་",
+        "translit": "GYI"
+      },
+      {
+        "script": "མཚན་",
+        "translit": "MTSAN"
+      },
+      {
+        "script": "ཉིད",
+        "translit": "NYID"
+      }
+    ],
+    [
+      {
+        "script": "རྟོག་",
+        "translit": "RTOG"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "བཏགས་",
+        "translit": "BTAGS"
+      },
+      {
+        "script": "ཙམ་",
+        "translit": "TZAM"
+      },
+      {
+        "script": "དུ་",
+        "translit": "DU"
+      },
+      {
+        "script": "གྲུབ་",
+        "translit": "GRUB"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཆོས",
+        "translit": "CHOS"
+      }
+    ],
+    [
+      {
+        "script": "སྤྱི་",
+        "translit": "SPYI"
+      },
+      {
+        "script": "མཚན་",
+        "translit": "MTSAN"
+      },
+      {
+        "script": "གྱི་",
+        "translit": "GYI"
+      },
+      {
+        "script": "མཚན་",
+        "translit": "MTSAN"
+      },
+      {
+        "script": "ཉིད",
+        "translit": "NYID"
+      }
+    ],
+    [
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "དང་",
+        "translit": "DANG"
+      },
+      {
+        "script": "སྐད་",
+        "translit": "SKAD"
+      },
+      {
+        "script": "གཅིག་",
+        "translit": "GCIG"
+      },
+      {
+        "script": "མ་",
+        "translit": "MA"
+      },
+      {
+        "script": "མ་",
+        "translit": "MA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཆོས",
+        "translit": "CHOS"
+      }
+    ],
+    [
+      {
+        "script": "རྟག་",
+        "translit": "RTAG"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "མཚན་",
+        "translit": "MTSAN"
+      },
+      {
+        "script": "ཉིད",
+        "translit": "NYID"
+      }
+    ],
+    [
+      {
+        "script": "དོན་",
+        "translit": "DON"
+      },
+      {
+        "script": "བྱེད་",
+        "translit": "BYED"
+      },
+      {
+        "script": "ནུས་",
+        "translit": "NUS"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "དངོས་",
+        "translit": "DNGOS"
+      },
+      {
+        "script": "པོའི་",
+        "translit": "PO'"
+      },
+      {
+        "script": "མཚན་",
+        "translit": "MTSAN"
+      },
+      {
+        "script": "ཉིད",
+        "translit": "NYID"
+      }
+    ],
+    [
+      {
+        "script": "དངོས་",
+        "translit": "DNGOS"
+      },
+      {
+        "script": "པོ་",
+        "translit": "PO"
+      },
+      {
+        "script": "ལ་",
+        "translit": "LA"
+      },
+      {
+        "script": "དབྱེ་",
+        "translit": "DBYE"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "གཟུགས་",
+        "translit": "GZUGS"
+      },
+      {
+        "script": "ཤེས་",
+        "translit": "SHES"
+      },
+      {
+        "script": "ལྡན་",
+        "translit": "LDAN"
+      },
+      {
+        "script": "མིན་",
+        "translit": "MIN"
+      },
+      {
+        "script": "འདུ་",
+        "translit": "'DU"
+      },
+      {
+        "script": "བྱེད་",
+        "translit": "BYED"
+      },
+      {
+        "script": "གསུམ་",
+        "translit": "GSUM"
+      },
+      {
+        "script": "ཡོད",
+        "translit": "YOD"
+      }
+    ],
+    [
+      {
+        "script": "གསུམ་",
+        "translit": "GSUM"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "རྩོད་",
+        "translit": "RTZOD"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "སྤོང་",
+        "translit": "SPONG"
+      },
+      {
+        "script": "བ་",
+        "translit": "BA"
+      },
+      {
+        "script": "ལ",
+        "translit": "LA"
+      }
+    ],
+    [
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "ཅིག་",
+        "translit": "CIG"
+      },
+      {
+        "script": "ན་",
+        "translit": "NA"
+      },
+      {
+        "script": "རེ",
+        "translit": "RE"
+      }
+    ],
+    [
+      {
+        "script": "ཤེས་",
+        "translit": "SHES"
+      },
+      {
+        "script": "བྱ་",
+        "translit": "BYA"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅན",
+        "translit": "CAN"
+      }
+    ],
+    [
+      {
+        "script": "ཀུན་",
+        "translit": "KUN"
+      },
+      {
+        "script": "རྫོབ་",
+        "translit": "RDZOB"
+      },
+      {
+        "script": "བདེན་",
+        "translit": "BDEN"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པར་",
+        "translit": "PAR"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "སྤྱི་",
+        "translit": "SPYI"
+      },
+      {
+        "script": "མཚན་",
+        "translit": "MTSAN"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "རྟོག་",
+        "translit": "RTOG"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "བཏགས་",
+        "translit": "BTAGS"
+      },
+      {
+        "script": "ཙམ་",
+        "translit": "TZAM"
+      },
+      {
+        "script": "གྱི་",
+        "translit": "GYI"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "འདོད་",
+        "translit": "'DOD"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "ཀུན་",
+        "translit": "KUN"
+      },
+      {
+        "script": "རྫོབ་",
+        "translit": "RDZOB"
+      },
+      {
+        "script": "བདེན་",
+        "translit": "BDEN"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "མ་",
+        "translit": "MA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པར་",
+        "translit": "PAR"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "ཀུན་",
+        "translit": "KUN"
+      },
+      {
+        "script": "རྫོབ་",
+        "translit": "RDZOB"
+      },
+      {
+        "script": "རྫུན་",
+        "translit": "RDZUN"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར་",
+        "translit": "PHYIR"
+      },
+      {
+        "script": "ཟེར་",
+        "translit": "ZER"
+      },
+      {
+        "script": "ན་",
+        "translit": "NA"
+      },
+      {
+        "script": "མ་",
+        "translit": "MA"
+      },
+      {
+        "script": "ཁྱབ",
+        "translit": "KHYAB"
+      }
+    ],
+    [
+      {
+        "script": "མ་",
+        "translit": "MA"
+      },
+      {
+        "script": "གྲུབ་",
+        "translit": "GRUB"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "ཤེས་",
+        "translit": "SHES"
+      },
+      {
+        "script": "བྱ་",
+        "translit": "BYA"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅན",
+        "translit": "CAN"
+      }
+    ],
+    [
+      {
+        "script": "ཀུན་",
+        "translit": "KUN"
+      },
+      {
+        "script": "རྫོབ་",
+        "translit": "RDZOB"
+      },
+      {
+        "script": "རྫུན་",
+        "translit": "RDZUN"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པར་",
+        "translit": "PAR"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "ཀུན་",
+        "translit": "KUN"
+      },
+      {
+        "script": "རྫོབ་",
+        "translit": "RDZOB"
+      },
+      {
+        "script": "ཀུན་",
+        "translit": "KUN"
+      },
+      {
+        "script": "རྫོབ་",
+        "translit": "RDZOB"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "ཅིག་",
+        "translit": "CIG"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "སྲིད་",
+        "translit": "SRID"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "བློའི་",
+        "translit": "BLO'"
+      },
+      {
+        "script": "ཡུལ་",
+        "translit": "YUL"
+      },
+      {
+        "script": "དུ་",
+        "translit": "DU"
+      },
+      {
+        "script": "བྱ་",
+        "translit": "BYA"
+      },
+      {
+        "script": "རུང",
+        "translit": "RUNG"
+      }
+    ],
+    [
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "སྲིད་",
+        "translit": "SRID"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཤེས་",
+        "translit": "SHES"
+      },
+      {
+        "script": "བྱའི་",
+        "translit": "BY'I"
+      },
+      {
+        "script": "མཚན་",
+        "translit": "MTSAN"
+      },
+      {
+        "script": "ཉིད་",
+        "translit": "NYID"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པར་",
+        "translit": "PAR"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "བློའི་",
+        "translit": "BLO'"
+      },
+      {
+        "script": "ཡུལ་",
+        "translit": "YUL"
+      },
+      {
+        "script": "དུ་",
+        "translit": "DU"
+      },
+      {
+        "script": "བྱ་",
+        "translit": "BYA"
+      },
+      {
+        "script": "རུང་",
+        "translit": "RUNG"
+      },
+      {
+        "script": "དེ་",
+        "translit": "DE"
+      },
+      {
+        "script": "ཤེས་",
+        "translit": "SHES"
+      },
+      {
+        "script": "བྱའི་",
+        "translit": "BY'I"
+      },
+      {
+        "script": "མཚན་",
+        "translit": "MTSAN"
+      },
+      {
+        "script": "ཉིད་",
+        "translit": "NYID"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར་",
+        "translit": "PHYIR"
+      },
+      {
+        "script": "ཟེར་",
+        "translit": "ZER"
+      },
+      {
+        "script": "ན་",
+        "translit": "NA"
+      },
+      {
+        "script": "མ་",
+        "translit": "MA"
+      },
+      {
+        "script": "ཁྱབ",
+        "translit": "KHYAB"
+      }
+    ],
+    [
+      {
+        "script": "འདོད་",
+        "translit": "'DOD"
+      },
+      {
+        "script": "མི་",
+        "translit": "MI"
+      },
+      {
+        "script": "ནུས་",
+        "translit": "NUS"
+      },
+      {
+        "script": "ཏེ",
+        "translit": "TE"
+      }
+    ],
+    [
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "སྲིད་",
+        "translit": "SRID"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "བློའི་",
+        "translit": "BLO'"
+      },
+      {
+        "script": "ཡུལ་",
+        "translit": "YUL"
+      },
+      {
+        "script": "དུ་",
+        "translit": "DU"
+      },
+      {
+        "script": "བྱ་",
+        "translit": "BYA"
+      },
+      {
+        "script": "རུང་",
+        "translit": "RUNG"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "སྲིད་",
+        "translit": "SRID"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཤེས་",
+        "translit": "SHES"
+      },
+      {
+        "script": "བྱ་",
+        "translit": "BYA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "མ་",
+        "translit": "MA"
+      },
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "རྟག་",
+        "translit": "RTAG"
+      },
+      {
+        "script": "དངོས་",
+        "translit": "DNGOS"
+      },
+      {
+        "script": "གཉིས་",
+        "translit": "GNYIS"
+      },
+      {
+        "script": "དེ་",
+        "translit": "DE"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "མ་",
+        "translit": "MA"
+      },
+      {
+        "script": "གྲུབ་",
+        "translit": "GRUB"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "རྟག་",
+        "translit": "RTAG"
+      },
+      {
+        "script": "དངོས་",
+        "translit": "DNGOS"
+      },
+      {
+        "script": "གཉིས་",
+        "translit": "GNYIS"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅན",
+        "translit": "CAN"
+      }
+    ],
+    [
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "སྲིད་",
+        "translit": "SRID"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "བློའི་",
+        "translit": "BLO'"
+      },
+      {
+        "script": "ཡུལ་",
+        "translit": "YUL"
+      },
+      {
+        "script": "དུ་",
+        "translit": "DU"
+      },
+      {
+        "script": "བྱ་",
+        "translit": "BYA"
+      },
+      {
+        "script": "རུང་",
+        "translit": "RUNG"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པར་",
+        "translit": "PAR"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "སྲིད་",
+        "translit": "SRID"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཚད་",
+        "translit": "TSAD"
+      },
+      {
+        "script": "མའི་",
+        "translit": "M'I"
+      },
+      {
+        "script": "ཡུལ་",
+        "translit": "YUL"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "ཁོ་",
+        "translit": "KHO"
+      },
+      {
+        "script": "ན་",
+        "translit": "NA"
+      },
+      {
+        "script": "རེ",
+        "translit": "RE"
+      }
+    ],
+    [
+      {
+        "script": "རྟག་",
+        "translit": "RTAG"
+      },
+      {
+        "script": "དངོས་",
+        "translit": "DNGOS"
+      },
+      {
+        "script": "གཉིས་",
+        "translit": "GNYIS"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅན",
+        "translit": "CAN"
+      }
+    ],
+    [
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "སྲིད་",
+        "translit": "SRID"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "བློའི་",
+        "translit": "BLO'"
+      },
+      {
+        "script": "ཡུལ་",
+        "translit": "YUL"
+      },
+      {
+        "script": "དུ་",
+        "translit": "DU"
+      },
+      {
+        "script": "བྱ་",
+        "translit": "BYA"
+      },
+      {
+        "script": "རུང་",
+        "translit": "RUNG"
+      },
+      {
+        "script": "མ་",
+        "translit": "MA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པར་",
+        "translit": "PAR"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "མི་",
+        "translit": "MI"
+      },
+      {
+        "script": "སྲིད་",
+        "translit": "SRID"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "བློའི་",
+        "translit": "BLO'"
+      },
+      {
+        "script": "ཡུལ་",
+        "translit": "YUL"
+      },
+      {
+        "script": "དུ་",
+        "translit": "DU"
+      },
+      {
+        "script": "བྱ་",
+        "translit": "BYA"
+      },
+      {
+        "script": "རུང་",
+        "translit": "RUNG"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར་",
+        "translit": "PHYIR"
+      },
+      {
+        "script": "ཟེར་",
+        "translit": "ZER"
+      },
+      {
+        "script": "ན་",
+        "translit": "NA"
+      },
+      {
+        "script": "མ་",
+        "translit": "MA"
+      },
+      {
+        "script": "ཁྱབ",
+        "translit": "KHYAB"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "མངོན་",
+        "translit": "MNGON"
+      },
+      {
+        "script": "སུམ་",
+        "translit": "SUM"
+      },
+      {
+        "script": "ཚད་",
+        "translit": "TSAD"
+      },
+      {
+        "script": "མ་",
+        "translit": "MA"
+      },
+      {
+        "script": "དང",
+        "translit": "DANG"
+      }
+    ],
+    [
+      {
+        "script": "རྗེས་",
+        "translit": "RJES"
+      },
+      {
+        "script": "དཔག་",
+        "translit": "DPAG"
+      },
+      {
+        "script": "ཚད་",
+        "translit": "TSAD"
+      },
+      {
+        "script": "མ་",
+        "translit": "MA"
+      },
+      {
+        "script": "གཉིས་",
+        "translit": "GNYIS"
+      },
+      {
+        "script": "ཀའི་",
+        "translit": "K'I"
+      },
+      {
+        "script": "ཡུལ་",
+        "translit": "YUL"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "ཅིག་",
+        "translit": "CIG"
+      },
+      {
+        "script": "ཁྱོད་",
+        "translit": "KHYOD"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "ན་",
+        "translit": "NA"
+      },
+      {
+        "script": "རྟག་",
+        "translit": "RTAG"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "ཁྱོད་",
+        "translit": "KHYOD"
+      },
+      {
+        "script": "རྟག་",
+        "translit": "RTAG"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "པར་",
+        "translit": "PAR"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "ཁྱོད་",
+        "translit": "KHYOD"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "ན་",
+        "translit": "NA"
+      },
+      {
+        "script": "ཤེས་",
+        "translit": "SHES"
+      },
+      {
+        "script": "བྱ་",
+        "translit": "BYA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "ཁྱོད་",
+        "translit": "KHYOD"
+      },
+      {
+        "script": "ཤེས་",
+        "translit": "SHES"
+      },
+      {
+        "script": "བྱ་",
+        "translit": "BYA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "ཁྱོད་",
+        "translit": "KHYOD"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "ན་",
+        "translit": "NA"
+      },
+      {
+        "script": "བདག་",
+        "translit": "BDAG"
+      },
+      {
+        "script": "མེད་",
+        "translit": "MED"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "ཁྱོད་",
+        "translit": "KHYOD"
+      },
+      {
+        "script": "བདག་",
+        "translit": "BDAG"
+      },
+      {
+        "script": "མེད་",
+        "translit": "MED"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར་",
+        "translit": "PHYIR"
+      },
+      {
+        "script": "ཟེར་",
+        "translit": "ZER"
+      },
+      {
+        "script": "ན་",
+        "translit": "NA"
+      },
+      {
+        "script": "མ་",
+        "translit": "MA"
+      },
+      {
+        "script": "ཁྱབ",
+        "translit": "KHYAB"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "ཡོད་",
+        "translit": "YOD"
+      },
+      {
+        "script": "མེད་",
+        "translit": "MED"
+      },
+      {
+        "script": "གང་",
+        "translit": "GANG"
+      },
+      {
+        "script": "རུང་",
+        "translit": "RUNG"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "ན་",
+        "translit": "NA"
+      },
+      {
+        "script": "བདག་",
+        "translit": "BDAG"
+      },
+      {
+        "script": "མེད་",
+        "translit": "MED"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "གོང་",
+        "translit": "GONG"
+      },
+      {
+        "script": "གི་",
+        "translit": "GI"
+      },
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "གཉིས་",
+        "translit": "GNYIS"
+      },
+      {
+        "script": "ལ",
+        "translit": "LA"
+      }
+    ],
+    [
+      {
+        "script": "རྟག་",
+        "translit": "RTAG"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "ཁོ་",
+        "translit": "KHO"
+      },
+      {
+        "script": "ན་",
+        "translit": "NA"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅན་",
+        "translit": "CAN"
+      },
+      {
+        "script": "བཟུང",
+        "translit": "BZUNG"
+      }
+    ],
+    [
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "ཅིག་",
+        "translit": "CIG"
+      },
+      {
+        "script": "ན་",
+        "translit": "NA"
+      },
+      {
+        "script": "རེ",
+        "translit": "RE"
+      }
+    ],
+    [
+      {
+        "script": "གཟུགས་",
+        "translit": "GZUGS"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅན",
+        "translit": "CAN"
+      }
+    ],
+    [
+      {
+        "script": "རང་",
+        "translit": "RANG"
+      },
+      {
+        "script": "གི་",
+        "translit": "GI"
+      },
+      {
+        "script": "མཚན་",
+        "translit": "MTSAN"
+      },
+      {
+        "script": "ཉིད་",
+        "translit": "NYID"
+      },
+      {
+        "script": "ཀྱིས་",
+        "translit": "KYIS"
+      },
+      {
+        "script": "གྲུབ་",
+        "translit": "GRUB"
+      },
+      {
+        "script": "པར་",
+        "translit": "PAR"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "རང་",
+        "translit": "RANG"
+      },
+      {
+        "script": "མཚན་",
+        "translit": "MTSAN"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "འདོད་",
+        "translit": "'DOD"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "དེ་",
+        "translit": "DE"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅན",
+        "translit": "CAN"
+      }
+    ],
+    [
+      {
+        "script": "རང་",
+        "translit": "RANG"
+      },
+      {
+        "script": "གི་",
+        "translit": "GI"
+      },
+      {
+        "script": "མཚན་",
+        "translit": "MTSAN"
+      },
+      {
+        "script": "ཉིད་",
+        "translit": "NYID"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པར་",
+        "translit": "PAR"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "འདོད་",
+        "translit": "'DOD"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར་",
+        "translit": "PHYIR"
+      },
+      {
+        "script": "ཟེར་",
+        "translit": "ZER"
+      },
+      {
+        "script": "ན་",
+        "translit": "NA"
+      },
+      {
+        "script": "མ་",
+        "translit": "MA"
+      },
+      {
+        "script": "ཁྱབ",
+        "translit": "KHYAB"
+      }
+    ],
+    [
+      {
+        "script": "འདོད་",
+        "translit": "'DOD"
+      },
+      {
+        "script": "མི་",
+        "translit": "MI"
+      },
+      {
+        "script": "ནུས་",
+        "translit": "NUS"
+      },
+      {
+        "script": "ཏེ",
+        "translit": "TE"
+      }
+    ],
+    [
+      {
+        "script": "གཟུགས་",
+        "translit": "GZUGS"
+      },
+      {
+        "script": "གཟུགས་",
+        "translit": "GZUGS"
+      },
+      {
+        "script": "ཀྱི་",
+        "translit": "KYI"
+      },
+      {
+        "script": "མཚན་",
+        "translit": "MTSAN"
+      },
+      {
+        "script": "ཉིད་",
+        "translit": "NYID"
+      },
+      {
+        "script": "མ་",
+        "translit": "MA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "མ་",
+        "translit": "MA"
+      },
+      {
+        "script": "གྲུབ་",
+        "translit": "GRUB"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "གཟུགས་",
+        "translit": "GZUGS"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅན",
+        "translit": "CAN"
+      }
+    ],
+    [
+      {
+        "script": "ཁྱོད་",
+        "translit": "KHYOD"
+      },
+      {
+        "script": "ཁྱོད་",
+        "translit": "KHYOD"
+      },
+      {
+        "script": "རང་",
+        "translit": "RANG"
+      },
+      {
+        "script": "གི་",
+        "translit": "GI"
+      },
+      {
+        "script": "མཚན་",
+        "translit": "MTSAN"
+      },
+      {
+        "script": "ཉིད་",
+        "translit": "NYID"
+      },
+      {
+        "script": "མ་",
+        "translit": "MA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པར་",
+        "translit": "PAR"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "ཁྱོད་",
+        "translit": "KHYOD"
+      },
+      {
+        "script": "བདག་",
+        "translit": "BDAG"
+      },
+      {
+        "script": "མེད་",
+        "translit": "MED"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "ཅིག་",
+        "translit": "CIG"
+      },
+      {
+        "script": "ཁྱོད་",
+        "translit": "KHYOD"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "དངོས་",
+        "translit": "DNGOS"
+      },
+      {
+        "script": "པོ་",
+        "translit": "PO"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "ཁྱོད་",
+        "translit": "KHYOD"
+      },
+      {
+        "script": "རང་",
+        "translit": "RANG"
+      },
+      {
+        "script": "མཚན་",
+        "translit": "MTSAN"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "པར་",
+        "translit": "PAR"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "དངོས་",
+        "translit": "DNGOS"
+      },
+      {
+        "script": "པོ",
+        "translit": "PO"
+      }
+    ],
+    [
+      {
+        "script": "རང་",
+        "translit": "RANG"
+      },
+      {
+        "script": "མཚན",
+        "translit": "MTSAN"
+      }
+    ],
+    [
+      {
+        "script": "དོན་",
+        "translit": "DON"
+      },
+      {
+        "script": "དམ་",
+        "translit": "DAM"
+      },
+      {
+        "script": "བདེན་",
+        "translit": "BDEN"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "རྣམས་",
+        "translit": "RNAMS"
+      },
+      {
+        "script": "དོན་",
+        "translit": "DON"
+      },
+      {
+        "script": "གཅིག་",
+        "translit": "GCIG"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར་",
+        "translit": "PHYIR"
+      },
+      {
+        "script": "ཟེར་",
+        "translit": "ZER"
+      },
+      {
+        "script": "ན་",
+        "translit": "NA"
+      },
+      {
+        "script": "མ་",
+        "translit": "MA"
+      },
+      {
+        "script": "ཁྱབ",
+        "translit": "KHYAB"
+      }
+    ],
+    [
+      {
+        "script": "འདོད་",
+        "translit": "'DOD"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "རགས་",
+        "translit": "RAGS"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅན",
+        "translit": "CAN"
+      }
+    ],
+    [
+      {
+        "script": "རང་",
+        "translit": "RANG"
+      },
+      {
+        "script": "མཚན་",
+        "translit": "MTSAN"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པར་",
+        "translit": "PAR"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "ཁྱོད་",
+        "translit": "KHYOD"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "ན་",
+        "translit": "NA"
+      },
+      {
+        "script": "དངོས་",
+        "translit": "DNGOS"
+      },
+      {
+        "script": "པོ་",
+        "translit": "PO"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "རྟགས་",
+        "translit": "RTAGS"
+      },
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "ཁས",
+        "translit": "KHAS"
+      }
+    ],
+    [
+      {
+        "script": "འདོད་",
+        "translit": "'DOD"
+      },
+      {
+        "script": "མི་",
+        "translit": "MI"
+      },
+      {
+        "script": "ནུས་",
+        "translit": "NUS"
+      },
+      {
+        "script": "ཏེ",
+        "translit": "TE"
+      }
+    ],
+    [
+      {
+        "script": "མངོན་",
+        "translit": "MNGON"
+      },
+      {
+        "script": "སུམ་",
+        "translit": "SUM"
+      },
+      {
+        "script": "ལ་",
+        "translit": "LA"
+      },
+      {
+        "script": "མི་",
+        "translit": "MI"
+      },
+      {
+        "script": "སྣང་",
+        "translit": "SNANG"
+      },
+      {
+        "script": "བའི་",
+        "translit": "B'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "ཁོ་",
+        "translit": "KHO"
+      },
+      {
+        "script": "ན་",
+        "translit": "NA"
+      },
+      {
+        "script": "རེ",
+        "translit": "RE"
+      }
+    ],
+    [
+      {
+        "script": "མངོན་",
+        "translit": "MNGON"
+      },
+      {
+        "script": "སུམ་",
+        "translit": "SUM"
+      },
+      {
+        "script": "ལ་",
+        "translit": "LA"
+      },
+      {
+        "script": "རགས་",
+        "translit": "RAGS"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "སྣང་",
+        "translit": "SNANG"
+      },
+      {
+        "script": "བར་",
+        "translit": "BAR"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "སྔོ་",
+        "translit": "SNGO"
+      },
+      {
+        "script": "འཛིན་",
+        "translit": "'DZIN"
+      },
+      {
+        "script": "མངོན་",
+        "translit": "MNGON"
+      },
+      {
+        "script": "སུམ་",
+        "translit": "SUM"
+      },
+      {
+        "script": "ལ་",
+        "translit": "LA"
+      },
+      {
+        "script": "སྔོ་",
+        "translit": "SNGO"
+      },
+      {
+        "script": "པོ་",
+        "translit": "PO"
+      },
+      {
+        "script": "རགས་",
+        "translit": "RAGS"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "སྣང་",
+        "translit": "SNANG"
+      },
+      {
+        "script": "བའི་",
+        "translit": "B'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "སྔོ་",
+        "translit": "SNGO"
+      },
+      {
+        "script": "འཛིན་",
+        "translit": "'DZIN"
+      },
+      {
+        "script": "དབང་",
+        "translit": "DBANG"
+      },
+      {
+        "script": "མངོན་",
+        "translit": "MNGON"
+      },
+      {
+        "script": "ལ་",
+        "translit": "LA"
+      },
+      {
+        "script": "སྔོ་",
+        "translit": "SNGO"
+      },
+      {
+        "script": "པོ་",
+        "translit": "PO"
+      },
+      {
+        "script": "སྣང་",
+        "translit": "SNANG"
+      },
+      {
+        "script": "བ་",
+        "translit": "BA"
+      },
+      {
+        "script": "གང་",
+        "translit": "GANG"
+      },
+      {
+        "script": "ཞིག་",
+        "translit": "ZHIG"
+      },
+      {
+        "script": "སྔོ་",
+        "translit": "SNGO"
+      },
+      {
+        "script": "པོ་",
+        "translit": "PO"
+      },
+      {
+        "script": "རགས་",
+        "translit": "RAGS"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར་",
+        "translit": "PHYIR"
+      },
+      {
+        "script": "ཟེར་",
+        "translit": "ZER"
+      },
+      {
+        "script": "ན་",
+        "translit": "NA"
+      },
+      {
+        "script": "མ་",
+        "translit": "MA"
+      },
+      {
+        "script": "ཁྱབ",
+        "translit": "KHYAB"
+      }
+    ],
+    [
+      {
+        "script": "འོ་",
+        "translit": "'O"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "སྔོ་",
+        "translit": "SNGO"
+      },
+      {
+        "script": "འཛིན་",
+        "translit": "'DZIN"
+      },
+      {
+        "script": "དབང་",
+        "translit": "DBANG"
+      },
+      {
+        "script": "མངོན་",
+        "translit": "MNGON"
+      },
+      {
+        "script": "ལ་",
+        "translit": "LA"
+      },
+      {
+        "script": "སྔོ་",
+        "translit": "SNGO"
+      },
+      {
+        "script": "པོ་",
+        "translit": "PO"
+      },
+      {
+        "script": "ཤེས་",
+        "translit": "SHES"
+      },
+      {
+        "script": "བྱར་",
+        "translit": "BYAR"
+      },
+      {
+        "script": "སྣང་",
+        "translit": "SNANG"
+      },
+      {
+        "script": "བར་",
+        "translit": "BAR"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "དེ་",
+        "translit": "DE"
+      },
+      {
+        "script": "ལ་",
+        "translit": "LA"
+      },
+      {
+        "script": "སྔོ་",
+        "translit": "SNGO"
+      },
+      {
+        "script": "པོ་",
+        "translit": "PO"
+      },
+      {
+        "script": "སྣང་",
+        "translit": "SNANG"
+      },
+      {
+        "script": "བ་",
+        "translit": "BA"
+      },
+      {
+        "script": "གང་",
+        "translit": "GANG"
+      },
+      {
+        "script": "ཞིག་",
+        "translit": "ZHIG"
+      },
+      {
+        "script": "སྔོ་",
+        "translit": "SNGO"
+      },
+      {
+        "script": "པོ་",
+        "translit": "PO"
+      },
+      {
+        "script": "ཤེས་",
+        "translit": "SHES"
+      },
+      {
+        "script": "བྱ་",
+        "translit": "BYA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "འགྲེ་",
+        "translit": "'GRE"
+      },
+      {
+        "script": "འདོད་",
+        "translit": "'DOD"
+      },
+      {
+        "script": "མི་",
+        "translit": "MI"
+      },
+      {
+        "script": "ནུས་",
+        "translit": "NUS"
+      },
+      {
+        "script": "ཏེ",
+        "translit": "TE"
+      }
+    ],
+    [
+      {
+        "script": "སྔོ་",
+        "translit": "SNGO"
+      },
+      {
+        "script": "པོ་",
+        "translit": "PO"
+      },
+      {
+        "script": "ཤེས་",
+        "translit": "SHES"
+      },
+      {
+        "script": "བྱ་",
+        "translit": "BYA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "རྟག་",
+        "translit": "RTAG"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "ཅིག་",
+        "translit": "CIG"
+      },
+      {
+        "script": "ཁྱོད་",
+        "translit": "KHYOD"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "ན་",
+        "translit": "NA"
+      },
+      {
+        "script": "དངོས་",
+        "translit": "DNGOS"
+      },
+      {
+        "script": "པོ་",
+        "translit": "PO"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "ཁྱོད་",
+        "translit": "KHYOD"
+      },
+      {
+        "script": "དངོས་",
+        "translit": "DNGOS"
+      },
+      {
+        "script": "པོ་",
+        "translit": "PO"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "ཟེར་",
+        "translit": "ZER"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "དངོས་",
+        "translit": "DNGOS"
+      },
+      {
+        "script": "པོའི་",
+        "translit": "PO'"
+      },
+      {
+        "script": "ལྡོག་",
+        "translit": "LDOG"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅན",
+        "translit": "CAN"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "དེའི་",
+        "translit": "DE'"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "དེ་",
+        "translit": "DE"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "དངོས་",
+        "translit": "DNGOS"
+      },
+      {
+        "script": "པོ་",
+        "translit": "PO"
+      },
+      {
+        "script": "དང་",
+        "translit": "DANG"
+      },
+      {
+        "script": "གཅིག་",
+        "translit": "GCIG"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "དེ་",
+        "translit": "DE"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "དོན་",
+        "translit": "DON"
+      },
+      {
+        "script": "བྱེད་",
+        "translit": "BYED"
+      },
+      {
+        "script": "ནུས་",
+        "translit": "NUS"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "མཚོན་",
+        "translit": "MTSON"
+      },
+      {
+        "script": "བྱ་",
+        "translit": "BYA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དབྱིབས་",
+        "translit": "DBYIBS"
+      },
+      {
+        "script": "དང་",
+        "translit": "DANG"
+      },
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "དོག་",
+        "translit": "DOG"
+      },
+      {
+        "script": "གཉིས་",
+        "translit": "GNYIS"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "གཟུགས་",
+        "translit": "GZUGS"
+      },
+      {
+        "script": "འཆད་",
+        "translit": "'CHAD"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "ལ",
+        "translit": "LA"
+      }
+    ],
+    [
+      {
+        "script": "དགག་",
+        "translit": "DGAG"
+      },
+      {
+        "script": "བཞག་",
+        "translit": "BZHAG"
+      },
+      {
+        "script": "སྤོང་",
+        "translit": "SPONG"
+      },
+      {
+        "script": "གསུམ་",
+        "translit": "GSUM"
+      },
+      {
+        "script": "ལས",
+        "translit": "LAS"
+      }
+    ],
+    [
+      {
+        "script": "དང་",
+        "translit": "DANG"
+      },
+      {
+        "script": "པོ་",
+        "translit": "PO"
+      },
+      {
+        "script": "ལ",
+        "translit": "LA"
+      }
+    ],
+    [
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "ཅིག་",
+        "translit": "CIG"
+      },
+      {
+        "script": "ན་",
+        "translit": "NA"
+      },
+      {
+        "script": "རེ",
+        "translit": "RE"
+      }
+    ],
+    [
+      {
+        "script": "གཟུགས་",
+        "translit": "GZUGS"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "དབྱིབས་",
+        "translit": "DBYIBS"
+      },
+      {
+        "script": "ཀྱི་",
+        "translit": "KYI"
+      },
+      {
+        "script": "གཟུགས་",
+        "translit": "GZUGS"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "ཟེར་",
+        "translit": "ZER"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "སྔོ་",
+        "translit": "SNGO"
+      },
+      {
+        "script": "སེར་",
+        "translit": "SER"
+      },
+      {
+        "script": "དཀར་",
+        "translit": "DKAR"
+      },
+      {
+        "script": "དམར་",
+        "translit": "DMAR"
+      },
+      {
+        "script": "བཞི་",
+        "translit": "BZHI"
+      },
+      {
+        "script": "པོ་",
+        "translit": "PO"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅན",
+        "translit": "CAN"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "དེའི་",
+        "translit": "DE'"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "དོག་",
+        "translit": "DOG"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "འདོད་",
+        "translit": "'DOD"
+      },
+      {
+        "script": "མི་",
+        "translit": "MI"
+      },
+      {
+        "script": "ནུས་",
+        "translit": "NUS"
+      },
+      {
+        "script": "ཏེ",
+        "translit": "TE"
+      }
+    ],
+    [
+      {
+        "script": "དབྱིབས་",
+        "translit": "DBYIBS"
+      },
+      {
+        "script": "སུ་",
+        "translit": "SU"
+      },
+      {
+        "script": "བསྟན་",
+        "translit": "BSTAN"
+      },
+      {
+        "script": "དུ་",
+        "translit": "DU"
+      },
+      {
+        "script": "རུང་",
+        "translit": "RUNG"
+      },
+      {
+        "script": "བ་",
+        "translit": "BA"
+      },
+      {
+        "script": "མ་",
+        "translit": "MA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "གཟུགས་",
+        "translit": "GZUGS"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "དོག་",
+        "translit": "DOG"
+      },
+      {
+        "script": "གི་",
+        "translit": "GI"
+      },
+      {
+        "script": "གཟུགས་",
+        "translit": "GZUGS"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "ཟེར་",
+        "translit": "ZER"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "སྒྲ་",
+        "translit": "SGRA"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅན",
+        "translit": "CAN"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "དེའི་",
+        "translit": "DE'"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "བེམ་",
+        "translit": "BEM"
+      },
+      {
+        "script": "པོ་",
+        "translit": "PO"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "ཅིག་",
+        "translit": "CIG"
+      },
+      {
+        "script": "གཟུགས་",
+        "translit": "GZUGS"
+      },
+      {
+        "script": "ཀྱི་",
+        "translit": "KYI"
+      },
+      {
+        "script": "སྐྱེ་",
+        "translit": "SKYE"
+      },
+      {
+        "script": "མཆེད་",
+        "translit": "MCHED"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "དོག་",
+        "translit": "DOG"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "ཟེར་",
+        "translit": "ZER"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "རིང་",
+        "translit": "RING"
+      },
+      {
+        "script": "ཐུང་",
+        "translit": "THUNG"
+      },
+      {
+        "script": "ལྷམ་",
+        "translit": "LHAM"
+      },
+      {
+        "script": "ཟླུམ་",
+        "translit": "ZLUM"
+      },
+      {
+        "script": "བཞི་",
+        "translit": "BZHI"
+      },
+      {
+        "script": "པོ་",
+        "translit": "PO"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅན",
+        "translit": "CAN"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "དེའི་",
+        "translit": "DE'"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "དབྱིབས་",
+        "translit": "DBYIBS"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "འདོད་",
+        "translit": "'DOD"
+      },
+      {
+        "script": "མི་",
+        "translit": "MI"
+      },
+      {
+        "script": "ནུས་",
+        "translit": "NUS"
+      },
+      {
+        "script": "ཏེ",
+        "translit": "TE"
+      }
+    ],
+    [
+      {
+        "script": "མདོག་",
+        "translit": "MDOG"
+      },
+      {
+        "script": "ཏུ་",
+        "translit": "TU"
+      },
+      {
+        "script": "བསྟན་",
+        "translit": "BSTAN"
+      },
+      {
+        "script": "དུ་",
+        "translit": "DU"
+      },
+      {
+        "script": "རུང་",
+        "translit": "RUNG"
+      },
+      {
+        "script": "བ་",
+        "translit": "BA"
+      },
+      {
+        "script": "མ་",
+        "translit": "MA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "ཅིག་",
+        "translit": "CIG"
+      },
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "དོག་",
+        "translit": "DOG"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "ན་",
+        "translit": "NA"
+      },
+      {
+        "script": "དབྱིབས་",
+        "translit": "DBYIBS"
+      },
+      {
+        "script": "མ་",
+        "translit": "MA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "ཟེར་",
+        "translit": "ZER"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "སྤྲིན་",
+        "translit": "SPRIN"
+      },
+      {
+        "script": "དང་",
+        "translit": "DANG"
+      },
+      {
+        "script": "དུ་",
+        "translit": "DU"
+      },
+      {
+        "script": "བ་",
+        "translit": "BA"
+      },
+      {
+        "script": "རྡུལ་",
+        "translit": "RDUL"
+      },
+      {
+        "script": "དང་",
+        "translit": "DANG"
+      },
+      {
+        "script": "ཁུག་",
+        "translit": "KHUG"
+      },
+      {
+        "script": "སྣ་",
+        "translit": "SNA"
+      },
+      {
+        "script": "བཞི་",
+        "translit": "BZHI"
+      },
+      {
+        "script": "པོ་",
+        "translit": "PO"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅན",
+        "translit": "CAN"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "དེའི་",
+        "translit": "DE'"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "ཡན་",
+        "translit": "YAN"
+      },
+      {
+        "script": "ལག་",
+        "translit": "LAG"
+      },
+      {
+        "script": "གི་",
+        "translit": "GI"
+      },
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "དོག་",
+        "translit": "DOG"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "ཡན་",
+        "translit": "YAN"
+      },
+      {
+        "script": "ལག་",
+        "translit": "LAG"
+      },
+      {
+        "script": "གི་",
+        "translit": "GI"
+      },
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "དོག་",
+        "translit": "DOG"
+      },
+      {
+        "script": "བརྒྱད་",
+        "translit": "BRGYAD"
+      },
+      {
+        "script": "ཡོད་",
+        "translit": "YOD"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "འདོད་",
+        "translit": "'DOD"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "བཞི་",
+        "translit": "BZHI"
+      },
+      {
+        "script": "པོ་",
+        "translit": "PO"
+      },
+      {
+        "script": "དེ་",
+        "translit": "DE"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅན",
+        "translit": "CAN"
+      }
+    ],
+    [
+      {
+        "script": "དབྱིབས་",
+        "translit": "DBYIBS"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པར་",
+        "translit": "PAR"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "དབྱིབས་",
+        "translit": "DBYIBS"
+      },
+      {
+        "script": "སུ་",
+        "translit": "SU"
+      },
+      {
+        "script": "བསྟན་",
+        "translit": "BSTAN"
+      },
+      {
+        "script": "དུ་",
+        "translit": "DU"
+      },
+      {
+        "script": "རུང་",
+        "translit": "RUNG"
+      },
+      {
+        "script": "བ་",
+        "translit": "BA"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "རྡུལ་",
+        "translit": "RDUL"
+      },
+      {
+        "script": "གོར་",
+        "translit": "GOR"
+      },
+      {
+        "script": "མོ་",
+        "translit": "MO"
+      },
+      {
+        "script": "དང་",
+        "translit": "DANG"
+      },
+      {
+        "script": "གྲུ་",
+        "translit": "GRU"
+      },
+      {
+        "script": "བཞི་",
+        "translit": "BZHI"
+      },
+      {
+        "script": "སོགས་",
+        "translit": "SOGS"
+      },
+      {
+        "script": "ཡོད་",
+        "translit": "YOD"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "ཅིག་",
+        "translit": "CIG"
+      },
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "དོག་",
+        "translit": "DOG"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "སྔོ་",
+        "translit": "SNGO"
+      },
+      {
+        "script": "པོ་",
+        "translit": "PO"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "ཟེར་",
+        "translit": "ZER"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "འཕགས་",
+        "translit": "'PHAGS"
+      },
+      {
+        "script": "པ་",
+        "translit": "PA"
+      },
+      {
+        "script": "སྤྱན་",
+        "translit": "SPYAN"
+      },
+      {
+        "script": "རས་",
+        "translit": "RAS"
+      },
+      {
+        "script": "གཟིགས་",
+        "translit": "GZIGS"
+      },
+      {
+        "script": "ཀྱི་",
+        "translit": "KYI"
+      },
+      {
+        "script": "དཀར་",
+        "translit": "DKAR"
+      },
+      {
+        "script": "པོའི་",
+        "translit": "PO'"
+      },
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "དོག་",
+        "translit": "DOG"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅན",
+        "translit": "CAN"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "དེའི་",
+        "translit": "DE'"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "ཅིག་",
+        "translit": "CIG"
+      },
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "དོག་",
+        "translit": "DOG"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "སེར་",
+        "translit": "SER"
+      },
+      {
+        "script": "པོ་",
+        "translit": "PO"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "ཟེར་",
+        "translit": "ZER"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "སངས་",
+        "translit": "SANGS"
+      },
+      {
+        "script": "རྒྱས་",
+        "translit": "RGYAS"
+      },
+      {
+        "script": "ཚེ་",
+        "translit": "TSE"
+      },
+      {
+        "script": "དཔག་",
+        "translit": "DPAG"
+      },
+      {
+        "script": "མེད་",
+        "translit": "MED"
+      },
+      {
+        "script": "ཀྱི་",
+        "translit": "KYI"
+      },
+      {
+        "script": "དམར་",
+        "translit": "DMAR"
+      },
+      {
+        "script": "པོའི་",
+        "translit": "PO'"
+      },
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "དོག་",
+        "translit": "DOG"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅན",
+        "translit": "CAN"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "དེའི་",
+        "translit": "DE'"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "ཅིག་",
+        "translit": "CIG"
+      },
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "དོག་",
+        "translit": "DOG"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "དཀར་",
+        "translit": "DKAR"
+      },
+      {
+        "script": "པོ་",
+        "translit": "PO"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "ཟེར་",
+        "translit": "ZER"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "སངས་",
+        "translit": "SANGS"
+      },
+      {
+        "script": "རྒྱས་",
+        "translit": "RGYAS"
+      },
+      {
+        "script": "སྨན་",
+        "translit": "SMAN"
+      },
+      {
+        "script": "གྱི་",
+        "translit": "GYI"
+      },
+      {
+        "script": "བླ་",
+        "translit": "BLA"
+      },
+      {
+        "script": "སྔོ་",
+        "translit": "SNGO"
+      },
+      {
+        "script": "པོའི་",
+        "translit": "PO'"
+      },
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "དོག་",
+        "translit": "DOG"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅན",
+        "translit": "CAN"
+      }
+    ],
+    [
+      {
+        "script": "དེར་",
+        "translit": "DER"
+      },
+      {
+        "script": "ཐལ",
+        "translit": "THAL"
+      }
+    ],
+    [
+      {
+        "script": "དེའི་",
+        "translit": "DE'"
+      },
+      {
+        "script": "ཕྱིར",
+        "translit": "PHYIR"
+      }
+    ],
+    [
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "ཅིག་",
+        "translit": "CIG"
+      },
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "དོག་",
+        "translit": "DOG"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "དམར་",
+        "translit": "DMAR"
+      },
+      {
+        "script": "པོ་",
+        "translit": "PO"
+      },
+      {
+        "script": "ཡིན་",
+        "translit": "YIN"
+      },
+      {
+        "script": "པས་",
+        "translit": "PAS"
+      },
+      {
+        "script": "ཁྱབ་",
+        "translit": "KHYAB"
+      },
+      {
+        "script": "ཟེར་",
+        "translit": "ZER"
+      },
+      {
+        "script": "ན",
+        "translit": "NA"
+      }
+    ],
+    [
+      {
+        "script": "སངས་",
+        "translit": "SANGS"
+      },
+      {
+        "script": "རྒྱས་",
+        "translit": "RGYAS"
+      },
+      {
+        "script": "དོན་",
+        "translit": "DON"
+      },
+      {
+        "script": "ཡོད་",
+        "translit": "YOD"
+      },
+      {
+        "script": "གྲུབ་",
+        "translit": "GRUB"
+      },
+      {
+        "script": "པའི་",
+        "translit": "P'I"
+      },
+      {
+        "script": "ལྗང་",
+        "translit": "LJANG"
+      },
+      {
+        "script": "ཁུའི་",
+        "translit": "KHU'"
+      },
+      {
+        "script": "ཁ་",
+        "translit": "KHA"
+      },
+      {
+        "script": "དོག་",
+        "translit": "DOG"
+      },
+      {
+        "script": "ཆོས་",
+        "translit": "CHOS"
+      },
+      {
+        "script": "ཅ",
+        "translit": "CA"
+      }
+    ]
+  ],
+  "pageBreaks": [
+    {
+      "label": "001a",
+      "line": 0,
+      "tok": 0
+    },
+    {
+      "label": "001b",
+      "line": 12,
+      "tok": 24
+    },
+    {
+      "label": "002a",
+      "line": 30,
+      "tok": 3
+    },
+    {
+      "label": "002b",
+      "line": 62,
+      "tok": 5
+    },
+    {
+      "label": "003a",
+      "line": 100,
+      "tok": 0
+    },
+    {
+      "label": "003b",
+      "line": 141,
+      "tok": 6
+    },
+    {
+      "label": "004a",
+      "line": 179,
+      "tok": 0
+    },
+    {
+      "label": "004b",
+      "line": 212,
+      "tok": 7
+    },
+    {
+      "label": "005a",
+      "line": 239,
+      "tok": 2
+    },
+    {
+      "label": "005b",
+      "line": 264,
+      "tok": 3
+    },
+    {
+      "label": "006a",
+      "line": 296,
+      "tok": 4
+    },
+    {
+      "label": "006b",
+      "line": 321,
+      "tok": 3
+    },
+    {
+      "label": "007a",
+      "line": 358,
+      "tok": 2
+    }
+  ],
+  "breaks": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    18,
+    20,
+    41,
+    61,
+    63,
+    85,
+    88,
+    173,
+    195,
+    222,
+    375
+  ]
+}

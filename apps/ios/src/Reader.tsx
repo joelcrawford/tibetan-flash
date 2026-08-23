@@ -1,8 +1,8 @@
 import { useState, ReactNode } from "react";
 import { View, Text, ScrollView, TouchableOpacity, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import type { TibetanText } from "../../../shared/types/types";
-import { roman, pageLabelMap, displayLines, type Scheme } from "../../../shared/reader";
+import type { Language, Text as LangText } from "../../../shared/types/types";
+import { roman, pageLabelMap, displayLines } from "../../../shared/reader";
 
 type Colors = {
   bg: string; card: string; border: string; ink: string; inkMid: string;
@@ -17,8 +17,8 @@ function FolioChip({ label, c }: { label: string; c: Colors }) {
   );
 }
 
-export function Reader({ text, c, onClose }: { text: TibetanText; c: Colors; onClose: () => void }) {
-  const [scheme, setScheme] = useState<Scheme>("acip");
+export function Reader({ text, lang, c, onClose }: { text: LangText; lang: Language; c: Colors; onClose: () => void }) {
+  const [scheme, setScheme] = useState<string>(lang.defaultScheme);
   const [sound, setSound] = useState(false);
   const [layout, setLayout] = useState<"under" | "line">("under");
   const [revealed, setRevealed] = useState<Set<number>>(new Set());
@@ -34,6 +34,11 @@ export function Reader({ text, c, onClose }: { text: TibetanText; c: Colors; onC
       n.has(gi) ? n.delete(gi) : n.add(gi);
       return n;
     });
+  const cycleScheme = () => {
+    const i = lang.schemes.findIndex((x) => x.id === scheme);
+    setScheme(lang.schemes[(i + 1) % lang.schemes.length].id);
+  };
+  const schemeLabel = lang.schemes.find((x) => x.id === scheme)?.label ?? scheme;
 
   const BarBtn = ({ on, disabled, onPress, label }: { on: boolean; disabled?: boolean; onPress: () => void; label: string }) => (
     <TouchableOpacity
@@ -50,7 +55,7 @@ export function Reader({ text, c, onClose }: { text: TibetanText; c: Colors; onC
       {/* header */}
       <View style={[rs.header, { borderBottomColor: c.border }]}>
         <View style={{ flex: 1 }}>
-          <Text style={[rs.eyebrow, { color: c.faint }]}>TEXT</Text>
+          <Text style={[rs.eyebrow, { color: c.faint }]}>{lang.name.toUpperCase()} · TEXT</Text>
           <Text style={[rs.title, { color: c.ink }]} numberOfLines={1}>{text.title}</Text>
         </View>
         <TouchableOpacity onPress={onClose} hitSlop={10}>
@@ -67,21 +72,21 @@ export function Reader({ text, c, onClose }: { text: TibetanText; c: Colors; onC
               const items: ReactNode[] = [];
               group.forEach((li) => {
                 const line = text.lines[li];
-                line.forEach((sN, si) => {
-                  const lbl = pages.get(`${li}:${si}`);
-                  if (lbl) items.push(<FolioChip key={`p${li}-${si}`} label={lbl} c={c} />);
+                line.forEach((tk, ti) => {
+                  const lbl = pages.get(`${li}:${ti}`);
+                  if (lbl) items.push(<FolioChip key={`p${li}-${ti}`} label={lbl} c={c} />);
                   items.push(
-                    <View key={`s${li}-${si}`} style={rs.scol}>
-                      <Text style={[rs.tib, { color: c.ink }]}>{sN.tib}</Text>
-                      {under ? <Text style={[rs.srom, { color: c.accent }]}>{roman(sN, scheme)}</Text> : null}
+                    <View key={`s${li}-${ti}`} style={rs.scol}>
+                      <Text style={[rs.tib, { color: c.ink }]}>{tk.script}</Text>
+                      {under ? <Text style={[rs.srom, { color: c.accent }]}>{roman(tk, lang, scheme)}</Text> : null}
                     </View>
                   );
                 });
                 const endLbl = pages.get(`${li}:${line.length}`);
                 if (endLbl) items.push(<FolioChip key={`pe${li}`} label={endLbl} c={c} />);
-                items.push(<Text key={`sh${li}`} style={[rs.tib, rs.shad, { color: c.accent }]}>།</Text>);
+                items.push(<Text key={`sh${li}`} style={[rs.tib, rs.shad, { color: c.accent }]}>{lang.clauseMark}</Text>);
               });
-              const groupRom = group.map((li) => text.lines[li].map((sN) => roman(sN, scheme)).join(" ")).join(" ");
+              const groupRom = group.map((li) => text.lines[li].map((tk) => roman(tk, lang, scheme)).join(" ")).join(" ");
               const row = <View style={rs.clauseRow}>{items}</View>;
               return (
                 <View key={gi} style={rs.clauseBlock}>
@@ -93,15 +98,17 @@ export function Reader({ text, c, onClose }: { text: TibetanText; c: Colors; onC
           </View>
         </View>
         <Text style={[rs.meta, { color: c.faint }]}>
-          {text.pageBreaks.length} folio sides · {displayLines(text).length} lines
+          {text.pageBreaks.length ? `${text.pageBreaks.length} folio sides · ` : ""}{displayLines(text).length} lines
         </Text>
       </ScrollView>
 
       {/* bottom bar */}
       <View style={[rs.bar, { backgroundColor: c.card, borderColor: c.border }]}>
-        <TouchableOpacity onPress={() => setScheme(scheme === "acip" ? "wylie" : "acip")} style={[rs.scheme, { borderColor: c.border }]}>
-          <Text style={[rs.schemeText, { color: c.muted }]}>{scheme === "acip" ? "ACIP" : "Wylie"} ▾</Text>
-        </TouchableOpacity>
+        {lang.schemes.length > 1 && (
+          <TouchableOpacity onPress={cycleScheme} style={[rs.scheme, { borderColor: c.border }]}>
+            <Text style={[rs.schemeText, { color: c.muted }]}>{schemeLabel} ▾</Text>
+          </TouchableOpacity>
+        )}
         <BarBtn on={sound} onPress={() => setSound((v) => !v)} label="Aa Romanization" />
         <BarBtn on={layout === "under"} disabled={!sound} onPress={() => sound && setLayout("under")} label="Under" />
         <BarBtn on={layout === "line"} disabled={!sound} onPress={() => sound && setLayout("line")} label="By line" />

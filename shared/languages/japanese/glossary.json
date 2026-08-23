@@ -1,0 +1,15 @@
+[
+  { "language": "ja", "script": "あ", "translit": "a", "meaning": "hiragana A", "notes": "The first vowel.", "context": "", "context_script": "", "session": "00 Hiragana", "subcategory": "Vowel" },
+  { "language": "ja", "script": "い", "translit": "i", "meaning": "hiragana I", "notes": "", "context": "", "context_script": "", "session": "00 Hiragana", "subcategory": "Vowel" },
+  { "language": "ja", "script": "う", "translit": "u", "meaning": "hiragana U", "notes": "", "context": "", "context_script": "", "session": "00 Hiragana", "subcategory": "Vowel" },
+  { "language": "ja", "script": "え", "translit": "e", "meaning": "hiragana E", "notes": "", "context": "", "context_script": "", "session": "00 Hiragana", "subcategory": "Vowel" },
+  { "language": "ja", "script": "お", "translit": "o", "meaning": "hiragana O", "notes": "", "context": "", "context_script": "", "session": "00 Hiragana", "subcategory": "Vowel" },
+  { "language": "ja", "script": "し", "translit": "shi", "meaning": "hiragana SHI", "notes": "Hepburn 'shi' = Kunrei 'si' — flip the scheme to see it.", "context": "", "context_script": "", "session": "00 Hiragana", "subcategory": "Kana" },
+  { "language": "ja", "script": "つ", "translit": "tsu", "meaning": "hiragana TSU", "notes": "Hepburn 'tsu' = Kunrei 'tu'.", "context": "", "context_script": "", "session": "00 Hiragana", "subcategory": "Kana" },
+  { "language": "ja", "script": "ふ", "translit": "fu", "meaning": "hiragana FU", "notes": "Hepburn 'fu' = Kunrei 'hu'.", "context": "", "context_script": "", "session": "00 Hiragana", "subcategory": "Kana" },
+  { "language": "ja", "script": "水", "translit": "mizu", "meaning": "water", "notes": "Kanji. On-reading SUI, kun-reading mizu.", "context": "", "context_script": "これは水です", "session": "01 N5 Vocab" },
+  { "language": "ja", "script": "犬", "translit": "inu", "meaning": "dog", "notes": "Kanji.", "context": "", "context_script": "", "session": "01 N5 Vocab" },
+  { "language": "ja", "script": "猫", "translit": "neko", "meaning": "cat", "notes": "Kanji.", "context": "", "context_script": "", "session": "01 N5 Vocab" },
+  { "language": "ja", "script": "本", "translit": "hon", "meaning": "book; origin", "notes": "Kanji.", "context": "", "context_script": "", "session": "01 N5 Vocab" },
+  { "language": "ja", "script": "寿司", "translit": "sushi", "meaning": "sushi", "notes": "Two kanji. Hepburn 'sushi' = Kunrei 'susi'.", "context": "", "context_script": "すしをたべる", "session": "01 N5 Vocab" }
+]

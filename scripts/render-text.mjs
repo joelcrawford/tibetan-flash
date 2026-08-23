@@ -9,7 +9,7 @@ const [inPath, outPath] = process.argv.slice(2);
 const t = JSON.parse(readFileSync(inPath, "utf8"));
 
 const pageAt = new Map(); // `${line}:${syl}` -> label
-for (const p of t.pageBreaks) pageAt.set(`${p.line}:${p.syl}`, p.label);
+for (const p of t.pageBreaks) pageAt.set(`${p.line}:${p.tok}`, p.label);
 
 let body = "";
 t.lines.forEach((line, li) => {
@@ -17,7 +17,7 @@ t.lines.forEach((line, li) => {
   line.forEach((s, si) => {
     const label = pageAt.get(`${li}:${si}`);
     if (label) out += `<span class="pg">❁ ${label}</span>`;
-    out += `<span class="syl">${s.tib}</span>`;
+    out += `<span class="syl">${s.script}</span>`;
   });
   const endLabel = pageAt.get(`${li}:${line.length}`);
   if (endLabel) out += `<span class="pg">❁ ${endLabel}</span>`;

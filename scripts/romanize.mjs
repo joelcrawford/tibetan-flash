@@ -135,7 +135,7 @@ if (!file) { console.error("pass a text JSON, or --verify"); process.exit(1); }
 const t = JSON.parse(readFileSync(file, "utf8"));
 let n = 0;
 // Store ACIP only; Wylie is derived from it at read time (see acipToWylie).
-for (const line of t.lines) for (const s of line) { s.acip = toAcip(s.tib); delete s.wylie; n++; }
+for (const line of t.lines) for (const s of line) { s.translit = toAcip(s.script); n++; }
 writeFileSync(file, JSON.stringify(t, null, 2) + "\n");
 console.log(`✓ romanized ${n} syllables in ${file}  (acip: ${acipMode})`);
-console.log(`  sample: ${t.lines[1].slice(0,6).map((s)=>`${s.tib}=${s.acip}`).join("  ")}`);
+console.log(`  sample: ${t.lines[1].slice(0,6).map((s)=>`${s.script}=${s.translit}`).join("  ")}`);

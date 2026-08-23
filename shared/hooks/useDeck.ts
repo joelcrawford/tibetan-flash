@@ -1,6 +1,9 @@
 import { useState, useCallback, useEffect, useMemo, useRef } from "react";
 import { Card, KnownMap, CardStatus, StatusMap } from "../types/types";
 
+// Status/dedup key — namespaced by language so silos never collide.
+const cardKey = (c: Card): string => `${c.language}:${c.translit}`;
+
 export interface StorageAdapter {
   load: () => Promise<StatusMap>;
   save: (map: StatusMap) => void;
@@ -54,9 +57,9 @@ export function useDeck(allCards: Card[], storage?: StorageAdapter) {
   const [storageLoaded, setStorageLoaded] = useState(false);
   const [shuffled, setShuffled] = useState(false);
   const [passCount, setPassCount] = useState(0);
-  const pinnedAcipRef = useRef<string | null>(null);
+  const pinnedKeyRef = useRef<string | null>(null);
   const prevPassCount = useRef(0);
-  const [sessionFilters, setSessionFilters] = useState<string[]>(["01 Ben's Text Foundation"]);
+  const [sessionFilters, setSessionFilters] = useState<string[]>([]);
   const [showCtx, setShowCtx] = useState(true);
 
   useEffect(() => {
@@ -95,9 +98,9 @@ export function useDeck(allCards: Card[], storage?: StorageAdapter) {
       ? allCards
       : allCards.filter((c) => sessionFilters.includes(c.session));
 
-    const reviewCards  = filtered.filter((c) => !statusMap[c.acip] || statusMap[c.acip] === "review");
-    const familiarCards = filtered.filter((c) => statusMap[c.acip] === "familiar");
-    const knownCards   = filtered.filter((c) => statusMap[c.acip] === "known");
+    const reviewCards  = filtered.filter((c) => !statusMap[cardKey(c)] || statusMap[cardKey(c)] === "review");
+    const familiarCards = filtered.filter((c) => statusMap[cardKey(c)] === "familiar");
+    const knownCards   = filtered.filter((c) => statusMap[cardKey(c)] === "known");
 
     let newDeck = buildDeck(reviewCards, familiarCards, knownCards, shuffled);
 
@@ -105,15 +108,15 @@ export function useDeck(allCards: Card[], storage?: StorageAdapter) {
     const isWrap = passCount > prevPassCount.current;
     prevPassCount.current = passCount;
 
-    if (isWrap && pinnedAcipRef.current) {
-      const pinnedStatus = statusMap[pinnedAcipRef.current] ?? "review";
+    if (isWrap && pinnedKeyRef.current) {
+      const pinnedStatus = statusMap[pinnedKeyRef.current] ?? "review";
       if (pinnedStatus === "review") {
-        const i = newDeck.findIndex((c) => c.acip === pinnedAcipRef.current);
+        const i = newDeck.findIndex((c) => cardKey(c) === pinnedKeyRef.current);
         if (i > 0) newDeck = [newDeck[i], ...newDeck.filter((_, j) => j !== i)];
       }
     }
 
-    pinnedAcipRef.current = newDeck[0]?.acip ?? null;
+    pinnedKeyRef.current = newDeck[0] ? cardKey(newDeck[0]) : null;
     setDeck(newDeck);
     setIdx(0);
     setFlipped(false);
@@ -128,8 +131,8 @@ export function useDeck(allCards: Card[], storage?: StorageAdapter) {
     ? allCards
     : allCards.filter((c) => sessionFilters.includes(c.session));
   const totalFiltered = filteredAll.length;
-  const knownCount    = filteredAll.filter((c) => statusMap[c.acip] === "known").length;
-  const familiarCount = filteredAll.filter((c) => statusMap[c.acip] === "familiar").length;
+  const knownCount    = filteredAll.filter((c) => statusMap[cardKey(c)] === "known").length;
+  const familiarCount = filteredAll.filter((c) => statusMap[cardKey(c)] === "familiar").length;
   const reviewCount   = totalFiltered - knownCount - familiarCount;
 
   const go = useCallback((dir: number): void => {
@@ -154,7 +157,7 @@ export function useDeck(allCards: Card[], storage?: StorageAdapter) {
 
   const markStatus = useCallback((status: CardStatus): void => {
     if (!card) return;
-    setStatusMap((m) => ({ ...m, [card.acip]: status }));
+    setStatusMap((m) => ({ ...m, [cardKey(card)]: status }));
     if (idx < total - 1) go(1);
   }, [card, idx, total, go]);
 
@@ -163,15 +166,15 @@ export function useDeck(allCards: Card[], storage?: StorageAdapter) {
   // triggers setFlipped(false) which plays the flip animation as a side-effect.
   const rateCard = useCallback((status: CardStatus): void => {
     if (!card) return;
-    setStatusMap((m) => ({ ...m, [card.acip]: status }));
+    setStatusMap((m) => ({ ...m, [cardKey(card)]: status }));
   }, [card]);
 
   const markKnown = useCallback((val: boolean): void => {
     markStatus(val ? "known" : "review");
   }, [markStatus]);
 
-  const getCardStatus = useCallback((acip: string): CardStatus => {
-    return statusMap[acip] ?? "review";
+  const getCardStatus = useCallback((c: Card): CardStatus => {
+    return statusMap[cardKey(c)] ?? "review";
   }, [statusMap]);
 
   const handleCardClick = useCallback((): void => {
@@ -187,12 +190,12 @@ export function useDeck(allCards: Card[], storage?: StorageAdapter) {
   const toggleFlip = useCallback(() => { setFlipped((f) => !f); }, []);
 
   const resetSession = useCallback((sessionName: string): void => {
-    const acips = new Set(
-      allCards.filter((c) => c.session === sessionName).map((c) => c.acip)
+    const keys = new Set(
+      allCards.filter((c) => c.session === sessionName).map((c) => cardKey(c))
     );
     setStatusMap((m) => {
       const next = { ...m };
-      acips.forEach((acip) => delete next[acip]);
+      keys.forEach((k) => delete next[k]);
       return next;
     });
   }, [allCards]);

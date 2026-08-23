@@ -82,14 +82,14 @@ processChunk(parts[0]);
 for (let i = 1; i < parts.length; i += 2) {
   const label = parts[i];
   flushSyl(); // don't let a page break land mid-syllable
-  pageBreaks.push({ label, line: lines.length, syl: line.length });
+  pageBreaks.push({ label, line: lines.length, tok: line.length });
   processChunk(parts[i + 1] ?? "");
 }
 flushLine();
 
 const out = {
-  id, title, session,
-  lines: lines.map((l) => l.map((tib) => ({ tib }))),
+  id, language: opt("language", "bo"), title, session,
+  lines: lines.map((l) => l.map((script) => ({ script }))),
   pageBreaks,
   breaks: [...breaks].sort((a, b) => a - b),
 };

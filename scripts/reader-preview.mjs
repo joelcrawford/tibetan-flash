@@ -62,13 +62,13 @@ const DATA = ${DATA};
 const st = { scheme:"wylie", sound:false, layout:"under", revealed:new Set() };
 
 const pageAt = new Map();
-DATA.pageBreaks.forEach(p => pageAt.set(p.line+":"+p.syl, p.label));
+DATA.pageBreaks.forEach(p => pageAt.set(p.line+":"+p.tok, p.label));
 
 // Wylie is DERIVED from stored ACIP (single canonical romanization) — a trivial remap.
 const A2W2 = {KH:"kh",NG:"ng",CH:"ch",NY:"ny",TH:"th",PH:"ph",TZ:"ts",TS:"tsh",DZ:"dz",ZH:"zh",SH:"sh"};
 const A2W1 = {K:"k",G:"g",C:"c",J:"j",T:"t",D:"d",N:"n",P:"p",B:"b",M:"m",W:"w",Z:"z",Y:"y",R:"r",L:"l",S:"s",H:"h",A:"a","'":"'",I:"i",U:"u",E:"e",O:"o"};
 function acipToWylie(a){ let o="",i=0; while(i<a.length){ const two=a.substr(i,2); if(A2W2[two]){o+=A2W2[two];i+=2;continue;} const one=a[i]; o+=(A2W1[one]!==undefined?A2W1[one]:one); i++; } return o; }
-const rom = s => { const a = s.acip||""; return st.scheme==="wylie" ? acipToWylie(a) : a; };
+const rom = s => { const a = s.translit||""; return st.scheme==="wylie" ? acipToWylie(a) : a; };
 
 function renderBar(){
   const bar = document.getElementById("bar");
@@ -99,8 +99,8 @@ function render(){
       const lbl = pageAt.get(li+":"+si);
       if (lbl) inner += '<span class="pg">\\u2741 '+lbl+'</span>';
       inner += under
-        ? '<span class="scol"><span class="tib">'+s.tib+'</span><span class="srom">'+rom(s)+'</span></span>'
-        : '<span class="tib">'+s.tib+'</span>';
+        ? '<span class="scol"><span class="tib">'+s.script+'</span><span class="srom">'+rom(s)+'</span></span>'
+        : '<span class="tib">'+s.script+'</span>';
     });
     const endLbl = pageAt.get(li+":"+line.length);
     if (endLbl) inner += '<span class="pg">\\u2741 '+endLbl+'</span>';

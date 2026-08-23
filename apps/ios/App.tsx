@@ -16,12 +16,10 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { SESSION_GROUPS } from "../../shared/config/sessionGroups";
 import { useDeck, StorageAdapter } from "../../shared/hooks/useDeck";
-import { Card, CardStatus, StatusMap, TibetanText } from "../../shared/types/types";
+import { Card, CardStatus, StatusMap, Text as LangText } from "../../shared/types/types";
+import { LANGUAGES, LANGUAGE_BY_CODE, DEFAULT_LANGUAGE } from "../../shared/languages";
 import { useTTS } from "./src/hooks/useTTS";
-import GLOSSARY from "../../shared/glossary/glossary.json";
-import { TEXTS } from "../../shared/texts";
 import { Reader } from "./src/Reader";
 
 const iosStorage: StorageAdapter = {
@@ -119,6 +117,10 @@ function HighlightedTibetan({ text, term, color }: { text: string; term: string;
 
 export default function App() {
   const [dark, setDark] = useState(true);
+  const [langCode, setLangCode] = useState<string>(DEFAULT_LANGUAGE);
+  useEffect(() => { AsyncStorage.getItem("tibetan-flash-language").then((v) => { if (v) setLangCode(v); }); }, []);
+  useEffect(() => { AsyncStorage.setItem("tibetan-flash-language", langCode); }, [langCode]);
+  const lang = LANGUAGE_BY_CODE[langCode] ?? LANGUAGE_BY_CODE[DEFAULT_LANGUAGE];
 
   const c = {
     bg:     dark ? C.bgDark     : C.bg,
@@ -145,11 +147,11 @@ export default function App() {
     sessionFilters, sessions, knownCount, familiarCount, reviewCount, totalFiltered, pct,
     goImmediate, rateCard, getCardStatus, handleCardClick,
     toggleAcip, resetSession, setShuffled, setSessionFilters,
-  } = useDeck(GLOSSARY as Card[], iosStorage);
+  } = useDeck(lang.glossary, iosStorage);
 
   const { speak, speaking } = useTTS();
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [readingText, setReadingText] = useState<TibetanText | null>(null);
+  const [readingText, setReadingText] = useState<LangText | null>(null);
   const [contextOpen, setContextOpen] = useState(false);
   const [expandedGroups, setExpandedGroups] = useState<string[]>([]);
   const [pendingReset, setPendingReset] = useState<string | null>(null);
@@ -183,6 +185,15 @@ export default function App() {
   };
 
   useEffect(() => { setShuffled(true); }, [setShuffled]);
+
+  // Session filters are language-specific — clear on language change (skip mount).
+  const firstLang = useRef(true);
+  useEffect(() => {
+    if (firstLang.current) { firstLang.current = false; return; }
+    setSessionFilters([]);
+    setExpandedGroups([]);
+    setReadingText(null);
+  }, [langCode]); // eslint-disable-line
 
   // ── Sheet animation ───────────────────────────────────────────────────────
   const sheetAnim = useRef(new Animated.Value(0)).current;
@@ -272,7 +283,7 @@ export default function App() {
 
   const renderItem = ({ item, index: wrappedIdx }: { item: Card; index: number }) => {
     const isCurrent = wrappedIdx === idx + 1;
-    const itemStatus = getCardStatus(item.acip);
+    const itemStatus = getCardStatus(item);
     const itemRating = RATING_CONFIG[itemStatus];
 
     return (
@@ -300,24 +311,24 @@ export default function App() {
                   <Text style={[s.contextLabel, { color: c.muted }]}>{item.subcategory}</Text>
                 ) : null}
                 <Text style={[s.tibetanToggle, { color: c.ink, opacity: acipVisible ? 1 : 0 }]}>
-                  {item.tibetan}
+                  {item.script}
                 </Text>
               </>
             ) : (
               <>
-                <Text style={[s.tibetan, { color: c.ink }]}>{item.tibetan}</Text>
+                <Text style={[s.tibetan, { color: c.ink }]}>{item.script}</Text>
                 {item.subcategory ? (
                   <Text style={[s.contextLabel, { color: c.muted }]}>{item.subcategory}</Text>
                 ) : null}
                 <Text style={[s.acipInline, { color: c.ink, opacity: acipVisible ? 1 : 0 }]}>
-                  {item.acip}
+                  {item.translit}
                 </Text>
               </>
             )}
           </Pressable>
           <TouchableOpacity
             style={[s.speakBtn, { backgroundColor: c.raised, borderColor: c.border }]}
-            onPress={() => speak(item.tibetan)}
+            onPress={() => speak(item.script)}
             disabled={!isCurrent || speaking}
           >
             <Text style={[s.speakBtnText, { color: c.muted, opacity: speaking ? 0.5 : 1 }]}>
@@ -350,8 +361,8 @@ export default function App() {
             onPress={() => isCurrent && handleCardClick()}
           >
             <View style={s.backCenter}>
-              {item.acip ? (
-                <Text style={[s.acipBack, { color: c.ink }]}>{item.acip}</Text>
+              {item.translit ? (
+                <Text style={[s.acipBack, { color: c.ink }]}>{item.translit}</Text>
               ) : null}
               <Text style={[s.meaning, { color: c.ink }]}>{item.meaning}</Text>
             </View>
@@ -372,7 +383,7 @@ export default function App() {
   };
 
   // ── Context ───────────────────────────────────────────────────────────────
-  const hasContext = card && (card.notes || card.context || card.context_tibetan);
+  const hasContext = card && (card.notes || card.context || card.context_script);
 
   // ── Render ────────────────────────────────────────────────────────────────
   return (
@@ -380,7 +391,7 @@ export default function App() {
       <StatusBar barStyle={dark ? "light-content" : "dark-content"} />
 
       {/* Read surface (Texts) — overlays the deck when a text is open */}
-      {readingText && <Reader text={readingText} c={c} onClose={() => setReadingText(null)} />}
+      {readingText && <Reader text={readingText} lang={LANGUAGE_BY_CODE[readingText.language] ?? lang} c={c} onClose={() => setReadingText(null)} />}
 
       {/* Header */}
       <View style={s.header}>
@@ -405,7 +416,7 @@ export default function App() {
             <FlatList
               ref={flatListRef}
               data={wrappedData}
-              keyExtractor={(item, index) => `${index}-${item.acip}`}
+              keyExtractor={(item, index) => `${index}-${item.translit}`}
               renderItem={renderItem}
               extraData={extraData}
               horizontal
@@ -436,10 +447,26 @@ export default function App() {
       >
           <ScrollView showsVerticalScrollIndicator={false}>
 
-            <Text style={[s.sidebarTitle, { color: c.ink }]}>Tibetan Flash</Text>
+            <Text style={[s.sidebarTitle, { color: c.ink }]}>Flashcards</Text>
 
-            <Text style={[s.sidebarLabel, { color: c.faint }]}>Sessions</Text>
-            {Object.entries(SESSION_GROUPS).map(([groupName, groupSessions]) => {
+            <Text style={[s.sidebarLabel, { color: c.faint }]}>Language</Text>
+            <View style={{ flexDirection: "row", gap: 8, flexWrap: "wrap", marginBottom: 4 }}>
+              {LANGUAGES.map((l) => {
+                const on = l.code === langCode;
+                return (
+                  <TouchableOpacity
+                    key={l.code}
+                    onPress={() => setLangCode(l.code)}
+                    style={[s.btn, s.sessionBtn, { backgroundColor: c.card, borderColor: on ? c.accent : c.border }]}
+                  >
+                    <Text style={[s.btnText, { color: on ? c.accent : c.ink }]}>{l.name}</Text>
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+
+            <Text style={[s.sidebarLabel, { color: c.faint, marginTop: 24 }]}>Sessions</Text>
+            {Object.entries(lang.sessionGroups).map(([groupName, groupSessions]) => {
               const state = groupState(groupSessions);
               const expanded = expandedGroups.includes(groupName);
               const checkIcon = state === "all" ? "checkbox" : state === "some" ? "remove-circle" : "square-outline";
@@ -482,7 +509,7 @@ export default function App() {
             })}
 
             <Text style={[s.sidebarLabel, { color: c.faint, marginTop: 24 }]}>Texts</Text>
-            {TEXTS.map((t) => (
+            {lang.texts.map((t) => (
               <TouchableOpacity
                 key={t.id}
                 style={{ flexDirection: "row", alignItems: "center", gap: 8, paddingVertical: 6 }}
@@ -563,10 +590,10 @@ export default function App() {
                 <Text style={[s.sheetText, { color: c.inkMid }]}>{card.context}</Text>
               </View>
             )}
-            {card?.context_tibetan && (
+            {card?.context_script && (
               <View style={[s.sheetBar, { borderLeftColor: c.border,
                                            marginTop: (card?.notes || card?.context) ? 12 : 0 }]}>
-                <HighlightedTibetan text={card.context_tibetan} term={card?.acip ?? ""} color={c.faint} />
+                <HighlightedTibetan text={card.context_script} term={card?.translit ?? ""} color={c.faint} />
               </View>
             )}
           </TouchableOpacity>

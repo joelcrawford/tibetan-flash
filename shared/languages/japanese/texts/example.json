@@ -1,0 +1,21 @@
+{
+  "id": "ja-example",
+  "language": "ja",
+  "title": "例文",
+  "session": "Text — 例文",
+  "lines": [
+    [
+      { "script": "これ", "translit": "kore" },
+      { "script": "は", "translit": "wa" },
+      { "script": "水", "translit": "mizu" },
+      { "script": "です", "translit": "desu" }
+    ],
+    [
+      { "script": "すし", "translit": "sushi" },
+      { "script": "を", "translit": "o" },
+      { "script": "たべる", "translit": "taberu" }
+    ]
+  ],
+  "pageBreaks": [],
+  "breaks": [0, 1]
+}
