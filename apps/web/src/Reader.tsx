@@ -70,7 +70,7 @@ export function Reader({ text, lang, onClose }: { text: Text; lang: Language; on
       <div className="flex-1 overflow-y-auto px-4 pt-4 pb-28">
         <div className="max-w-[720px] mx-auto border-[0.5px] border-stone dark:border-bdr-dk rounded-[3px] p-[3px]">
           <div className="border-[0.5px] border-stone dark:border-bdr-dk rounded-[2px] bg-card-bg dark:bg-surf-dk px-4 py-5">
-            <div style={{ fontFamily: lang.fontStack }} className={`text-[25px] text-ink dark:text-ink-lt ${under ? "leading-[2.7]" : "leading-[2.0]"}`}>
+            <div style={{ fontFamily: lang.fontStack }} className={`text-[33px] text-ink dark:text-ink-lt ${under ? "leading-[2.3]" : "leading-[1.85]"}`}>
               {displayLines(text).map((group, gi) => (
                 <div key={gi} className="mb-1.5">
                 {group.map((li) => {
@@ -94,7 +94,7 @@ export function Reader({ text, lang, onClose }: { text: Text; lang: Language; on
                           {under ? (
                             <span className="inline-flex flex-col items-center align-bottom">
                               <span>{s.script}</span>
-                              <span className="font-mono text-[9px] tracking-[0.02em] text-accent dark:text-accent-dk leading-[1.6] -mt-0.5">
+                              <span className="font-mono text-[12px] tracking-[0.02em] text-accent dark:text-accent-dk leading-[1.6] -mt-1">
                                 {roman(s, lang, scheme)}
                               </span>
                             </span>
@@ -107,7 +107,7 @@ export function Reader({ text, lang, onClose }: { text: Text; lang: Language; on
                     {endLbl && <FolioChip label={endLbl} />}
                     <span className="text-accent dark:text-accent-dk px-[1px]">{lang.clauseMark}</span>
                     {tappable && isRev && (
-                      <span className="font-mono text-[12px] tracking-[0.03em] text-accent dark:text-accent-dk px-1">
+                      <span className="font-mono text-[15px] tracking-[0.03em] text-accent dark:text-accent-dk px-1">
                         {line.map((s) => roman(s, lang, scheme)).join(" ")}
                         {" "}
                       </span>
