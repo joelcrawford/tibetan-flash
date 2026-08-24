@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { IoCloseOutline } from "react-icons/io5";
+import { useState, useEffect, useRef } from "react";
 import type { Language, Text } from "../../../shared/types/types";
 import { roman, pageLabelMap, displayLines } from "../../../shared/reader";
 
@@ -33,12 +32,27 @@ function BarBtn({
 
 const MIN_PX = 24, MAX_PX = 52;
 
-export function Reader({ text, lang, scheme, onClose }: { text: Text; lang: Language; scheme: string; onClose: () => void }) {
+export function Reader({ text, lang, scheme }: { text: Text; lang: Language; scheme: string }) {
   const [sound, setSound] = useState(false);
   const [layout, setLayout] = useState<"under" | "line">("under");
   const [revealed, setRevealed] = useState<Set<number>>(new Set());
   const [fontPx, setFontPx] = useState(33);
+  const [pillHidden, setPillHidden] = useState(false);
   const romPx = Math.max(9, Math.round(fontPx * 0.36));
+
+  // Auto-hide the pill on scroll-down, reveal on scroll-up.
+  const lastY = useRef(0);
+  useEffect(() => {
+    const onScroll = () => {
+      const y = window.scrollY;
+      if (y < 48) setPillHidden(false);
+      else if (y > lastY.current + 6) setPillHidden(true);
+      else if (y < lastY.current - 6) setPillHidden(false);
+      lastY.current = y;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const pages = pageLabelMap(text);
   const under = sound && layout === "under";
@@ -52,21 +66,10 @@ export function Reader({ text, lang, scheme, onClose }: { text: Text; lang: Lang
   const tokCount = text.lines.reduce((a, l) => a + l.length, 0);
 
   return (
-    <div className="fixed inset-0 z-50 bg-parchment dark:bg-parchment-dk flex flex-col">
-      {/* header */}
-      <div className="flex items-center justify-between px-5 pt-4 pb-3 border-b border-[0.5px] border-stone dark:border-bdr-dk">
-        <div>
-          <div className="font-title text-[11px] tracking-[0.16em] uppercase text-ink-faint">{lang.name} · Text</div>
-          <div style={{ fontFamily: lang.fontStack }} className="text-[20px] text-ink dark:text-ink-lt leading-tight">{text.title}</div>
-        </div>
-        <button onClick={onClose} className="text-ink-muted cursor-pointer" title="Close">
-          <IoCloseOutline size={24} />
-        </button>
-      </div>
-
-      {/* reading canvas */}
-      <div className="flex-1 overflow-y-auto px-4 pt-4 pb-28">
-        <div className="max-w-[720px] mx-auto border-[0.5px] border-stone dark:border-bdr-dk rounded-[3px] p-[3px]">
+    <>
+      <div className="max-w-[720px] mx-auto px-4 pt-3 pb-32">
+        <div className="font-title text-[11px] tracking-[0.16em] uppercase text-ink-faint mb-2">{lang.name} · Text</div>
+        <div className="border-[0.5px] border-stone dark:border-bdr-dk rounded-[3px] p-[3px]">
           <div className="border-[0.5px] border-stone dark:border-bdr-dk rounded-[2px] bg-card-bg dark:bg-surf-dk px-4 py-5">
             <div style={{ fontFamily: lang.fontStack, fontSize: fontPx, lineHeight: sound ? 2.35 : 1.85 }} className="text-ink dark:text-ink-lt">
               {displayLines(text).map((group, gi) => (
@@ -74,7 +77,7 @@ export function Reader({ text, lang, scheme, onClose }: { text: Text; lang: Lang
                 {group.map((li) => {
                 const line = text.lines[li];
                 const isRev = revealed.has(li);
-                const showRom = under || (tappable && isRev); // per-token romanization (aligned)
+                const showRom = under || (tappable && isRev);
                 const endLbl = pages.get(`${li}:${line.length}`);
                 return (
                   <span
@@ -115,8 +118,10 @@ export function Reader({ text, lang, scheme, onClose }: { text: Text; lang: Lang
         </div>
       </div>
 
-      {/* bottom reading bar */}
-      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-10 w-[min(720px,calc(100%-28px))] flex items-center gap-2 bg-card-bg dark:bg-surf-dk border-[0.5px] border-stone dark:border-bdr-dk rounded-[14px] px-2.5 py-2 shadow-[0_10px_26px_rgba(20,12,6,0.18)]">
+      {/* floating pill — auto-hides on scroll down */}
+      <div
+        className={`fixed bottom-4 left-1/2 -translate-x-1/2 z-40 w-[min(680px,calc(100%-28px))] flex items-center gap-2 bg-card-bg/95 dark:bg-surf-dk/95 backdrop-blur border-[0.5px] border-stone dark:border-bdr-dk rounded-[16px] px-2.5 py-2 shadow-[0_10px_26px_rgba(20,12,6,0.22)] transition-transform duration-300 ${pillHidden ? "translate-y-[160%]" : "translate-y-0"}`}
+      >
         <div className="flex items-center border-[0.5px] border-stone dark:border-bdr-dk rounded-[10px] overflow-hidden">
           <button
             onClick={() => setFontPx((p) => Math.max(MIN_PX, p - 3))}
@@ -135,6 +140,6 @@ export function Reader({ text, lang, scheme, onClose }: { text: Text; lang: Lang
         <BarBtn on={layout === "under"} disabled={!sound} onClick={() => sound && setLayout("under")}>Under</BarBtn>
         <BarBtn on={layout === "line"} disabled={!sound} onClick={() => sound && setLayout("line")}>By&nbsp;line</BarBtn>
       </div>
-    </div>
+    </>
   );
 }

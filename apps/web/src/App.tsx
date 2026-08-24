@@ -141,6 +141,7 @@ export default function App() {
   };
 
   const toggleGroupSessions = (groupSessions: string[]) => {
+    setReadingText(null);
     const state = groupState(groupSessions);
     setSessionFilters((prev) =>
       state === "none"
@@ -198,32 +199,42 @@ export default function App() {
   const ratingCfg = RATING_CONFIG[currentStatus];
 
   return (
-    <div className="font-serif bg-parchment min-h-screen py-6 px-4 text-ink dark:bg-parchment-dk dark:text-ink-lt">
+    <div className="font-serif bg-parchment min-h-screen text-ink dark:bg-parchment-dk dark:text-ink-lt">
 
-      {/* Read surface (Texts) — overlays the deck when a text is open */}
-      {readingText && (
+      {/* Header — sticky; shows the text title + back arrow while reading */}
+      <div className="sticky top-0 z-30 backdrop-blur bg-parchment/90 dark:bg-parchment-dk/90 border-b border-[0.5px] border-stone/60 dark:border-bdr-dk/60">
+        <div className="flex items-center justify-between gap-3 max-w-[720px] mx-auto px-4 py-2 min-h-[54px]">
+          {readingText ? (
+            <button
+              onClick={() => setReadingText(null)}
+              className="flex items-center gap-2 min-w-0 text-ink-muted hover:text-ink dark:hover:text-ink-lt cursor-pointer"
+              title="Back to cards"
+            >
+              <span className="text-[24px] leading-none shrink-0">‹</span>
+              <span style={{ fontFamily: (LANGUAGE_BY_CODE[readingText.language] ?? lang).fontStack }} className="text-[18px] text-ink dark:text-ink-lt truncate">{readingText.title}</span>
+            </button>
+          ) : (
+            <span className="font-tibetan text-[36px] leading-none text-ink dark:text-ink-lt select-none">༄༅།</span>
+          )}
+          <button
+            className="text-ink-muted cursor-pointer flex items-center justify-center transition-colors duration-150 shrink-0 p-2 hover:text-ink dark:hover:text-ink-lt"
+            onClick={() => setSidebarOpen((o) => !o)}
+            title={sidebarOpen ? "Close settings" : "Open settings"}
+          >
+            {sidebarOpen ? <IoCloseOutline size={22} /> : <IoSettingsOutline size={22} />}
+          </button>
+        </div>
+      </div>
+
+      {/* Main — a text is its own screen; otherwise the deck */}
+      {readingText ? (
         <Reader
           text={readingText}
           lang={LANGUAGE_BY_CODE[readingText.language] ?? lang}
           scheme={activeScheme}
-          onClose={() => setReadingText(null)}
         />
-      )}
-
-      {/* Header */}
-      <div className="flex items-center justify-between mb-5 max-w-[560px] mx-auto">
-        <span className="font-tibetan text-[40px] leading-none text-ink dark:text-ink-lt select-none">༄༅།</span>
-        <button
-          className="text-ink-muted cursor-pointer flex items-center justify-center transition-colors duration-150 shrink-0 p-2 hover:text-ink dark:hover:text-ink-lt"
-          onClick={() => setSidebarOpen((o) => !o)}
-          title={sidebarOpen ? "Close settings" : "Open settings"}
-        >
-          {sidebarOpen ? <IoCloseOutline size={22} /> : <IoSettingsOutline size={22} />}
-        </button>
-      </div>
-
-      {/* Main */}
-      <div className="max-w-[560px] mx-auto">
+      ) : (
+      <div className="max-w-[560px] mx-auto px-4 py-6">
 
         {total === 0 && (
           <div className="text-center py-12 text-ink-muted italic text-[15px]">
@@ -396,6 +407,7 @@ export default function App() {
 
 
       </div>
+      )}
 
       {/* Sidebar */}
       <div
@@ -479,11 +491,12 @@ export default function App() {
                           <input
                             type="checkbox"
                             checked={sessionFilters.includes(sess)}
-                            onChange={() =>
+                            onChange={() => {
+                              setReadingText(null);
                               setSessionFilters((prev) =>
                                 prev.includes(sess) ? prev.filter((x) => x !== sess) : [...prev, sess]
-                              )
-                            }
+                              );
+                            }}
                             className="w-3 h-3 shrink-0 accent-ink cursor-pointer"
                           />
                           <span className="text-[13px] text-ink-muted font-serif leading-[1.4] dark:text-ink-faint flex-1">{sess}</span>
