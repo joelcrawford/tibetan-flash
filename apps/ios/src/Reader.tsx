@@ -1,6 +1,5 @@
-import { useState, ReactNode } from "react";
-import { View, Text, ScrollView, TouchableOpacity, StyleSheet } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import { useState, useRef, ReactNode } from "react";
+import { View, Text, ScrollView, TouchableOpacity, StyleSheet, Animated } from "react-native";
 import type { Language, Text as LangText } from "../../../shared/types/types";
 import { roman, pageLabelMap, displayLines } from "../../../shared/reader";
 
@@ -19,7 +18,7 @@ function FolioChip({ label, c }: { label: string; c: Colors }) {
   );
 }
 
-export function Reader({ text, lang, scheme, c, onClose }: { text: LangText; lang: Language; scheme: string; c: Colors; onClose: () => void }) {
+export function Reader({ text, lang, scheme, c }: { text: LangText; lang: Language; scheme: string; c: Colors }) {
   const [sound, setSound] = useState(false);
   const [layout, setLayout] = useState<"under" | "line">("under");
   const [revealed, setRevealed] = useState<Set<number>>(new Set());
@@ -30,6 +29,19 @@ export function Reader({ text, lang, scheme, c, onClose }: { text: LangText; lan
   const under = sound && layout === "under";
   const tappable = sound && layout === "line";
   const onAccent = c.bg;
+
+  // Auto-hide the pill on scroll-down, reveal on scroll-up.
+  const pillY = useRef(new Animated.Value(0)).current;
+  const lastY = useRef(0);
+  const hidden = useRef(false);
+  const move = (to: number, h: boolean) => { hidden.current = h; Animated.timing(pillY, { toValue: to, duration: 200, useNativeDriver: true }).start(); };
+  const onScroll = (e: { nativeEvent: { contentOffset: { y: number } } }) => {
+    const y = e.nativeEvent.contentOffset.y;
+    if (y < 48 && hidden.current) move(0, false);
+    else if (y > lastY.current + 6 && !hidden.current) move(130, true);
+    else if (y < lastY.current - 6 && hidden.current) move(0, false);
+    lastY.current = y;
+  };
 
   const toggle = (gi: number) =>
     setRevealed((prev) => {
@@ -49,24 +61,13 @@ export function Reader({ text, lang, scheme, c, onClose }: { text: LangText; lan
   );
 
   return (
-    <View style={[StyleSheet.absoluteFill, { backgroundColor: c.bg, zIndex: 100 }]}>
-      {/* header */}
-      <View style={[rs.header, { borderBottomColor: c.border }]}>
-        <View style={{ flex: 1 }}>
-          <Text style={[rs.eyebrow, { color: c.faint }]}>{lang.name.toUpperCase()} · TEXT</Text>
-          <Text style={[rs.title, { color: c.ink }]} numberOfLines={1}>{text.title}</Text>
-        </View>
-        <TouchableOpacity onPress={onClose} hitSlop={10}>
-          <Ionicons name="close-outline" size={26} color={c.muted} />
-        </TouchableOpacity>
-      </View>
-
-      {/* canvas */}
-      <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: 110 }} showsVerticalScrollIndicator={false}>
+    <View style={{ flex: 1 }}>
+      <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: 120 }} showsVerticalScrollIndicator={false} scrollEventThrottle={16} onScroll={onScroll}>
+        <Text style={[rs.eyebrow, { color: c.faint }]}>{lang.name.toUpperCase()} · TEXT</Text>
         <View style={[rs.frameOuter, { borderColor: c.border }]}>
           <View style={[rs.frameInner, { borderColor: c.border, backgroundColor: c.card }]}>
             {displayLines(text).map((group, gi) => {
-              const showRom = under || (tappable && revealed.has(gi)); // per-token romanization (aligned)
+              const showRom = under || (tappable && revealed.has(gi));
               const items: ReactNode[] = [];
               group.forEach((li) => {
                 const line = text.lines[li];
@@ -98,8 +99,8 @@ export function Reader({ text, lang, scheme, c, onClose }: { text: LangText; lan
         </Text>
       </ScrollView>
 
-      {/* bottom bar */}
-      <View style={[rs.bar, { backgroundColor: c.card, borderColor: c.border }]}>
+      {/* floating pill — auto-hides on scroll down */}
+      <Animated.View style={[rs.bar, { backgroundColor: c.card, borderColor: c.border, transform: [{ translateY: pillY }] }]}>
         <View style={[rs.sizer, { borderColor: c.border }]}>
           <TouchableOpacity disabled={fontPx <= MIN_PX} onPress={() => setFontPx((p) => Math.max(MIN_PX, p - 3))} style={rs.sizerBtn}>
             <Text style={{ fontSize: 15, color: fontPx <= MIN_PX ? c.faint : c.muted }}>A−</Text>
@@ -111,7 +112,7 @@ export function Reader({ text, lang, scheme, c, onClose }: { text: LangText; lan
         <BarBtn on={sound} onPress={() => setSound((v) => !v)} label="Aa Romanization" />
         <BarBtn on={layout === "under"} disabled={!sound} onPress={() => sound && setLayout("under")} label="Under" />
         <BarBtn on={layout === "line"} disabled={!sound} onPress={() => sound && setLayout("line")} label="By line" />
-      </View>
+      </Animated.View>
     </View>
   );
 }
@@ -122,16 +123,14 @@ const fc = StyleSheet.create({
 });
 
 const rs = StyleSheet.create({
-  header: { flexDirection: "row", alignItems: "center", paddingHorizontal: 18, paddingTop: 52, paddingBottom: 12, borderBottomWidth: 0.5 },
-  eyebrow: { fontSize: 10, letterSpacing: 1.6, fontFamily: "Georgia" },
-  title: { fontSize: 20, marginTop: 1 },
+  eyebrow: { fontSize: 10, letterSpacing: 1.6, fontFamily: "Georgia", marginBottom: 8 },
   frameOuter: { borderWidth: 0.5, borderRadius: 3, padding: 3 },
   frameInner: { borderWidth: 0.5, borderRadius: 2, paddingHorizontal: 14, paddingVertical: 16 },
   clauseBlock: { marginBottom: 6 },
   clauseRow: { flexDirection: "row", flexWrap: "wrap", alignItems: "flex-end" },
   scol: { alignItems: "center" },
   meta: { textAlign: "center", fontSize: 11, marginTop: 12, fontFamily: "Menlo" },
-  bar: { position: "absolute", left: 14, right: 14, bottom: 28, flexDirection: "row", alignItems: "center", gap: 8, borderWidth: 0.5, borderRadius: 14, paddingHorizontal: 10, paddingVertical: 8 },
+  bar: { position: "absolute", left: 14, right: 14, bottom: 28, flexDirection: "row", alignItems: "center", gap: 8, borderWidth: 0.5, borderRadius: 16, paddingHorizontal: 10, paddingVertical: 8 },
   sizer: { flexDirection: "row", borderWidth: 0.5, borderRadius: 10, overflow: "hidden" },
   sizerBtn: { paddingHorizontal: 10, paddingVertical: 8 },
   barBtn: { flex: 1, borderWidth: 0.5, borderRadius: 10, paddingVertical: 9, alignItems: "center" },

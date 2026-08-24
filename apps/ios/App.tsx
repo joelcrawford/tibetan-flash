@@ -172,6 +172,7 @@ export default function App() {
   };
 
   const toggleGroupSessions = (groupSessions: string[]) => {
+    setReadingText(null);
     const state = groupState(groupSessions);
     setSessionFilters((prev) =>
       state === "none"
@@ -393,12 +394,16 @@ export default function App() {
     <SafeAreaView style={[s.root, { backgroundColor: c.bg }]}>
       <StatusBar barStyle={dark ? "light-content" : "dark-content"} />
 
-      {/* Read surface (Texts) — overlays the deck when a text is open */}
-      {readingText && <Reader text={readingText} lang={LANGUAGE_BY_CODE[readingText.language] ?? lang} scheme={activeScheme} c={c} onClose={() => setReadingText(null)} />}
-
-      {/* Header */}
+      {/* Header — shows the text title + back arrow while reading */}
       <View style={s.header}>
-        <Text style={[s.logo, { color: c.ink }]}>༄༅།</Text>
+        {readingText ? (
+          <TouchableOpacity onPress={() => setReadingText(null)} style={{ flexDirection: "row", alignItems: "center", gap: 6, flex: 1 }}>
+            <Text style={{ fontSize: 26, color: c.muted, marginTop: -3 }}>‹</Text>
+            <Text style={{ fontSize: 18, color: c.ink, flex: 1 }} numberOfLines={1}>{readingText.title}</Text>
+          </TouchableOpacity>
+        ) : (
+          <Text style={[s.logo, { color: c.ink }]}>༄༅།</Text>
+        )}
         <View style={s.headerRight}>
           <TouchableOpacity
             style={s.gearBtn}
@@ -409,7 +414,10 @@ export default function App() {
         </View>
       </View>
 
-      {/* Card area */}
+      {/* Main — a text is its own screen; otherwise the deck */}
+      {readingText ? (
+        <Reader text={readingText} lang={LANGUAGE_BY_CODE[readingText.language] ?? lang} scheme={activeScheme} c={c} />
+      ) : (
       <View style={s.cardArea}>
         {total === 0 && (
           <Text style={[s.empty, { color: c.muted }]}>No cards match this filter.</Text>
@@ -434,6 +442,7 @@ export default function App() {
           </View>
         )}
       </View>
+      )}
 
       {/* Sidebar overlay */}
       <Animated.View
@@ -506,9 +515,9 @@ export default function App() {
                     const active = sessionFilters.includes(sess);
                     return (
                       <View key={sess} style={s.subSessionRow}>
-                        <TouchableOpacity onPress={() => setSessionFilters((prev) =>
+                        <TouchableOpacity onPress={() => { setReadingText(null); setSessionFilters((prev) =>
                           prev.includes(sess) ? prev.filter((x) => x !== sess) : [...prev, sess]
-                        )} style={{ flexDirection: "row", alignItems: "center", gap: 8, flex: 1 }}>
+                        ); }} style={{ flexDirection: "row", alignItems: "center", gap: 8, flex: 1 }}>
                           <Ionicons name={active ? "checkbox-outline" : "square-outline"} size={15} color={active ? c.accent : c.border} />
                           <Text style={[s.subSessionText, { color: c.inkMid }]}>{sess}</Text>
                         </TouchableOpacity>
@@ -568,6 +577,7 @@ export default function App() {
           </ScrollView>
       </Animated.View>
 
+      {!readingText && (<>
       {/* Sheet overlay */}
       <Animated.View
         style={[s.sheetOverlay, { opacity: sheetAnim }]}
@@ -619,6 +629,7 @@ export default function App() {
           </TouchableOpacity>
         </ScrollView>
       </Animated.View>
+      </>)}
     </SafeAreaView>
   );
 }
