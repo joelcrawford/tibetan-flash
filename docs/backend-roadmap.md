@@ -48,6 +48,29 @@ stored form** for corpus texts. We do **not** hand-feed Unicode anymore.
 - `Token.script` = Unicode (converted, for rendering).
 - Wylie = derived from ACIP at read time (already done via `Language.toScheme`).
 
+**"Format text for reading" — a standardized formatting + validation stage.**
+Part of the ingest pipeline: every text is run through the *same* battery of
+formatting, checks, and validation before it becomes a reading artifact. Goals:
+consistency (all texts look/behave alike), catch errors early, and produce a
+report. Roughly three passes:
+
+- **Normalize / format** — canonical tsek/shad spacing; strip or record folio
+  ornaments (༄༅), running headers (verso/recto), section marks (༈); handle stray
+  OCR fragments (e.g. a leading `ཉིན།`); normalize page markers to folio-side labels
+  (`001a/001b`); mark verse vs prose (hard breaks); flag/normalize source artifacts
+  (e.g. the stray long-a `ཱ` seen in `གྲྭཱི`).
+- **Convert** — ACIP → Unicode + Wylie via the official pipeline (§ above).
+- **Validate / check** — a standardized checklist, e.g.: well-formed Tibetan stacks
+  (no invalid syllables); **ACIP↔Unicode round-trips** (convert back, compare);
+  no ornaments/headers leaked into the reading flow; folio labels present, valid
+  (`\d{3}[ab]`) and sequential (verso/recto matches the header alternation); page
+  breaks reference valid positions; hard breaks land on real boundaries; every token
+  has `script` + `translit`; unknown/unmapped glyphs surfaced for review. Output a
+  per-text **report** (pass/fail + warnings) so a human proofs the flagged items.
+
+The current `scripts/reader.test.mjs` is the seed of this battery — generalize it
+from "test the one text" into a reusable per-text validator run at ingest time.
+
 **Open decisions — "how we hold our texts":**
 - **Storage format & location** — per-text JSON under `shared/languages/<code>/texts/`
   today (bundled at build time). Do we keep bundling, or move to a fetched/remote
@@ -120,9 +143,10 @@ hand-authoring throwaway span/definition data again.
 ## Suggested sequencing when we return
 
 1. **Ingest pipeline v1** — pull the official ACIP→Unicode/Wylie converter from the
-   other repo; wire it into `scripts/ingest-text.mjs` (ACIP in → JSON out); decide
-   text storage/provenance/versioning; re-ingest the Dus-grwa text properly (and
-   finish folio 007a, which was cut off).
+   other repo; wire it into `scripts/ingest-text.mjs` (ACIP in → JSON out); build the
+   **"format text for reading" stage** (standardized normalize → convert → validate,
+   with a per-text report); decide text storage/provenance/versioning; re-ingest the
+   Dus-grwa text properly (and finish folio 007a, which was cut off).
 2. **Decide the storage/serving model** — bundled vs a real data API (currently the
    app has only a TTS microservice; no content/progress API). Corpus + dictionary
    scale may force an API + DB.
