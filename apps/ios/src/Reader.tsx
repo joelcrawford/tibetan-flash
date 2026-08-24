@@ -1,5 +1,7 @@
-import { useState, useRef, ReactNode } from "react";
+import { useState, useRef, useEffect, ReactNode } from "react";
 import { View, Text, ScrollView, TouchableOpacity, StyleSheet, Animated } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import type { Language, Text as LangText } from "../../../shared/types/types";
 import { roman, pageLabelMap, displayLines } from "../../../shared/reader";
 
@@ -9,6 +11,7 @@ type Colors = {
 };
 
 const MIN_PX = 24, MAX_PX = 52;
+const BM_KEY = "tibetan-flash-bookmarks";
 
 function FolioChip({ label, c }: { label: string; c: Colors }) {
   return (
@@ -23,14 +26,43 @@ export function Reader({ text, lang, scheme, c }: { text: LangText; lang: Langua
   const [layout, setLayout] = useState<"under" | "line">("under");
   const [revealed, setRevealed] = useState<Set<number>>(new Set());
   const [fontPx, setFontPx] = useState(33);
+  const [bookmark, setBookmark] = useState<number | null>(null);
   const romPx = Math.max(9, Math.round(fontPx * 0.36));
 
   const pages = pageLabelMap(text);
   const under = sound && layout === "under";
   const tappable = sound && layout === "line";
   const onAccent = c.bg;
+  const groups = displayLines(text);
 
-  // Auto-hide the pill on scroll-down, reveal on scroll-up.
+  // ── bookmark load / persist / auto-scroll ──
+  const scrollRef = useRef<ScrollView>(null);
+  const groupY = useRef<Record<number, number>>({});
+  const didScroll = useRef(false);
+  const maybeScroll = (bm: number | null) => {
+    if (didScroll.current || bm == null) return;
+    const gi = groups.findIndex((g) => g[0] === bm);
+    const y = gi >= 0 ? groupY.current[gi] : undefined;
+    if (y != null) { didScroll.current = true; scrollRef.current?.scrollTo({ y: Math.max(0, y - 20), animated: false }); }
+  };
+  useEffect(() => {
+    AsyncStorage.getItem(BM_KEY).then((raw) => {
+      try { const m = raw ? JSON.parse(raw) : {}; if (typeof m[text.id] === "number") { setBookmark(m[text.id]); maybeScroll(m[text.id]); } } catch { /* ignore */ }
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const toggleBookmark = (li: number) => {
+    const next = bookmark === li ? null : li;
+    setBookmark(next);
+    AsyncStorage.getItem(BM_KEY).then((raw) => {
+      let m: Record<string, number> = {};
+      try { m = raw ? JSON.parse(raw) : {}; } catch { /* ignore */ }
+      if (next == null) delete m[text.id]; else m[text.id] = next;
+      AsyncStorage.setItem(BM_KEY, JSON.stringify(m));
+    });
+  };
+
+  // ── auto-hide pill on scroll ──
   const pillY = useRef(new Animated.Value(0)).current;
   const lastY = useRef(0);
   const hidden = useRef(false);
@@ -62,11 +94,13 @@ export function Reader({ text, lang, scheme, c }: { text: LangText; lang: Langua
 
   return (
     <View style={{ flex: 1 }}>
-      <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: 120 }} showsVerticalScrollIndicator={false} scrollEventThrottle={16} onScroll={onScroll}>
+      <ScrollView ref={scrollRef} contentContainerStyle={{ padding: 16, paddingBottom: 120 }} showsVerticalScrollIndicator={false} scrollEventThrottle={16} onScroll={onScroll}>
         <Text style={[rs.eyebrow, { color: c.faint }]}>{lang.name.toUpperCase()} · TEXT</Text>
         <View style={[rs.frameOuter, { borderColor: c.border }]}>
           <View style={[rs.frameInner, { borderColor: c.border, backgroundColor: c.card }]}>
-            {displayLines(text).map((group, gi) => {
+            {groups.map((group, gi) => {
+              const li0 = group[0];
+              const marked = bookmark === li0;
               const showRom = under || (tappable && revealed.has(gi));
               const items: ReactNode[] = [];
               group.forEach((li) => {
@@ -87,15 +121,24 @@ export function Reader({ text, lang, scheme, c }: { text: LangText; lang: Langua
               });
               const row = <View style={rs.clauseRow}>{items}</View>;
               return (
-                <View key={gi} style={rs.clauseBlock}>
-                  {tappable ? <TouchableOpacity activeOpacity={0.7} onPress={() => toggle(gi)}>{row}</TouchableOpacity> : row}
+                <View
+                  key={gi}
+                  onLayout={(e) => { groupY.current[gi] = e.nativeEvent.layout.y; maybeScroll(bookmark); }}
+                  style={{ flexDirection: "row", alignItems: "flex-start", marginBottom: 6 }}
+                >
+                  <TouchableOpacity onPress={() => toggleBookmark(li0)} hitSlop={8} style={{ width: 24, alignItems: "center", paddingTop: 8 }}>
+                    <Ionicons name={marked ? "bookmark" : "bookmark-outline"} size={15} color={marked ? c.accent : c.border} />
+                  </TouchableOpacity>
+                  <View style={[{ flex: 1, borderRadius: 6 }, marked ? { backgroundColor: c.accent + "14" } : null]}>
+                    {tappable ? <TouchableOpacity activeOpacity={0.7} onPress={() => toggle(gi)}>{row}</TouchableOpacity> : row}
+                  </View>
                 </View>
               );
             })}
           </View>
         </View>
         <Text style={[rs.meta, { color: c.faint }]}>
-          {text.pageBreaks.length ? `${text.pageBreaks.length} folio sides · ` : ""}{displayLines(text).length} lines
+          {text.pageBreaks.length ? `${text.pageBreaks.length} folio sides · ` : ""}{groups.length} lines
         </Text>
       </ScrollView>
 
@@ -125,8 +168,7 @@ const fc = StyleSheet.create({
 const rs = StyleSheet.create({
   eyebrow: { fontSize: 10, letterSpacing: 1.6, fontFamily: "Georgia", marginBottom: 8 },
   frameOuter: { borderWidth: 0.5, borderRadius: 3, padding: 3 },
-  frameInner: { borderWidth: 0.5, borderRadius: 2, paddingHorizontal: 14, paddingVertical: 16 },
-  clauseBlock: { marginBottom: 6 },
+  frameInner: { borderWidth: 0.5, borderRadius: 2, paddingHorizontal: 10, paddingVertical: 16 },
   clauseRow: { flexDirection: "row", flexWrap: "wrap", alignItems: "flex-end" },
   scol: { alignItems: "center" },
   meta: { textAlign: "center", fontSize: 11, marginTop: 12, fontFamily: "Menlo" },

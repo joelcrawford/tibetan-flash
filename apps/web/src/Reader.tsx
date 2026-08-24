@@ -1,6 +1,12 @@
 import { useState, useEffect, useRef } from "react";
+import { IoBookmark, IoBookmarkOutline } from "react-icons/io5";
 import type { Language, Text } from "../../../shared/types/types";
 import { roman, pageLabelMap, displayLines } from "../../../shared/reader";
+
+const BM_KEY = "tibetan-flash-bookmarks";
+const loadBookmarks = (): Record<string, number> => {
+  try { return JSON.parse(localStorage.getItem(BM_KEY) || "{}"); } catch { return {}; }
+};
 
 function FolioChip({ label }: { label: string }) {
   return (
@@ -38,7 +44,26 @@ export function Reader({ text, lang, scheme }: { text: Text; lang: Language; sch
   const [revealed, setRevealed] = useState<Set<number>>(new Set());
   const [fontPx, setFontPx] = useState(33);
   const [pillHidden, setPillHidden] = useState(false);
+  const [bookmark, setBookmarkState] = useState<number | null>(() => loadBookmarks()[text.id] ?? null);
   const romPx = Math.max(9, Math.round(fontPx * 0.36));
+
+  const setBookmark = (li: number | null) => {
+    setBookmarkState(li);
+    try {
+      const m = loadBookmarks();
+      if (li == null) delete m[text.id]; else m[text.id] = li;
+      localStorage.setItem(BM_KEY, JSON.stringify(m));
+    } catch { /* ignore */ }
+  };
+
+  // Auto-scroll to the bookmark when the text opens.
+  const markRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (bookmark == null) return;
+    const id = requestAnimationFrame(() => markRef.current?.scrollIntoView({ block: "center" }));
+    return () => cancelAnimationFrame(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Auto-hide the pill on scroll-down, reveal on scroll-up.
   const lastY = useRef(0);
@@ -70,46 +95,63 @@ export function Reader({ text, lang, scheme }: { text: Text; lang: Language; sch
       <div className="max-w-[720px] mx-auto px-4 pt-3 pb-32">
         <div className="font-title text-[11px] tracking-[0.16em] uppercase text-ink-faint mb-2">{lang.name} · Text</div>
         <div className="border-[0.5px] border-stone dark:border-bdr-dk rounded-[3px] p-[3px]">
-          <div className="border-[0.5px] border-stone dark:border-bdr-dk rounded-[2px] bg-card-bg dark:bg-surf-dk px-4 py-5">
+          <div className="border-[0.5px] border-stone dark:border-bdr-dk rounded-[2px] bg-card-bg dark:bg-surf-dk px-2 py-5">
             <div style={{ fontFamily: lang.fontStack, fontSize: fontPx, lineHeight: sound ? 2.35 : 1.85 }} className="text-ink dark:text-ink-lt">
-              {displayLines(text).map((group, gi) => (
-                <div key={gi} className="mb-1.5">
-                {group.map((li) => {
-                const line = text.lines[li];
-                const isRev = revealed.has(li);
-                const showRom = under || (tappable && isRev);
-                const endLbl = pages.get(`${li}:${line.length}`);
+              {displayLines(text).map((group, gi) => {
+                const li0 = group[0];
+                const marked = bookmark === li0;
                 return (
-                  <span
-                    key={li}
-                    className={tappable ? "cursor-pointer rounded-[5px]" : ""}
-                    onClick={tappable ? () => toggleLine(li) : undefined}
+                <div key={gi} ref={marked ? markRef : undefined} className="flex items-start mb-1.5 scroll-mt-20">
+                  {/* margin bookmark rail */}
+                  <button
+                    onClick={() => setBookmark(marked ? null : li0)}
+                    className="shrink-0 w-6 flex justify-center pt-[7px] cursor-pointer group/bm"
+                    title={marked ? "Remove your place" : "Mark your place"}
+                    aria-label={marked ? "Remove bookmark" : "Mark your place"}
                   >
-                    {line.map((s, ti) => {
-                      const lbl = pages.get(`${li}:${ti}`);
+                    {marked
+                      ? <IoBookmark size={15} className="text-accent dark:text-accent-dk" />
+                      : <IoBookmarkOutline size={14} className="text-ink-faint/30 group-hover/bm:text-ink-faint transition-colors" />}
+                  </button>
+                  <div className={`flex-1 min-w-0 rounded ${marked ? "bg-accent/5" : ""}`}>
+                    {group.map((li) => {
+                      const line = text.lines[li];
+                      const isRev = revealed.has(li);
+                      const showRom = under || (tappable && isRev);
+                      const endLbl = pages.get(`${li}:${line.length}`);
                       return (
-                        <span key={ti}>
-                          {lbl && <FolioChip label={lbl} />}
-                          {showRom ? (
-                            <span className="inline-flex flex-col items-center align-bottom">
-                              <span>{s.script}</span>
-                              <span style={{ fontSize: romPx }} className="font-mono tracking-[0.02em] text-accent dark:text-accent-dk leading-tight -mt-1">
-                                {roman(s, lang, scheme)}
+                        <span
+                          key={li}
+                          className={tappable ? "cursor-pointer rounded-[5px]" : ""}
+                          onClick={tappable ? () => toggleLine(li) : undefined}
+                        >
+                          {line.map((s, ti) => {
+                            const lbl = pages.get(`${li}:${ti}`);
+                            return (
+                              <span key={ti}>
+                                {lbl && <FolioChip label={lbl} />}
+                                {showRom ? (
+                                  <span className="inline-flex flex-col items-center align-bottom">
+                                    <span>{s.script}</span>
+                                    <span style={{ fontSize: romPx }} className="font-mono tracking-[0.02em] text-accent dark:text-accent-dk leading-tight -mt-1">
+                                      {roman(s, lang, scheme)}
+                                    </span>
+                                  </span>
+                                ) : (
+                                  s.script
+                                )}
                               </span>
-                            </span>
-                          ) : (
-                            s.script
-                          )}
+                            );
+                          })}
+                          {endLbl && <FolioChip label={endLbl} />}
+                          <span className="text-accent dark:text-accent-dk px-[1px]">{lang.clauseMark}</span>{" "}
                         </span>
                       );
                     })}
-                    {endLbl && <FolioChip label={endLbl} />}
-                    <span className="text-accent dark:text-accent-dk px-[1px]">{lang.clauseMark}</span>{" "}
-                  </span>
-                );
-                })}
+                  </div>
                 </div>
-              ))}
+                );
+              })}
             </div>
           </div>
           <div className="text-center font-mono text-[11px] text-ink-faint mt-3">
