@@ -7,6 +7,7 @@ export const SESSION_GROUPS: Record<string, string[]> = {
     "04 Ben's Text",
     "05 Ben's Text",
     "06 Debate Foundations",
+    "07 Ben's Text",
   ],
   "Extended Unverified": [
     "Compound Words & Phrases",

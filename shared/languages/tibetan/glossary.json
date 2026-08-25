@@ -2428,5 +2428,104 @@
     "context": "",
     "context_script": "",
     "session": "02 Case Particles"
+  },
+  {
+    "id": "bo-gsungs",
+    "language": "bo",
+    "script": "གསུངས།",
+    "translit": "GSUNGS",
+    "meaning": "Says in scripture, honorific for says",
+    "notes": "The honorific past of GSUNG BA, 'to speak' — used only for exalted speakers: the Buddha, lamas, and the scriptures themselves. Ordinary speech uses ZER or SMRA instead. GSUNG is also the honorific noun 'speech,' as in SKU GSUNG THUGS (enlightened body, speech, and mind).",
+    "context": "The standard marker of scriptural citation: ZHES GSUNGS ('thus it is said') closes a quotation and flags it as the word of an authority. In philosophical texts this signals an appeal to scripture (LUNG) as opposed to reasoning (RIGS PA) — the two accepted sources of proof. Tibetan verbs shift by register of respect, and GSUNGS is the clearest example the class has met: the same act of saying, but elevated because of who says it.",
+    "context_script": "",
+    "session": "07 Ben's Text"
+  },
+  {
+    "id": "bo-nam-mkha",
+    "language": "bo",
+    "script": "ནམ་མཁའ།",
+    "translit": "NAM MKHA'",
+    "meaning": "Space, Sky",
+    "notes": "Sanskrit: ākāśa. NAM = sky/heavens + MKHA' = space. The final a-chung (') is part of the spelling: MKHA', not MKHA.",
+    "context": "The stock example of an unchanging thing (RTAG PA) in debate. Space is defined negatively — the mere absence of obstructing contact — so it exists but performs no function, making it the classic instance of a DNGOS MED (non-thing) to set against DNGOS PO like a water pitcher. Whenever a debate needs 'something permanent,' space is the first example reached for. The Extended deck's NAM MKHA' YANG NI MING TZAM ('even space is merely a name') uses it the same way: if even space is a mere label, everything is.",
+    "context_script": "",
+    "session": "07 Ben's Text"
+  },
+  {
+    "id": "bo-thal",
+    "language": "bo",
+    "script": "ཐལ།",
+    "translit": "THAL",
+    "meaning": "So then...., meaning if you accept A you must accept this!",
+    "notes": "The verb that ends a statement of consequence — 'it follows that...' Root of THAL 'GYUR (implication, consequence — see 05 Ben's Text) and of the school name THAL 'GYUR PA (Prāsaṅgika, 'the consequence school').",
+    "context": "In the courtyard this single syllable is the hammer of the challenger's move. The full pattern runs: [subject] CHOS CAN, [predicate] THAL, [reason] PHYIR — 'take the subject; it follows that it is X; because it is Y' — delivered with the hand-clap. Everything the defender then says ('DOD, RTAGS MA GRUB, or KHYAB PA MA BYUNG — see 06 Debate Foundations) is a response to what THAL just asserted: that their own position forces this conclusion on them.",
+    "context_script": "",
+    "session": "07 Ben's Text"
+  },
+  {
+    "id": "bo-gzhan-yang",
+    "language": "bo",
+    "script": "གཞན་ཡང་།",
+    "translit": "GZHAN YANG",
+    "meaning": "furthermore, moreover, and another thing",
+    "notes": "GZHAN = other + YANG = also/again — literally 'also otherwise,' i.e. 'beyond that.' Ben wrote it with the ACIP comma, which is the shad (།) — the particle typically ends its clause. GZHAN on its own is the ordinary word for 'other' (compare GZHAN DBANG, 'other-powered,' in the Extended deck).",
+    "context": "A discourse connective that stacks a further argument onto one already made. Philosophical texts chain refutations with it: a first absurdity is driven home, then GZHAN YANG — 'moreover...' — and another one begins. It joins the toolkit of structural signposts from 05 Ben's Text (DE PHYIR 'therefore,' DE LTAR 'thus'): words that don't carry doctrine themselves but tell you where you are in the argument.",
+    "context_script": "",
+    "session": "07 Ben's Text"
+  },
+  {
+    "id": "bo-nus",
+    "language": "bo",
+    "script": "ནུས།",
+    "translit": "NUS",
+    "meaning": "can, to be able, potential, possibility, capacity, ability",
+    "notes": "The verb 'to be able' and the stem of NUS PA, 'ability, power, potency.' Follows another verb to mean 'can': BYED NUS = 'can do.'",
+    "context": "The hinge of the thing/non-thing divide. A working thing (DNGOS PO — see 04 Ben's Text) is defined as DON BYED NUS PA, 'that which is able to perform a function' — so NUS is literally the word the definition turns on. What can produce an effect is a thing; what cannot (like space) is DNGOS MED. The noun NUS PA also names the potency or capacity carried in a cause — the power of a seed to sprout — making this small verb load-bearing across both logic and the theory of causation.",
+    "context_script": "",
+    "session": "07 Ben's Text"
+  },
+  {
+    "id": "bo-dngos-med",
+    "language": "bo",
+    "script": "དངོས་མེད།",
+    "translit": "DNGOS MED",
+    "meaning": "doesn't function, non-working, non-thing, nothing",
+    "notes": "Sanskrit: abhāva. DNGOS (PO) = working thing + MED = does not exist / is without → 'without thingness.' The direct negation of DNGOS PO (see 04 Ben's Text).",
+    "context": "The other half of the fundamental division of existents: everything that exists is either a working thing (DNGOS PO) or a non-thing (DNGOS MED). A DNGOS MED exists — it can be known and debated about — but performs no function and produces no effects: unchanging phenomena like space (NAM MKHA') and mere absences. The stock debate form puts the pieces of this session together: 'the subject, space, is a non-thing, because it cannot perform a function' — NAM MKHA' CHOS CAN, DNGOS MED YIN PAR THAL, DON BYED MI NUS PA'I PHYIR.",
+    "context_script": "",
+    "session": "07 Ben's Text"
+  },
+  {
+    "id": "bo-rang-mtsan",
+    "language": "bo",
+    "script": "རང་མཚན།",
+    "translit": "RANG MTSAN",
+    "meaning": "real individual instance of a generality, a thing that exists by definition or through it's own definitive qualities",
+    "notes": "Sanskrit: svalakṣaṇa. RANG = own/self + MTSAN (NYID) = defining characteristic. Short for RANG GI MTSAN NYID KYIS GRUB PA — 'a thing which exists through its own definition or definitive qualities.'",
+    "context": "In the epistemology (TSHAD MA) tradition the class is entering, RANG MTSAN are the real particulars — the actual functioning things out in the world, grasped nakedly by direct perception. This water pitcher, this fire: each exists through its own defining character rather than through a label. The pair to hold together is RANG MTSAN vs SPYI MTSAN: the individual instance versus the general category it instantiates. The divide maps onto this session's other pair — RANG MTSAN line up with working things (DNGOS PO), SPYI MTSAN with non-things (DNGOS MED).",
+    "context_script": "",
+    "session": "07 Ben's Text"
+  },
+  {
+    "id": "bo-spyi-mtsan",
+    "language": "bo",
+    "script": "སྤྱི་མཚན།",
+    "translit": "SPYI MTSAN",
+    "meaning": "A general thing, in the sense of being an idea, catagory, or archetype",
+    "notes": "Sanskrit: sāmānyalakṣaṇa. SPYI = general / universal + MTSAN = characteristic. The counterpart of RANG MTSAN.",
+    "context": "What conceptual thought actually works with: not the individual fire in front of you (a RANG MTSAN) but 'fire' the category — an idea, archetype, or mental image standing in for all its instances. A SPYI MTSAN exists, but only as an abstraction: it is unchanging and performs no function, placing it on the DNGOS MED side of the divide. This is the tradition's account of why thought and perception differ — perception meets the particular directly, while thinking always goes through the general image.",
+    "context_script": "",
+    "session": "07 Ben's Text"
+  },
+  {
+    "id": "bo-rnams",
+    "language": "bo",
+    "script": "རྣམས།",
+    "translit": "RNAMS",
+    "meaning": "Pluralizer",
+    "notes": "The plural particle. Follows the noun it pluralizes: SANGS RGYAS RNAMS = 'buddhas,' CHOS RNAMS = 'phenomena.'",
+    "context": "Tibetan nouns are number-neutral — SANGS RGYAS can mean one buddha or many — so plurality is left unmarked unless it matters, and RNAMS is the standard way to mark it. It is everywhere in scripture and verse ('CHOS RNAMS THAMS CAD...' — 'all phenomena...'). The other common pluralizer is DAG, met inside DE DAG ('those') in the 05 Ben's Text notes; RNAMS is the more frequent and more neutral of the two.",
+    "context_script": "",
+    "session": "07 Ben's Text"
   }
 ]
