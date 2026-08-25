@@ -397,10 +397,7 @@ export default function App() {
       {/* Header — shows the text title + back arrow while reading */}
       <View style={s.header}>
         {readingText ? (
-          <TouchableOpacity onPress={() => setReadingText(null)} style={{ flexDirection: "row", alignItems: "center", gap: 6, flex: 1 }}>
-            <Text style={{ fontSize: 26, color: c.muted, marginTop: -3 }}>‹</Text>
-            <Text style={{ fontSize: 18, color: c.ink, flex: 1 }} numberOfLines={1}>{readingText.title}</Text>
-          </TouchableOpacity>
+          <Text style={{ fontSize: 20, color: c.ink, flex: 1 }} numberOfLines={1}>{readingText.title}</Text>
         ) : (
           <Text style={[s.logo, { color: c.ink }]}>༄༅།</Text>
         )}
@@ -538,16 +535,19 @@ export default function App() {
             })}
 
             <Text style={[s.sidebarLabel, { color: c.faint, marginTop: 24 }]}>Texts</Text>
-            {lang.texts.map((t) => (
-              <TouchableOpacity
-                key={t.id}
-                style={{ flexDirection: "row", alignItems: "center", gap: 8, paddingVertical: 6 }}
-                onPress={() => { setReadingText(t); setSidebarOpen(false); }}
-              >
-                <Text style={{ fontSize: 14, color: c.accent }}>༄</Text>
-                <Text style={{ fontSize: 16, color: c.ink, flex: 1 }}>{t.title}</Text>
-              </TouchableOpacity>
-            ))}
+            {lang.texts.map((t) => {
+              const active = readingText?.id === t.id;
+              return (
+                <TouchableOpacity
+                  key={t.id}
+                  style={{ flexDirection: "row", alignItems: "center", gap: 8, paddingVertical: 6 }}
+                  onPress={() => { setReadingText(active ? null : t); setSidebarOpen(false); }}
+                >
+                  <Ionicons name={active ? "radio-button-on" : "radio-button-off"} size={14} color={active ? c.accent : c.border} />
+                  <Text style={{ fontSize: 16, color: active ? c.accent : c.ink, flex: 1 }}>{t.title}</Text>
+                </TouchableOpacity>
+              );
+            })}
 
             <Text style={[s.sidebarLabel, { color: c.faint, marginTop: 24 }]}>Appearance</Text>
             <TouchableOpacity

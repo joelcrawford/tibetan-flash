@@ -205,14 +205,7 @@ export default function App() {
       <div className="sticky top-0 z-30 backdrop-blur bg-parchment/90 dark:bg-parchment-dk/90 border-b border-[0.5px] border-stone/60 dark:border-bdr-dk/60">
         <div className="flex items-center justify-between gap-3 max-w-[720px] mx-auto px-4 py-2 min-h-[54px]">
           {readingText ? (
-            <button
-              onClick={() => setReadingText(null)}
-              className="flex items-center gap-2 min-w-0 text-ink-muted hover:text-ink dark:hover:text-ink-lt cursor-pointer"
-              title="Back to cards"
-            >
-              <span className="text-[24px] leading-none shrink-0">‹</span>
-              <span style={{ fontFamily: (LANGUAGE_BY_CODE[readingText.language] ?? lang).fontStack }} className="text-[18px] text-ink dark:text-ink-lt truncate">{readingText.title}</span>
-            </button>
+            <span style={{ fontFamily: (LANGUAGE_BY_CODE[readingText.language] ?? lang).fontStack }} className="text-[20px] text-ink dark:text-ink-lt truncate min-w-0">{readingText.title}</span>
           ) : (
             <span className="font-tibetan text-[36px] leading-none text-ink dark:text-ink-lt select-none">༄༅།</span>
           )}
@@ -523,16 +516,19 @@ export default function App() {
         <div className="flex flex-col gap-3">
           <div className="text-[12px] tracking-[0.1em] uppercase text-ink-faint font-serif">Texts</div>
           <div className="flex flex-col gap-1">
-            {lang.texts.map((t) => (
-              <button
-                key={t.id}
-                onClick={() => { setReadingText(t); setSidebarOpen(false); }}
-                className="flex items-center gap-2 text-left cursor-pointer py-1 text-ink dark:text-ink-lt hover:text-accent dark:hover:text-accent-dk"
-              >
-                <span className="font-tibetan text-[14px] text-accent dark:text-accent-dk">༄</span>
-                <span className="font-tibetan text-[16px] flex-1 leading-tight">{t.title}</span>
-              </button>
-            ))}
+            {lang.texts.map((t) => {
+              const active = readingText?.id === t.id;
+              return (
+                <button
+                  key={t.id}
+                  onClick={() => { setReadingText(active ? null : t); setSidebarOpen(false); }}
+                  className={`flex items-center gap-2 text-left cursor-pointer py-1 ${active ? "text-accent dark:text-accent-dk" : "text-ink dark:text-ink-lt hover:text-accent dark:hover:text-accent-dk"}`}
+                >
+                  <span className={`text-[13px] w-4 shrink-0 ${active ? "text-accent dark:text-accent-dk" : "text-ink-faint"}`}>{active ? "●" : "○"}</span>
+                  <span className="font-tibetan text-[16px] flex-1 leading-tight">{t.title}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
