@@ -71,11 +71,17 @@ formatting, checks, and validation before it becomes a reading artifact. Goals:
 consistency (all texts look/behave alike), catch errors early, and produce a
 report. Roughly three passes:
 
-- **Normalize / format** — canonical tsek/shad spacing; strip or record folio
-  ornaments (༄༅), running headers (verso/recto), section marks (༈); handle stray
-  OCR fragments (e.g. a leading `ཉིན།`); normalize page markers to folio-side labels
-  (`001a/001b`); mark verse vs prose (hard breaks); flag/normalize source artifacts
-  (e.g. the stray long-a `ཱ` seen in `གྲྭཱི`).
+- **Normalize / format** — ✅ *first piece built*: raw ACIP source is reflowed and
+  re-broken on shads (one clause per line, blank line at section ends) by
+  [formatAcipForReading](../shared/languages/tibetan/format.js)
+  ([scripts/format-acip.mjs](../scripts/format-acip.mjs)) — the machine version of
+  docs/"How to Format a Text for Translating". Since ACIP is our source of record,
+  this operates on ACIP and stays ACIP. Still to add to this pass: canonical
+  tsek/shad spacing; strip or record folio ornaments (༄༅), running headers
+  (verso/recto), section marks (༈); handle stray OCR fragments (e.g. a leading
+  `ཉིན།`); normalize page markers to folio-side labels (`001a/001b`); mark verse vs
+  prose (hard breaks); flag/normalize source artifacts (e.g. the stray long-a `ཱ`
+  seen in `གྲྭཱི`).
 - **Convert** — ACIP → Unicode + Wylie via the official pipeline (§ above).
 - **Validate / check** — a standardized checklist, e.g.: well-formed Tibetan stacks
   (no invalid syllables); **ACIP↔Unicode round-trips** (convert back, compare);

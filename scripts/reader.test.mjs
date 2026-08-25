@@ -5,6 +5,7 @@ import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { convert, TibetanScript } from "../shared/languages/tibetan/convert/index.js";
+import { formatAcipForReading } from "../shared/languages/tibetan/format.js";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const read = (p) => JSON.parse(readFileSync(join(ROOT, p), "utf8"));
@@ -86,6 +87,23 @@ test("genitive/achung ACIP is well-formed (not the lossy stopgap form)", () => {
   for (const [scr, tr] of [["བའི་","BA'I"], ["པོའི་","PO'I"], ["སྐུའི་","SKU'I"]]) {
     if (scr in byScript) assert.equal(byScript[scr], tr);
   }
+});
+
+// ── Format text for reading (ACIP normalize pass) ────────────────
+test("formatAcipForReading reflows source wrapping and breaks on shads", () => {
+  const out = formatAcipForReading("MKHAS MANG GSER\nRIS BSKOR BA'I DBUS, MTHO BA'I RIGS SMRAS,");
+  assert.equal(out, "MKHAS MANG GSER RIS BSKOR BA'I DBUS,\nMTHO BA'I RIGS SMRAS,");
+});
+
+test("formatAcipForReading keeps double shads and marks section ends", () => {
+  const out = formatAcipForReading("DE LTAR RO,, GZHAN YANG ; MED PHYIR, DE NI RTAG PA'O,,");
+  assert.equal(out, "DE LTAR RO,,\n\nGZHAN YANG,\nMED PHYIR,\nDE NI RTAG PA'O,,");
+  assert.ok(out.includes(",,"), "double shad ,, preserved");
+  assert.ok(!out.includes(";"), "semicolon normalized to shad");
+});
+
+test("formatAcipForReading strips a stray space before a shad", () => {
+  assert.equal(formatAcipForReading("CHOS CAN , RTAGS ,"), "CHOS CAN,\nRTAGS,");
 });
 
 // ── Second language drops in (Japanese) ──────────────────────────
