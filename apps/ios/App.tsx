@@ -172,7 +172,6 @@ export default function App() {
   };
 
   const toggleGroupSessions = (groupSessions: string[]) => {
-    setReadingText(null);
     const state = groupState(groupSessions);
     setSessionFilters((prev) =>
       state === "none"
@@ -512,9 +511,9 @@ export default function App() {
                     const active = sessionFilters.includes(sess);
                     return (
                       <View key={sess} style={s.subSessionRow}>
-                        <TouchableOpacity onPress={() => { setReadingText(null); setSessionFilters((prev) =>
+                        <TouchableOpacity onPress={() => setSessionFilters((prev) =>
                           prev.includes(sess) ? prev.filter((x) => x !== sess) : [...prev, sess]
-                        ); }} style={{ flexDirection: "row", alignItems: "center", gap: 8, flex: 1 }}>
+                        )} style={{ flexDirection: "row", alignItems: "center", gap: 8, flex: 1 }}>
                           <Ionicons name={active ? "checkbox-outline" : "square-outline"} size={15} color={active ? c.accent : c.border} />
                           <Text style={[s.subSessionText, { color: c.inkMid }]}>{sess}</Text>
                         </TouchableOpacity>
@@ -534,7 +533,14 @@ export default function App() {
               );
             })}
 
-            <Text style={[s.sidebarLabel, { color: c.faint, marginTop: 24 }]}>Texts</Text>
+            <Text style={[s.sidebarLabel, { color: c.faint, marginTop: 24 }]}>Studying</Text>
+            <TouchableOpacity
+              style={{ flexDirection: "row", alignItems: "center", gap: 8, paddingVertical: 6 }}
+              onPress={() => { setReadingText(null); setSidebarOpen(false); }}
+            >
+              <Ionicons name={!readingText ? "radio-button-on" : "radio-button-off"} size={14} color={!readingText ? c.accent : c.border} />
+              <Text style={{ fontSize: 16, color: !readingText ? c.accent : c.ink, flex: 1 }}>Cards</Text>
+            </TouchableOpacity>
             {lang.texts.map((t) => {
               const active = readingText?.id === t.id;
               return (

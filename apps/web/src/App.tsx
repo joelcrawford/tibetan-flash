@@ -141,7 +141,6 @@ export default function App() {
   };
 
   const toggleGroupSessions = (groupSessions: string[]) => {
-    setReadingText(null);
     const state = groupState(groupSessions);
     setSessionFilters((prev) =>
       state === "none"
@@ -484,12 +483,11 @@ export default function App() {
                           <input
                             type="checkbox"
                             checked={sessionFilters.includes(sess)}
-                            onChange={() => {
-                              setReadingText(null);
+                            onChange={() =>
                               setSessionFilters((prev) =>
                                 prev.includes(sess) ? prev.filter((x) => x !== sess) : [...prev, sess]
-                              );
-                            }}
+                              )
+                            }
                             className="w-3 h-3 shrink-0 accent-ink cursor-pointer"
                           />
                           <span className="text-[13px] text-ink-muted font-serif leading-[1.4] dark:text-ink-faint flex-1">{sess}</span>
@@ -514,8 +512,15 @@ export default function App() {
         </div>
 
         <div className="flex flex-col gap-3">
-          <div className="text-[12px] tracking-[0.1em] uppercase text-ink-faint font-serif">Texts</div>
+          <div className="text-[12px] tracking-[0.1em] uppercase text-ink-faint font-serif">Studying</div>
           <div className="flex flex-col gap-1">
+            <button
+              onClick={() => { setReadingText(null); setSidebarOpen(false); }}
+              className={`flex items-center gap-2 text-left cursor-pointer py-1 ${!readingText ? "text-accent dark:text-accent-dk" : "text-ink dark:text-ink-lt hover:text-accent dark:hover:text-accent-dk"}`}
+            >
+              <span className={`text-[13px] w-4 shrink-0 ${!readingText ? "text-accent dark:text-accent-dk" : "text-ink-faint"}`}>{!readingText ? "●" : "○"}</span>
+              <span className="font-serif text-[16px] flex-1">Cards</span>
+            </button>
             {lang.texts.map((t) => {
               const active = readingText?.id === t.id;
               return (
