@@ -19,12 +19,26 @@ in (Tibetan + Japanese, pluggable `Language` modules). Card-ids are migrated.
 
 **How the one ingested text got in (the throwaway path):** we hand-fed
 *authoritative Unicode*, split it into tokens/folios/breaks
-([scripts/ingest-text.mjs](../scripts/ingest-text.mjs)), and generated ACIP with a
-**stopgap** Unicode→ACIP converter ([scripts/romanize.mjs](../scripts/romanize.mjs),
-validated 34/34 but not the real thing). Data model stores `Token{script, translit}`
-— script = Unicode, translit = ACIP; Wylie is derived.
+([scripts/ingest-text.mjs](../scripts/ingest-text.mjs)). Data model stores
+`Token{script, translit}` — script = Unicode, translit = ACIP; Wylie is derived.
 
-The roadmap below **replaces that throwaway path** with a real, ACIP-first pipeline.
+**✅ The standardized converter is now integrated** (2026-08-25). The Asian Legacy
+Library ALL converter (`public-library-api/server/converters`) is vendored at
+[shared/languages/tibetan/convert/](../shared/languages/tibetan/convert/) — a single
+canonical Unicode ⇄ Wylie ⇄ ACIP path shared by web, iOS, and the ingest scripts.
+This **replaced the stopgap** `romanize.mjs` (which was lossy on the achung/genitive:
+it wrote `B'I`/`PO'`/`SKU'` where the standard is `BA'I`/`PO'I`/`SKU'I`, and used
+`W` for wa-zur where ACIP uses `V`). Consequences already landed:
+- Runtime ACIP→Wylie in the Tibetan module now calls the converter (accurate Wylie
+  everywhere: reader, sidebar text names).
+- The Dus-grwa text's `translit` was regenerated from its authoritative Unicode
+  (174 tokens / 7.7% corrected). `romanize.mjs` now delegates to the converter and
+  its `--verify` round-trips ACIP→Unicode at **99.9%** (2256/2259).
+- The 3 remaining round-trip failures are the stray long-a artifact in `གྲྭཱི`/`གྲྭཱང`
+  — **flagged, not auto-corrected** (a "normalize" decision for human proofing).
+
+The roadmap below still applies for **ACIP-first ingest from source** (we currently
+derive ACIP from hand-fed Unicode; the goal is ACIP source in → Unicode + Wylie out).
 
 ---
 
@@ -34,10 +48,13 @@ The roadmap below **replaces that throwaway path** with a real, ACIP-first pipel
 stored form** for corpus texts. We do **not** hand-feed Unicode anymore.
 
 **Flow:** `ACIP source → [official conversion pipeline] → Unicode (script) + Wylie`
-- The **official converter** lives in **another repo** (`public-library-api` /
-  `aws-infrastructure-stack`) — Joel will pull it in. It replaces
-  `scripts/romanize.mjs` (the stopgap) and, critically, gives **ACIP → Unicode**
-  (rendering script) which we currently get by hand.
+- ✅ The **official converter** is now vendored at
+  [shared/languages/tibetan/convert/](../shared/languages/tibetan/convert/) (from
+  `public-library-api/server/converters`). It exposes `convert(text, from, to)` over
+  a `TibetanScript` enum (UNICODE/WYLIE/ACIP) and **replaced** the stopgap
+  `scripts/romanize.mjs`. It gives **ACIP → Unicode** (rendering script), which the
+  ACIP-first ingest below needs. Re-vendor from the source repo to update; don't
+  hand-edit the rules.
 - This *inverts* the current direction: today Unicode is authoritative and ACIP is
   derived (badly). New world: **ACIP authoritative**, Unicode + Wylie **derived**
   by the official pipeline. This already matches our storage decision ("store one

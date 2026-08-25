@@ -2,28 +2,12 @@ import type { Card, Language } from "../../types/types";
 import glossary from "./glossary.json";
 import { SESSION_GROUPS } from "./sessions";
 import { TEXTS } from "./texts";
+import { convert, TibetanScript } from "./convert/index.js";
 
-// ACIP → Wylie: a trivial per-letter remap (ACIP already encodes the full
-// syllable). Wylie is derived from the stored ACIP `translit`, never stored.
-const A2W2: Record<string, string> = {
-  KH: "kh", NG: "ng", CH: "ch", NY: "ny", TH: "th", PH: "ph",
-  TZ: "ts", TS: "tsh", DZ: "dz", ZH: "zh", SH: "sh",
-};
-const A2W1: Record<string, string> = {
-  K: "k", G: "g", C: "c", J: "j", T: "t", D: "d", N: "n", P: "p", B: "b", M: "m",
-  W: "w", Z: "z", Y: "y", R: "r", L: "l", S: "s", H: "h", A: "a", "'": "'",
-  I: "i", U: "u", E: "e", O: "o",
-};
-function acipToWylie(acip: string): string {
-  let out = "", i = 0;
-  while (i < acip.length) {
-    const two = acip.slice(i, i + 2);
-    if (A2W2[two]) { out += A2W2[two]; i += 2; continue; }
-    out += A2W1[acip[i]] ?? acip[i];
-    i += 1;
-  }
-  return out;
-}
+// ACIP → Wylie via the standardized ALL converter (vendored in ./convert).
+// Wylie is derived from the stored ACIP `translit`, never stored.
+const acipToWylie = (acip: string): string =>
+  convert(acip, TibetanScript.ACIP, TibetanScript.WYLIE);
 
 export const tibetan: Language = {
   code: "bo",

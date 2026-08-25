@@ -4,6 +4,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
+import { convert, TibetanScript } from "../shared/languages/tibetan/convert/index.js";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const read = (p) => JSON.parse(readFileSync(join(ROOT, p), "utf8"));
@@ -58,17 +59,33 @@ test("hard breaks isolate the homage verse lines", () => {
   for (let li = 0; li <= 8; li++) assert.ok(brk.has(li), `verse line ${li} should break`);
 });
 
-// ── Tibetan module (ACIP → Wylie) ────────────────────────────────
-function acipToWylie(a) {
-  const A2W2 = { KH:"kh",NG:"ng",CH:"ch",NY:"ny",TH:"th",PH:"ph",TZ:"ts",TS:"tsh",DZ:"dz",ZH:"zh",SH:"sh" };
-  const A2W1 = { K:"k",G:"g",C:"c",J:"j",T:"t",D:"d",N:"n",P:"p",B:"b",M:"m",W:"w",Z:"z",Y:"y",R:"r",L:"l",S:"s",H:"h",A:"a","'":"'",I:"i",U:"u",E:"e",O:"o" };
-  let o = "", i = 0;
-  while (i < a.length) { const two = a.slice(i, i + 2); if (A2W2[two]) { o += A2W2[two]; i += 2; continue; } o += A2W1[a[i]] ?? a[i]; i++; }
-  return o;
-}
-test("ACIP → Wylie derivation is a correct remap", () => {
+// ── Standardized converter (vendored ALL converter) ──────────────
+const acipToWylie = (a) => convert(a, TibetanScript.ACIP, TibetanScript.WYLIE);
+test("ACIP → Wylie derivation matches the standard converter", () => {
   const cases = { TSOGS:"tshogs", MKHAS:"mkhas", BDAG:"bdag", BRJOD:"brjod", "'GRUB":"'grub", MTSO:"mtsho" };
   for (const [a, w] of Object.entries(cases)) assert.equal(acipToWylie(a), w);
+});
+
+test("stored ACIP round-trips back to the authoritative Unicode", () => {
+  // Every token's translit was derived from its script via the converter, so
+  // ACIP → Unicode should reproduce the script (minus separating tsek). A tiny
+  // number of known source artifacts (stray long-a in གྲྭཱི) are tolerated.
+  const strip = (s) => s.replace(/[་\s]+$/g, "").trim();
+  let total = 0, ok = 0;
+  for (const s of flat) {
+    total++;
+    if (convert(s.translit, TibetanScript.ACIP, TibetanScript.UNICODE) === strip(s.script)) ok++;
+  }
+  assert.ok(ok / total >= 0.99, `round-trip ${ok}/${total} below 99%`);
+});
+
+test("genitive/achung ACIP is well-formed (not the lossy stopgap form)", () => {
+  const byScript = {};
+  for (const s of flat) if (!(s.script in byScript)) byScript[s.script] = s.translit;
+  // The stopgap wrote B'I / PO' / SKU'; the standard converter writes BA'I / PO'I / SKU'I.
+  for (const [scr, tr] of [["བའི་","BA'I"], ["པོའི་","PO'I"], ["སྐུའི་","SKU'I"]]) {
+    if (scr in byScript) assert.equal(byScript[scr], tr);
+  }
 });
 
 // ── Second language drops in (Japanese) ──────────────────────────

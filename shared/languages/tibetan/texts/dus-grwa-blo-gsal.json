@@ -2,7 +2,7 @@
   "id": "dus-grwa-blo-gsal",
   "language": "bo",
   "title": "བསྡུས་གྲྭ་བློ་གསལ་མིག་འབྱེད",
-  "titleTranslit": "BSDUS GRWA BLO GSAL MIG 'BYED",
+  "titleTranslit": "BSDUS GRVA BLO GSAL MIG 'BYED",
   "session": "Text — Dus grwa (Collected Topics)",
   "lines": [
     [
@@ -46,7 +46,7 @@
       },
       {
         "script": "བའི་",
-        "translit": "B'I"
+        "translit": "BA'I"
       },
       {
         "script": "དབུས",
@@ -68,7 +68,7 @@
       },
       {
         "script": "བའི་",
-        "translit": "B'I"
+        "translit": "BA'I"
       },
       {
         "script": "རིགས་",
@@ -84,7 +84,7 @@
       },
       {
         "script": "པོའི་",
-        "translit": "PO'"
+        "translit": "PO'I"
       },
       {
         "script": "སྤོར",
@@ -114,7 +114,7 @@
       },
       {
         "script": "པོའི་",
-        "translit": "PO'"
+        "translit": "PO'I"
       },
       {
         "script": "སྒྲ་",
@@ -144,7 +144,7 @@
       },
       {
         "script": "བའི་",
-        "translit": "B'I"
+        "translit": "BA'I"
       },
       {
         "script": "ཁྱུ་",
@@ -174,7 +174,7 @@
       },
       {
         "script": "མའི་",
-        "translit": "M'I"
+        "translit": "MA'I"
       },
       {
         "script": "རིགས་",
@@ -334,7 +334,7 @@
       },
       {
         "script": "མའི་",
-        "translit": "M'I"
+        "translit": "MA'I"
       },
       {
         "script": "གཞུང་",
@@ -374,7 +374,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "སྐྱེ་",
@@ -420,7 +420,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཐབས་",
@@ -450,7 +450,7 @@
       },
       {
         "script": "ལའང་",
-        "translit": "L'ANG"
+        "translit": "LA'ANG"
       },
       {
         "script": "རིགས་",
@@ -462,7 +462,7 @@
       },
       {
         "script": "སྒོའི་",
-        "translit": "SGO'"
+        "translit": "SGO'I"
       },
       {
         "script": "ལྡེ་",
@@ -486,7 +486,7 @@
       },
       {
         "script": "གྲྭཱི་",
-        "translit": "GRWAI"
+        "translit": "GRV'I"
       },
       {
         "script": "གཞུང་",
@@ -644,7 +644,7 @@
       },
       {
         "script": "བའི་",
-        "translit": "B'I"
+        "translit": "BA'I"
       },
       {
         "script": "ཕྱིར",
@@ -666,7 +666,7 @@
       },
       {
         "script": "གྲྭཱི་",
-        "translit": "GRWAI"
+        "translit": "GRV'I"
       },
       {
         "script": "གཞུང་",
@@ -708,7 +708,7 @@
     [
       {
         "script": "རྭ་",
-        "translit": "RWA"
+        "translit": "RVA"
       },
       {
         "script": "སྟོད་",
@@ -720,7 +720,7 @@
       },
       {
         "script": "གྲྭ་",
-        "translit": "GRWA"
+        "translit": "GRVA"
       },
       {
         "script": "དེ་",
@@ -770,7 +770,7 @@
       },
       {
         "script": "གྲྭཱང་",
-        "translit": "GRWANG"
+        "translit": "GRV'ANG"
       },
       {
         "script": "གཞུང་",
@@ -824,7 +824,7 @@
       },
       {
         "script": "གྲྭ་",
-        "translit": "GRWA"
+        "translit": "GRVA"
       },
       {
         "script": "བློ་",
@@ -896,7 +896,7 @@
       },
       {
         "script": "བློའི་",
-        "translit": "BLO'"
+        "translit": "BLO'I"
       },
       {
         "script": "ནུས་",
@@ -928,7 +928,7 @@
       },
       {
         "script": "བྱའོ",
-        "translit": "BY'O"
+        "translit": "BYA'O"
       }
     ],
     [
@@ -1264,7 +1264,7 @@
       },
       {
         "script": "སྐུའི་",
-        "translit": "SKU'"
+        "translit": "SKU'I"
       },
       {
         "script": "འཕྲིན་",
@@ -1316,7 +1316,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -1340,7 +1340,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -1376,7 +1376,7 @@
       },
       {
         "script": "སྐུའི་",
-        "translit": "SKU'"
+        "translit": "SKU'I"
       },
       {
         "script": "འཕྲིན་",
@@ -1460,7 +1460,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -1502,7 +1502,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "སྤྲུལ་",
@@ -1596,7 +1596,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -1628,7 +1628,7 @@
       },
       {
         "script": "སྐུའི་",
-        "translit": "SKU'"
+        "translit": "SKU'I"
       },
       {
         "script": "འཕྲིན་",
@@ -1688,7 +1688,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -1732,7 +1732,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -1768,7 +1768,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -1812,7 +1812,7 @@
       },
       {
         "script": "སྐུའི་",
-        "translit": "SKU'"
+        "translit": "SKU'I"
       },
       {
         "script": "འཕྲིན་",
@@ -1876,7 +1876,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -1928,7 +1928,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "འཕྲིན་",
@@ -1944,7 +1944,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -1988,7 +1988,7 @@
       },
       {
         "script": "མའི་",
-        "translit": "M'I"
+        "translit": "MA'I"
       },
       {
         "script": "འོད་",
@@ -2012,7 +2012,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར་",
@@ -2044,7 +2044,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "དྲ་",
@@ -2112,7 +2112,7 @@
       },
       {
         "script": "པོའི་",
-        "translit": "PO'"
+        "translit": "PO'I"
       },
       {
         "script": "འོད་",
@@ -2168,7 +2168,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -2296,7 +2296,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -2328,7 +2328,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "མྱང་",
@@ -2336,7 +2336,7 @@
       },
       {
         "script": "འདས་",
-        "translit": "'ADS"
+        "translit": "'DAS"
       },
       {
         "script": "གཞི་",
@@ -2348,7 +2348,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -2380,7 +2380,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "གང་",
@@ -2396,7 +2396,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -2436,7 +2436,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -2520,7 +2520,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -2552,7 +2552,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར་",
@@ -2706,7 +2706,7 @@
       },
       {
         "script": "འདས་",
-        "translit": "'ADS"
+        "translit": "'DAS"
       },
       {
         "script": "པར་",
@@ -2728,7 +2728,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -2812,7 +2812,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -2852,7 +2852,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -2888,7 +2888,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར་",
@@ -2950,7 +2950,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -3026,7 +3026,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "དོན་",
@@ -3058,7 +3058,7 @@
     [
       {
         "script": "དེའི་",
-        "translit": "DE'"
+        "translit": "DE'I"
       },
       {
         "script": "ཕྱིར",
@@ -3082,7 +3082,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -3114,7 +3114,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -3186,7 +3186,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -3218,7 +3218,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "སྣང་",
@@ -3238,7 +3238,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -3310,7 +3310,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -3398,7 +3398,7 @@
     [
       {
         "script": "དེའི་",
-        "translit": "DE'"
+        "translit": "DE'I"
       },
       {
         "script": "ཕྱིར",
@@ -3430,7 +3430,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -3470,7 +3470,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -3522,7 +3522,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -3562,7 +3562,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -3602,7 +3602,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -3690,7 +3690,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -3742,7 +3742,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -3794,7 +3794,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -3854,7 +3854,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -3952,7 +3952,7 @@
     [
       {
         "script": "དེའི་",
-        "translit": "DE'"
+        "translit": "DE'I"
       },
       {
         "script": "ཕྱིར",
@@ -4000,7 +4000,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -4032,7 +4032,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -4104,7 +4104,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -4186,7 +4186,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "སྣང་",
@@ -4218,7 +4218,7 @@
     [
       {
         "script": "དེའི་",
-        "translit": "DE'"
+        "translit": "DE'I"
       },
       {
         "script": "ཕྱིར",
@@ -4246,7 +4246,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -4286,7 +4286,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -4326,7 +4326,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -4402,7 +4402,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "དོན་",
@@ -4428,7 +4428,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -4476,7 +4476,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཤེས་",
@@ -4542,7 +4542,7 @@
     [
       {
         "script": "དེའི་",
-        "translit": "DE'"
+        "translit": "DE'I"
       },
       {
         "script": "ཕྱིར",
@@ -4566,7 +4566,7 @@
       },
       {
         "script": "བྱའི་",
-        "translit": "BY'I"
+        "translit": "BYA'I"
       },
       {
         "script": "དབྱེ་",
@@ -4582,7 +4582,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -4626,7 +4626,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཤེས་",
@@ -4642,7 +4642,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -4674,7 +4674,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -4710,7 +4710,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -4798,7 +4798,7 @@
     [
       {
         "script": "དེའི་",
-        "translit": "DE'"
+        "translit": "DE'I"
       },
       {
         "script": "ཕྱིར",
@@ -4842,7 +4842,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -4890,7 +4890,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -5028,7 +5028,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "མཚན་",
@@ -5042,7 +5042,7 @@
     [
       {
         "script": "བློའི་",
-        "translit": "BLO'"
+        "translit": "BLO'I"
       },
       {
         "script": "ཡུལ་",
@@ -5070,7 +5070,7 @@
       },
       {
         "script": "བྱའི་",
-        "translit": "BY'I"
+        "translit": "BYA'I"
       },
       {
         "script": "མཚན་",
@@ -5260,7 +5260,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཆོས",
@@ -5282,7 +5282,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "མཚན་",
@@ -5324,7 +5324,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཆོས",
@@ -5346,7 +5346,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "མཚན་",
@@ -5480,7 +5480,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཆོས",
@@ -5540,7 +5540,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཆོས",
@@ -5554,7 +5554,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "མཚན་",
@@ -5588,7 +5588,7 @@
       },
       {
         "script": "པོའི་",
-        "translit": "PO'"
+        "translit": "PO'I"
       },
       {
         "script": "མཚན་",
@@ -5766,7 +5766,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -5814,7 +5814,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -5888,7 +5888,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར་",
@@ -5996,7 +5996,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -6026,11 +6026,11 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "བློའི་",
-        "translit": "BLO'"
+        "translit": "BLO'I"
       },
       {
         "script": "ཡུལ་",
@@ -6064,7 +6064,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཤེས་",
@@ -6072,7 +6072,7 @@
       },
       {
         "script": "བྱའི་",
-        "translit": "BY'I"
+        "translit": "BYA'I"
       },
       {
         "script": "མཚན་",
@@ -6098,7 +6098,7 @@
     [
       {
         "script": "བློའི་",
-        "translit": "BLO'"
+        "translit": "BLO'I"
       },
       {
         "script": "ཡུལ་",
@@ -6126,7 +6126,7 @@
       },
       {
         "script": "བྱའི་",
-        "translit": "BY'I"
+        "translit": "BYA'I"
       },
       {
         "script": "མཚན་",
@@ -6142,7 +6142,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར་",
@@ -6198,11 +6198,11 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "བློའི་",
-        "translit": "BLO'"
+        "translit": "BLO'I"
       },
       {
         "script": "ཡུལ་",
@@ -6244,7 +6244,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཤེས་",
@@ -6272,7 +6272,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -6312,7 +6312,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -6370,11 +6370,11 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "བློའི་",
-        "translit": "BLO'"
+        "translit": "BLO'I"
       },
       {
         "script": "ཡུལ་",
@@ -6420,7 +6420,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཚད་",
@@ -6428,7 +6428,7 @@
       },
       {
         "script": "མའི་",
-        "translit": "M'I"
+        "translit": "MA'I"
       },
       {
         "script": "ཡུལ་",
@@ -6440,7 +6440,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -6498,11 +6498,11 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "བློའི་",
-        "translit": "BLO'"
+        "translit": "BLO'I"
       },
       {
         "script": "ཡུལ་",
@@ -6556,11 +6556,11 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "བློའི་",
-        "translit": "BLO'"
+        "translit": "BLO'I"
       },
       {
         "script": "ཡུལ་",
@@ -6584,7 +6584,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར་",
@@ -6662,7 +6662,7 @@
       },
       {
         "script": "ཀའི་",
-        "translit": "K'I"
+        "translit": "KA'I"
       },
       {
         "script": "ཡུལ་",
@@ -6674,7 +6674,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -6826,7 +6826,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -6908,7 +6908,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར་",
@@ -6988,7 +6988,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -7132,7 +7132,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -7200,7 +7200,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར་",
@@ -7272,7 +7272,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -7368,7 +7368,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -7512,7 +7512,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར་",
@@ -7620,7 +7620,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -7682,7 +7682,7 @@
       },
       {
         "script": "བའི་",
-        "translit": "B'I"
+        "translit": "BA'I"
       },
       {
         "script": "ཕྱིར",
@@ -7780,7 +7780,7 @@
       },
       {
         "script": "བའི་",
-        "translit": "B'I"
+        "translit": "BA'I"
       },
       {
         "script": "ཕྱིར",
@@ -7864,7 +7864,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར་",
@@ -8002,7 +8002,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -8078,7 +8078,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -8172,7 +8172,7 @@
       },
       {
         "script": "པོའི་",
-        "translit": "PO'"
+        "translit": "PO'I"
       },
       {
         "script": "ལྡོག་",
@@ -8204,7 +8204,7 @@
     [
       {
         "script": "དེའི་",
-        "translit": "DE'"
+        "translit": "DE'I"
       },
       {
         "script": "ཕྱིར",
@@ -8266,7 +8266,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -8312,7 +8312,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "མཚོན་",
@@ -8336,7 +8336,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -8534,7 +8534,7 @@
     [
       {
         "script": "དེའི་",
-        "translit": "DE'"
+        "translit": "DE'I"
       },
       {
         "script": "ཕྱིར",
@@ -8566,7 +8566,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -8626,7 +8626,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -8712,7 +8712,7 @@
     [
       {
         "script": "དེའི་",
-        "translit": "DE'"
+        "translit": "DE'I"
       },
       {
         "script": "ཕྱིར",
@@ -8744,7 +8744,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -8862,7 +8862,7 @@
     [
       {
         "script": "དེའི་",
-        "translit": "DE'"
+        "translit": "DE'I"
       },
       {
         "script": "ཕྱིར",
@@ -8890,7 +8890,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -8950,7 +8950,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -9074,7 +9074,7 @@
     [
       {
         "script": "དེའི་",
-        "translit": "DE'"
+        "translit": "DE'I"
       },
       {
         "script": "ཕྱིར",
@@ -9118,7 +9118,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -9166,7 +9166,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -9254,7 +9254,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -9306,7 +9306,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ཕྱིར",
@@ -9400,7 +9400,7 @@
       },
       {
         "script": "པོའི་",
-        "translit": "PO'"
+        "translit": "PO'I"
       },
       {
         "script": "ཁ་",
@@ -9432,7 +9432,7 @@
     [
       {
         "script": "དེའི་",
-        "translit": "DE'"
+        "translit": "DE'I"
       },
       {
         "script": "ཕྱིར",
@@ -9526,7 +9526,7 @@
       },
       {
         "script": "པོའི་",
-        "translit": "PO'"
+        "translit": "PO'I"
       },
       {
         "script": "ཁ་",
@@ -9558,7 +9558,7 @@
     [
       {
         "script": "དེའི་",
-        "translit": "DE'"
+        "translit": "DE'I"
       },
       {
         "script": "ཕྱིར",
@@ -9648,7 +9648,7 @@
       },
       {
         "script": "པོའི་",
-        "translit": "PO'"
+        "translit": "PO'I"
       },
       {
         "script": "ཁ་",
@@ -9680,7 +9680,7 @@
     [
       {
         "script": "དེའི་",
-        "translit": "DE'"
+        "translit": "DE'I"
       },
       {
         "script": "ཕྱིར",
@@ -9766,7 +9766,7 @@
       },
       {
         "script": "པའི་",
-        "translit": "P'I"
+        "translit": "PA'I"
       },
       {
         "script": "ལྗང་",
@@ -9774,7 +9774,7 @@
       },
       {
         "script": "ཁུའི་",
-        "translit": "KHU'"
+        "translit": "KHU'I"
       },
       {
         "script": "ཁ་",
