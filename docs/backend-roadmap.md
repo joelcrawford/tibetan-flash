@@ -17,10 +17,17 @@ verse-aware layout, romanization (Under / By-line), font-size control, a real
 screen (not a modal), and a per-text **bookmark**. Multi-language architecture is
 in (Tibetan + Japanese, pluggable `Language` modules). Card-ids are migrated.
 
-**How the one ingested text got in (the throwaway path):** we hand-fed
-*authoritative Unicode*, split it into tokens/folios/breaks
-([scripts/ingest-text.mjs](../scripts/ingest-text.mjs)). Data model stores
-`Token{script, translit}` — script = Unicode, translit = ACIP; Wylie is derived.
+**✅ The Dus-grwa text is now ingested ACIP-first** (2026-08-25). Its authoritative
+**ACIP source** lives at
+[texts/sources/dus-grwa-blo-gsal.acip.txt](../shared/languages/tibetan/texts/sources/dus-grwa-blo-gsal.acip.txt),
+and [scripts/ingest-acip.mjs](../scripts/ingest-acip.mjs) turns it into the Text JSON:
+`translit` = ACIP verbatim, `script` = Unicode derived **per syllable** by the
+converter, folios from `@NNN` markers, running headers stripped, hard breaks from
+source newlines. Result: 12 folio sides (001a–006b), 358 lines, 2152 tokens, and a
+**100% ACIP→Unicode round-trip** (no artifacts — the old hand-fed Unicode had 3).
+Data model stores `Token{script, translit}` — script = Unicode, translit = ACIP;
+Wylie is derived. (The earlier Unicode path via
+[ingest-text.mjs](../scripts/ingest-text.mjs) remains for Unicode sources.)
 
 **✅ The standardized converter is now integrated** (2026-08-25). The Asian Legacy
 Library ALL converter (`public-library-api/server/converters`) is vendored at

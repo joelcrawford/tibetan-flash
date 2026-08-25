@@ -22,7 +22,7 @@ test("Tibetan text has the expected shape", () => {
 
 test("folio labels are Xa/Xb and sequential sides", () => {
   const labels = text.pageBreaks.map((p) => p.label);
-  assert.deepEqual(labels, ["001a","001b","002a","002b","003a","003b","004a","004b","005a","005b","006a","006b","007a"]);
+  assert.deepEqual(labels, ["001a","001b","002a","002b","003a","003b","004a","004b","005a","005b","006a","006b"]);
   for (const l of labels) assert.match(l, /^\d{3}[ab]$/);
 });
 
