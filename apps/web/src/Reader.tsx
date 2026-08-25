@@ -96,7 +96,7 @@ export function Reader({ text, lang, scheme }: { text: Text; lang: Language; sch
         <div className="font-title text-[11px] tracking-[0.16em] uppercase text-ink-faint mb-2">{lang.name} · Text</div>
         <div className="border-[0.5px] border-stone dark:border-bdr-dk rounded-[3px] p-[3px]">
           <div className="border-[0.5px] border-stone dark:border-bdr-dk rounded-[2px] bg-card-bg dark:bg-surf-dk px-2 py-5">
-            <div style={{ fontFamily: lang.fontStack, fontSize: fontPx, lineHeight: sound ? 2.35 : 1.85 }} className="text-ink dark:text-ink-lt">
+            <div style={{ fontFamily: lang.fontStack, fontSize: fontPx, lineHeight: 2.3 }} className="text-ink dark:text-ink-lt">
               {displayLines(text).map((group, gi) => {
                 const li0 = group[0];
                 const marked = bookmark === li0;
@@ -130,16 +130,14 @@ export function Reader({ text, lang, scheme }: { text: Text; lang: Language; sch
                             return (
                               <span key={ti}>
                                 {lbl && <FolioChip label={lbl} />}
-                                {showRom ? (
-                                  <span className="inline-flex flex-col items-center align-bottom">
-                                    <span>{s.script}</span>
-                                    <span style={{ fontSize: romPx }} className="font-mono tracking-[0.02em] text-accent dark:text-accent-dk leading-tight -mt-1">
-                                      {roman(s, lang, scheme)}
-                                    </span>
+                                {/* always render the column so the romanization row reserves
+                                    its space — toggling visibility never shifts the script */}
+                                <span className="inline-flex flex-col items-center align-bottom">
+                                  <span>{s.script}</span>
+                                  <span style={{ fontSize: romPx, visibility: showRom ? "visible" : "hidden" }} className="font-mono tracking-[0.02em] text-accent dark:text-accent-dk leading-tight -mt-1">
+                                    {roman(s, lang, scheme) || " "}
                                   </span>
-                                ) : (
-                                  s.script
-                                )}
+                                </span>
                               </span>
                             );
                           })}

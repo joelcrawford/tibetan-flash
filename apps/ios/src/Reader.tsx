@@ -111,7 +111,8 @@ export function Reader({ text, lang, scheme, c }: { text: LangText; lang: Langua
                   items.push(
                     <View key={`s${li}-${ti}`} style={rs.scol}>
                       <Text style={{ fontSize: fontPx, lineHeight: fontPx * 1.55, color: c.ink }}>{tk.script}</Text>
-                      {showRom ? <Text style={{ fontSize: romPx, marginTop: -romPx * 0.4, fontFamily: "Menlo", color: c.accent }}>{roman(tk, lang, scheme)}</Text> : null}
+                      {/* always rendered so the row reserves space; visibility toggles, not layout */}
+                      <Text style={{ fontSize: romPx, marginTop: -romPx * 0.4, fontFamily: "Menlo", color: c.accent, opacity: showRom ? 1 : 0 }}>{roman(tk, lang, scheme) || " "}</Text>
                     </View>
                   );
                 });
