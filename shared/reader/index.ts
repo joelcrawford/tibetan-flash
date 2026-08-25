@@ -9,6 +9,12 @@ export function roman(tok: Token, lang: Language, schemeId: string): string {
   return lang.toScheme(tok.translit ?? "", schemeId);
 }
 
+// Romanized display name for a text, in the requested scheme. Falls back to the
+// script title when the text has no stored canonical romanization.
+export function textTitle(t: Text, lang: Language, schemeId: string): string {
+  return t.titleTranslit ? lang.toScheme(t.titleTranslit, schemeId) : t.title;
+}
+
 // ── text helpers ────────────────────────────────────────────────
 export interface FlatToken extends Token {
   line: number;

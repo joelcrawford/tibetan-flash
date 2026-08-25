@@ -26,7 +26,9 @@ export interface PageBreak {
 export interface Text {
   id: string;
   language: string;         // language code, e.g. "bo", "ja"
-  title: string;
+  title: string;            // script (Unicode) title
+  titleTranslit?: string;   // canonical romanization of the title (ACIP for bo,
+                            // Hepburn for ja); alternates derived via Language.toScheme
   session: string;          // Learn-session label for captured cards
   lines: Token[][];         // clauses, split on the language's clause mark
   pageBreaks: PageBreak[];  // folio/page markers, kept as display labels

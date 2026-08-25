@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { CardStatus, StatusMap, Text } from "../../../shared/types/types";
 import { LANGUAGES, LANGUAGE_BY_CODE, DEFAULT_LANGUAGE } from "../../../shared/languages";
+import { textTitle } from "../../../shared/reader";
 import { Reader } from "./Reader";
 import { useDeck, StorageAdapter } from "../../../shared/hooks/useDeck";
 
@@ -444,18 +445,35 @@ export default function App() {
           )}
         </div>
 
+        {/* Studying — which surface is active */}
         <div className="flex flex-col gap-3">
-          <div className="text-[12px] tracking-[0.1em] uppercase text-ink-faint font-serif">Appearance</div>
-          <button
-            className={`${btnCls} text-left`}
-            onClick={() => setDark((d) => !d)}
-          >
-            {dark ? "☀ Light mode" : "☾ Dark mode"}
-          </button>
+          <div className="text-[12px] tracking-[0.1em] uppercase text-ink-faint font-serif">Studying</div>
+          <div className="flex gap-2">
+            <button
+              onClick={() => setReadingText(null)}
+              className={`flex-1 font-serif text-[15px] py-[6px] px-3 border-[0.5px] rounded-lg cursor-pointer transition-colors ${!readingText ? "border-accent text-accent bg-accent/5 dark:border-accent-dk dark:text-accent-dk" : "border-stone text-ink-muted hover:bg-stone-lt dark:border-bdr-dk dark:text-ink-faint dark:hover:bg-surf-dk-mid"}`}
+            >
+              Cards
+            </button>
+            <button
+              disabled={lang.texts.length === 0}
+              onClick={() => { if (!readingText && lang.texts.length) setReadingText(lang.texts[0]); }}
+              className={`flex-1 font-serif text-[15px] py-[6px] px-3 border-[0.5px] rounded-lg transition-colors ${
+                lang.texts.length === 0
+                  ? "border-stone/50 text-ink-faint/40 cursor-default dark:border-bdr-dk"
+                  : readingText
+                    ? "border-accent text-accent bg-accent/5 cursor-pointer dark:border-accent-dk dark:text-accent-dk"
+                    : "border-stone text-ink-muted hover:bg-stone-lt cursor-pointer dark:border-bdr-dk dark:text-ink-faint dark:hover:bg-surf-dk-mid"
+              }`}
+            >
+              Text
+            </button>
+          </div>
         </div>
 
+        {/* Cards — session filters + progress */}
         <div className="flex flex-col gap-3">
-          <div className="text-[12px] tracking-[0.1em] uppercase text-ink-faint font-serif">Sessions</div>
+          <div className="text-[12px] tracking-[0.1em] uppercase text-ink-faint font-serif">Cards</div>
           <div className="flex flex-col gap-2">
             {Object.entries(lang.sessionGroups).map(([groupName, groupSessions]) => {
               const state = groupState(groupSessions);
@@ -509,39 +527,9 @@ export default function App() {
               );
             })}
           </div>
-        </div>
-
-        <div className="flex flex-col gap-3">
-          <div className="text-[12px] tracking-[0.1em] uppercase text-ink-faint font-serif">Studying</div>
-          <div className="flex flex-col gap-1">
-            <button
-              onClick={() => { setReadingText(null); setSidebarOpen(false); }}
-              className={`flex items-center gap-2 text-left cursor-pointer py-1 ${!readingText ? "text-accent dark:text-accent-dk" : "text-ink dark:text-ink-lt hover:text-accent dark:hover:text-accent-dk"}`}
-            >
-              <span className={`text-[13px] w-4 shrink-0 ${!readingText ? "text-accent dark:text-accent-dk" : "text-ink-faint"}`}>{!readingText ? "●" : "○"}</span>
-              <span className="font-serif text-[16px] flex-1">Cards</span>
-            </button>
-            {lang.texts.map((t) => {
-              const active = readingText?.id === t.id;
-              return (
-                <button
-                  key={t.id}
-                  onClick={() => { setReadingText(active ? null : t); setSidebarOpen(false); }}
-                  className={`flex items-center gap-2 text-left cursor-pointer py-1 ${active ? "text-accent dark:text-accent-dk" : "text-ink dark:text-ink-lt hover:text-accent dark:hover:text-accent-dk"}`}
-                >
-                  <span className={`text-[13px] w-4 shrink-0 ${active ? "text-accent dark:text-accent-dk" : "text-ink-faint"}`}>{active ? "●" : "○"}</span>
-                  <span className="font-tibetan text-[16px] flex-1 leading-tight">{t.title}</span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-3">
-          <div className="text-[12px] tracking-[0.1em] uppercase text-ink-faint font-serif">Progress</div>
           {totalFiltered > 0 && (
             <>
-              <div className="flex h-1.25 rounded-sm overflow-hidden gap-px">
+              <div className="flex h-1.25 rounded-sm overflow-hidden gap-px mt-1">
                 <div className="bg-[#639922] transition-[width] duration-400 ease-out" style={{ width: `${(knownCount / totalFiltered) * 100}%` }} />
                 <div className="bg-amber-400 transition-[width] duration-400 ease-out" style={{ width: `${(familiarCount / totalFiltered) * 100}%` }} />
                 <div className="bg-stone dark:bg-bdr-dk transition-[width] duration-400 ease-out" style={{ width: `${(reviewCount / totalFiltered) * 100}%` }} />
@@ -555,6 +543,39 @@ export default function App() {
               </p>
             </>
           )}
+        </div>
+
+        {/* Texts — pick a text to read (romanized names) */}
+        {lang.texts.length > 0 && (
+          <div className="flex flex-col gap-3">
+            <div className="text-[12px] tracking-[0.1em] uppercase text-ink-faint font-serif">Texts</div>
+            <div className="flex flex-col gap-1">
+              {lang.texts.map((t) => {
+                const active = readingText?.id === t.id;
+                return (
+                  <button
+                    key={t.id}
+                    onClick={() => { setReadingText(t); setSidebarOpen(false); }}
+                    className={`flex items-center gap-2 text-left cursor-pointer py-1 ${active ? "text-accent dark:text-accent-dk" : "text-ink dark:text-ink-lt hover:text-accent dark:hover:text-accent-dk"}`}
+                  >
+                    <span className={`text-[13px] w-4 shrink-0 ${active ? "text-accent dark:text-accent-dk" : "text-ink-faint"}`}>{active ? "●" : "○"}</span>
+                    <span className="font-mono text-[14px] flex-1 leading-tight tracking-[0.02em]">{textTitle(t, lang, activeScheme)}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* Appearance — last */}
+        <div className="flex flex-col gap-3">
+          <div className="text-[12px] tracking-[0.1em] uppercase text-ink-faint font-serif">Appearance</div>
+          <button
+            className={`${btnCls} text-left`}
+            onClick={() => setDark((d) => !d)}
+          >
+            {dark ? "☀ Light mode" : "☾ Dark mode"}
+          </button>
         </div>
       </div>
 

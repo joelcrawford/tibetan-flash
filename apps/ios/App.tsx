@@ -19,6 +19,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useDeck, StorageAdapter } from "../../shared/hooks/useDeck";
 import { Card, CardStatus, StatusMap, Text as LangText } from "../../shared/types/types";
 import { LANGUAGES, LANGUAGE_BY_CODE, DEFAULT_LANGUAGE } from "../../shared/languages";
+import { textTitle } from "../../shared/reader";
 import { useTTS } from "./src/hooks/useTTS";
 import { Reader } from "./src/Reader";
 
@@ -490,7 +491,24 @@ export default function App() {
               </View>
             )}
 
-            <Text style={[s.sidebarLabel, { color: c.faint, marginTop: 24 }]}>Sessions</Text>
+            <Text style={[s.sidebarLabel, { color: c.faint, marginTop: 24 }]}>Studying</Text>
+            <View style={{ flexDirection: "row", gap: 8, marginBottom: 4 }}>
+              <TouchableOpacity
+                onPress={() => setReadingText(null)}
+                style={[s.btn, { flex: 1, alignItems: "center", backgroundColor: c.card, borderColor: !readingText ? c.accent : c.border }]}
+              >
+                <Text style={[s.btnText, { color: !readingText ? c.accent : c.ink }]}>Cards</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                disabled={lang.texts.length === 0}
+                onPress={() => { if (!readingText && lang.texts.length) setReadingText(lang.texts[0]); }}
+                style={[s.btn, { flex: 1, alignItems: "center", backgroundColor: c.card, borderColor: readingText ? c.accent : c.border, opacity: lang.texts.length === 0 ? 0.4 : 1 }]}
+              >
+                <Text style={[s.btnText, { color: readingText ? c.accent : (lang.texts.length === 0 ? c.faint : c.ink) }]}>Text</Text>
+              </TouchableOpacity>
+            </View>
+
+            <Text style={[s.sidebarLabel, { color: c.faint, marginTop: 24 }]}>Cards</Text>
             {Object.entries(lang.sessionGroups).map(([groupName, groupSessions]) => {
               const state = groupState(groupSessions);
               const expanded = expandedGroups.includes(groupName);
@@ -533,40 +551,9 @@ export default function App() {
               );
             })}
 
-            <Text style={[s.sidebarLabel, { color: c.faint, marginTop: 24 }]}>Studying</Text>
-            <TouchableOpacity
-              style={{ flexDirection: "row", alignItems: "center", gap: 8, paddingVertical: 6 }}
-              onPress={() => { setReadingText(null); setSidebarOpen(false); }}
-            >
-              <Ionicons name={!readingText ? "radio-button-on" : "radio-button-off"} size={14} color={!readingText ? c.accent : c.border} />
-              <Text style={{ fontSize: 16, color: !readingText ? c.accent : c.ink, flex: 1 }}>Cards</Text>
-            </TouchableOpacity>
-            {lang.texts.map((t) => {
-              const active = readingText?.id === t.id;
-              return (
-                <TouchableOpacity
-                  key={t.id}
-                  style={{ flexDirection: "row", alignItems: "center", gap: 8, paddingVertical: 6 }}
-                  onPress={() => { setReadingText(active ? null : t); setSidebarOpen(false); }}
-                >
-                  <Ionicons name={active ? "radio-button-on" : "radio-button-off"} size={14} color={active ? c.accent : c.border} />
-                  <Text style={{ fontSize: 16, color: active ? c.accent : c.ink, flex: 1 }}>{t.title}</Text>
-                </TouchableOpacity>
-              );
-            })}
-
-            <Text style={[s.sidebarLabel, { color: c.faint, marginTop: 24 }]}>Appearance</Text>
-            <TouchableOpacity
-              style={[s.btn, s.sessionBtn, { backgroundColor: c.card, borderColor: c.border }]}
-              onPress={() => setDark(d => !d)}
-            >
-              <Text style={[s.btnText, { color: c.ink }]}>{dark ? "Light mode" : "Dark mode"}</Text>
-            </TouchableOpacity>
-
-            <Text style={[s.sidebarLabel, { color: c.faint, marginTop: 24 }]}>Progress</Text>
             {totalFiltered > 0 && (
               <>
-                <View style={s.progressWrap}>
+                <View style={[s.progressWrap, { marginTop: 8 }]}>
                   <View style={{ flex: knownCount,    backgroundColor: "#639922" }} />
                   <View style={{ flex: familiarCount, backgroundColor: "#d97706" }} />
                   <View style={{ flex: reviewCount,   backgroundColor: c.border }} />
@@ -580,6 +567,31 @@ export default function App() {
                 </Text>
               </>
             )}
+
+            {lang.texts.length > 0 && (<>
+              <Text style={[s.sidebarLabel, { color: c.faint, marginTop: 24 }]}>Texts</Text>
+              {lang.texts.map((t) => {
+                const active = readingText?.id === t.id;
+                return (
+                  <TouchableOpacity
+                    key={t.id}
+                    style={{ flexDirection: "row", alignItems: "center", gap: 8, paddingVertical: 6 }}
+                    onPress={() => { setReadingText(t); setSidebarOpen(false); }}
+                  >
+                    <Ionicons name={active ? "radio-button-on" : "radio-button-off"} size={14} color={active ? c.accent : c.border} />
+                    <Text style={{ fontSize: 14, fontFamily: "Menlo", color: active ? c.accent : c.ink, flex: 1 }}>{textTitle(t, lang, activeScheme)}</Text>
+                  </TouchableOpacity>
+                );
+              })}
+            </>)}
+
+            <Text style={[s.sidebarLabel, { color: c.faint, marginTop: 24 }]}>Appearance</Text>
+            <TouchableOpacity
+              style={[s.btn, s.sessionBtn, { backgroundColor: c.card, borderColor: c.border }]}
+              onPress={() => setDark(d => !d)}
+            >
+              <Text style={[s.btnText, { color: c.ink }]}>{dark ? "Light mode" : "Dark mode"}</Text>
+            </TouchableOpacity>
           </ScrollView>
       </Animated.View>
 
