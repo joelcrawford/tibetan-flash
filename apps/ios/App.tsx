@@ -20,6 +20,9 @@ import { useDeck, StorageAdapter } from "../../shared/hooks/useDeck";
 import { Card, CardStatus, StatusMap, Text as LangText } from "../../shared/types/types";
 import { LANGUAGES, LANGUAGE_BY_CODE, DEFAULT_LANGUAGE } from "../../shared/languages";
 import { textTitle } from "../../shared/reader";
+import {
+  AppSettings, SETTINGS_KEY, LEGACY_LANG_KEY, LEGACY_FILTERS_KEY, parseSettings,
+} from "../../shared/hooks/settings";
 import { useTTS } from "./src/hooks/useTTS";
 import { Reader } from "./src/Reader";
 
@@ -29,11 +32,6 @@ const iosStorage: StorageAdapter = {
     catch { return {} as StatusMap; }
   },
   save: (map: StatusMap) => { AsyncStorage.setItem("tibetan-flash-status", JSON.stringify(map)); },
-  loadFilters: async () => {
-    try { const raw = await AsyncStorage.getItem("tibetan-flash-filters"); return raw ? JSON.parse(raw) : []; }
-    catch { return []; }
-  },
-  saveFilters: (filters: string[]) => { AsyncStorage.setItem("tibetan-flash-filters", JSON.stringify(filters)); },
 };
 
 // ── Colours ──────────────────────────────────────────────────────────────────
@@ -117,13 +115,35 @@ function HighlightedTibetan({ text, term, color }: { text: string; term: string;
 // ── App ───────────────────────────────────────────────────────────────────────
 
 export default function App() {
-  const [dark, setDark] = useState(true);
-  const [langCode, setLangCode] = useState<string>(DEFAULT_LANGUAGE);
-  useEffect(() => { AsyncStorage.getItem("tibetan-flash-language").then((v) => { if (v) setLangCode(v); }); }, []);
-  useEffect(() => { AsyncStorage.setItem("tibetan-flash-language", langCode); }, [langCode]);
+  // Hydrate settings before rendering the app, so every persisted preference
+  // (theme, language, filters, open text) is in place on first paint.
+  const [initial, setInitial] = useState<AppSettings | null>(null);
+  useEffect(() => {
+    Promise.all([
+      AsyncStorage.getItem(SETTINGS_KEY),
+      AsyncStorage.getItem(LEGACY_LANG_KEY),
+      AsyncStorage.getItem(LEGACY_FILTERS_KEY),
+    ]).then(([raw, legacyLang, legacyFilters]) =>
+      setInitial(parseSettings(raw, legacyLang, legacyFilters, DEFAULT_LANGUAGE))
+    );
+  }, []);
+  if (!initial) return <View style={{ flex: 1, backgroundColor: C.bgDark }} />;
+  return <Main initial={initial} />;
+}
+
+function Main({ initial }: { initial: AppSettings }) {
+  const [settings, setSettings] = useState(initial);
+  useEffect(() => { AsyncStorage.setItem(SETTINGS_KEY, JSON.stringify(settings)); }, [settings]);
+
+  const dark = settings.dark;
+  const langCode = settings.lang;
   const lang = LANGUAGE_BY_CODE[langCode] ?? LANGUAGE_BY_CODE[DEFAULT_LANGUAGE];
-  const [scheme, setScheme] = useState<string>(lang.defaultScheme);
-  const activeScheme = lang.schemes.some((x) => x.id === scheme) ? scheme : lang.defaultScheme;
+
+  // Romanization scheme is remembered per language; unset falls back to the default.
+  const storedScheme = settings.schemeByLang[langCode];
+  const activeScheme = lang.schemes.some((x) => x.id === storedScheme) ? storedScheme : lang.defaultScheme;
+  const setScheme = (id: string) =>
+    setSettings((s) => ({ ...s, schemeByLang: { ...s.schemeByLang, [s.lang]: id } }));
 
   const c = {
     bg:     dark ? C.bgDark     : C.bg,
@@ -150,11 +170,24 @@ export default function App() {
     sessionFilters, sessions, knownCount, familiarCount, reviewCount, totalFiltered, pct,
     goImmediate, rateCard, getCardStatus, handleCardClick,
     toggleAcip, resetSession, setShuffled, setSessionFilters,
-  } = useDeck(lang.glossary, iosStorage);
+  } = useDeck(lang.glossary, iosStorage, settings.filtersByLang[settings.lang] ?? []);
+
+  // Keep the per-language filter map in sync with the live filter selection.
+  useEffect(() => {
+    setSettings((s) => {
+      const cur = s.filtersByLang[s.lang] ?? [];
+      if (cur.length === sessionFilters.length && cur.every((v, i) => v === sessionFilters[i])) return s;
+      return { ...s, filtersByLang: { ...s.filtersByLang, [s.lang]: sessionFilters } };
+    });
+  }, [sessionFilters]);
 
   const { speak, speaking } = useTTS();
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [readingText, setReadingText] = useState<LangText | null>(null);
+  const readingText: LangText | null = settings.readingId
+    ? lang.texts.find((t) => t.id === settings.readingId) ?? null
+    : null;
+  const setReadingText = (t: LangText | null) =>
+    setSettings((s) => ({ ...s, readingId: t?.id ?? null }));
   const [contextOpen, setContextOpen] = useState(false);
   const [expandedGroups, setExpandedGroups] = useState<string[]>([]);
   const [pendingReset, setPendingReset] = useState<string | null>(null);
@@ -189,15 +222,14 @@ export default function App() {
 
   useEffect(() => { setShuffled(true); }, [setShuffled]);
 
-  // Session filters are language-specific — clear on language change (skip mount).
-  const firstLang = useRef(true);
-  useEffect(() => {
-    if (firstLang.current) { firstLang.current = false; return; }
-    setSessionFilters([]);
+  // Switching language swaps in that language's remembered filters and closes
+  // any open text; the scheme falls back per-language via schemeByLang.
+  const selectLanguage = (code: string) => {
+    if (code === langCode) return;
+    setSessionFilters(settings.filtersByLang[code] ?? []);
     setExpandedGroups([]);
-    setReadingText(null);
-    setScheme(lang.defaultScheme);
-  }, [langCode]); // eslint-disable-line
+    setSettings((s) => ({ ...s, lang: code, readingId: null }));
+  };
 
   // ── Sheet animation ───────────────────────────────────────────────────────
   const sheetAnim = useRef(new Animated.Value(0)).current;
@@ -413,7 +445,7 @@ export default function App() {
 
       {/* Main — a text is its own screen; otherwise the deck */}
       {readingText ? (
-        <Reader text={readingText} lang={LANGUAGE_BY_CODE[readingText.language] ?? lang} scheme={activeScheme} c={c} />
+        <Reader key={readingText.id} text={readingText} lang={LANGUAGE_BY_CODE[readingText.language] ?? lang} scheme={activeScheme} c={c} />
       ) : (
       <View style={s.cardArea}>
         {total === 0 && (
@@ -465,7 +497,7 @@ export default function App() {
                 return (
                   <TouchableOpacity
                     key={l.code}
-                    onPress={() => setLangCode(l.code)}
+                    onPress={() => selectLanguage(l.code)}
                     style={[s.btn, s.sessionBtn, { backgroundColor: c.card, borderColor: on ? c.accent : c.border }]}
                   >
                     <Text style={[s.btnText, { color: on ? c.accent : c.ink }]}>{l.name}</Text>
@@ -588,7 +620,7 @@ export default function App() {
             <Text style={[s.sidebarLabel, { color: c.faint, marginTop: 24 }]}>Appearance</Text>
             <TouchableOpacity
               style={[s.btn, s.sessionBtn, { backgroundColor: c.card, borderColor: c.border }]}
-              onPress={() => setDark(d => !d)}
+              onPress={() => setSettings((s) => ({ ...s, dark: !s.dark }))}
             >
               <Text style={[s.btnText, { color: c.ink }]}>{dark ? "Light mode" : "Dark mode"}</Text>
             </TouchableOpacity>

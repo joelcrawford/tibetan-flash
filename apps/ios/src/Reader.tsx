@@ -4,6 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import type { Language, Text as LangText } from "../../../shared/types/types";
 import { roman, pageLabelMap, displayLines, isHardBreak } from "../../../shared/reader";
+import { READER_PREFS_KEY, parseTextPrefs } from "../../../shared/hooks/settings";
 
 type Colors = {
   bg: string; card: string; border: string; ink: string; inkMid: string;
@@ -32,6 +33,31 @@ export function Reader({ text, lang, scheme, c }: { text: LangText; lang: Langua
   const [fontPx, setFontPx] = useState(33);
   const [bookmark, setBookmark] = useState<number | null>(null);
   const romPx = Math.max(9, Math.round(fontPx * 0.36));
+
+  // ── per-text prefs load / persist ── (the Reader is keyed by text id, so
+  // each text mounts fresh; saves wait for the load to avoid clobbering)
+  const [prefsLoaded, setPrefsLoaded] = useState(false);
+  useEffect(() => {
+    AsyncStorage.getItem(READER_PREFS_KEY).then((raw) => {
+      const p = parseTextPrefs(raw)[text.id];
+      if (p) {
+        if (typeof p.fontPx === "number") setFontPx(Math.min(MAX_PX, Math.max(MIN_PX, p.fontPx)));
+        if (typeof p.rom === "boolean") setSound(p.rom);
+        if (p.layout === "under" || p.layout === "line") setLayout(p.layout);
+      }
+      setPrefsLoaded(true);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  useEffect(() => {
+    if (!prefsLoaded) return;
+    AsyncStorage.getItem(READER_PREFS_KEY).then((raw) => {
+      const m = parseTextPrefs(raw);
+      m[text.id] = { rom: sound, layout, fontPx };
+      AsyncStorage.setItem(READER_PREFS_KEY, JSON.stringify(m));
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sound, layout, fontPx, prefsLoaded]);
 
   const pages = pageLabelMap(text);
   const under = sound && layout === "under";

@@ -71,7 +71,7 @@ function buildDeck(review: Card[], familiar: Card[], known: Card[], doShuffle: b
   return result;
 }
 
-export function useDeck(allCards: Card[], storage?: StorageAdapter) {
+export function useDeck(allCards: Card[], storage?: StorageAdapter, initialFilters: string[] = []) {
   const [deck, setDeck] = useState<Card[]>(allCards);
   const [idx, setIdx] = useState(0);
   const [flipped, setFlipped] = useState(false);
@@ -82,7 +82,7 @@ export function useDeck(allCards: Card[], storage?: StorageAdapter) {
   const [passCount, setPassCount] = useState(0);
   const pinnedKeyRef = useRef<string | null>(null);
   const prevPassCount = useRef(0);
-  const [sessionFilters, setSessionFilters] = useState<string[]>([]);
+  const [sessionFilters, setSessionFilters] = useState<string[]>(initialFilters);
   const [showCtx, setShowCtx] = useState(true);
 
   useEffect(() => {

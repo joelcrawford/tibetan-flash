@@ -2,10 +2,16 @@ import { useState, useEffect, useRef } from "react";
 import { IoBookmark, IoBookmarkOutline } from "react-icons/io5";
 import type { Language, Text } from "../../../shared/types/types";
 import { roman, pageLabelMap, displayLines, isHardBreak } from "../../../shared/reader";
+import { READER_PREFS_KEY, parseTextPrefs, TextPrefs } from "../../../shared/hooks/settings";
 
 const BM_KEY = "tibetan-flash-bookmarks";
 const loadBookmarks = (): Record<string, number> => {
   try { return JSON.parse(localStorage.getItem(BM_KEY) || "{}"); } catch { return {}; }
+};
+
+const loadTextPrefs = (id: string): TextPrefs | undefined => {
+  try { return parseTextPrefs(localStorage.getItem(READER_PREFS_KEY))[id]; }
+  catch { return undefined; }
 };
 
 function FolioChip({ label }: { label: string }) {
@@ -43,10 +49,21 @@ function BarBtn({
 const MIN_PX = 24, MAX_PX = 52;
 
 export function Reader({ text, lang, scheme }: { text: Text; lang: Language; scheme: string }) {
-  const [sound, setSound] = useState(false);
-  const [layout, setLayout] = useState<"under" | "line">("under");
+  // Per-text prefs — seeded from storage at mount (the Reader is keyed by text
+  // id, so each text mounts fresh), saved back whenever any of them change.
+  const [sound, setSound] = useState(() => loadTextPrefs(text.id)?.rom ?? false);
+  const [layout, setLayout] = useState<"under" | "line">(() => loadTextPrefs(text.id)?.layout ?? "under");
+  const [fontPx, setFontPx] = useState(() =>
+    Math.min(MAX_PX, Math.max(MIN_PX, loadTextPrefs(text.id)?.fontPx ?? 33)));
+  useEffect(() => {
+    try {
+      const m = parseTextPrefs(localStorage.getItem(READER_PREFS_KEY));
+      m[text.id] = { rom: sound, layout, fontPx };
+      localStorage.setItem(READER_PREFS_KEY, JSON.stringify(m));
+    } catch { /* ignore */ }
+  }, [sound, layout, fontPx, text.id]);
+
   const [revealed, setRevealed] = useState<Set<number>>(new Set());
-  const [fontPx, setFontPx] = useState(33);
   const [pillHidden, setPillHidden] = useState(false);
   const [bookmark, setBookmarkState] = useState<number | null>(() => loadBookmarks()[text.id] ?? null);
   const romPx = Math.max(9, Math.round(fontPx * 0.36));

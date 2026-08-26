@@ -4,6 +4,10 @@ import { LANGUAGES, LANGUAGE_BY_CODE, DEFAULT_LANGUAGE } from "../../../shared/l
 import { textTitle } from "../../../shared/reader";
 import { Reader } from "./Reader";
 import { useDeck, StorageAdapter } from "../../../shared/hooks/useDeck";
+import {
+  AppSettings, SETTINGS_KEY, LEGACY_LANG_KEY, LEGACY_FILTERS_KEY,
+  parseSettings, defaultSettings,
+} from "../../../shared/hooks/settings";
 
 const webStorage: StorageAdapter = {
   load: () => {
@@ -11,11 +15,17 @@ const webStorage: StorageAdapter = {
     catch { return Promise.resolve({} as StatusMap); }
   },
   save: (map: StatusMap) => localStorage.setItem("tibetan-flash-status", JSON.stringify(map)),
-  loadFilters: () => {
-    try { return Promise.resolve(JSON.parse(localStorage.getItem("tibetan-flash-filters") ?? "[]")); }
-    catch { return Promise.resolve([]); }
-  },
-  saveFilters: (filters: string[]) => localStorage.setItem("tibetan-flash-filters", JSON.stringify(filters)),
+};
+
+const loadSettings = (): AppSettings => {
+  try {
+    return parseSettings(
+      localStorage.getItem(SETTINGS_KEY),
+      localStorage.getItem(LEGACY_LANG_KEY),
+      localStorage.getItem(LEGACY_FILTERS_KEY),
+      DEFAULT_LANGUAGE,
+    );
+  } catch { return defaultSettings(DEFAULT_LANGUAGE); }
 };
 import { IoSettingsOutline, IoCloseOutline } from "react-icons/io5";
 import { useTTS } from "./hooks/useTTS";
@@ -93,18 +103,20 @@ function GroupCheckbox({ checked, indeterminate, onChange }: { checked: boolean;
 
 // ── Component ────────────────────────────────────────────────────────────────
 
-const LANG_KEY = "tibetan-flash-language";
-
 export default function App() {
-  const [langCode, setLangCode] = useState<string>(() => {
-    try { return localStorage.getItem(LANG_KEY) || DEFAULT_LANGUAGE; } catch { return DEFAULT_LANGUAGE; }
-  });
-  const lang = LANGUAGE_BY_CODE[langCode] ?? LANGUAGE_BY_CODE[DEFAULT_LANGUAGE];
-  useEffect(() => { try { localStorage.setItem(LANG_KEY, langCode); } catch { /* ignore */ } }, [langCode]);
+  const [settings, setSettings] = useState<AppSettings>(loadSettings);
+  useEffect(() => {
+    try { localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings)); } catch { /* ignore */ }
+  }, [settings]);
 
-  // Global romanization scheme (per language). Reset to the language's default on switch.
-  const [scheme, setScheme] = useState<string>(lang.defaultScheme);
-  const activeScheme = lang.schemes.some((s) => s.id === scheme) ? scheme : lang.defaultScheme;
+  const langCode = settings.lang;
+  const lang = LANGUAGE_BY_CODE[langCode] ?? LANGUAGE_BY_CODE[DEFAULT_LANGUAGE];
+
+  // Romanization scheme is remembered per language; unset falls back to the default.
+  const storedScheme = settings.schemeByLang[langCode];
+  const activeScheme = lang.schemes.some((s) => s.id === storedScheme) ? storedScheme : lang.defaultScheme;
+  const setScheme = (id: string) =>
+    setSettings((s) => ({ ...s, schemeByLang: { ...s.schemeByLang, [s.lang]: id } }));
 
   const {
     card, idx, total, flipped, acipVisible,
@@ -113,17 +125,30 @@ export default function App() {
     toggleAcip, toggleFlip,
     resetSession,
     setShuffled, setSessionFilters,
-  } = useDeck(lang.glossary, webStorage);
+  } = useDeck(lang.glossary, webStorage, settings.filtersByLang[settings.lang] ?? []);
+
+  // Keep the per-language filter map in sync with the live filter selection.
+  useEffect(() => {
+    setSettings((s) => {
+      const cur = s.filtersByLang[s.lang] ?? [];
+      if (cur.length === sessionFilters.length && cur.every((v, i) => v === sessionFilters[i])) return s;
+      return { ...s, filtersByLang: { ...s.filtersByLang, [s.lang]: sessionFilters } };
+    });
+  }, [sessionFilters]);
 
   const { speak, speaking } = useTTS();
-  const [dark, setDark] = useState(true);
+  const dark = settings.dark;
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", dark);
   }, [dark]);
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [readingText, setReadingText] = useState<Text | null>(null);
+  const readingText: Text | null = settings.readingId
+    ? lang.texts.find((t) => t.id === settings.readingId) ?? null
+    : null;
+  const setReadingText = (t: Text | null) =>
+    setSettings((s) => ({ ...s, readingId: t?.id ?? null }));
   const [contextOpen, setContextOpen] = useState(false);
   const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
   const [pendingReset, setPendingReset] = useState<string | null>(null);
@@ -160,16 +185,14 @@ export default function App() {
 
   useEffect(() => { setShuffled(true); }, [setShuffled]);
 
-  // Session filters are language-specific — clear them when the language changes
-  // (skip the initial mount so persisted filters still load).
-  const firstLang = useRef(true);
-  useEffect(() => {
-    if (firstLang.current) { firstLang.current = false; return; }
-    setSessionFilters([]);
+  // Switching language swaps in that language's remembered filters and closes
+  // any open text; the scheme falls back per-language via schemeByLang.
+  const selectLanguage = (code: string) => {
+    if (code === langCode) return;
+    setSessionFilters(settings.filtersByLang[code] ?? []);
     setExpandedGroups(new Set());
-    setReadingText(null);
-    setScheme(lang.defaultScheme);
-  }, [langCode, setSessionFilters]); // eslint-disable-line react-hooks/exhaustive-deps
+    setSettings((s) => ({ ...s, lang: code, readingId: null }));
+  };
 
   // Reset context drawer whenever the card changes
   useEffect(() => { setContextOpen(false); }, [idx]);
@@ -222,6 +245,7 @@ export default function App() {
       {/* Main — a text is its own screen; otherwise the deck */}
       {readingText ? (
         <Reader
+          key={readingText.id}
           text={readingText}
           lang={LANGUAGE_BY_CODE[readingText.language] ?? lang}
           scheme={activeScheme}
@@ -422,7 +446,7 @@ export default function App() {
             {LANGUAGES.map((l) => (
               <button
                 key={l.code}
-                onClick={() => setLangCode(l.code)}
+                onClick={() => selectLanguage(l.code)}
                 className={`${btnCls} ${l.code === langCode ? "border-accent text-accent dark:border-accent-dk dark:text-accent-dk" : ""}`}
               >
                 {l.name}
@@ -572,7 +596,7 @@ export default function App() {
           <div className="text-[12px] tracking-[0.1em] uppercase text-ink-faint font-serif">Appearance</div>
           <button
             className={`${btnCls} text-left`}
-            onClick={() => setDark((d) => !d)}
+            onClick={() => setSettings((s) => ({ ...s, dark: !s.dark }))}
           >
             {dark ? "☀ Light mode" : "☾ Dark mode"}
           </button>
