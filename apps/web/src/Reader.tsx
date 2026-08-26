@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { IoBookmark, IoBookmarkOutline } from "react-icons/io5";
 import type { Language, Text } from "../../../shared/types/types";
-import { roman, pageLabelMap, displayLines } from "../../../shared/reader";
+import { roman, pageLabelMap, displayLines, isHardBreak } from "../../../shared/reader";
 
 const BM_KEY = "tibetan-flash-bookmarks";
 const loadBookmarks = (): Record<string, number> => {
@@ -9,9 +9,13 @@ const loadBookmarks = (): Record<string, number> => {
 };
 
 function FolioChip({ label }: { label: string }) {
+  // Block + full width so the folio marker breaks onto its own centered line,
+  // even when the page turn falls mid-clause. (span-in-span keeps the HTML valid.)
   return (
-    <span className="inline-block font-title text-[11px] text-accent dark:text-accent-dk border-[0.5px] border-accent dark:border-accent-dk rounded-[20px] px-2 py-px mx-[5px] align-middle whitespace-nowrap">
-      ❁ {label}
+    <span className="block w-full text-center my-2">
+      <span className="inline-block font-title text-[11px] text-accent dark:text-accent-dk border-[0.5px] border-accent dark:border-accent-dk rounded-[20px] px-2 py-px whitespace-nowrap">
+        ❁ {label}
+      </span>
     </span>
   );
 }
@@ -100,8 +104,9 @@ export function Reader({ text, lang, scheme }: { text: Text; lang: Language; sch
               {displayLines(text).map((group, gi) => {
                 const li0 = group[0];
                 const marked = bookmark === li0;
+                const paraEnd = isHardBreak(text, group[group.length - 1]);
                 return (
-                <div key={gi} ref={marked ? markRef : undefined} className="flex items-start mb-1.5 scroll-mt-20">
+                <div key={gi} ref={marked ? markRef : undefined} className={`flex items-start scroll-mt-20 ${paraEnd ? "mb-5" : "mb-1.5"}`}>
                   {/* margin bookmark rail */}
                   <button
                     onClick={() => setBookmark(marked ? null : li0)}

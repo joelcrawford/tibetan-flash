@@ -3,7 +3,7 @@ import { View, Text, ScrollView, TouchableOpacity, StyleSheet, Animated } from "
 import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import type { Language, Text as LangText } from "../../../shared/types/types";
-import { roman, pageLabelMap, displayLines } from "../../../shared/reader";
+import { roman, pageLabelMap, displayLines, isHardBreak } from "../../../shared/reader";
 
 type Colors = {
   bg: string; card: string; border: string; ink: string; inkMid: string;
@@ -14,9 +14,13 @@ const MIN_PX = 24, MAX_PX = 52;
 const BM_KEY = "tibetan-flash-bookmarks";
 
 function FolioChip({ label, c }: { label: string; c: Colors }) {
+  // Full-width wrapper so the folio marker takes its own centered line in the
+  // flex-wrap clause row, even when the page turn falls mid-clause.
   return (
-    <View style={[fc.chip, { borderColor: c.accent }]}>
-      <Text style={[fc.chipText, { color: c.accent }]}>❁ {label}</Text>
+    <View style={fc.chipRow}>
+      <View style={[fc.chip, { borderColor: c.accent }]}>
+        <Text style={[fc.chipText, { color: c.accent }]}>❁ {label}</Text>
+      </View>
     </View>
   );
 }
@@ -121,11 +125,12 @@ export function Reader({ text, lang, scheme, c }: { text: LangText; lang: Langua
                 items.push(<Text key={`sh${li}`} style={{ fontSize: fontPx, lineHeight: fontPx * 1.55, paddingHorizontal: 1, color: c.accent }}>{lang.clauseMark}</Text>);
               });
               const row = <View style={rs.clauseRow}>{items}</View>;
+              const paraEnd = isHardBreak(text, group[group.length - 1]);
               return (
                 <View
                   key={gi}
                   onLayout={(e) => { groupY.current[gi] = e.nativeEvent.layout.y; maybeScroll(bookmark); }}
-                  style={{ flexDirection: "row", alignItems: "flex-start", marginBottom: 6 }}
+                  style={{ flexDirection: "row", alignItems: "flex-start", marginBottom: paraEnd ? 20 : 6 }}
                 >
                   <TouchableOpacity onPress={() => toggleBookmark(li0)} hitSlop={8} style={{ width: 24, alignItems: "center", paddingTop: 8 }}>
                     <Ionicons name={marked ? "bookmark" : "bookmark-outline"} size={15} color={marked ? c.accent : c.border} />
@@ -162,7 +167,8 @@ export function Reader({ text, lang, scheme, c }: { text: LangText; lang: Langua
 }
 
 const fc = StyleSheet.create({
-  chip: { borderWidth: 0.5, borderRadius: 20, paddingHorizontal: 7, paddingVertical: 1, marginHorizontal: 4, alignSelf: "center" },
+  chipRow: { width: "100%", alignItems: "center", marginVertical: 6 },
+  chip: { borderWidth: 0.5, borderRadius: 20, paddingHorizontal: 7, paddingVertical: 1, alignSelf: "center" },
   chipText: { fontSize: 11, fontFamily: "Georgia" },
 });
 

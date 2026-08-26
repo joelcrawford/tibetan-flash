@@ -38,16 +38,15 @@ export function pageLabelMap(t: Text): Map<string, string> {
   return m;
 }
 
-// Group clause indices into display lines. Clauses between hard breaks flow &
-// wrap together (prose); each hard break ends a display line (verse / sentence).
+// Group clause indices into display lines. Each shad-delimited clause renders on
+// its own line. (Hard breaks in `t.breaks` remain available — see isHardBreak —
+// so paragraph/verse boundaries can still be spaced.)
 export function displayLines(t: Text): number[][] {
-  const brk = new Set(t.breaks ?? []);
-  const groups: number[][] = [];
-  let cur: number[] = [];
-  t.lines.forEach((_, li) => {
-    cur.push(li);
-    if (brk.has(li)) { groups.push(cur); cur = []; }
-  });
-  if (cur.length) groups.push(cur);
-  return groups;
+  return t.lines.map((_, li) => [li]);
+}
+
+// Whether a display line ends a paragraph/verse (a hard break in the source) —
+// lets the reader add extra spacing after it even though every clause is its own line.
+export function isHardBreak(t: Text, li: number): boolean {
+  return (t.breaks ?? []).includes(li);
 }
