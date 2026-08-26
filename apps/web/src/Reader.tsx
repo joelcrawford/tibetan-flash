@@ -12,8 +12,8 @@ function FolioChip({ label }: { label: string }) {
   // Block + full width so the folio marker breaks onto its own centered line,
   // even when the page turn falls mid-clause. (span-in-span keeps the HTML valid.)
   return (
-    <span className="block w-full text-center my-2">
-      <span className="inline-block font-title text-[11px] text-accent dark:text-accent-dk border-[0.5px] border-accent dark:border-accent-dk rounded-[20px] px-2 py-px whitespace-nowrap">
+    <span className="block w-full text-left my-3">
+      <span className="inline-block font-title text-[22px] text-accent dark:text-accent-dk border-[0.5px] border-accent dark:border-accent-dk rounded-[20px] px-3 py-1 whitespace-nowrap">
         ❁ {label}
       </span>
     </span>

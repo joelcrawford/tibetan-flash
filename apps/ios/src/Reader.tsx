@@ -167,9 +167,9 @@ export function Reader({ text, lang, scheme, c }: { text: LangText; lang: Langua
 }
 
 const fc = StyleSheet.create({
-  chipRow: { width: "100%", alignItems: "center", marginVertical: 6 },
-  chip: { borderWidth: 0.5, borderRadius: 20, paddingHorizontal: 7, paddingVertical: 1, alignSelf: "center" },
-  chipText: { fontSize: 11, fontFamily: "Georgia" },
+  chipRow: { width: "100%", alignItems: "flex-start", marginVertical: 8 },
+  chip: { borderWidth: 0.5, borderRadius: 20, paddingHorizontal: 11, paddingVertical: 3, alignSelf: "flex-start" },
+  chipText: { fontSize: 22, fontFamily: "Georgia" },
 });
 
 const rs = StyleSheet.create({
