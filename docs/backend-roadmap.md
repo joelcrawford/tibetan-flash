@@ -23,7 +23,8 @@ in (Tibetan + Japanese, pluggable `Language` modules). Card-ids are migrated.
 and [scripts/ingest-acip.mjs](../scripts/ingest-acip.mjs) turns it into the Text JSON:
 `translit` = ACIP verbatim, `script` = Unicode derived **per syllable** by the
 converter, folios from `@NNN` markers, running headers stripped, hard breaks from
-source newlines. Result: 12 folio sides (001a–006b), 358 lines, 2152 tokens, and a
+source newlines. Result: 12 pages (001–012, exactly as marked in the source), 358
+lines, 2152 tokens, and a
 **100% ACIP→Unicode round-trip** (no artifacts — the old hand-fed Unicode had 3).
 Data model stores `Token{script, translit}` — script = Unicode, translit = ACIP;
 Wylie is derived. (The earlier Unicode path via

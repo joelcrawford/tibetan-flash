@@ -20,10 +20,10 @@ test("Tibetan text has the expected shape", () => {
   assert.equal(text.language, "bo");
 });
 
-test("folio labels are Xa/Xb and sequential sides", () => {
+test("folio labels match the source page markers exactly", () => {
   const labels = text.pageBreaks.map((p) => p.label);
-  assert.deepEqual(labels, ["001a","001b","002a","002b","003a","003b","004a","004b","005a","005b","006a","006b"]);
-  for (const l of labels) assert.match(l, /^\d{3}[ab]$/);
+  assert.deepEqual(labels, ["001","002","003","004","005","006","007","008","009","010","011","012"]);
+  for (const l of labels) assert.match(l, /^\d{3}$/);
 });
 
 test("no folio ornaments or running headers leak into the reading flow", () => {
