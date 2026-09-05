@@ -2527,5 +2527,82 @@
     "context": "Tibetan nouns are number-neutral — SANGS RGYAS can mean one buddha or many — so plurality is left unmarked unless it matters, and RNAMS is the standard way to mark it. It is everywhere in scripture and verse ('CHOS RNAMS THAMS CAD...' — 'all phenomena...'). The other common pluralizer is DAG, met inside DE DAG ('those') in the 05 Ben's Text notes; RNAMS is the more frequent and more neutral of the two.",
     "context_script": "",
     "session": "07 Ben's Text"
+  },
+  {
+    "id": "bo-don-spyi",
+    "language": "bo",
+    "script": "དོན་སྤྱི།",
+    "translit": "DON SPYI",
+    "meaning": "a generality in the sense of being the mental image of a thing you see or have seen, mental image",
+    "notes": "Sanskrit: artha-sāmānya. DON = meaning/object/thing + SPYI = general → 'meaning-generality' or 'object-generality.' The most important of the kinds of SPYI: the generic mental image through which thought engages a thing.",
+    "context": "The answer to how a SPYI MTSAN (see 07 Ben's Text) actually shows up in the mind: when you think 'water pitcher,' what appears is not the pitcher itself but a DON SPYI — a composite image built from pitchers you have seen, standing in for all of them. Conceptual thought (RTOG PA) never touches the particular directly; it always works through this image, and mistakes the image for the thing. That confusion of image and object is the tradition's precise account of what makes thought indirect — and what direct perception is free of.",
+    "context_script": "",
+    "session": "08 Ben's Text"
+  },
+  {
+    "id": "bo-tsogs-spyi",
+    "language": "bo",
+    "script": "ཚོགས་སྤྱི།",
+    "translit": "TSOGS SPYI",
+    "meaning": "a generality in the sense of a collection",
+    "notes": "TSOGS = collection, assembly, accumulation + SPYI = general. ACIP TS is the aspirated ཚ (TZ would be ཙ). The same TSOGS appears in TSOGS BSAGS, 'gathering the collections' of merit and wisdom.",
+    "context": "A whole is general with respect to its own parts: a forest is a TSOGS SPYI over its trees, an army over its soldiers, a water pitcher over its lid, belly, and base. Unlike the type-generality (RIGS SPYI), which pervades many separate instances, the collection-generality is one gross thing spread over the pieces that compose it. Debate uses it to probe part/whole puzzles: is the pitcher its parts, or something over and above them? Note this makes a TSOGS SPYI a functioning thing (DNGOS PO — see 04 Ben's Text), unlike the other generalities, which are mere abstractions.",
+    "context_script": "",
+    "session": "08 Ben's Text"
+  },
+  {
+    "id": "bo-sgra-spyi",
+    "language": "bo",
+    "script": "སྒྲ་སྤྱི།",
+    "translit": "SGRA SPYI",
+    "meaning": "a generality in the sense of being the mental image of a thing you have heard of",
+    "notes": "Sanskrit: śabda-sāmānya. SGRA = sound, word, term + SPYI = general → 'sound-generality': the image that arises from the name alone.",
+    "context": "The partner of DON SPYI, split by how you came to the image. Someone who has heard the word 'elephant' but never seen one has only a SGRA SPYI — an image spun from the term; someone who has seen elephants but never learned the word has only a DON SPYI; a person who knows both has the two mixed together, and that mixing of word and thing is exactly what lets language work. The pair explains why a description can never substitute for seeing: the image from words is thinner than the image from sight, and both fall short of the particular (RANG MTSAN — see 07 Ben's Text).",
+    "context_script": "",
+    "session": "08 Ben's Text"
+  },
+  {
+    "id": "bo-rigs-spyi",
+    "language": "bo",
+    "script": "རིགས་སྤྱི།",
+    "translit": "RIGS SPYI",
+    "meaning": "a generality in the sense of being a type, a class, a catagory",
+    "notes": "Sanskrit: jāti. RIGS = type, kind, class, lineage + SPYI = general. The same RIGS as in RIGS PA (reasoning) is a different word — here it is the noun 'kind,' as in SANGS RGYAS KYI RIGS, 'the buddha lineage.'",
+    "context": "The generality as category: 'water pitcher' as a type pervading the golden pitcher, the clay pitcher, and every other instance. Each of those instances is a BYE BRAG of it. This is the SPYI the courtyard works with most — the standard debate definition of a generality is 'that which pervades its many instances' (RJES 'GRO, following along with them). It sits squarely on the SPYI MTSAN side of the divide from 07 Ben's Text: the type exists, but only as an abstraction — it is the particulars that hold water.",
+    "context_script": "",
+    "session": "08 Ben's Text"
+  },
+  {
+    "id": "bo-bye-brag",
+    "language": "bo",
+    "script": "བྱེ་བྲག",
+    "translit": "BYE BRAG",
+    "meaning": "a specific instance of a thing, a thing which is characteristic of",
+    "notes": "Sanskrit: viśeṣa. The standing correlate of SPYI: where SPYI is the general, BYE BRAG is the particular that falls under it. Also 'distinction, variety' in ordinary usage; the Vaiśeṣika school of Indian philosophy is BYE BRAG PA, 'the particularists.'",
+    "context": "The other half of every generality pair in this session: gold pitcher is a BYE BRAG of pitcher, pitcher a BYE BRAG of thing. The courtyard definition — something is a BYE BRAG of X if it is X, and things exist which are X but not it — gets drilled through endless examples, because SPYI and BYE BRAG are relative terms: pitcher is a generality looking down at gold pitcher and an instance looking up at DNGOS PO. Related to but distinct from RANG MTSAN (07 Ben's Text): BYE BRAG is a role within a classification; RANG MTSAN is a claim about how a thing exists.",
+    "context_script": "",
+    "session": "08 Ben's Text"
+  },
+  {
+    "id": "bo-rtog-pa",
+    "language": "bo",
+    "script": "རྟོག་པ།",
+    "translit": "RTOG PA",
+    "meaning": "idea, concept, (often) wrong idea",
+    "notes": "Sanskrit: kalpanā. From the verb RTOG, 'to conceptualize, to construe.' Appears in RNAM RTOG (discursive thought) and MI RTOG PA (non-conceptuality). One letter away from RTOGS PA — the added S changes 'concept' into 'realization.'",
+    "context": "The mind this session's machinery belongs to: RTOG PA is defined as the awareness that engages its object through a mixed image — apprehending the DON SPYI or SGRA SPYI as if it were the thing itself. That built-in confusion is why the gloss says '(often) wrong idea': conception can be accurate, but it always operates at one remove, unlike direct perception, which meets the bare particular. The deepest form of the problem is grasping at true existence — which is why the path's goal states are so often described as MI RTOG PA, free of conceptuality.",
+    "context_script": "",
+    "session": "08 Ben's Text"
+  },
+  {
+    "id": "bo-rtogs-pa",
+    "language": "bo",
+    "script": "རྟོགས་པ།",
+    "translit": "RTOGS PA",
+    "meaning": "realization",
+    "notes": "Sanskrit: adhigama. The verb RTOGS, 'to realize, to comprehend,' nominalized with PA. Distinguish carefully from RTOG PA: the extra suffixed S is the whole difference between having a concept of something and having realized it.",
+    "context": "The word for actually getting it — from first understanding an object of study up to the direct realization of emptiness (STONG PA NYID RTOGS PA). The minimal pair with RTOG PA is beloved of teachers because it carries a real doctrinal point: realization can begin conceptually — an inferential mind realizes its object through a DON SPYI — but it must ripen into direct, image-free knowing. Scripture divides the Dharma into LUNG (the teachings as transmitted) and RTOGS PA (the teachings as realized in someone's mind): the second is the one that counts.",
+    "context_script": "",
+    "session": "08 Ben's Text"
   }
 ]

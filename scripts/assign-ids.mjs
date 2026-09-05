@@ -28,8 +28,8 @@ for (const c of cards) {
   let id = base, n = 1;
   while (used.has(id)) { n += 1; id = `${base}-${n}`; }
   used.add(id);
-  // place `id` first for readability
-  const { language, ...rest } = c;
+  // place `id` first for readability (drop any pre-existing empty id field)
+  const { id: _empty, language, ...rest } = c;
   Object.keys(c).forEach((k) => delete c[k]);
   Object.assign(c, { id, language, ...rest });
   added += 1;
