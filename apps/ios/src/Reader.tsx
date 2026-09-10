@@ -177,13 +177,31 @@ export function Reader({ text, lang, scheme, c }: { text: LangText; lang: Langua
                 line.forEach((tk, ti) => {
                   const lbl = pages.get(`${li}:${ti}`);
                   if (lbl) items.push(<FolioChip key={`p${li}-${ti}`} label={lbl} c={c} />);
-                  items.push(
-                    <View key={`s${li}-${ti}`} style={rs.scol}>
+                  const f = seg ? seg.offs[li] + ti : -1;
+                  const d = words && seg ? seg.depth[f] : 0;
+                  const w = words && seg ? seg.wordAt.get(f) : undefined;
+                  const sel = peek?.s;
+                  const inSel = !!(sel && f >= sel[0] && f <= sel[1]);
+                  const tokView = (
+                    <View
+                      style={[
+                        rs.scol,
+                        d > 0 ? { backgroundColor: lapis + alphaHex(d), borderWidth: 1.5, borderColor: "transparent" } : null,
+                        inSel ? {
+                          borderTopColor: c.accent, borderBottomColor: c.accent,
+                          ...(f === sel![0] ? { borderLeftColor: c.accent } : null),
+                          ...(f === sel![1] ? { borderRightColor: c.accent } : null),
+                        } : null,
+                      ]}
+                    >
                       <Text style={{ fontSize: fontPx, lineHeight: fontPx * 1.55, color: c.ink }}>{tk.script}</Text>
                       {/* always rendered so the row reserves space; visibility toggles, not layout */}
-                      <Text style={{ fontSize: romPx, marginTop: -romPx * 0.4, fontFamily: "Menlo", color: c.accent, opacity: showRom ? 1 : 0 }}>{roman(tk, lang, scheme) || " "}</Text>
+                      <Text style={{ fontSize: romPx, marginTop: -romPx * 0.4, fontFamily: "Menlo", color: c.accent, opacity: showRom ? 1 : 0 }}>{roman(tk, lang, scheme) || " "}</Text>
                     </View>
                   );
+                  items.push(w
+                    ? <TouchableOpacity key={`s${li}-${ti}`} activeOpacity={0.6} onPress={() => pressWord(w)}>{tokView}</TouchableOpacity>
+                    : <View key={`s${li}-${ti}`}>{tokView}</View>);
                 });
                 const endLbl = pages.get(`${li}:${line.length}`);
                 if (endLbl) items.push(<FolioChip key={`pe${li}`} label={endLbl} c={c} />);
