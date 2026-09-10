@@ -53,6 +53,8 @@ const C = {
   faint:      "#b0a888",
   // Paper accent — russet
   accent:     "#993c1d",
+  // Paper word-wash — lapis
+  lapis:      "#2f5e96",
 
   // Monastery (dark) backgrounds
   bgDark:     "#1a1714",
@@ -68,6 +70,8 @@ const C = {
   faintDark:  "#806858",
   // Monastery accent — saffron
   accentDark: "#c47c1a",
+  // Monastery word-wash — lapis
+  lapisDark:  "#7aa8e0",
 
   // Semantic status (theme-split)
   knownDark:     "#4a8c2a",
@@ -156,6 +160,7 @@ function Main({ initial }: { initial: AppSettings }) {
     muted:  dark ? C.mutedDark  : C.muted,
     faint:  dark ? C.faintDark  : C.faint,
     accent: dark ? C.accentDark : C.accent,
+    lapis:  dark ? C.lapisDark  : C.lapis,
   };
 
   // Rating config is theme-dependent for known/familiar colors
