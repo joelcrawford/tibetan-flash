@@ -150,29 +150,34 @@ export function Reader({ text, lang, scheme }: { text: Text; lang: Language; sch
   };
   const isSelected = (ws: number, we: number) => peek?.s[0] === ws && peek?.s[1] === we;
 
-  // A word washes only when the dictionary actually knows it — unmatched
-  // words render as plain script (no wash, no tap).
-  const renderWord = (w: { start: number; end: number }, li: number) => {
-    if (!entryFor(text, w.start, w.end)?.meaning)
-      return Array.from({ length: w.end - w.start + 1 }, (_, k) => renderTok(li, w.start + k - offs[li]));
-    return wordWash(w, li);
-  };
+  // Every box — word or phrase — lays down the SAME translucent wash, so
+  // nesting depth reads purely through compounded transparency: a word alone
+  // is one layer, inside a phrase two, inside a nested phrase three.
+  // Selection is the cinnabar ring, never a different fill.
+  const WASH = "bg-lapis/15 dark:bg-lapis-dk/15";
+  const RING = "ring-[1.5px] ring-accent dark:ring-accent-dk";
 
-  // A word wash; darker + cinnabar ring while its peek is open.
-  const wordWash = (w: { start: number; end: number }, li: number) => (
-    <span
-      key={`w${w.start}`}
-      onClick={clickWord(w.start, w.end)}
-      className={[
-        "cursor-pointer transition-colors",
-        isSelected(w.start, w.end)
-          ? "bg-lapis/35 dark:bg-lapis-dk/35 ring-[1.5px] ring-accent dark:ring-accent-dk"
-          : "bg-lapis/20 dark:bg-lapis-dk/20 hover:bg-lapis/30 dark:hover:bg-lapis-dk/30",
-      ].join(" ")}
-    >
-      {Array.from({ length: w.end - w.start + 1 }, (_, k) => renderTok(li, w.start + k - offs[li]))}
-    </span>
-  );
+  const renderUnit = (u: import("../../../shared/reader").LineUnit, li: number): React.ReactNode => {
+    if (u.kind === "phrase")
+      return (
+        <span key={`p${u.start}`} className={`${WASH} ${isSelected(u.start, u.end) ? RING : ""}`}>
+          {u.children.map((c) => renderUnit(c, li))}
+        </span>
+      );
+    // a word washes only when the dictionary actually knows it — unmatched
+    // words render as plain script (no wash, no tap)
+    if (!entryFor(text, u.start, u.end)?.meaning)
+      return Array.from({ length: u.end - u.start + 1 }, (_, k) => renderTok(li, u.start + k - offs[li]));
+    return (
+      <span
+        key={`w${u.start}`}
+        onClick={clickWord(u.start, u.end)}
+        className={`${WASH} cursor-pointer transition-colors hover:bg-lapis/25 dark:hover:bg-lapis-dk/25 ${isSelected(u.start, u.end) ? RING : ""}`}
+      >
+        {Array.from({ length: u.end - u.start + 1 }, (_, k) => renderTok(li, u.start + k - offs[li]))}
+      </span>
+    );
+  };
 
   // Peek rows: every dict span covering the tapped word, widest first (the
   // largest-range-first drill-down), so a compound shows phrase → word.
@@ -216,16 +221,7 @@ export function Reader({ text, lang, scheme }: { text: Text; lang: Language; sch
                           onClick={tappable ? () => toggleLine(li) : undefined}
                         >
                           {units
-                            ? units.map((u) =>
-                                u.kind === "phrase" ? (
-                                  // phrase wash sits behind its word washes --
-                                  // the overlap darkens, nesting reads as depth
-                                  <span key={`p${u.start}`} className={`bg-lapis/12 dark:bg-lapis-dk/12 ${isSelected(u.start, u.end) ? "ring-[1.5px] ring-accent dark:ring-accent-dk" : ""}`}>
-                                    {u.words.map((w) => renderWord(w, li))}
-                                  </span>
-                                ) : (
-                                  renderWord(u, li)
-                                ))
+                            ? units.map((u) => renderUnit(u, li))
                             : line.map((_, ti) => renderTok(li, ti))}
                           {endLbl && <FolioChip label={endLbl} />}
                           <span className="text-accent dark:text-accent-dk px-[1px]">{lang.clauseMark}</span>{" "}

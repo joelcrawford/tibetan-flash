@@ -59,7 +59,7 @@ export function isHardBreak(t: Text, li: number): boolean {
 // (curated data only; no runtime auto-segmentation).
 
 export interface WordUnit { kind: "word"; start: number; end: number }
-export interface PhraseUnit { kind: "phrase"; start: number; end: number; words: WordUnit[] }
+export interface PhraseUnit { kind: "phrase"; start: number; end: number; children: LineUnit[] }
 export type LineUnit = WordUnit | PhraseUnit;
 
 export function hasSegmentation(t: Text): boolean {
@@ -74,27 +74,36 @@ export function lineOffsets(t: Text): number[] {
   return offs;
 }
 
-// The line's words, grouped under their OUTERMOST containing phrase — the two
-// visual levels of the word-wash rendering (phrase wash behind word washes).
-// Units tile the line in order. Deeper phrase nesting stays reachable through
-// entriesAt (the Explore stepper), it just isn't drawn as a third wash level.
+// The line's words nested under EVERY containing phrase level, as a tree —
+// each level renders one translucent wash, so nesting depth shows purely
+// through compounded transparency (word alone = 1 layer, word in a phrase =
+// 2, in a nested phrase = 3 …). Units tile the line in order.
 export function lineUnits(t: Text, li: number): LineUnit[] | null {
   if (!hasSegmentation(t)) return null;
   const offs = lineOffsets(t);
   const s = offs[li], e = s + t.lines[li].length - 1;
-  const phrases = (t.phrases ?? []).filter(([ps, pe]) => ps >= s && pe <= e);
-  const outer = phrases.filter(([ps, pe]) =>
-    !phrases.some(([qs, qe]) => (qs < ps && pe <= qe) || (qs <= ps && pe < qe)));
+  // widest-first so inner phrases nest into the phrase already placed
+  const phrases = (t.phrases ?? [])
+    .filter(([ps, pe]) => ps >= s && pe <= e)
+    .sort((a, b) => (b[1] - b[0]) - (a[1] - a[0]));
+  const words = (t.words ?? []).filter(([ws]) => ws >= s && ws <= e);
+
+  const place = (units: LineUnit[], u: LineUnit): void => {
+    const host = units.find(
+      (p): p is PhraseUnit => p.kind === "phrase" && u.start >= p.start && u.end <= p.end);
+    if (host) place(host.children, u);
+    else units.push(u);
+  };
+
   const units: LineUnit[] = [];
-  for (const [ws, we] of (t.words ?? []).filter(([ws2]) => ws2 >= s && ws2 <= e)) {
-    const word: WordUnit = { kind: "word", start: ws, end: we };
-    const ph = outer.find(([ps, pe]) => ws >= ps && we <= pe);
-    if (ph) {
-      const last = units[units.length - 1];
-      if (last?.kind === "phrase" && last.start === ph[0]) last.words.push(word);
-      else units.push({ kind: "phrase", start: ph[0], end: ph[1], words: [word] });
-    } else units.push(word);
-  }
+  for (const [ps, pe] of phrases) place(units, { kind: "phrase", start: ps, end: pe, children: [] });
+  for (const [ws, we] of words) place(units, { kind: "word", start: ws, end: we });
+
+  const sortRec = (us: LineUnit[]) => {
+    us.sort((a, b) => a.start - b.start);
+    for (const u of us) if (u.kind === "phrase") sortRec(u.children);
+  };
+  sortRec(units);
   return units;
 }
 
