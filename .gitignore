@@ -32,3 +32,7 @@ __pycache__/
 # data
 /shared/data
 /shared/docs
+
+# dictionary source CSVs + generated review reports (large; built artifact is
+# shared/languages/tibetan/dictionary.json via scripts/build-gmr-dictionary.mjs)
+data/
