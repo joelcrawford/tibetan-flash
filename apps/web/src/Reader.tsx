@@ -3,7 +3,7 @@ import { IoBookmark, IoBookmarkOutline, IoClose } from "react-icons/io5";
 import type { DictEntry, Language, Text } from "../../../shared/types/types";
 import {
   roman, pageLabelMap, displayLines, isHardBreak,
-  flatten, hasSegmentation, lineOffsets, lineUnits, entriesAt,
+  flatten, hasSegmentation, lineOffsets, lineUnits, entriesAt, entryFor,
 } from "../../../shared/reader";
 import { READER_PREFS_KEY, parseTextPrefs, TextPrefs } from "../../../shared/hooks/settings";
 
@@ -149,13 +149,21 @@ export function Reader({ text, lang, scheme }: { text: Text; lang: Language; sch
   };
   const isPeeked = (ws: number, we: number) => peek?.[0] === ws && peek?.[1] === we;
 
+  // A word washes only when the dictionary actually knows it — unmatched
+  // words render as plain script (no wash, no tap).
+  const renderWord = (w: { start: number; end: number }, li: number) => {
+    if (!entryFor(text, w.start, w.end)?.meaning)
+      return Array.from({ length: w.end - w.start + 1 }, (_, k) => renderTok(li, w.start + k - offs[li]));
+    return wordWash(w, li);
+  };
+
   // A word wash; darker + cinnabar ring while its peek is open.
   const wordWash = (w: { start: number; end: number }, li: number) => (
     <span
       key={`w${w.start}`}
       onClick={clickWord(w.start, w.end)}
       className={[
-        "rounded-[6px] cursor-pointer transition-colors",
+        "cursor-pointer transition-colors",
         isPeeked(w.start, w.end)
           ? "bg-lapis/35 dark:bg-lapis-dk/35 ring-[1.5px] ring-accent dark:ring-accent-dk"
           : "bg-lapis/20 dark:bg-lapis-dk/20 hover:bg-lapis/30 dark:hover:bg-lapis-dk/30",
@@ -211,11 +219,11 @@ export function Reader({ text, lang, scheme }: { text: Text; lang: Language; sch
                                 u.kind === "phrase" ? (
                                   // phrase wash sits behind its word washes --
                                   // the overlap darkens, nesting reads as depth
-                                  <span key={`p${u.start}`} className="bg-lapis/12 dark:bg-lapis-dk/12 rounded-[9px]">
-                                    {u.words.map((w) => wordWash(w, li))}
+                                  <span key={`p${u.start}`} className="bg-lapis/12 dark:bg-lapis-dk/12">
+                                    {u.words.map((w) => renderWord(w, li))}
                                   </span>
                                 ) : (
-                                  wordWash(u, li)
+                                  renderWord(u, li)
                                 ))
                             : line.map((_, ti) => renderTok(li, ti))}
                           {endLbl && <FolioChip label={endLbl} />}
@@ -279,10 +287,10 @@ export function Reader({ text, lang, scheme }: { text: Text; lang: Language; sch
                 {d.end > d.start && <span className="font-title text-[10px] uppercase tracking-[0.1em] text-ink-faint">{d.pos}</span>}
               </div>
               <div className="font-serif text-[15px] text-ink-mid dark:text-ink-lt mt-0.5">
-                {d.meaning || <span className="italic text-ink-faint">no gloss yet — unmatched</span>}
+                {d.meaning}
                 {d.lemma && <span className="text-ink-faint text-[12px]"> · from {lang.toScheme(d.lemma, scheme)}</span>}
               </div>
-              {d.notes && !d.notes.startsWith("UNMATCHED") && (
+              {d.notes && (
                 <div className="font-serif text-[12px] text-ink-faint mt-0.5">{d.notes}</div>
               )}
             </div>
