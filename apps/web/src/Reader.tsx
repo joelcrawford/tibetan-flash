@@ -67,8 +67,9 @@ export function Reader({ text, lang, scheme }: { text: Text; lang: Language; sch
     } catch { /* ignore */ }
   }, [sound, layout, fontPx, words, text.id]);
 
-  // Word-wash peek: the tapped word span; entries shown widest → narrowest.
-  const [peek, setPeek] = useState<[number, number] | null>(null);
+  // Word-wash peek: `a` is the tapped anchor word (drives the row list),
+  // `s` the selected span (a peek-row click rings that span in the text).
+  const [peek, setPeek] = useState<{ a: [number, number]; s: [number, number] } | null>(null);
   const flatToks = useMemo(() => flatten(text), [text]);
   const offs = useMemo(() => lineOffsets(text), [text]);
   useEffect(() => { if (!words) setPeek(null); }, [words]);
@@ -145,9 +146,9 @@ export function Reader({ text, lang, scheme }: { text: Text; lang: Language; sch
   const clickWord = (ws: number, we: number) => (e: React.MouseEvent) => {
     e.stopPropagation();
     setPillHidden(false); // tapping a word is intent — never open the peek hidden
-    setPeek((p) => (p && p[0] === ws && p[1] === we ? null : [ws, we]));
+    setPeek((p) => (p && p.a[0] === ws && p.a[1] === we ? null : { a: [ws, we], s: [ws, we] }));
   };
-  const isPeeked = (ws: number, we: number) => peek?.[0] === ws && peek?.[1] === we;
+  const isSelected = (ws: number, we: number) => peek?.s[0] === ws && peek?.s[1] === we;
 
   // A word washes only when the dictionary actually knows it — unmatched
   // words render as plain script (no wash, no tap).
@@ -164,7 +165,7 @@ export function Reader({ text, lang, scheme }: { text: Text; lang: Language; sch
       onClick={clickWord(w.start, w.end)}
       className={[
         "cursor-pointer transition-colors",
-        isPeeked(w.start, w.end)
+        isSelected(w.start, w.end)
           ? "bg-lapis/35 dark:bg-lapis-dk/35 ring-[1.5px] ring-accent dark:ring-accent-dk"
           : "bg-lapis/20 dark:bg-lapis-dk/20 hover:bg-lapis/30 dark:hover:bg-lapis-dk/30",
       ].join(" ")}
@@ -176,7 +177,7 @@ export function Reader({ text, lang, scheme }: { text: Text; lang: Language; sch
   // Peek rows: every dict span covering the tapped word, widest first (the
   // largest-range-first drill-down), so a compound shows phrase → word.
   const peekRows: DictEntry[] = peek
-    ? entriesAt(text, peek[0]).filter((d) => d.start <= peek[0] && d.end >= peek[1]).slice(0, 3)
+    ? entriesAt(text, peek.a[0]).filter((d) => d.start <= peek.a[0] && d.end >= peek.a[1]).slice(0, 3)
     : [];
 
   return (
@@ -219,7 +220,7 @@ export function Reader({ text, lang, scheme }: { text: Text; lang: Language; sch
                                 u.kind === "phrase" ? (
                                   // phrase wash sits behind its word washes --
                                   // the overlap darkens, nesting reads as depth
-                                  <span key={`p${u.start}`} className="bg-lapis/12 dark:bg-lapis-dk/12">
+                                  <span key={`p${u.start}`} className={`bg-lapis/12 dark:bg-lapis-dk/12 ${isSelected(u.start, u.end) ? "ring-[1.5px] ring-accent dark:ring-accent-dk" : ""}`}>
                                     {u.words.map((w) => renderWord(w, li))}
                                   </span>
                                 ) : (
@@ -276,7 +277,14 @@ export function Reader({ text, lang, scheme }: { text: Text; lang: Language; sch
             aria-label="Close lookup"
           ><IoClose size={16} /></button>
           {peekRows.map((d, ri) => (
-            <div key={`${d.start}-${d.end}`} className={ri > 0 ? "mt-2 pt-2 border-t-[0.5px] border-stone dark:border-bdr-dk" : ""}>
+            <div
+              key={`${d.start}-${d.end}`}
+              onClick={() => setPeek((p) => p && { ...p, s: [d.start, d.end] })}
+              className={[
+                ri > 0 ? "mt-2 pt-2 border-t-[0.5px] border-stone dark:border-bdr-dk" : "",
+                "cursor-pointer -mx-2 px-2 rounded-[6px] transition-colors",
+                isSelected(d.start, d.end) ? "bg-lapis/10 dark:bg-lapis-dk/10" : "hover:bg-stone-lt/50 dark:hover:bg-surf-dk-mid/50",
+              ].join(" ")}>
               <div className="flex items-baseline gap-3 flex-wrap">
                 <span style={{ fontFamily: lang.fontStack }} className="text-[20px] text-ink dark:text-ink-lt">
                   {flatToks.slice(d.start, d.end + 1).map((s) => s.script).join("")}
