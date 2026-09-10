@@ -72,6 +72,20 @@ export function Reader({ text, lang, scheme, c }: { text: LangText; lang: Langua
     ? entriesAt(text, peek.a[0]).filter((d) => d.start <= peek.a[0] && d.end >= peek.a[1]).slice(0, 3)
     : [];
 
+  // Echo highlighting: every other instance of the selected term (same ACIP
+  // span) carries one EXTRA wash layer — precomputed as the set of token
+  // indices to deepen, since iOS paints compounded alpha per token.
+  const echoSet = useMemo(() => {
+    if (!seg || !peek) return null;
+    const key = seg.flat.slice(peek.s[0], peek.s[1] + 1).map((t) => t.translit ?? "").join(" ");
+    const set = new Set<number>();
+    for (const [s0, e0] of [...(text.words ?? []), ...(text.phrases ?? [])]) {
+      if (seg.flat.slice(s0, e0 + 1).map((t) => t.translit ?? "").join(" ") !== key) continue;
+      for (let i = s0; i <= e0; i++) set.add(i);
+    }
+    return set;
+  }, [seg, peek, text]);
+
   // ── per-text prefs load / persist ── (the Reader is keyed by text id, so
   // each text mounts fresh; saves wait for the load to avoid clobbering)
   const [prefsLoaded, setPrefsLoaded] = useState(false);
@@ -178,7 +192,8 @@ export function Reader({ text, lang, scheme, c }: { text: LangText; lang: Langua
                   const lbl = pages.get(`${li}:${ti}`);
                   if (lbl) items.push(<FolioChip key={`p${li}-${ti}`} label={lbl} c={c} />);
                   const f = seg ? seg.offs[li] + ti : -1;
-                  const d = words && seg ? seg.depth[f] : 0;
+                  const d0 = words && seg ? seg.depth[f] : 0;
+                  const d = d0 > 0 && echoSet?.has(f) ? d0 + 1 : d0;
                   const w = words && seg ? seg.wordAt.get(f) : undefined;
                   const sel = peek?.s;
                   const inSel = !!(sel && f >= sel[0] && f <= sel[1]);

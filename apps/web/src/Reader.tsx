@@ -150,17 +150,28 @@ export function Reader({ text, lang, scheme }: { text: Text; lang: Language; sch
   };
   const isSelected = (ws: number, we: number) => peek?.s[0] === ws && peek?.s[1] === we;
 
+  // Echo highlighting: hovering or selecting a term lights up every other
+  // instance of the same term (same ACIP span) with one EXTRA wash layer —
+  // "lighting up" stays inside the compounding model, no new color.
+  const [hoverKey, setHoverKey] = useState<string | null>(null);
+  const spanKey = (ws: number, we: number) =>
+    flatToks.slice(ws, we + 1).map((t) => t.translit ?? "").join(" ");
+  const echoKey = hoverKey ?? (peek ? spanKey(peek.s[0], peek.s[1]) : null);
+  useEffect(() => { if (!words) setHoverKey(null); }, [words]);
+
   // Every box — word or phrase — lays down the SAME translucent wash, so
   // nesting depth reads purely through compounded transparency: a word alone
-  // is one layer, inside a phrase two, inside a nested phrase three.
-  // Selection is the cinnabar ring, never a different fill.
+  // is one layer, inside a phrase two, inside a nested phrase three. An echoed
+  // box carries one layer more. Selection is the cinnabar ring, never a fill.
   const WASH = "bg-lapis/15 dark:bg-lapis-dk/15";
+  const ECHO = "bg-lapis/28 dark:bg-lapis-dk/28";
   const RING = "ring-[1.5px] ring-accent dark:ring-accent-dk";
 
   const renderUnit = (u: import("../../../shared/reader").LineUnit, li: number): React.ReactNode => {
+    const echoed = echoKey !== null && spanKey(u.start, u.end) === echoKey;
     if (u.kind === "phrase")
       return (
-        <span key={`p${u.start}`} className={`${WASH} ${isSelected(u.start, u.end) ? RING : ""}`}>
+        <span key={`p${u.start}`} className={`${echoed ? ECHO : WASH} transition-colors ${isSelected(u.start, u.end) ? RING : ""}`}>
           {u.children.map((c) => renderUnit(c, li))}
         </span>
       );
@@ -172,7 +183,9 @@ export function Reader({ text, lang, scheme }: { text: Text; lang: Language; sch
       <span
         key={`w${u.start}`}
         onClick={clickWord(u.start, u.end)}
-        className={`${WASH} cursor-pointer transition-colors hover:bg-lapis/25 dark:hover:bg-lapis-dk/25 ${isSelected(u.start, u.end) ? RING : ""}`}
+        onMouseEnter={() => setHoverKey(spanKey(u.start, u.end))}
+        onMouseLeave={() => setHoverKey(null)}
+        className={`${echoed ? ECHO : WASH} cursor-pointer transition-colors ${isSelected(u.start, u.end) ? RING : ""}`}
       >
         {Array.from({ length: u.end - u.start + 1 }, (_, k) => renderTok(li, u.start + k - offs[li]))}
       </span>
