@@ -1,7 +1,10 @@
-import { useState, useEffect, useRef } from "react";
-import { IoBookmark, IoBookmarkOutline } from "react-icons/io5";
-import type { Language, Text } from "../../../shared/types/types";
-import { roman, pageLabelMap, displayLines, isHardBreak } from "../../../shared/reader";
+import { useState, useEffect, useRef, useMemo } from "react";
+import { IoBookmark, IoBookmarkOutline, IoClose } from "react-icons/io5";
+import type { DictEntry, Language, Text } from "../../../shared/types/types";
+import {
+  roman, pageLabelMap, displayLines, isHardBreak,
+  flatten, hasSegmentation, lineOffsets, lineUnits, entriesAt,
+} from "../../../shared/reader";
 import { READER_PREFS_KEY, parseTextPrefs, TextPrefs } from "../../../shared/hooks/settings";
 
 const BM_KEY = "tibetan-flash-bookmarks";
@@ -53,15 +56,22 @@ export function Reader({ text, lang, scheme }: { text: Text; lang: Language; sch
   // id, so each text mounts fresh), saved back whenever any of them change.
   const [sound, setSound] = useState(() => loadTextPrefs(text.id)?.rom ?? false);
   const [layout, setLayout] = useState<"under" | "line">(() => loadTextPrefs(text.id)?.layout ?? "under");
+  const [words, setWords] = useState(() => (loadTextPrefs(text.id)?.words ?? false) && hasSegmentation(text));
   const [fontPx, setFontPx] = useState(() =>
     Math.min(MAX_PX, Math.max(MIN_PX, loadTextPrefs(text.id)?.fontPx ?? 33)));
   useEffect(() => {
     try {
       const m = parseTextPrefs(localStorage.getItem(READER_PREFS_KEY));
-      m[text.id] = { rom: sound, layout, fontPx };
+      m[text.id] = { rom: sound, layout, fontPx, words };
       localStorage.setItem(READER_PREFS_KEY, JSON.stringify(m));
     } catch { /* ignore */ }
-  }, [sound, layout, fontPx, text.id]);
+  }, [sound, layout, fontPx, words, text.id]);
+
+  // Word-wash peek: the tapped word span; entries shown widest → narrowest.
+  const [peek, setPeek] = useState<[number, number] | null>(null);
+  const flatToks = useMemo(() => flatten(text), [text]);
+  const offs = useMemo(() => lineOffsets(text), [text]);
+  useEffect(() => { if (!words) setPeek(null); }, [words]);
 
   const [revealed, setRevealed] = useState<Set<number>>(new Set());
   const [pillHidden, setPillHidden] = useState(false);
@@ -111,6 +121,56 @@ export function Reader({ text, lang, scheme }: { text: Text; lang: Language; sch
     });
   const tokCount = text.lines.reduce((a, l) => a + l.length, 0);
 
+  // One token: folio chip (if a page starts here) + script with its reserved
+  // romanization row. Shared by the plain path and the word-wash path.
+  const renderTok = (li: number, ti: number) => {
+    const s = text.lines[li][ti];
+    const lbl = pages.get(`${li}:${ti}`);
+    const showRom = under || (tappable && revealed.has(li));
+    return (
+      <span key={ti}>
+        {lbl && <FolioChip label={lbl} />}
+        {/* always render the column so the romanization row reserves
+            its space — toggling visibility never shifts the script */}
+        <span className="inline-flex flex-col items-center align-bottom">
+          <span>{s.script}</span>
+          <span style={{ fontSize: romPx, visibility: showRom ? "visible" : "hidden" }} className="font-mono tracking-[0.02em] text-accent dark:text-accent-dk leading-tight -mt-1">
+            {roman(s, lang, scheme) || " "}
+          </span>
+        </span>
+      </span>
+    );
+  };
+
+  const clickWord = (ws: number, we: number) => (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setPillHidden(false); // tapping a word is intent — never open the peek hidden
+    setPeek((p) => (p && p[0] === ws && p[1] === we ? null : [ws, we]));
+  };
+  const isPeeked = (ws: number, we: number) => peek?.[0] === ws && peek?.[1] === we;
+
+  // A word wash; darker + cinnabar ring while its peek is open.
+  const wordWash = (w: { start: number; end: number }, li: number) => (
+    <span
+      key={`w${w.start}`}
+      onClick={clickWord(w.start, w.end)}
+      className={[
+        "rounded-[6px] cursor-pointer transition-colors",
+        isPeeked(w.start, w.end)
+          ? "bg-lapis/35 dark:bg-lapis-dk/35 ring-[1.5px] ring-accent dark:ring-accent-dk"
+          : "bg-lapis/20 dark:bg-lapis-dk/20 hover:bg-lapis/30 dark:hover:bg-lapis-dk/30",
+      ].join(" ")}
+    >
+      {Array.from({ length: w.end - w.start + 1 }, (_, k) => renderTok(li, w.start + k - offs[li]))}
+    </span>
+  );
+
+  // Peek rows: every dict span covering the tapped word, widest first (the
+  // largest-range-first drill-down), so a compound shows phrase → word.
+  const peekRows: DictEntry[] = peek
+    ? entriesAt(text, peek[0]).filter((d) => d.start <= peek[0] && d.end >= peek[1]).slice(0, 3)
+    : [];
+
   return (
     <>
       <div className="max-w-[720px] mx-auto px-4 pt-3 pb-32">
@@ -138,31 +198,26 @@ export function Reader({ text, lang, scheme }: { text: Text; lang: Language; sch
                   <div className={`flex-1 min-w-0 rounded ${marked ? "bg-accent/5" : ""}`}>
                     {group.map((li) => {
                       const line = text.lines[li];
-                      const isRev = revealed.has(li);
-                      const showRom = under || (tappable && isRev);
                       const endLbl = pages.get(`${li}:${line.length}`);
+                      const units = words ? lineUnits(text, li) : null;
                       return (
                         <span
                           key={li}
                           className={tappable ? "cursor-pointer rounded-[5px]" : ""}
                           onClick={tappable ? () => toggleLine(li) : undefined}
                         >
-                          {line.map((s, ti) => {
-                            const lbl = pages.get(`${li}:${ti}`);
-                            return (
-                              <span key={ti}>
-                                {lbl && <FolioChip label={lbl} />}
-                                {/* always render the column so the romanization row reserves
-                                    its space — toggling visibility never shifts the script */}
-                                <span className="inline-flex flex-col items-center align-bottom">
-                                  <span>{s.script}</span>
-                                  <span style={{ fontSize: romPx, visibility: showRom ? "visible" : "hidden" }} className="font-mono tracking-[0.02em] text-accent dark:text-accent-dk leading-tight -mt-1">
-                                    {roman(s, lang, scheme) || " "}
+                          {units
+                            ? units.map((u) =>
+                                u.kind === "phrase" ? (
+                                  // phrase wash sits behind its word washes --
+                                  // the overlap darkens, nesting reads as depth
+                                  <span key={`p${u.start}`} className="bg-lapis/12 dark:bg-lapis-dk/12 rounded-[9px]">
+                                    {u.words.map((w) => wordWash(w, li))}
                                   </span>
-                                </span>
-                              </span>
-                            );
-                          })}
+                                ) : (
+                                  wordWash(u, li)
+                                ))
+                            : line.map((_, ti) => renderTok(li, ti))}
                           {endLbl && <FolioChip label={endLbl} />}
                           <span className="text-accent dark:text-accent-dk px-[1px]">{lang.clauseMark}</span>{" "}
                         </span>
@@ -201,7 +256,42 @@ export function Reader({ text, lang, scheme }: { text: Text; lang: Language; sch
         <BarBtn on={sound} onClick={() => setSound((v) => !v)}>Aa&nbsp;Romanization</BarBtn>
         <BarBtn on={layout === "under"} disabled={!sound} onClick={() => sound && setLayout("under")}>Under</BarBtn>
         <BarBtn on={layout === "line"} disabled={!sound} onClick={() => sound && setLayout("line")}>By&nbsp;line</BarBtn>
+        <BarBtn on={words} disabled={!hasSegmentation(text)} onClick={() => setWords((v) => !v)}>Words</BarBtn>
       </div>
+
+      {/* peek — the tapped word's dict spans, widest first (phrase → word) */}
+      {peek && peekRows.length > 0 && (
+        <div className={`fixed bottom-[76px] left-1/2 -translate-x-1/2 z-40 w-[min(680px,calc(100%-28px))] bg-card-bg/95 dark:bg-surf-dk/95 backdrop-blur border-[0.5px] border-stone dark:border-bdr-dk rounded-[14px] px-4 py-3 shadow-[0_10px_26px_rgba(20,12,6,0.22)] transition-transform duration-300 ${pillHidden ? "translate-y-[300%]" : "translate-y-0"}`}>
+          <button
+            onClick={() => setPeek(null)}
+            className="absolute top-2 right-2 text-ink-faint hover:text-ink-muted cursor-pointer"
+            aria-label="Close lookup"
+          ><IoClose size={16} /></button>
+          {peekRows.map((d, ri) => (
+            <div key={`${d.start}-${d.end}`} className={ri > 0 ? "mt-2 pt-2 border-t-[0.5px] border-stone dark:border-bdr-dk" : ""}>
+              <div className="flex items-baseline gap-3 flex-wrap">
+                <span style={{ fontFamily: lang.fontStack }} className="text-[20px] text-ink dark:text-ink-lt">
+                  {flatToks.slice(d.start, d.end + 1).map((s) => s.script).join("")}
+                </span>
+                <span className="font-mono text-[11px] text-accent dark:text-accent-dk">
+                  {flatToks.slice(d.start, d.end + 1).map((s) => roman(s, lang, scheme)).join(" ")}
+                </span>
+                {d.end > d.start && <span className="font-title text-[10px] uppercase tracking-[0.1em] text-ink-faint">{d.pos}</span>}
+              </div>
+              <div className="font-serif text-[15px] text-ink-mid dark:text-ink-lt mt-0.5">
+                {d.meaning || <span className="italic text-ink-faint">no gloss yet — unmatched</span>}
+                {d.lemma && <span className="text-ink-faint text-[12px]"> · from {lang.toScheme(d.lemma, scheme)}</span>}
+              </div>
+              {d.notes && !d.notes.startsWith("UNMATCHED") && (
+                <div className="font-serif text-[12px] text-ink-faint mt-0.5">{d.notes}</div>
+              )}
+            </div>
+          ))}
+          <div className="font-title text-[9px] uppercase tracking-[0.12em] text-ink-faint/70 mt-2">
+            machine-matched · unreviewed
+          </div>
+        </div>
+      )}
     </>
   );
 }

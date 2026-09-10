@@ -19,6 +19,7 @@ export interface TextPrefs {
   fontPx: number;
   rom: boolean;          // romanization visible
   layout: ReaderLayout;  // "under" every syllable, or revealed "by line"
+  words?: boolean;       // word-boundary washes + tap-to-peek (off = clean script)
 }
 
 export const SETTINGS_KEY = "tibetan-flash-settings";
