@@ -260,7 +260,7 @@ export function Reader({ text, lang, scheme }: { text: Text; lang: Language; sch
       <button
         onClick={() => setBarOpen(true)}
         aria-label="Reader controls"
-        className={`fixed right-0 bottom-[33vh] z-40 h-[72px] w-[18px] flex items-center justify-center rounded-l-[8px] border-[0.5px] border-r-0 border-stone dark:border-bdr-dk bg-stone-lt dark:bg-surf-dk-mid text-ink-muted cursor-pointer transition-opacity duration-300 ${barOpen ? "opacity-0 pointer-events-none" : "opacity-100"}`}
+        className={`fixed right-0 bottom-[33vh] z-40 h-16 w-4 flex items-center justify-center rounded-l-[8px] border border-r-0 border-accent dark:border-accent-dk bg-card-bg dark:bg-surf-dk text-accent dark:text-accent-dk cursor-pointer transition-opacity duration-300 ${barOpen ? "opacity-0 pointer-events-none" : "opacity-100"}`}
       >
         <IoChevronBack size={11} />
       </button>

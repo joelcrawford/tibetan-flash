@@ -259,8 +259,8 @@ export function Reader({ text, lang, scheme, c }: { text: LangText; lang: Langua
           the right edge ~1/3 up the screen. Tap → the bar slides across;
           chevron or scroll-down tucks it back. */}
       {!barOpen && (
-        <TouchableOpacity onPress={() => openBar(true)} hitSlop={12} style={[rs.tab, { backgroundColor: c.raised ?? c.card, borderColor: c.border }]}>
-          <Ionicons name="chevron-back" size={12} color={c.muted} />
+        <TouchableOpacity onPress={() => openBar(true)} hitSlop={12} style={[rs.tab, { backgroundColor: c.card, borderColor: c.accent }]}>
+          <Ionicons name="chevron-back" size={12} color={c.accent} />
         </TouchableOpacity>
       )}
       <Animated.View style={[rs.bar, { backgroundColor: c.card, borderColor: c.border, transform: [{ translateX: slide }] }]}>
@@ -340,7 +340,7 @@ const rs = StyleSheet.create({
   scol: { alignItems: "center" },
   meta: { textAlign: "center", fontSize: 11, marginTop: 12, fontFamily: "Menlo" },
   bar: { position: "absolute", left: 14, right: 0, bottom: "33%", flexDirection: "row", alignItems: "center", gap: 8, borderWidth: 0.5, borderRightWidth: 0, borderTopLeftRadius: 16, borderBottomLeftRadius: 16, paddingLeft: 10, paddingRight: 4, paddingVertical: 8 },
-  tab: { position: "absolute", right: 0, bottom: "33%", width: 18, height: 72, alignItems: "center", justifyContent: "center", borderWidth: 0.5, borderRightWidth: 0, borderTopLeftRadius: 8, borderBottomLeftRadius: 8 },
+  tab: { position: "absolute", right: 0, bottom: "33%", width: 16, height: 64, alignItems: "center", justifyContent: "center", borderWidth: 1, borderRightWidth: 0, borderTopLeftRadius: 8, borderBottomLeftRadius: 8 },
   peek: { position: "absolute", left: 0, right: 0, bottom: 0, borderWidth: 0.5, borderBottomWidth: 0, borderTopLeftRadius: 14, borderTopRightRadius: 14, paddingHorizontal: 16, paddingTop: 12, paddingBottom: 30 },
   peekClose: { position: "absolute", top: 8, right: 8, zIndex: 1 },
   sizer: { flexDirection: "row", borderWidth: 0.5, borderRadius: 10, overflow: "hidden" },
