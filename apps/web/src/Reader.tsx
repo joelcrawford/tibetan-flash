@@ -260,7 +260,7 @@ export function Reader({ text, lang, scheme }: { text: Text; lang: Language; sch
       <button
         onClick={() => setBarOpen(true)}
         aria-label="Reader controls"
-        className={`fixed right-0 bottom-[33vh] z-40 h-16 w-4 flex items-center justify-center rounded-l-[8px] border-[0.5px] border-r-0 border-stone dark:border-bdr-dk bg-card-bg/70 dark:bg-surf-dk/70 text-ink-faint/70 cursor-pointer transition-opacity duration-300 ${barOpen ? "opacity-0 pointer-events-none" : "opacity-100"}`}
+        className={`fixed right-0 bottom-[33vh] z-40 h-[72px] w-[18px] flex items-center justify-center rounded-l-[8px] border-[0.5px] border-r-0 border-stone dark:border-bdr-dk bg-stone-lt dark:bg-surf-dk-mid text-ink-muted cursor-pointer transition-opacity duration-300 ${barOpen ? "opacity-0 pointer-events-none" : "opacity-100"}`}
       >
         <IoChevronBack size={11} />
       </button>
@@ -296,7 +296,7 @@ export function Reader({ text, lang, scheme }: { text: Text; lang: Language; sch
 
       {/* peek — the tapped word's dict spans, widest first (phrase → word) */}
       {peek && peekRows.length > 0 && (
-        <div className={`fixed bottom-4 left-1/2 -translate-x-1/2 z-40 w-[min(680px,calc(100%-28px))] bg-card-bg/95 dark:bg-surf-dk/95 backdrop-blur border-[0.5px] border-stone dark:border-bdr-dk rounded-[14px] px-4 py-3 shadow-[0_10px_26px_rgba(20,12,6,0.22)] transition-transform duration-300 ${pillHidden ? "translate-y-[300%]" : "translate-y-0"}`}>
+        <div className={`fixed bottom-0 left-1/2 -translate-x-1/2 z-40 w-[min(680px,100%)] bg-card-bg/95 dark:bg-surf-dk/95 backdrop-blur border-[0.5px] border-b-0 border-stone dark:border-bdr-dk rounded-t-[14px] px-4 pt-3 pb-4 shadow-[0_-6px_26px_rgba(20,12,6,0.18)] transition-transform duration-300 ${pillHidden ? "translate-y-full" : "translate-y-0"}`}>
           <button
             onClick={() => setPeek(null)}
             className="absolute top-2 right-2 text-ink-faint hover:text-ink-muted cursor-pointer"
