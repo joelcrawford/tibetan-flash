@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from "react";
-import { IoBookmark, IoBookmarkOutline, IoClose } from "react-icons/io5";
+import { IoBookmark, IoBookmarkOutline, IoChevronBack, IoChevronForward, IoClose } from "react-icons/io5";
 import type { DictEntry, Language, Text } from "../../../shared/types/types";
 import {
   roman, pageLabelMap, displayLines, isHardBreak,
@@ -75,7 +75,8 @@ export function Reader({ text, lang, scheme }: { text: Text; lang: Language; sch
   useEffect(() => { if (!words) setPeek(null); }, [words]);
 
   const [revealed, setRevealed] = useState<Set<number>>(new Set());
-  const [pillHidden, setPillHidden] = useState(false);
+  const [pillHidden, setPillHidden] = useState(false); // hides the peek on scroll-down
+  const [barOpen, setBarOpen] = useState(false); // the edge drawer, collapsed to its tab
   const [bookmark, setBookmarkState] = useState<number | null>(() => loadBookmarks()[text.id] ?? null);
   const romPx = Math.max(9, Math.round(fontPx * 0.36));
 
@@ -103,7 +104,7 @@ export function Reader({ text, lang, scheme }: { text: Text; lang: Language; sch
     const onScroll = () => {
       const y = window.scrollY;
       if (y < 48) setPillHidden(false);
-      else if (y > lastY.current + 6) setPillHidden(true);
+      else if (y > lastY.current + 6) { setPillHidden(true); setBarOpen(false); }
       else if (y < lastY.current - 6) setPillHidden(false);
       lastY.current = y;
     };
@@ -253,9 +254,18 @@ export function Reader({ text, lang, scheme }: { text: Text; lang: Language; sch
         </div>
       </div>
 
-      {/* floating pill — auto-hides on scroll down */}
+      {/* reader controls — edge drawer. Collapsed: a barely-there pull-tab on
+          the right edge ~1/3 up the screen. Click → the bar slides across;
+          chevron or scroll-down tucks it back. */}
+      <button
+        onClick={() => setBarOpen(true)}
+        aria-label="Reader controls"
+        className={`fixed right-0 bottom-[33vh] z-40 h-16 w-4 flex items-center justify-center rounded-l-[8px] border-[0.5px] border-r-0 border-stone dark:border-bdr-dk bg-card-bg/70 dark:bg-surf-dk/70 text-ink-faint/70 cursor-pointer transition-opacity duration-300 ${barOpen ? "opacity-0 pointer-events-none" : "opacity-100"}`}
+      >
+        <IoChevronBack size={11} />
+      </button>
       <div
-        className={`fixed bottom-4 left-1/2 -translate-x-1/2 z-40 w-[min(680px,calc(100%-28px))] flex items-center gap-2 bg-card-bg/95 dark:bg-surf-dk/95 backdrop-blur border-[0.5px] border-stone dark:border-bdr-dk rounded-[16px] px-2.5 py-2 shadow-[0_10px_26px_rgba(20,12,6,0.22)] transition-transform duration-300 ${pillHidden ? "translate-y-[160%]" : "translate-y-0"}`}
+        className={`fixed right-0 bottom-[33vh] z-40 w-[min(680px,calc(100%-12px))] flex items-center gap-2 bg-card-bg/95 dark:bg-surf-dk/95 backdrop-blur border-[0.5px] border-r-0 border-stone dark:border-bdr-dk rounded-l-[16px] pl-2.5 pr-1.5 py-2 shadow-[0_10px_26px_rgba(20,12,6,0.22)] transition-transform duration-300 ${barOpen ? "translate-x-0" : "translate-x-[102%]"}`}
       >
         <div className="flex items-center border-[0.5px] border-stone dark:border-bdr-dk rounded-[10px] overflow-hidden">
           <button
@@ -275,11 +285,18 @@ export function Reader({ text, lang, scheme }: { text: Text; lang: Language; sch
         <BarBtn on={layout === "under"} disabled={!sound} onClick={() => sound && setLayout("under")}>Under</BarBtn>
         <BarBtn on={layout === "line"} disabled={!sound} onClick={() => sound && setLayout("line")}>By&nbsp;line</BarBtn>
         <BarBtn on={words} disabled={!hasSegmentation(text)} onClick={() => setWords((v) => !v)}>Words</BarBtn>
+        <button
+          onClick={() => setBarOpen(false)}
+          aria-label="Hide reader controls"
+          className="shrink-0 px-1 py-2 text-ink-faint hover:text-ink-muted cursor-pointer"
+        >
+          <IoChevronForward size={14} />
+        </button>
       </div>
 
       {/* peek — the tapped word's dict spans, widest first (phrase → word) */}
       {peek && peekRows.length > 0 && (
-        <div className={`fixed bottom-[76px] left-1/2 -translate-x-1/2 z-40 w-[min(680px,calc(100%-28px))] bg-card-bg/95 dark:bg-surf-dk/95 backdrop-blur border-[0.5px] border-stone dark:border-bdr-dk rounded-[14px] px-4 py-3 shadow-[0_10px_26px_rgba(20,12,6,0.22)] transition-transform duration-300 ${pillHidden ? "translate-y-[300%]" : "translate-y-0"}`}>
+        <div className={`fixed bottom-4 left-1/2 -translate-x-1/2 z-40 w-[min(680px,calc(100%-28px))] bg-card-bg/95 dark:bg-surf-dk/95 backdrop-blur border-[0.5px] border-stone dark:border-bdr-dk rounded-[14px] px-4 py-3 shadow-[0_10px_26px_rgba(20,12,6,0.22)] transition-transform duration-300 ${pillHidden ? "translate-y-[300%]" : "translate-y-0"}`}>
           <button
             onClick={() => setPeek(null)}
             className="absolute top-2 right-2 text-ink-faint hover:text-ink-muted cursor-pointer"

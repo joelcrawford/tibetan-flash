@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useMemo, ReactNode } from "react";
-import { View, Text, ScrollView, TouchableOpacity, StyleSheet, Animated } from "react-native";
+import { View, Text, ScrollView, TouchableOpacity, StyleSheet, Animated, Dimensions } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import type { DictEntry, Language, Text as LangText } from "../../../shared/types/types";
@@ -146,6 +146,15 @@ export function Reader({ text, lang, scheme, c }: { text: LangText; lang: Langua
   };
 
   // ── auto-hide pill on scroll ──
+  // edge drawer: slide=winW means tucked away (only the tab shows)
+  const winW = Dimensions.get("window").width;
+  const [barOpen, setBarOpen] = useState(false);
+  const slide = useRef(new Animated.Value(Dimensions.get("window").width)).current;
+  const openBar = (open: boolean) => {
+    setBarOpen(open);
+    Animated.timing(slide, { toValue: open ? 0 : winW, duration: 220, useNativeDriver: true }).start();
+  };
+
   const pillY = useRef(new Animated.Value(0)).current;
   const lastY = useRef(0);
   const hidden = useRef(false);
@@ -153,7 +162,7 @@ export function Reader({ text, lang, scheme, c }: { text: LangText; lang: Langua
   const onScroll = (e: { nativeEvent: { contentOffset: { y: number } } }) => {
     const y = e.nativeEvent.contentOffset.y;
     if (y < 48 && hidden.current) move(0, false);
-    else if (y > lastY.current + 6 && !hidden.current) move(130, true);
+    else if (y > lastY.current + 6) { if (!hidden.current) move(130, true); if (barOpen) openBar(false); }
     else if (y < lastY.current - 6 && hidden.current) move(0, false);
     lastY.current = y;
   };
@@ -246,8 +255,15 @@ export function Reader({ text, lang, scheme, c }: { text: LangText; lang: Langua
         </Text>
       </ScrollView>
 
-      {/* floating pill — auto-hides on scroll down */}
-      <Animated.View style={[rs.bar, { backgroundColor: c.card, borderColor: c.border, transform: [{ translateY: pillY }] }]}>
+      {/* reader controls — edge drawer. Collapsed: a barely-there pull-tab on
+          the right edge ~1/3 up the screen. Tap → the bar slides across;
+          chevron or scroll-down tucks it back. */}
+      {!barOpen && (
+        <TouchableOpacity onPress={() => openBar(true)} hitSlop={10} style={[rs.tab, { backgroundColor: c.card, borderColor: c.border }]}>
+          <Ionicons name="chevron-back" size={11} color={c.faint} />
+        </TouchableOpacity>
+      )}
+      <Animated.View style={[rs.bar, { backgroundColor: c.card, borderColor: c.border, transform: [{ translateX: slide }] }]}>
         <View style={[rs.sizer, { borderColor: c.border }]}>
           <TouchableOpacity disabled={fontPx <= MIN_PX} onPress={() => setFontPx((p) => Math.max(MIN_PX, p - 3))} style={rs.sizerBtn}>
             <Text style={{ fontSize: 15, color: fontPx <= MIN_PX ? c.faint : c.muted }}>A−</Text>
@@ -260,6 +276,9 @@ export function Reader({ text, lang, scheme, c }: { text: LangText; lang: Langua
         <BarBtn on={layout === "under"} disabled={!sound} onPress={() => sound && setLayout("under")} label="Under" />
         <BarBtn on={layout === "line"} disabled={!sound} onPress={() => sound && setLayout("line")} label="By line" />
         <BarBtn on={words} disabled={!hasSegmentation(text)} onPress={() => setWords((v) => !v)} label="Words" />
+        <TouchableOpacity onPress={() => openBar(false)} hitSlop={8} style={{ paddingHorizontal: 2, paddingVertical: 8 }}>
+          <Ionicons name="chevron-forward" size={14} color={c.faint} />
+        </TouchableOpacity>
       </Animated.View>
 
       {/* peek — the tapped word's dict spans, widest first; a row tap moves the
@@ -320,8 +339,9 @@ const rs = StyleSheet.create({
   clauseRow: { flexDirection: "row", flexWrap: "wrap", alignItems: "flex-end" },
   scol: { alignItems: "center" },
   meta: { textAlign: "center", fontSize: 11, marginTop: 12, fontFamily: "Menlo" },
-  bar: { position: "absolute", left: 14, right: 14, bottom: 28, flexDirection: "row", alignItems: "center", gap: 8, borderWidth: 0.5, borderRadius: 16, paddingHorizontal: 10, paddingVertical: 8 },
-  peek: { position: "absolute", left: 14, right: 14, bottom: 92, borderWidth: 0.5, borderRadius: 14, paddingHorizontal: 16, paddingVertical: 12 },
+  bar: { position: "absolute", left: 14, right: 0, bottom: "33%", flexDirection: "row", alignItems: "center", gap: 8, borderWidth: 0.5, borderRightWidth: 0, borderTopLeftRadius: 16, borderBottomLeftRadius: 16, paddingLeft: 10, paddingRight: 4, paddingVertical: 8 },
+  tab: { position: "absolute", right: 0, bottom: "33%", width: 16, height: 64, alignItems: "center", justifyContent: "center", borderWidth: 0.5, borderRightWidth: 0, borderTopLeftRadius: 8, borderBottomLeftRadius: 8, opacity: 0.75 },
+  peek: { position: "absolute", left: 14, right: 14, bottom: 24, borderWidth: 0.5, borderRadius: 14, paddingHorizontal: 16, paddingVertical: 12 },
   peekClose: { position: "absolute", top: 8, right: 8, zIndex: 1 },
   sizer: { flexDirection: "row", borderWidth: 0.5, borderRadius: 10, overflow: "hidden" },
   sizerBtn: { paddingHorizontal: 10, paddingVertical: 8 },

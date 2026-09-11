@@ -1,6 +1,6 @@
 {
 "version": 1,
-"built": "2026-09-10",
+"built": "2026-09-11",
 "tier": "TENTATIVE (machine-matched, unreviewed)",
 "note": "ACIP is the only stored script; derive Unicode/wylie via shared/languages/tibetan/convert. pron = GMR-convention phonetics (generated). ctx = [entryIndex, course:page] containment contexts, tightest first. cat = GML catalogue glosses (title-derived).",
 "sources": {"corpus":"geshe_michael_roach_dictionary.csv + _by_course.csv (ACI C01–C05, machine-aligned 2026-09-08)","catalogue":"GML-dictionary-from-catalogue-2026-08-18.tsv"},
