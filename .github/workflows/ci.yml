@@ -20,6 +20,11 @@ jobs:
 
       - run: npm ci
 
+      # data/ is untracked (large source CSVs) but tools write review
+      # reports into it; segment-text.mjs needs the directory to exist.
+      - name: Prepare untracked data dir
+        run: mkdir -p data
+
       - name: Test
         run: npm test
 
