@@ -3,6 +3,20 @@ name: Deploy
 on:
   push:
     branches: [main]
+    # Only what the deploy actually touches. Without this, a docs- or
+    # iOS-only merge rebuilds and redeploys the web app and cycles PM2 —
+    # downtime for a change the server cannot see.
+    paths:
+      - "apps/web/**"
+      - "server/**"
+      - "src/python/**"
+      - "ecosystem.config.cjs"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/deploy.yml"
+  # Redeploy without an empty commit — and the way to deploy a change
+  # this filter deliberately ignores.
+  workflow_dispatch:
 
 jobs:
   deploy:
