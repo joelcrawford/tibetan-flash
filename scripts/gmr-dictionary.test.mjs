@@ -2,7 +2,7 @@
 // validates the artifact's invariants. Run: npm test
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
@@ -11,7 +11,12 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const read = (p) => JSON.parse(readFileSync(join(ROOT, p), "utf8"));
 
 // ── build runs cleanly (rebuilds shared/languages/tibetan/dictionary.json) ──
-execFileSync(process.execPath, [join(ROOT, "scripts/build-gmr-dictionary.mjs")], { stdio: "pipe" });
+// The source CSV is deliberately untracked (large; see .gitignore) — with it
+// present (local dev) the test validates a fresh build; without it (CI) the
+// invariants below validate the committed artifact instead.
+if (existsSync(join(ROOT, "data/geshe_michael_roach_dictionary.csv"))) {
+  execFileSync(process.execPath, [join(ROOT, "scripts/build-gmr-dictionary.mjs")], { stdio: "pipe" });
+}
 const dict = read("shared/languages/tibetan/dictionary.json");
 const E = dict.entries;
 

@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - run: npm ci
+
+      # data/ is untracked (large source CSVs) but tools write review
+      # reports into it; segment-text.mjs needs the directory to exist.
+      - name: Prepare untracked data dir
+        run: mkdir -p data
+
+      - name: Test
+        run: npm test
+
+      - name: Build web app
+        run: npm --prefix apps/web run build
