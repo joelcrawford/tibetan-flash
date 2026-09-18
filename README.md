@@ -39,17 +39,15 @@ Then open `http://localhost:5173`.
 
 ## Deployment
 
-Deploys automatically to `tibetan.havehopeyo.com` on push to `main` via GitHub Actions.
-
-For the first deploy or manual deploys:
+Deploys automatically to `tibetan.havehopeyo.com` on push to `main` via GitHub Actions. To redeploy by hand (it still runs in Actions):
 ```bash
 npm run deploy
 ```
 
-Requires `DEPLOY_HOST` and `DEPLOY_USER` env vars if different from defaults (`bot` / `root`).
+How it works: CI builds the web app (it needs Node 20; the server runs 18) and pipes the build as a tarball to the server. The CI key can only run `/usr/local/sbin/deploy-tibetan-flash` (canonical copy: `ops/deploy-wrapper.sh`), which resets the server's clone at `/opt/src/tibetan-flash` to `origin/main` and runs `ops/deploy.sh` in its own systemd unit. That syncs into `/opt/tibetan-flash` and `/var/www/tibetan-flash`, restarts PM2, and saves the PM2 state only after the health check passes.
 
 ### First-time server setup
-See `nginx.conf` for the nginx configuration. PM2 manages both the Node and Python processes via `ecosystem.config.cjs`.
+See `nginx.conf` for the nginx configuration. PM2 (`pm2-root.service`) manages both the Node and Python processes via `ecosystem.config.cjs`. The wrapper, `/opt/src/tibetan-flash` clone, and the `deploy` user's pinned key are installed by hand. See `ops/deploy-wrapper.sh`.
 
 ## Data
 
